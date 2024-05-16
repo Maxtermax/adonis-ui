@@ -1,0 +1,34 @@
+import { fn } from "@storybook/test";
+import { ADBadge } from "components/ADBadge/ADBadge";
+import { ADText } from "components/ADText/ADText";
+import { SHAPES, TEXT_VARIANTS, DIMENSIONS } from "constants";
+
+const { rounded, sharp } = SHAPES;
+
+export default {
+  title: "Basic/ADBadge",
+  component: ADBadge,
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+  args: { onClick: fn() },
+  argTypes: {
+    variant: {
+      control: "select",
+      options: [rounded, sharp],
+    },
+    size: {
+      control: "select",
+      options: [DIMENSIONS.small, DIMENSIONS.normal],
+    },
+  },
+};
+
+export const Primary = {
+  args: {
+    variant: rounded,
+    size: DIMENSIONS.small,
+    children: <ADText variant={TEXT_VARIANTS.HEADING} value="2" />,
+  },
+};
