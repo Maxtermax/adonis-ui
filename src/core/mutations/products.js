@@ -1,5 +1,5 @@
 import store from "store/app";
-import { SELECT_PRODUCT_VARIATION, SELECT_PRODUCTS } from "constants";
+import { SELECT_PRODUCT_VARIATION, SET_PRODUCTS } from "constants";
 
 export const selectProductThumbnail = (targets = [], id) => {
   store.mutate({
@@ -11,7 +11,8 @@ export const selectProductThumbnail = (targets = [], id) => {
 
 export const setProducts = (products) => {
   store.mutate({
-    type: SELECT_PRODUCTS,
+    type: SET_PRODUCTS,
+    targets: [],
     payload: { value: products },
   });
 };

@@ -12,6 +12,7 @@ const ADProvider = ({
   theme = THEME.LIGHT,
 }) => {
   useStore({ store, reducer, data: initialData });
+  console.log({ store, reducer, initialData })
   return <ThemeProvider theme={buildTheme(theme)}>{children}</ThemeProvider>;
 };
 

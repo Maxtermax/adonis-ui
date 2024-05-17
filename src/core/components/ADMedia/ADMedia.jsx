@@ -16,7 +16,7 @@ export const ADMedia = ({
   id,
   ...rest
 }) => {
-  console.log({ images, thumbnails });
+  console.log({ id, price });
   return (
     <styles.Media className={`ad-media ${className}`} {...rest}>
       <ADCard
@@ -25,7 +25,9 @@ export const ADMedia = ({
         gap={DIMENSIONS.none}
         shape={SHAPES.rounded}
         Header={() => <Header discount={discount} />}
-        Content={() => <Content id={id} images={images} thumbnails={thumbnails} />}
+        Content={() => (
+          <Content id={id} images={images} thumbnails={thumbnails} />
+        )}
         Footer={() => (
           <Footer name={name} discount={discount} id={id} price={price} />
         )}

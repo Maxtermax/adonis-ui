@@ -5,11 +5,18 @@ import store from "store/app";
 
 const preview = {
   decorators: [
-    (Story) => (
-      <ADProvider data={{ products: [] }} reducer={reducer} store={store}>
-        <Story />
-      </ADProvider>
-    ),
+    (Story) => {
+      console.log("preview");
+      return (
+        <ADProvider
+          initialData={{ products: [] }}
+          reducer={reducer}
+          store={store}
+        >
+          <Story />
+        </ADProvider>
+      );
+    },
   ],
   parameters: {
     controls: {

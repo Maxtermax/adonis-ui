@@ -40,3 +40,5 @@ export const TEXT_VARIANTS = {
 }
 
 export const SELECT_PRODUCT_VARIATION = "SELECT_PRODUCT_VARIATION";
+
+export const SET_PRODUCTS  = "SET_PRODUCTS";
