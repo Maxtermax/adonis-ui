@@ -1,20 +1,24 @@
-// import { getProductById } from "queries/products";
-// import store from "store/app";
-import { SELECT_PRODUCT_VARIATION, SET_PRODUCTS } from "constants";
+import { SELECT_IMAGE } from "constants";
+import {
+  getProductById,
+  getImageById,
+  getSelectedImage,
+} from "queries/products";
+import store from "store/app";
+
+window.store = store;
 
 export default function products(state, action) {
   const actions = {
-    [SELECT_PRODUCT_VARIATION]: () => {
-      // const thumbnail = action.payload.value; 
-      // const { id: thumbnailId, productId } = thumbnail; 
-      // const d = store.query(() => getProductById(state, productId))
-      debugger;
+    [SELECT_IMAGE]: () => {
+      const { imageId, productId } = action.payload.value;
+      const product = store.query((store) => getProductById(store, productId));
+      const image = getImageById(product.images, imageId);
+      const prevImage = getSelectedImage(product.images);
+      if (prevImage) prevImage.selected = false; 
+      image.selected = true;
       return state;
     },
-    [SET_PRODUCTS]: (products = []) => {
-      console.log('ENTRA: ', products);
-      return state.products = products;
-    } 
-  }
+  };
   return actions[action.type]?.();
 }

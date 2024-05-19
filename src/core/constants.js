@@ -10,11 +10,16 @@ export const THEME = {
   DARK: "DARK",
 };
 
+export const FIGURE_VARIANTS = {
+  MINI: 'mini'
+};
+
 export const CARD_VARIANTS = {
   TEXT: "text",
   OUTLINED: "outlined",
   CONTAINED: "contained",
   SHARP: "sharp",
+  MINI: "mini",
 };
 
 export const DIMENSIONS = {
@@ -39,6 +44,6 @@ export const TEXT_VARIANTS = {
   SUBTITLE: "subtitle"
 }
 
-export const SELECT_PRODUCT_VARIATION = "SELECT_PRODUCT_VARIATION";
+export const SELECT_IMAGE = "SELECT_IMAGE";
 
-export const SET_PRODUCTS  = "SET_PRODUCTS";
+export const SET_PRODUCT_FOCUS = "SET_PRODUCT_FOCUS";

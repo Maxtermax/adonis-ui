@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-const medium = ({ md }) => {
+const medium = ({ md = {} }) => {
   let result = "";
   if (md.rows) {
     result += `

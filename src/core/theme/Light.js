@@ -3,11 +3,11 @@ import Base from "./Base";
 
 export default class Light extends Base {
   breakpoints = {
-    xl: "1200px", // Extra large devices (large desktops)
-    lg: "1024px", // Large devices (desktops)
-    md: "768px", // Medium devices (tablets)
-    sm: "576px", // Small devices (large phones)
-    xs: "360px", // Extra small devices (phones)
+    xl: "1200px",
+    lg: "1024px",
+    md: "768px",
+    sm: "576px",
+    xs: "360px",
   };
   devices = {
     xs: `(max-width: ${this.breakpoints.xs})`,
@@ -23,6 +23,7 @@ export default class Light extends Base {
     lightSilver: "#9f9f9f17",
     white: "#fff",
     grey: "#9a9da117",
+    red: "red",
     contrast: {
       primary: "#FAFAFF",
       white: "#0A100D",
@@ -56,6 +57,8 @@ export default class Light extends Base {
       half: "scale(1.5)",
       extra: "scale(1.75)",
       tiny: "scale(0.75)",
+      ["80%"]: "scale(0.8)",
+      ["90%"]: "scale(0.9)",
       none: "scale(1)",
     },
   };

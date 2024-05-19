@@ -1,23 +1,50 @@
 import styled from "@emotion/styled";
+import { FIGURE_VARIANTS } from "constants";
+
+export const DiscountContent = styled.div`
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const Discount = styled.div`
+  align-items: center;
+  display: flex;
+  position: relative;
+  height: 20px;
+  right: 0px;
+  gap: ${({ theme }) => theme.spacing.low};
+  & .discount-percentage {
+    background: ${({ theme }) => theme.colors.red};
+    color: ${({ theme }) => theme.colors.white};
+    transform: ${({ theme }) => theme.transform.scale["90%"]};
+  }
+  & .ad-badge.discount-percentage:hover {
+    background: ${({ theme }) => theme.colors.red};
+  }
+`;
 
 export const LeftCol = styled.div`
   display: flex;
   flex-direction: column;
-  height: 90px;
+  height: 100px;
   gap: ${(props) => props.theme.spacing.regular};
   .ad-title,
   .ad-body {
     align-items: center;
     display: flex;
-    height: 20px;
+    height: 30px;
   }
 `;
+
 export const RightCol = styled.div`
   align-items: center;
   display: flex;
   justify-content: flex-end;
   padding-right: ${({ theme }) => theme.spacing.low};
-  height: 90px;
+  height: 100px;
   .ad-button {
     transform: ${(props) => props.theme.transform.scale.mid};
     @media screen and ${(props) => props.theme.devices.sm} {
@@ -77,10 +104,6 @@ export const Content = styled.div`
   }
   .main-picture {
     position: relative;
-    right: 2px;
-    @media screen and ${(props) => props.theme.devices.sm} {
-      right: 0px;
-    }
   }
   .main-picture img {
     transform: ${(props) => props.theme.transform.scale.half};
@@ -97,6 +120,7 @@ export const Content = styled.div`
 
 export const Image = styled.img`
   object-fit: contain;
+  background-color: ${({ theme }) => theme.colors.white};
   opacity: ${({ theme, selected = false }) =>
     selected ? theme.opacity.visible : theme.opacity.middle} !important;
 `;
@@ -116,7 +140,6 @@ export const Previews = styled.div`
     border: 1px solid ${(props) => props.theme.colors.primary};
     border-radius: ${(props) => props.theme.border.radius.rounded};
     justify-content: space-evenly;
-    transform: ${(props) => props.theme.transform.scale.tiny};
     gap: ${(props) => props.theme.spacing.high};
     width: 60px;
     height: 60px;
@@ -136,8 +159,20 @@ export const Previews = styled.div`
   }
 `;
 
+const figureTransform = ({ selected, theme, variant }) => {
+  if (selected) return theme.transform.scale["80%"];
+  if (variant === FIGURE_VARIANTS.MINI) return theme.transform.scale.tiny;
+  return theme.transform.scale.none;
+};
+
 export const Figure = styled.figure`
   align-items: center;
+  background-color: ${({ theme, variant }) =>
+    variant === FIGURE_VARIANTS.MINI
+      ? theme.colors.white
+      : theme.colors.transparent};
+  transform: ${figureTransform};
+  transition: ${({ theme }) => theme.transitions.smooth};
   margin: 0px;
   padding: 0px;
   display: flex;
@@ -150,12 +185,14 @@ export const Figure = styled.figure`
 export const Header = styled.div`
   display: flex;
   position: absolute;
-  right: -${(props) => props.theme.spacing.regular};
-  top: -${(props) => props.theme.spacing.regular};
-  & svg {
-    position: relative;
-    left: -${(props) => props.theme.spacing.low};
-    top: ${(props) => props.theme.spacing.low};
+  right: ${({ theme }) => theme.spacing.regular};
+  top: -${({ theme }) => theme.spacing.regular};
+  & .ad-badge {
+    background-color: ${({ theme }) => theme.colors.red};
+    border: none;
+  }
+  & .ad-heading {
+    padding-top: ${({ theme }) => theme.spacing.low};
   }
 `;
 

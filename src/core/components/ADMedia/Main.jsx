@@ -1,8 +1,8 @@
 import * as styles from "./style";
 import { useADMedia } from "./hooks/useADMedia";
 
-export const Main = ({ images, id }) => {
-  const image = useADMedia(images, id);
+export const Main = ({ images, productId }) => {
+  const image = useADMedia(images, productId);
   return (
     <styles.Figure className="main-picture">
       <styles.Picture

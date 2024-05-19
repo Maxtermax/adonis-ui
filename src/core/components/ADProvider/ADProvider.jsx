@@ -8,11 +8,10 @@ const ADProvider = ({
   children,
   reducer,
   store,
-  initialData,
+  data,
   theme = THEME.LIGHT,
 }) => {
-  useStore({ store, reducer, data: initialData });
-  console.log({ store, reducer, initialData })
+  useStore({ store, reducer, data });
   return <ThemeProvider theme={buildTheme(theme)}>{children}</ThemeProvider>;
 };
 

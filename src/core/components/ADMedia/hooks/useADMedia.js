@@ -1,37 +1,39 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import find from "lodash/find";
 import { useMutations } from "hermes-io";
-import { getImageByThumbnail, getNextImage } from "queries/products";
-// import { selectProductThumbnail } from "mutations/products";
+// import { getImageByThumbnail, getNextImage } from "queries/products";
+// import { selectImage } from "mutations/products";
+import { SELECT_IMAGE } from "constants";
 import store from "store/app";
-import { SELECT_PRODUCT_VARIATION } from "constants";
 
-export const useADMedia = (images, id) => {
+export const useADMedia = (images, productId) => {
   const [image, setImage] = useState(images[0]);
 
+  /*
   useEffect(() => {
     const internval = setInterval(() => {
       const nextImage = store.query(() => getNextImage(images, image.id));
       if (nextImage) {
         setImage(nextImage);
-        // const thumbnail = thumbnails[index];
-        // selectProductThumbnail([id], thumbnail);
         return;
       }
       setImage(images[0]);
-    }, 2000);
+    }, 3000);
     return () => clearInterval(internval);
   }, [image]);
+  */
 
-  const handleUseADMediaNotification = (thumbnail) => {
-    const image = store.query(() => getImageByThumbnail(images, thumbnail));
+  const handleUseADMediaNotification = ({ imageId }) => {
+    const image = find(images, ({ id }) => imageId === id);
     if (image) setImage(image);
   };
+
   useMutations({
-    events: [SELECT_PRODUCT_VARIATION],
+    events: [SELECT_IMAGE],
     noUpdate: true,
     onChange: handleUseADMediaNotification,
     store,
-    id,
+    id: productId,
   });
 
   return image;

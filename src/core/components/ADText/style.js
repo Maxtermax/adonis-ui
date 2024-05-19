@@ -24,6 +24,7 @@ export const Text = styled.p`
   font-family: ${(props) => fontFamily(props)};
   padding: 0px;
   margin: 0px;
+  text-decoration: ${({ lineThrough }) => lineThrough ? 'line-through' : 'none'};
 `;
 
 export const Heading = styled.h1`
@@ -31,6 +32,7 @@ export const Heading = styled.h1`
   font-family: ${(props) => fontFamily(props)};
   padding: 0px;
   margin: 0px;
+  text-decoration: ${({ lineThrough }) => lineThrough ? 'line-through' : 'none'};
 `;
 
 export const Title = styled.span`
@@ -38,6 +40,7 @@ export const Title = styled.span`
   font-family: ${(props) => fontFamily(props)};
   padding: 0px;
   margin: 0px;
+  text-decoration: ${({ lineThrough }) => lineThrough ? 'line-through' : 'none'};
 `;
 
 export const SubTitle = styled.span`
@@ -45,4 +48,5 @@ export const SubTitle = styled.span`
   font-family: ${(props) => fontFamily(props)};
   padding: 0px;
   margin: 0px;
+  text-decoration: ${({ lineThrough }) => lineThrough ? 'line-through' : 'none'};
 `;

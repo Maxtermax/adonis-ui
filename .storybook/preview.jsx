@@ -1,20 +1,15 @@
-/** @type { import('@storybook/react').Preview } */
-import ADProvider from "components/ADProvider/ADProvider";
-import reducer from "reducers/products";
-import store from "store/app";
+import { ThemeProvider } from "@emotion/react";
+import buildTheme from "theme/theme";
+import { THEME } from "constants";
+import "@/index.css";
 
 const preview = {
   decorators: [
     (Story) => {
-      console.log("preview");
       return (
-        <ADProvider
-          initialData={{ products: [] }}
-          reducer={reducer}
-          store={store}
-        >
+        <ThemeProvider theme={buildTheme(THEME.LIGHT)}>
           <Story />
-        </ADProvider>
+        </ThemeProvider>
       );
     },
   ],

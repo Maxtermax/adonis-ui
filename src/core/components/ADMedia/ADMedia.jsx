@@ -4,10 +4,12 @@ import { CARD_VARIANTS, DIMENSIONS, SHAPES } from "constants";
 import { Header } from "./Header";
 import { Content } from "./Content";
 import { Footer } from "./Footer";
+
 const { OUTLINED } = CARD_VARIANTS;
 
 export const ADMedia = ({
   discount,
+  sizes = [],
   className = "",
   name = "",
   images = [],
@@ -16,7 +18,6 @@ export const ADMedia = ({
   id,
   ...rest
 }) => {
-  console.log({ id, price });
   return (
     <styles.Media className={`ad-media ${className}`} {...rest}>
       <ADCard
@@ -26,10 +27,16 @@ export const ADMedia = ({
         shape={SHAPES.rounded}
         Header={() => <Header discount={discount} />}
         Content={() => (
-          <Content id={id} images={images} thumbnails={thumbnails} />
+          <Content productId={id} images={images} thumbnails={thumbnails} />
         )}
         Footer={() => (
-          <Footer name={name} discount={discount} id={id} price={price} />
+          <Footer
+            name={name}
+            discount={discount}
+            productId={id}
+            price={price}
+            sizes={sizes}
+          />
         )}
       />
     </styles.Media>

@@ -1,27 +1,38 @@
 import { ADMedia } from "components/ADMedia/ADMedia";
+import ADProvider from "components/ADProvider/ADProvider";
+import reducer from "reducers/products";
+import store from "store/app";
 import { Mock } from "./mock";
-import { setProducts } from "mutations/products";
 
-const withScript = (Story, args) => {
-  const mock = new Mock();
-  const products = mock.getProducts();
-  const [product] = products;
-  setProducts(products);
-  console.log({ product });
+window.store = store;
 
-  return <Story {...product} {...args} discount={product.discount} />;
-};
+const mock = new Mock();
+const products = mock.getProducts();
+const [product] = products;
+const { discount, price, name, id, images, thumbnails, sizes } = product;
 
 export default {
   title: "Basic/ADMedia",
   component: ADMedia,
-  decorators: [withScript],
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
 };
 
-const Template = (args) => <ADMedia {...args} />;
+const Template = (args) => (
+  <ADProvider reducer={reducer} store={store} data={{ products }}>
+    <ADMedia {...args} />
+  </ADProvider>
+);
 
 export const Primary = Template.bind({});
+Primary.args = {
+  thumbnails,
+  sizes,
+  discount,
+  price,
+  name,
+  id,
+  images,
+};

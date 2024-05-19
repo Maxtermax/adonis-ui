@@ -7,30 +7,45 @@ import { ADGrid } from "components/ADGrid/ADGrid";
 import { ADText } from "components/ADText/ADText";
 import { TEXT_VARIANTS, DIMENSIONS, CARD_VARIANTS } from "constants";
 
-export const Footer = ({ name, price }) => {
+export const Footer = ({ name, price, sizes, discount }) => {
   return (
     <styles.Footer>
       <ADGrid md={{ cols: 1, rows: 1 }} cols={2} rows={1}>
         <styles.LeftCol className="left-col">
           <ADText variant={TEXT_VARIANTS.TITLE} value={name} />
-          <ADText variant={TEXT_VARIANTS.TEXT} value={formatCurrency(price)} />
+          {discount ? (
+            <styles.Discount>
+              <ADText
+                variant={TEXT_VARIANTS.TEXT}
+                value={formatCurrency(discount.before)}
+                lineThrough
+                title="Antes"
+              />
+              <ADText
+                variant={TEXT_VARIANTS.TEXT}
+                value={formatCurrency(discount.now)}
+                title="Ahora"
+              />
+            </styles.Discount>
+          ) : (
+            <ADText
+              variant={TEXT_VARIANTS.TEXT}
+              value={formatCurrency(price)}
+            />
+          )}
           <styles.Sizes className="sizes">
-            <ADBadge size={DIMENSIONS.small}>
-              <ADText variant={TEXT_VARIANTS.SUBTITLE} value="M" />
-            </ADBadge>
-            <ADBadge size={DIMENSIONS.small}>
-              <ADText variant={TEXT_VARIANTS.SUBTITLE} value="S" />
-            </ADBadge>
-            <ADBadge size={DIMENSIONS.small}>
-              <ADText variant={TEXT_VARIANTS.SUBTITLE} value="XS" />
-            </ADBadge>
-            <ADBadge size={DIMENSIONS.small}>
-              <ADText variant={TEXT_VARIANTS.SUBTITLE} value="L" />
-            </ADBadge>
+            {sizes.map((size, index) => (
+              <ADBadge size={DIMENSIONS.small} key={index}>
+                <ADText variant={TEXT_VARIANTS.SUBTITLE} value={size} />
+              </ADBadge>
+            ))}
           </styles.Sizes>
         </styles.LeftCol>
         <styles.RightCol className="right-col">
-          <ADButton className="desktop-button" variant={CARD_VARIANTS.CONTAINED}>
+          <ADButton
+            className="desktop-button"
+            variant={CARD_VARIANTS.CONTAINED}
+          >
             <CartPlus size={20} />
           </ADButton>
         </styles.RightCol>

@@ -1,13 +1,20 @@
 import * as styles from "./style";
-import { Eye } from "@styled-icons/entypo/Eye";
+import { ADText } from "components/ADText/ADText";
 import { ADBadge } from "components/ADBadge/ADBadge";
+import { TEXT_VARIANTS } from "constants";
 
-export const Header = () => {
+export const Header = ({ discount }) => {
   return (
     <styles.Header>
-      <ADBadge active>
-        <Eye size={24} />
-      </ADBadge>
+      {discount ? (
+        <ADBadge active>
+          <ADText
+            variant={TEXT_VARIANTS.HEADING}
+            value={discount.percentage}
+            title={discount.percentage}
+          />
+        </ADBadge>
+      ) : null}
     </styles.Header>
   );
 };

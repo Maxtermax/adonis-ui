@@ -1,14 +1,14 @@
 import * as styles from "./style";
-import { Preview } from './Preview';
-import { Main } from './Main';
+import { Thumbnails } from "./Thumbnails";
+import { Main } from "./Main";
 
-export const Content = ({ images = [], thumbnails = [], id }) => {
+export const Content = ({ images = [], thumbnails = [], productId }) => {
   return (
     <styles.Content className="content">
       <styles.Previews className="previews">
-        <Preview thumbnails={thumbnails} id={id} />
+        <Thumbnails data={thumbnails} productId={productId} />
       </styles.Previews>
-      <Main id={id} images={images} />
+      <Main productId={productId} images={images} />
     </styles.Content>
   );
 };
