@@ -11,7 +11,7 @@ export const THEME = {
 };
 
 export const FIGURE_VARIANTS = {
-  MINI: 'mini'
+  MINI: "mini",
 };
 
 export const CARD_VARIANTS = {
@@ -41,9 +41,16 @@ export const TEXT_VARIANTS = {
   TEXT: "text",
   HEADING: "heading",
   TITLE: "title",
-  SUBTITLE: "subtitle"
-}
+  SUBTITLE: "subtitle",
+};
 
 export const SELECT_IMAGE = "SELECT_IMAGE";
 
 export const SET_PRODUCT_FOCUS = "SET_PRODUCT_FOCUS";
+
+export const DIRECTIONS = {
+  TOP: "top",
+  BOTTOM: "bottom",
+  LEFT: "left",
+  RIGHT: "right",
+};

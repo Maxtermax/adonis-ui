@@ -10,8 +10,8 @@ export const Header = ({ discount }) => {
         <ADBadge active>
           <ADText
             variant={TEXT_VARIANTS.HEADING}
-            value={discount.percentage}
-            title={discount.percentage}
+            value={`-${discount.percentage}`}
+            title={`-${discount.percentage}`}
           />
         </ADBadge>
       ) : null}

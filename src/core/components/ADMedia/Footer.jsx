@@ -6,6 +6,7 @@ import { ADButton } from "components/ADButton/ADButton";
 import { ADGrid } from "components/ADGrid/ADGrid";
 import { ADText } from "components/ADText/ADText";
 import { TEXT_VARIANTS, DIMENSIONS, CARD_VARIANTS } from "constants";
+import { ADTooltip } from "components/ADTooltip/ADTooltip";
 
 export const Footer = ({ name, price, sizes, discount }) => {
   return (
@@ -42,12 +43,14 @@ export const Footer = ({ name, price, sizes, discount }) => {
           </styles.Sizes>
         </styles.LeftCol>
         <styles.RightCol className="right-col">
-          <ADButton
-            className="desktop-button"
-            variant={CARD_VARIANTS.CONTAINED}
-          >
-            <CartPlus size={20} />
-          </ADButton>
+          <ADTooltip text="Añadir">
+            <ADButton
+              className="desktop-button"
+              variant={CARD_VARIANTS.CONTAINED}
+            >
+              <CartPlus size={20} />
+            </ADButton>
+          </ADTooltip>
         </styles.RightCol>
       </ADGrid>
     </styles.Footer>
