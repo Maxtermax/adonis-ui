@@ -4,7 +4,7 @@ export class Mock {
     return [
       {
         discount: {
-          percentage: "30%",
+          percentage: "50%",
           before: 1000000,
           now: 500000
         },

@@ -45,6 +45,10 @@ export const RightCol = styled.div`
   justify-content: flex-end;
   padding-right: ${({ theme }) => theme.spacing.low};
   height: 100px;
+  .ad-tooltip .ad-tooltip__text {
+    background-color: ${({ theme }) => theme.colors.contrast.primary};
+    color: ${({ theme }) => theme.colors.primary};
+  }
   .ad-button {
     transform: ${(props) => props.theme.transform.scale.mid};
     @media screen and ${(props) => props.theme.devices.sm} {
@@ -54,13 +58,21 @@ export const RightCol = styled.div`
       left: -17px;
     }
   }
+  .ad-tooltip {
+    @media screen and ${(props) => props.theme.devices.sm} {
+      padding: 0px;
+      margin: 0px;
+      width: 100%;
+      left: 20px;
+    }
+  }
   @media screen and ${(props) => props.theme.devices.sm} {
     height: 65px;
   }
 `;
 
 export const Media = styled.div`
-  width: 370px;
+  width: 350px;
   @media screen and ${(props) => props.theme.devices.sm} {
     width: 290px;
   }
@@ -106,12 +118,16 @@ export const Content = styled.div`
     position: relative;
   }
   .main-picture img {
-    transform: ${(props) => props.theme.transform.scale.half};
+    transform: ${(props) => props.theme.transform.scale.six};
+    transition: ${(props) => props.theme.transitions.quick};
     aspect-ratio: 16 / 9;
     width: 100%;
     height: auto;
     object-position: left top;
     object-fit: cover;
+    &:hover {
+      transform: ${(props) => props.theme.transform.scale.extra};
+    }
   }
   &:hover .previews {
     height: 70px;

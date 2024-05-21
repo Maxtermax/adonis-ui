@@ -1,4 +1,3 @@
-import { useState } from "react";
 import find from "lodash/find";
 import { useMutations } from "hermes-io";
 // import { getImageByThumbnail, getNextImage } from "queries/products";
@@ -7,7 +6,7 @@ import { SELECT_IMAGE } from "constants";
 import store from "store/app";
 
 export const useADMedia = (images, productId) => {
-  const [image, setImage] = useState(images[0]);
+  // const [image, setImage] = useState(images[0]);
 
   /*
   useEffect(() => {
@@ -24,17 +23,16 @@ export const useADMedia = (images, productId) => {
   */
 
   const handleUseADMediaNotification = ({ imageId }) => {
-    const image = find(images, ({ id }) => imageId === id);
-    if (image) setImage(image);
+    const image = find(images, ({ id }) => imageId === id) ?? {};
+    return { image };
   };
 
-  useMutations({
+  const { state } = useMutations({
     events: [SELECT_IMAGE],
-    noUpdate: true,
     onChange: handleUseADMediaNotification,
+    initialState: { image: images[0] },
     store,
     id: productId,
   });
-
-  return image;
+  return state.image;
 };

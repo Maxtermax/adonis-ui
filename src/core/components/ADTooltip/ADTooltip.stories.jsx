@@ -1,5 +1,7 @@
 import { ADTooltip } from "components/ADTooltip/ADTooltip";
-import { DIRECTIONS } from "constants";
+import { ADText } from "components/ADText/ADText";
+import { TEXT_VARIANTS, DIRECTIONS } from "constants";
+const { HEADING, TEXT } = TEXT_VARIANTS;
 
 export default {
   title: "Basic/ADTooltip",
@@ -8,12 +10,24 @@ export default {
     layout: "centered",
   },
   tags: ["autodocs"],
+  argTypes: {
+    direction: {
+      control: "select",
+      options: [
+        DIRECTIONS.TOP,
+        DIRECTIONS.BOTTOM,
+        DIRECTIONS.LEFT,
+        DIRECTIONS.RIGHT,
+      ],
+    },
+  },
 };
 
 export const DirectionTop = {
   args: {
     direction: DIRECTIONS.TOP,
-    text: "Tooltip",
-    children: <p>Test</p>,
+    contrast: true,
+    text: <ADText variant={TEXT} value="Title" />,
+    children: <ADText variant={HEADING} value="Hola mundo" />,
   },
 };

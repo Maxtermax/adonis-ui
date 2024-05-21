@@ -22,7 +22,7 @@ export default {
     },
     shape: {
       control: "select",
-      options: [SHAPES.rounded, SHAPES.shap],
+      options: [SHAPES.rounded, SHAPES.sharp],
     },
     gap: {
       control: "select",
@@ -37,7 +37,7 @@ export const Primary = {
     elevation: DIMENSIONS.regular,
     variant: CONTAINED,
     gap: DIMENSIONS.none,
-    shape: SHAPES.shap,
+    shape: SHAPES.sharp,
     Header: () => <div>header</div>,
     Content: () => <div style={{ width: "300px" }}>content</div>,
     Footer: () => <div>footer</div>,

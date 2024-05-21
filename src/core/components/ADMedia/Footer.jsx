@@ -7,6 +7,26 @@ import { ADGrid } from "components/ADGrid/ADGrid";
 import { ADText } from "components/ADText/ADText";
 import { TEXT_VARIANTS, DIMENSIONS, CARD_VARIANTS } from "constants";
 import { ADTooltip } from "components/ADTooltip/ADTooltip";
+import { useMediaQuery } from "hooks/useMediaQuery";
+import { DIRECTIONS } from "constants";
+
+const Button = () => {
+  const match = useMediaQuery(
+    (theme) => `(max-width: ${theme.breakpoints.sm})`
+  );
+
+  return (
+    <ADTooltip
+      contrast
+      text="Añadir"
+      direction={match ? DIRECTIONS.TOP : DIRECTIONS.LEFT}
+    >
+      <ADButton variant={CARD_VARIANTS.CONTAINED}>
+        <CartPlus size={20} />
+      </ADButton>
+    </ADTooltip>
+  );
+};
 
 export const Footer = ({ name, price, sizes, discount }) => {
   return (
@@ -16,17 +36,28 @@ export const Footer = ({ name, price, sizes, discount }) => {
           <ADText variant={TEXT_VARIANTS.TITLE} value={name} />
           {discount ? (
             <styles.Discount>
-              <ADText
-                variant={TEXT_VARIANTS.TEXT}
-                value={formatCurrency(discount.before)}
-                lineThrough
-                title="Antes"
-              />
-              <ADText
-                variant={TEXT_VARIANTS.TEXT}
-                value={formatCurrency(discount.now)}
-                title="Ahora"
-              />
+              <ADTooltip
+                contrast
+                text={`Antes: ${formatCurrency(discount.before)}`}
+              >
+                <ADText
+                  variant={TEXT_VARIANTS.TEXT}
+                  value={formatCurrency(discount.before)}
+                  lineThrough
+                  title="Antes"
+                />
+              </ADTooltip>
+              /
+              <ADTooltip
+                contrast
+                text={`Ahora: ${formatCurrency(discount.now)}`}
+              >
+                <ADText
+                  variant={TEXT_VARIANTS.TEXT}
+                  value={formatCurrency(discount.now)}
+                  title="Ahora"
+                />
+              </ADTooltip>
             </styles.Discount>
           ) : (
             <ADText
@@ -36,21 +67,16 @@ export const Footer = ({ name, price, sizes, discount }) => {
           )}
           <styles.Sizes className="sizes">
             {sizes.map((size, index) => (
-              <ADBadge size={DIMENSIONS.small} key={index}>
-                <ADText variant={TEXT_VARIANTS.SUBTITLE} value={size} />
-              </ADBadge>
+              <ADTooltip text={size} contrast key={index}>
+                <ADBadge size={DIMENSIONS.small}>
+                  <ADText variant={TEXT_VARIANTS.SUBTITLE} value={size} />
+                </ADBadge>
+              </ADTooltip>
             ))}
           </styles.Sizes>
         </styles.LeftCol>
         <styles.RightCol className="right-col">
-          <ADTooltip text="Añadir">
-            <ADButton
-              className="desktop-button"
-              variant={CARD_VARIANTS.CONTAINED}
-            >
-              <CartPlus size={20} />
-            </ADButton>
-          </ADTooltip>
+          <Button />
         </styles.RightCol>
       </ADGrid>
     </styles.Footer>

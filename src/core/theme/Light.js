@@ -55,6 +55,7 @@ export default class Light extends Base {
       slightly: "scale(1.2)",
       double: "scale(2)",
       half: "scale(1.5)",
+      six: "scale(1.6)",
       extra: "scale(1.75)",
       tiny: "scale(0.75)",
       ["80%"]: "scale(0.8)",
