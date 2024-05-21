@@ -5,7 +5,6 @@ import { useTheme } from "@emotion/react";
 
 export const ADTooltip = ({
   className = "",
-  children,
   text,
   direction = DIRECTIONS.TOP,
   anchor,
@@ -16,15 +15,38 @@ export const ADTooltip = ({
   const theme = useTheme();
   useEffect(() => {
     if (anchorRef.current) {
-      const anchorRect = anchorRef.current.getBoundingClientRect();
-      const textRect = textRef.current.getBoundingClientRect();
+      anchorRef.current.onmouseenter = () => {
+        textRef.current.classList.remove("ad-hide");
+        textRef.current.classList.add("ad-show");
+      };
+      anchorRef.current.onmouseleave = () => {
+        textRef.current.classList.remove("ad-show");
+        textRef.current.classList.add("ad-hide");
+      };
+
+      const [textRect] = textRef.current.getClientRects();
+      const [anchorRect] = anchorRef.current.getClientRects();
+
       if (direction === DIRECTIONS.BOTTOM) {
-        textRef.current.style.top = `calc(${anchorRect.y}px + ${anchorRect.height}px)`;
-        textRef.current.style.left = `calc((${anchorRect.x}px - ${theme.spacing.regular}) + (${anchorRect.width}px / 2) - (${textRect.width}px / 2))`;
+        const y = `calc(${anchorRect.y}px + ${anchorRect.height}px + ${theme.spacing.regular})`;
+        const x = `calc((${anchorRect.x}px - ${theme.spacing.regular}) + (${anchorRect.width}px / 2) - (${textRect.width}px / 2))`;
+        textRef.current.style.transform = `translate(${x}, ${y})`;
       }
       if (direction === DIRECTIONS.TOP) {
-        textRef.current.style.top = `calc(${anchorRect.y}px - ${textRect.height}px)`;
-        textRef.current.style.left = `calc((${anchorRect.x}px - ${theme.spacing.regular}) + (${anchorRect.width}px / 2) - (${textRect.width}px / 2))`;
+        const y = `calc(${anchorRect.y}px - ${textRect.height}px - ${theme.spacing.regular})`;
+        const x = `calc((${anchorRect.x}px - ${theme.spacing.regular}) + (${anchorRect.width}px / 2) - (${textRect.width}px / 2))`;
+        textRef.current.style.transform = `translate(${x}, ${y})`;
+      }
+      if (direction === DIRECTIONS.LEFT) {
+        const y = `calc(${anchorRect.y}px - (${theme.spacing.regular} / 2))`;
+        const x = `calc(${anchorRect.x}px - (${textRect.width}px + ${theme.spacing.regular}))`;
+        textRef.current.style.transform = `translate(${x}, ${y})`;
+      }
+      if (direction === DIRECTIONS.RIGHT) {
+        const x = `calc(${anchorRect.x}px)`;
+        const y = `calc(${anchorRect.y}px)`;
+        textRef.current.style.top = x;
+        textRef.current.style.left = y;
       }
     }
   }, [direction]);
@@ -37,7 +59,7 @@ export const ADTooltip = ({
       <styles.Text
         ref={textRef}
         contrast={contrast}
-        className="ad-tooltip__text"
+        className={`ad-tooltip ${className}`}
         direction={direction}
       >
         {text}

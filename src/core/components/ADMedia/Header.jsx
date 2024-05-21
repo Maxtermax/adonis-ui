@@ -13,13 +13,15 @@ export const Header = ({ discount }) => {
             contrast
             direction={DIRECTIONS.LEFT}
             text={`${discount.percentage} de Descuento`}
-          >
-            <ADText
-              variant={TEXT_VARIANTS.HEADING}
-              value={`-${discount.percentage}`}
-              title={`-${discount.percentage}`}
-            />
-          </ADTooltip>
+            anchor={(ref) => (
+              <ADText
+                ref={ref}
+                variant={TEXT_VARIANTS.HEADING}
+                value={`-${discount.percentage}`}
+                title={`-${discount.percentage}`}
+              />
+            )}
+          />
         </ADBadge>
       ) : null}
     </styles.Header>

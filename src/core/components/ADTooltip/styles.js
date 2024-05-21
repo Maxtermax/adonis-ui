@@ -1,35 +1,6 @@
 import styled from "@emotion/styled";
 import { DIRECTIONS } from "constants";
 
-export const Content = styled.span`
-  position: relative;
-  &:hover > .ad-tooltip__text {
-    visibility: visible;
-    opacity: 1;
-  }
-`;
-
-const xPos = ({ direction }) => {
-  if (DIRECTIONS.RIGHT === direction) {
-    return "left: 105%";
-  }
-  if (DIRECTIONS.LEFT === direction) {
-    return "right: 105%";
-  }
-};
-
-const yPos = ({ direction, theme }) => {
-  if (DIRECTIONS.TOP === direction) {
-    return `bottom: calc(100% + ${theme.spacing.regular})`;
-  }
-  if (DIRECTIONS.BOTTOM === direction) {
-    return "bottom: -100%";
-  }
-  if (DIRECTIONS.RIGHT === direction || DIRECTIONS.LEFT) {
-    return "top: 0px";
-  }
-};
-
 const arrowShape = ({ direction, theme, contrast }) => {
   const color = contrast ? theme.colors.contrast.primary : theme.colors.primary;
   if (DIRECTIONS.BOTTOM === direction) {
@@ -78,11 +49,9 @@ export const Text = styled.span`
   text-align: center;
   border-radius: ${({ theme }) => theme.border.radius.rounded};
   padding: ${({ theme }) => theme.spacing.regular};
-  position: absolute;
+  position: fixed;
   z-index: 1;
   transition: all ${({ theme }) => theme.transitions.smooth};
-  visibility: visible;
-  opacity: 1;
   &::after {
     content: " ";
     position: absolute;

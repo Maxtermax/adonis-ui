@@ -1,1 +1,10 @@
 @import url("../public/fonts/fonts.css");
+
+.ad-show {
+    visibility: visible;
+    opacity: 1;
+}
+.ad-hide {
+    visibility: hidden;
+    opacity: 0;
+}

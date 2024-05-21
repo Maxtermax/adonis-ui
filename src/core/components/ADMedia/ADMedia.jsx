@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import * as styles from "./style";
 import { ADCard } from "components/ADCard/ADCard";
 import { CARD_VARIANTS, DIMENSIONS, SHAPES } from "constants";
@@ -7,7 +8,7 @@ import { Footer } from "./Footer";
 
 const { OUTLINED } = CARD_VARIANTS;
 
-export const ADMedia = ({
+export const ADMedia = forwardRef(function ADMedia({
   discount,
   sizes = [],
   className = "",
@@ -17,9 +18,9 @@ export const ADMedia = ({
   price,
   id,
   ...rest
-}) => {
+}, ref) {
   return (
-    <styles.Media className={`ad-media ${className}`} {...rest}>
+    <styles.Media ref={ref} className={`ad-media ${className}`} {...rest}>
       <ADCard
         elevation={DIMENSIONS.regular}
         variant={OUTLINED}
@@ -41,4 +42,4 @@ export const ADMedia = ({
       />
     </styles.Media>
   );
-};
+});
