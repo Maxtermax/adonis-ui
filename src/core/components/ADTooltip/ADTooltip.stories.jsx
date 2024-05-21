@@ -26,8 +26,8 @@ export default {
 export const DirectionTop = {
   args: {
     direction: DIRECTIONS.TOP,
-    contrast: true,
+    contrast: false,
     text: <ADText variant={TEXT} value="Title" />,
-    children: <ADText variant={HEADING} value="Hola mundo" />,
+    anchor: (ref) => <ADText ref={ref} variant={HEADING} value="Hola mundo" />,
   },
 };
