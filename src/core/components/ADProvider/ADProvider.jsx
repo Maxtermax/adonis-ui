@@ -4,6 +4,15 @@ import buildTheme from "theme/theme";
 import { THEME } from "constants";
 import "@/index.css";
 
+const innerTheme = (rootTheme) => ({
+  ...rootTheme,
+  colors: {
+    ...rootTheme.colors,
+    primary: "red",
+    red: "blue",
+  },
+});
+
 const ADProvider = ({
   children,
   reducer,
@@ -12,7 +21,11 @@ const ADProvider = ({
   theme = THEME.LIGHT,
 }) => {
   useStore({ store, reducer, data });
-  return <ThemeProvider theme={buildTheme(theme)}>{children}</ThemeProvider>;
+  return (
+    <ThemeProvider theme={innerTheme(buildTheme(theme))}>
+      {children}
+    </ThemeProvider>
+  );
 };
 
 export default ADProvider;
