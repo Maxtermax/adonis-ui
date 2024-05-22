@@ -55,15 +55,11 @@ export const RightCol = styled.div`
       position: relative;
       width: calc(100% - 40px);
       top: ${(props) => props.theme.spacing.regular};
-      left: -17px;
     }
   }
   .ad-tooltip {
     @media screen and ${(props) => props.theme.devices.sm} {
-      padding: 0px;
-      margin: 0px;
       width: 100%;
-      left: 20px;
     }
   }
   @media screen and ${(props) => props.theme.devices.sm} {
@@ -206,9 +202,10 @@ export const Header = styled.div`
   & .ad-badge {
     background-color: ${({ theme }) => theme.colors.red};
     border: none;
+    color: ${({ theme }) => theme.colors.white};
   }
-  & .ad-heading {
-    padding-top: ${({ theme }) => theme.spacing.low};
+  & .ad-subtitle {
+    font-size: ${({ theme }) => theme.fonts.sizes.big};
   }
 `;
 

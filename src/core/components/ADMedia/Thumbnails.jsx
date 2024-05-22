@@ -21,23 +21,21 @@ export const Thumbnails = ({ data = [], productId }) => {
         contrast
         text={description}
         direction={DIRECTIONS.RIGHT}
-        anchor={(ref) => (
-          <styles.Figure
-            onClick={() => handleSelectThumbnail(data[index])}
+      >
+        <styles.Figure
+          onClick={() => handleSelectThumbnail(data[index])}
+          selected={id === selectedId}
+          variant={FIGURE_VARIANTS.MINI}
+        >
+          <styles.Image
             selected={id === selectedId}
-            variant={FIGURE_VARIANTS.MINI}
-            ref={ref}
-          >
-            <styles.Image
-              selected={id === selectedId}
-              width={60}
-              height={60}
-              src={src}
-              alt={description}
-            />
-          </styles.Figure>
-        )}
-      />
+            width={60}
+            height={60}
+            src={src}
+            alt={description}
+          />
+        </styles.Figure>
+      </ADTooltip>
     );
   });
 };

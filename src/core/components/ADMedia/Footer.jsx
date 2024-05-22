@@ -20,12 +20,11 @@ const Button = () => {
       contrast
       text="Añadir"
       direction={match ? DIRECTIONS.TOP : DIRECTIONS.LEFT}
-      anchor={(ref) => (
-        <ADButton ref={ref} variant={CARD_VARIANTS.CONTAINED}>
-          <CartPlus size={20} />
-        </ADButton>
-      )}
-    />
+    >
+      <ADButton variant={CARD_VARIANTS.CONTAINED}>
+        <CartPlus size={20} />
+      </ADButton>
+    </ADTooltip>
   );
 };
 
@@ -41,29 +40,25 @@ export const Footer = ({ name, price, sizes, discount }) => {
                 contrast
                 direction={DIRECTIONS.TOP}
                 text={`Antes: ${formatCurrency(discount.before)}`}
-                anchor={(ref) => (
-                  <ADText
-                    ref={ref}
-                    variant={TEXT_VARIANTS.TEXT}
-                    value={formatCurrency(discount.before)}
-                    lineThrough
-                    title="Antes"
-                  />
-                )}
-              />
+              >
+                <ADText
+                  variant={TEXT_VARIANTS.TEXT}
+                  value={formatCurrency(discount.before)}
+                  lineThrough
+                  title="Antes"
+                />
+              </ADTooltip>
               /
               <ADTooltip
                 contrast
                 text={`Ahora: ${formatCurrency(discount.now)}`}
-                anchor={(ref) => (
-                  <ADText
-                    ref={ref}
-                    variant={TEXT_VARIANTS.TEXT}
-                    value={formatCurrency(discount.now)}
-                    title="Ahora"
-                  />
-                )}
-              />
+              >
+                <ADText
+                  variant={TEXT_VARIANTS.TEXT}
+                  value={formatCurrency(discount.now)}
+                  title="Ahora"
+                />
+              </ADTooltip>
             </styles.Discount>
           ) : (
             <ADText
@@ -73,16 +68,11 @@ export const Footer = ({ name, price, sizes, discount }) => {
           )}
           <styles.Sizes className="sizes">
             {sizes.map((size, index) => (
-              <ADTooltip
-                text={size}
-                contrast
-                key={index}
-                anchor={(ref) => (
-                  <ADBadge size={DIMENSIONS.small} ref={ref}>
-                    <ADText variant={TEXT_VARIANTS.SUBTITLE} value={size} />
-                  </ADBadge>
-                )}
-              />
+              <ADTooltip text={size} contrast key={index}>
+                <ADBadge size={DIMENSIONS.small}>
+                  <ADText variant={TEXT_VARIANTS.SUBTITLE} value={size} />
+                </ADBadge>
+              </ADTooltip>
             ))}
           </styles.Sizes>
         </styles.LeftCol>

@@ -1,6 +1,47 @@
 import styled from "@emotion/styled";
 import { DIRECTIONS } from "constants";
 
+export const Container = styled.span`
+  align-items: ${({ direction }) =>
+    DIRECTIONS.RIGHT === direction || DIRECTIONS.LEFT === direction
+      ? "center"
+      : "normal"};
+  display: flex;
+  position: relative;
+  justify-content: ${({ direction }) =>
+    DIRECTIONS.TOP === direction || DIRECTIONS.BOTTOM === direction
+      ? "center"
+      : "normal"};
+  &:hover > .ad-tooltip__text {
+    visibility: visible;
+    opacity: 1;
+  }
+`;
+
+const xPos = ({ direction, theme }) => {
+  if (DIRECTIONS.RIGHT === direction) {
+    return `left: calc(100% + ${theme.spacing.regular})`;
+  }
+  if (DIRECTIONS.LEFT === direction) {
+    return `right: calc(100% + ${theme.spacing.regular})`;
+  }
+  if (DIRECTIONS.TOP === direction || DIRECTIONS.BOTTOM === direction) {
+    return "";
+  }
+};
+
+const yPos = ({ direction, theme }) => {
+  if (DIRECTIONS.TOP === direction) {
+    return `bottom: calc(100% + ${theme.spacing.regular})`;
+  }
+  if (DIRECTIONS.BOTTOM === direction) {
+    return `top: calc(100% + ${theme.spacing.regular})`;
+  }
+  if (DIRECTIONS.RIGHT === direction || DIRECTIONS.LEFT === direction) {
+    return "";
+  }
+};
+
 const arrowShape = ({ direction, theme, contrast }) => {
   const color = contrast ? theme.colors.contrast.primary : theme.colors.primary;
   if (DIRECTIONS.BOTTOM === direction) {
@@ -49,9 +90,13 @@ export const Text = styled.span`
   text-align: center;
   border-radius: ${({ theme }) => theme.border.radius.rounded};
   padding: ${({ theme }) => theme.spacing.regular};
-  position: fixed;
+  position: absolute;
   z-index: 1;
   transition: all ${({ theme }) => theme.transitions.smooth};
+  visibility: hidden;
+  opacity: 0;
+  ${xPos};
+  ${yPos};
   &::after {
     content: " ";
     position: absolute;
