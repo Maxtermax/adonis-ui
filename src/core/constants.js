@@ -39,6 +39,7 @@ export const SHAPES = {
 
 export const TEXT_VARIANTS = {
   TEXT: "text",
+  LABEL: "label",
   HEADING: "heading",
   TITLE: "title",
   SUBTITLE: "subtitle",
@@ -47,6 +48,10 @@ export const TEXT_VARIANTS = {
 export const SELECT_IMAGE = "SELECT_IMAGE";
 
 export const SET_PRODUCT_FOCUS = "SET_PRODUCT_FOCUS";
+
+export const SET_THEME = "SET_THEME";
+
+export const SAVE_THEME = "SAVE_THEME"; 
 
 export const DIRECTIONS = {
   TOP: "top",

@@ -3,6 +3,9 @@ import { CARD_VARIANTS, DIMENSIONS, SHAPES } from "constants";
 
 const { TEXT, OUTLINED, CONTAINED } = CARD_VARIANTS;
 
+const withTheme = (value, theme) =>
+  typeof value === "function" ? value(theme) : value;
+
 const borderColor = ({ variant, theme }) =>
   ({
     [CONTAINED]: theme.colors.primary,
@@ -40,7 +43,8 @@ const radius = ({ variant, theme, shape = SHAPES.rounded }) =>
   })[variant] ?? "";
 
 export const Card = styled.div`
-  align-content: space-between;
+  align-content: ${({ alignContent, theme }) =>
+    withTheme(alignContent, theme) ?? "center"};
   background-color: ${(props) => background(props)};
   border-width: ${(props) => borderWidth(props)};
   border-color: ${(props) => borderColor(props)};
@@ -56,13 +60,31 @@ export const Card = styled.div`
   transition: ${(props) => props.theme.transitions.quick};
   font-size: ${(props) => props.theme.fonts.sizes.normal};
   font-family: ${(props) => props.theme.fonts.primary.regular};
-  justify-content: center;
+  justify-content: ${({ justifyContent, theme }) =>
+    withTheme(justifyContent, theme)};
   overflow: hidden;
-  gap: ${(props) =>
-    props.gap ? props.theme.spacing[props.gap] ?? props.gap : "0px"};
+  width: ${({ fullWidth, width = "auto", theme }) =>
+    fullWidth ? "100%" : withTheme(width, theme)};
+  height: ${({ fullHeight, height = "auto", theme }) =>
+    fullHeight ? "100%" : withTheme(height, theme)};
+  gap: ${({ theme, gap }) => (gap ? theme.spacing[gap] ?? gap : "0px")};
   &:hover {
-    transform: ${(props) => props.theme.transform.scale.small};
+    transform: ${({ theme, noScaleOnHover, onHoverTransform }) =>
+      noScaleOnHover
+        ? "none"
+        : onHoverTransform || theme.transform.scale.small};
   }
+`;
+
+export const Left = styled.div``;
+
+export const Right = styled.div`
+  align-items: center;
+  background-color: ${({ theme }) => theme.colors.lightSilver};
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 `;
 
 export const Header = styled.div`

@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import * as styles from "./style";
 import { TEXT_VARIANTS } from "constants";
 
-const { HEADING, TITLE, TEXT, SUBTITLE } = TEXT_VARIANTS;
+const { HEADING, TITLE, TEXT, SUBTITLE, LABEL } = TEXT_VARIANTS;
 
 export const ADText = forwardRef(function ADText(
   { className = "", variant = TEXT, value, ...rest },
@@ -29,6 +29,17 @@ export const ADText = forwardRef(function ADText(
       >
         {value}
       </styles.Text>
+    );
+  if (variant === LABEL)
+    return (
+      <styles.Label
+        ref={ref}
+        className={`ad-body ${className}`}
+        variant={variant}
+        {...rest}
+      >
+        {value}
+      </styles.Label>
     );
   if (variant === TITLE)
     return (

@@ -10,6 +10,3 @@ export const Container = styled.div`
   margin: 0px;
 `;
 
-export const Left = styled.div``;
-
-export const Right = styled.div``;

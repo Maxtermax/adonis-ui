@@ -26,6 +26,15 @@ export const Text = styled.p`
   margin: 0px;
   text-decoration: ${({ lineThrough }) => lineThrough ? 'line-through' : 'none'};
 `;
+export const Label = styled.label`
+  font-size: ${(props) => fontSize(props)};
+  font-family: ${(props) => fontFamily(props)};
+  padding: 0px;
+  margin: 0px;
+  text-decoration: ${({ lineThrough }) => lineThrough ? 'line-through' : 'none'};
+`;
+
+
 
 export const Heading = styled.h1`
   font-size: ${(props) => fontSize(props)};

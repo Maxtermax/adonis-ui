@@ -18,10 +18,10 @@ export default class Light extends Base {
   }
   colors = {
     primary: "#0A100D",
-    transparent: "transparent",
+    transparent: "#0000000",
     transparentBlack: "#0000007d",
     lightSilver: "#9f9f9f17",
-    white: "#fff",
+    white: "#ffffff",
     grey: "#9a9da117",
     red: "red",
     contrast: {
