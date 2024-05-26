@@ -88,6 +88,7 @@ export default class Light extends Base {
   border = {
     radius: {
       rounded: "8px",
+      circle: "100%",
       sharp: "0px",
     },
     none: "0px",

@@ -81,6 +81,9 @@ export const Footer = styled.div`
   gap: ${(props) => props.theme.spacing.low};
   padding: ${(props) => props.theme.spacing.medium};
   transition: ${(props) => props.theme.transitions.smooth};
+  .ad-badge {
+    border: 1px solid ${(props) => props.theme.colors.transparent};
+  }
   &:hover {
     background-color: ${(props) => props.theme.colors.contrast.white};
     color: ${(props) => props.theme.colors.contrast.primary};
@@ -88,16 +91,22 @@ export const Footer = styled.div`
   &:hover button {
     background-color: ${(props) => props.theme.colors.lightSilver};
   }
+  &:hover .ad-body {
+    color: ${(props) => props.theme.colors.contrast.primary};
+  }
+  &:hover .ad-title {
+    color: ${(props) => props.theme.colors.contrast.primary};
+  }
   &:hover button:hover {
     border: 1px solid;
   }
-  &:hover .ad-badge {
+  &:hover .ad-badge .ad-subtitle {
     color: ${(props) => props.theme.colors.contrast.primary};
   }
   &:hover .ad-badge:hover {
     background-color: ${(props) => props.theme.colors.lightSilver};
     color: ${(props) => props.theme.colors.contrast.primary};
-    border: 1px solid;
+    border: 1px solid ${(props) => props.theme.colors.contrast.primary};
   }
 `;
 
@@ -202,9 +211,9 @@ export const Header = styled.div`
   & .ad-badge {
     background-color: ${({ theme }) => theme.colors.red};
     border: none;
-    color: ${({ theme }) => theme.colors.white};
   }
   & .ad-subtitle {
+    color: ${({ theme }) => theme.colors.white};
     font-size: ${({ theme }) => theme.fonts.sizes.big};
   }
 `;

@@ -4,8 +4,6 @@ import reducer from "reducers/products";
 import store from "store/app";
 import { Mock } from "./mock";
 
-window.store = store;
-
 const mock = new Mock();
 const products = mock.getProducts();
 const [product] = products;

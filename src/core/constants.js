@@ -49,9 +49,13 @@ export const SELECT_IMAGE = "SELECT_IMAGE";
 
 export const SET_PRODUCT_FOCUS = "SET_PRODUCT_FOCUS";
 
-export const SET_THEME = "SET_THEME";
+export const SET_THEME_FIELD = "SET_THEME_FIELD";
 
 export const SAVE_THEME = "SAVE_THEME"; 
+
+export const COMPONENTS_TARGETS = {
+  ADBUILDER: "ad-builder"
+}
 
 export const DIRECTIONS = {
   TOP: "top",

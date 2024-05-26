@@ -1,23 +1,30 @@
-// import { useMutations, useStore } from "hermes-io";
+import { useMutations, useStore } from "hermes-io";
 import { useTheme } from "@emotion/react";
 import { ADGrid } from "components/ADGrid/ADGrid";
 import { ADCard } from "components/ADCard/ADCard";
 // import { ADButton } from "components/ADButton/ADButton";
 import buildTheme from "theme/theme";
-import Colors from "./Colors";
-import { THEME, SAVE_THEME } from "constants";
-import * as styles from "./styles";
+import Colors from "./Colors/Colors";
+import Header from "./Header/Header";
 import store from "store/builder";
-// import reducer from "reducers/builder";
+import reducer from "reducers/builder";
+import { getTheme } from "queries/builder";
+import {
+  THEME,
+  SAVE_THEME,
+  SET_THEME_FIELD,
+  COMPONENTS_TARGETS,
+} from "constants";
+import * as styles from "./styles";
 
 const id = "ad-builder";
 
 export const Content = ({ className = "", ...rest }) => {
   const theme = useTheme();
   return (
-    <styles.Container className={`ad-builder ${className}`} {...rest}>
+    <styles.Content className={`__content ${className}`} {...rest}>
       <Colors values={theme.colors} />
-    </styles.Container>
+    </styles.Content>
   );
 };
 
@@ -31,53 +38,52 @@ export const Footer = () => {
 
   return (
     <p>
-      <button onClick={handleSave} variant="contained">
+      <button onClick={handleSave}>
         <p>Example</p>
       </button>
     </p>
   );
 };
 
+const Main = ({ render, base }) => {
+  const { state: customTheme } = useMutations({
+    onChange: () => store.query(getTheme),
+    events: [SET_THEME_FIELD],
+    initialState: {},
+    store,
+    id: COMPONENTS_TARGETS.ADBUILDER,
+  });
+  return render({ ...base, ...customTheme });
+};
+
 export const ADBuilder = ({ render }) => {
-  /*
+  const BASE_THEME = buildTheme(THEME.LIGHT);
   useStore({
     store,
     reducer,
-    data: {},
+    data: { ...BASE_THEME },
   });
-
-  const { state: customEntries } = useMutations({
-    onChange: ({ value }) => {
-      // setCustomEntries((oldEntries) => ({ ...oldEntries, ...value })),
-      return {};
-    },
-    events: [SAVE_THEME],
-    initialState: {},
-    store,
-    id,
-  });
-  console.log({ customEntries });
-
-  const customTheme = (rootTheme) => ({
-    ...rootTheme,
-  });
-  */
-
-  // const content = render(buildTheme(THEME.LIGHT));
-  const content = [];
 
   return (
-    <styles.Container>
-      <ADGrid alignCenter justifyCenter fullHeight cols="1fr 300px" rows="1fr">
-        <styles.Left>{content}</styles.Left>
-        {/*
-        <styles.Right>
+    <styles.Container className="ad-builder__container">
+      <ADGrid
+        className="__grid"
+        alignCenter
+        justifyCenter
+        fullHeight
+        cols="1fr 300px"
+        rows="1fr"
+      >
+        <styles.Left className="__left-col">
+          <Main render={render} base={BASE_THEME} />
+        </styles.Left>
+        <styles.Right className="__right-col">
           <ADCard
             width={(theme) => `calc(100% - ${theme.spacing.medium})`}
             height={(theme) => `calc(100% - ${theme.spacing.medium})`}
             alignContent="flex-start"
             Content={() => <Content />}
-            Header={() => <p>HEADER</p>}
+            Header={() => <Header name={THEME.LIGHT} />}
             Footer={() => <Footer />}
             noScaleOnHover
             elevation="none"
@@ -86,7 +92,6 @@ export const ADBuilder = ({ render }) => {
             variant="contained"
           />
         </styles.Right>
-      */}
       </ADGrid>
     </styles.Container>
   );

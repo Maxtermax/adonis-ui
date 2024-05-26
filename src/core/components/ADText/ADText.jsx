@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import * as styles from "./style";
+import * as styles from "./styles";
 import { TEXT_VARIANTS } from "constants";
 
 const { HEADING, TITLE, TEXT, SUBTITLE, LABEL } = TEXT_VARIANTS;
