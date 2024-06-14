@@ -1,12 +1,10 @@
-import { useStore } from "hermes-io";
 import { ThemeProvider } from "@emotion/react";
-import { ADBuilder } from "components/ADBuilder/ADBuilder";
+import { ADThemeBuilder } from "ADThemeBuilder/ADThemeBuilder";
 import "@/index.css";
 
-const ADProvider = ({ children, reducer, store, data }) => {
-  useStore({ store, reducer, data });
+const ADProvider = ({ children }) => {
   return (
-    <ADBuilder
+    <ADThemeBuilder
       render={(theme) => (
         <ThemeProvider theme={theme}>{children}</ThemeProvider>
       )}

@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 import { TEXT_VARIANTS } from "constants";
 
-const { BODY, TITLE, SUBTITLE, HEADING } = TEXT_VARIANTS;
+const { TEXT, TITLE, SUBTITLE, HEADING } = TEXT_VARIANTS;
 
 const fontSize = ({ variant, theme }) =>
   ({
-    [BODY]: theme.fonts.sizes.medium,
+    [TEXT]: theme.fonts.sizes.medium,
     [HEADING]: theme.fonts.sizes.big,
     [TITLE]: theme.fonts.sizes.big,
     [SUBTITLE]: theme.fonts.sizes.small,
@@ -13,7 +13,7 @@ const fontSize = ({ variant, theme }) =>
 
 const fontFamily = ({ variant, theme }) =>
   ({
-    [BODY]: theme.fonts.primary.medium,
+    [TEXT]: theme.fonts.primary.medium,
     [HEADING]: theme.fonts.primary.bold,
     [TITLE]: theme.fonts.primary.bold,
     [SUBTITLE]: theme.fonts.primary.light,

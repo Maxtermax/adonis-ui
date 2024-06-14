@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import isPropValid from "@emotion/is-prop-valid";
 import { CARD_VARIANTS, DIMENSIONS, SHAPES } from "constants";
 
 const { TEXT, OUTLINED, CONTAINED } = CARD_VARIANTS;
@@ -42,7 +43,11 @@ const radius = ({ variant, theme, shape = SHAPES.rounded }) =>
     [CONTAINED]: theme.border.radius[shape],
   })[variant] ?? "";
 
-export const Card = styled.div`
+export const Card = styled("div", {
+  shouldForwardProp: (prop) =>
+    isPropValid(prop) &&
+    !["alignContent", "variant", "height", "width"].includes(prop),
+})`
   align-content: ${({ alignContent, theme }) =>
     withTheme(alignContent, theme) ?? "center"};
   background-color: ${(props) => background(props)};

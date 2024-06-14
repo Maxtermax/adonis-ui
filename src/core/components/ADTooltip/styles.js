@@ -12,7 +12,7 @@ export const Container = styled.span`
     DIRECTIONS.TOP === direction || DIRECTIONS.BOTTOM === direction
       ? "center"
       : "normal"};
-  &:hover > .ad-tooltip__text {
+  &:hover .ad-tooltip__text {
     visibility: visible;
     opacity: 1;
   }
@@ -95,6 +95,10 @@ export const Text = styled.span`
   transition: all ${({ theme }) => theme.transitions.smooth};
   visibility: hidden;
   opacity: 0;
+  & [class*="ad-text"] {
+    color: ${({ theme, contrast }) =>
+      contrast ? theme.colors.primary : theme.colors.contrast.primary};
+  }
   ${xPos};
   ${yPos};
   &::after {

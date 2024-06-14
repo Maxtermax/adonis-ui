@@ -1,17 +1,13 @@
-import { ThemeProvider } from "@emotion/react";
-import buildTheme from "theme/theme";
-import { THEME } from "constants";
+import ADProvider from "components/ADProvider/ADProvider";
 import "@/index.css";
 
 const preview = {
   decorators: [
-    (Story) => {
-      return (
-        <ThemeProvider theme={buildTheme(THEME.LIGHT)}>
-          <Story />
-        </ThemeProvider>
-      );
-    },
+    (Story) => (
+      <ADProvider>
+        <Story />
+      </ADProvider>
+    ),
   ],
   parameters: {
     controls: {

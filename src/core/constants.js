@@ -30,7 +30,10 @@ export const DIMENSIONS = {
   medium: "medium",
   high: "high",
   low: "low",
+  xs: "xs",
 };
+
+export const FOCUS_TAB = "FOCUS_TAB";
 
 export const SHAPES = {
   rounded: "rounded",
@@ -53,8 +56,14 @@ export const SET_THEME_FIELD = "SET_THEME_FIELD";
 
 export const SAVE_THEME = "SAVE_THEME"; 
 
+export const SET_PANEL_STATE = "SET_PANEL_STATE";
+
+export const ACCORDION_PANEL = "ACCORDION_PANEL";
+
+export const ACCORDION_CONTENT = "ACCORDION_CONTENT";
+
 export const COMPONENTS_TARGETS = {
-  ADBUILDER: "ad-builder"
+  AD_THEME_BUILDER: "ad-builder"
 }
 
 export const DIRECTIONS = {

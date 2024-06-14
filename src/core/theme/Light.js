@@ -20,9 +20,10 @@ export default class Light extends Base {
     primary: "#0A100D",
     transparent: "#0000000",
     transparentBlack: "#0000007d",
-    lightSilver: "#9f9f9f17",
+    lightSilver: "#00000017",
     white: "#ffffff",
-    grey: "#9a9da117",
+    grey: "#f7f7f7",
+    silver: "#efeeee",
     red: "red",
     contrast: {
       primary: "#FAFAFF",
@@ -39,8 +40,10 @@ export default class Light extends Base {
     [DIMENSIONS.high]: "45px",
     [DIMENSIONS.regular]: "8px",
     [DIMENSIONS.medium]: "14px",
+    [DIMENSIONS.wide]: "18px",
+    24: "22px",
     [DIMENSIONS.low]: "4px",
-    [DIMENSIONS.close]: "2px",
+    [DIMENSIONS.xs]: "2px",
     [DIMENSIONS.none]: "0px",
   };
   elevation = {
@@ -80,14 +83,20 @@ export default class Light extends Base {
       big: "20px",
     },
   };
+  timing = {
+    smooth: "0.35s",
+    quick: "0.15s",
+    fast: "0.28s ",
+  };
   transitions = {
     smooth: "all ease-in-out 0.35s",
     quick: "all ease-in 0.15s",
-    fast: "all ease-in 0.35s ",
+    fast: "all ease-in 0.28s ",
   };
   border = {
     radius: {
       rounded: "8px",
+      semiRounded: "4px",
       circle: "100%",
       sharp: "0px",
     },

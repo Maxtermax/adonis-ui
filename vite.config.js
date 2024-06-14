@@ -4,7 +4,7 @@ import * as path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '')
+  const env = loadEnv(mode, process.cwd(), "");
   return {
     plugins: [react()],
     define: {
@@ -22,8 +22,38 @@ export default defineConfig(({ mode }) => {
           replacement: path.resolve(__dirname, "src/core/components"),
         },
         {
-          find: "store",
-          replacement: path.resolve(__dirname, "src/core/store"),
+          find: "ADMedia",
+          replacement: path.resolve(__dirname, "src/core/components/ADMedia"),
+        },
+        {
+          find: "ADAccordion",
+          replacement: path.resolve(
+            __dirname,
+            "src/core/components/ADAccordion",
+          ),
+        },
+        {
+          find: "ADTabs",
+          replacement: path.resolve(__dirname, "src/core/components/ADTabs"),
+        },
+        {
+          find: "ADText",
+          replacement: path.resolve(__dirname, "src/core/components/ADText"),
+        },
+        {
+          find: "ADButton",
+          replacement: path.resolve(__dirname, "src/core/components/ADButton"),
+        },
+        {
+          find: "ADThemeBuilder",
+          replacement: path.resolve(
+            __dirname,
+            "src/core/components/ADThemeBuilder",
+          ),
+        },
+        {
+          find: "stores",
+          replacement: path.resolve(__dirname, "src/core/stores"),
         },
         { find: "utils", replacement: path.resolve(__dirname, "src/utils") },
         {

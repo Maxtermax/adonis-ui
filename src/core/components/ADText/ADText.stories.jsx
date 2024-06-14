@@ -1,7 +1,4 @@
 import { ADText } from "components/ADText/ADText";
-import ADProvider from "components/ADProvider/ADProvider";
-import reducer from "reducers/products";
-import store from "store/app";
 import { TEXT_VARIANTS } from "constants";
 
 const { HEADING, TITLE, SUBTITLE } = TEXT_VARIANTS;
@@ -15,11 +12,7 @@ export default {
   tags: ["autodocs"],
 };
 
-const Template = (args) => (
-  <ADProvider reducer={reducer} store={store} data={{}}>
-    <ADText {...args} />
-  </ADProvider>
-);
+const Template = (args) => <ADText {...args} />;
 
 export const Heading = Template.bind({});
 

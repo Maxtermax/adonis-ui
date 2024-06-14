@@ -1,24 +1,52 @@
 import { forwardRef } from "react";
-import * as styles from "./style";
+import { Observer, Context, Store, useStore } from "hermes-io";
+import reducer from "ADMedia/reducer/media";
 import { ADCard } from "components/ADCard/ADCard";
+import { Header } from "ADMedia/components/Header/Header";
+import { Content } from "ADMedia/components/Content/Content";
+import { Footer } from "ADMedia/components/Footer/Footer";
+import { mediaStore } from "ADMedia/store/media";
 import { CARD_VARIANTS, DIMENSIONS, SHAPES } from "constants";
-import { Header } from "./Header";
-import { Content } from "./Content";
-import { Footer } from "./Footer";
+import * as styles from "ADMedia/styles";
+import { uniqueId } from "lodash";
 
 const { OUTLINED } = CARD_VARIANTS;
 
-export const ADMedia = forwardRef(function ADMedia({
-  discount,
-  sizes = [],
-  className = "",
-  name = "",
-  images = [],
-  thumbnails = [],
-  price,
-  id,
-  ...rest
-}, ref) {
+export const ADMedia = forwardRef(function ADMedia(
+  {
+    discount,
+    sizes = [],
+    className = "",
+    name = "",
+    images = [],
+    thumbnails = [],
+    price,
+    id = uniqueId("ad-media-"),
+    ...rest
+  },
+  ref,
+) {
+  const data = {
+    thumbnails,
+    sizes,
+    discount,
+    price,
+    name,
+    id,
+    images,
+  };
+
+  useStore({
+    microStore: mediaStore,
+    store: new Store({
+      id,
+      context: new Context("ADMedia"),
+      observer: new Observer(),
+    }),
+    reducer,
+    data,
+  });
+
   return (
     <styles.Media ref={ref} className={`ad-media ${className}`} {...rest}>
       <ADCard
@@ -28,16 +56,10 @@ export const ADMedia = forwardRef(function ADMedia({
         shape={SHAPES.rounded}
         Header={() => <Header discount={discount} />}
         Content={() => (
-          <Content productId={id} images={images} thumbnails={thumbnails} />
+          <Content id={id} images={images} thumbnails={thumbnails} />
         )}
         Footer={() => (
-          <Footer
-            name={name}
-            discount={discount}
-            productId={id}
-            price={price}
-            sizes={sizes}
-          />
+          <Footer name={name} discount={discount} price={price} sizes={sizes} />
         )}
       />
     </styles.Media>

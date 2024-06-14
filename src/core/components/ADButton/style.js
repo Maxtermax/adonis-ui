@@ -59,13 +59,16 @@ export const Button = styled.button`
   min-width: 50px;
   height: 40px;
   margin: 0px;
-  padding: ${(props) => props.theme.spacing[DIMENSIONS.regular] };
+  padding: ${(props) => props.theme.spacing[DIMENSIONS.regular]};
   transition: ${(props) => props.theme.transitions.smooth};
   font-size: ${(props) => props.theme.fonts.sizes.normal};
   font-family: ${(props) => props.theme.fonts.primary.regular};
   justify-content: center;
   &:hover {
     box-shadow: ${(props) => boxShadow(props)};
-    transform: ${(props) => props.theme.transform.scale.slightly};
+    transform: ${({ theme, noScaleOnHover }) =>
+      noScaleOnHover
+        ? theme.transform.scale.none
+        : theme.transform.scale.slightly};
   }
 `;

@@ -12,7 +12,7 @@ export const ADText = forwardRef(function ADText(
     return (
       <styles.Heading
         ref={ref}
-        className={`ad-heading ${className}`}
+        className={`ad-text-heading ${className}`}
         variant={variant}
         {...rest}
       >
@@ -23,7 +23,7 @@ export const ADText = forwardRef(function ADText(
     return (
       <styles.Text
         ref={ref}
-        className={`ad-body ${className}`}
+        className={`ad-text-body ${className}`}
         variant={variant}
         {...rest}
       >
@@ -34,7 +34,7 @@ export const ADText = forwardRef(function ADText(
     return (
       <styles.Label
         ref={ref}
-        className={`ad-body ${className}`}
+        className={`ad-text-body ${className}`}
         variant={variant}
         {...rest}
       >
@@ -45,7 +45,7 @@ export const ADText = forwardRef(function ADText(
     return (
       <styles.Title
         ref={ref}
-        className={`ad-title ${className}`}
+        className={`ad-text-title ${className}`}
         variant={variant}
         {...rest}
       >
@@ -56,7 +56,7 @@ export const ADText = forwardRef(function ADText(
     return (
       <styles.SubTitle
         ref={ref}
-        className={`ad-subtitle ${className}`}
+        className={`ad-text-subtitle ${className}`}
         variant={variant}
         {...rest}
       >
