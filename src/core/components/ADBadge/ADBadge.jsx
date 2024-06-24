@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { SHAPES, DIMENSIONS } from "constants";
-import * as styles from "./style";
+import * as styles from "./styles";
 
 const { rounded } = SHAPES;
 

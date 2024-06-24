@@ -45,6 +45,26 @@ export default defineConfig(({ mode }) => {
           replacement: path.resolve(__dirname, "src/core/components/ADButton"),
         },
         {
+          find: "ADRadio",
+          replacement: path.resolve(__dirname, "src/core/components/ADRadio"),
+        },
+        {
+          find: "ADSelect",
+          replacement: path.resolve(__dirname, "src/core/components/ADSelect"),
+        },
+        {
+          find: "ADBreadcrumbs",
+          replacement: path.resolve(__dirname, "src/core/components/ADBreadcrumbs"),
+        },
+        {
+          find: "ADDrawer",
+          replacement: path.resolve(__dirname, "src/core/components/ADDrawer"),
+        },
+        {
+          find: "ADPanel",
+          replacement: path.resolve(__dirname, "src/core/components/ADPanel"),
+        },
+        {
           find: "ADThemeBuilder",
           replacement: path.resolve(
             __dirname,

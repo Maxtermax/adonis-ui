@@ -31,6 +31,7 @@ export const LeftCol = styled.div`
   flex-direction: column;
   height: 100px;
   gap: ${(props) => props.theme.spacing.regular};
+  width: calc(100% - 10px);
   .ad-text-title,
   .ad-text-body {
     align-items: center;
@@ -60,7 +61,8 @@ export const RightCol = styled.div`
   }
   @media screen and ${(props) => props.theme.devices.sm} {
     height: 65px;
-    width: calc(100% - ${(props) => props.theme.spacing["24"]});
+    width: calc(100% - ${(props) => props.theme.spacing["12"]});
+    margin-left: ${(props) => props.theme.spacing.low};
   }
 `;
 
@@ -85,7 +87,7 @@ export const Footer = styled.div`
     color: ${(props) => props.theme.colors.contrast.primary};
   }
   &:hover .ad-badge {
-    color: ${(props) => props.theme.colors.contrast.primary};
+    color: ${(props) => props.theme.colors.contrast.primary} !important;
     background-color: ${(props) => props.theme.colors.contrast.primary};
   }
 

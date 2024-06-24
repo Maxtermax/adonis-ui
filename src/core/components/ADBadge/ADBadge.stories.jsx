@@ -3,7 +3,7 @@ import { ADBadge } from "components/ADBadge/ADBadge";
 import { ADText } from "components/ADText/ADText";
 import { SHAPES, TEXT_VARIANTS, DIMENSIONS } from "constants";
 
-const { rounded, sharp } = SHAPES;
+const { circle, rounded, sharp } = SHAPES;
 
 export default {
   title: "Basic/ADBadge",
@@ -16,11 +16,11 @@ export default {
   argTypes: {
     variant: {
       control: "select",
-      options: [rounded, sharp],
+      options: [rounded, sharp, circle],
     },
     size: {
       control: "select",
-      options: [DIMENSIONS.small, DIMENSIONS.normal],
+      options: [DIMENSIONS.small, DIMENSIONS.normal, DIMENSIONS.xs],
     },
   },
 };

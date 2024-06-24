@@ -35,9 +35,12 @@ export const DIMENSIONS = {
 
 export const FOCUS_TAB = "FOCUS_TAB";
 
+export const SET_DRAWER_OPEN = "SET_DRAWER_OPEN";
+
 export const SHAPES = {
   rounded: "rounded",
   sharp: "sharp",
+  circle: "circle",
 };
 
 export const TEXT_VARIANTS = {
