@@ -1,6 +1,7 @@
 import { ADSteps } from "components/ADSteps/ADSteps";
 import { Instagram } from "@styled-icons/boxicons-logos/Instagram";
-import { microStepsStore } from "ADSteps/store/steps";
+import { microSteps } from "ADSteps/store/steps";
+import { completeNextStep, rollbackStep } from "ADSteps/mutations/steps";
 
 export default {
   title: "Basic/ADSteps",
@@ -15,12 +16,12 @@ const ID = "test";
 
 export const Basic = () => {
   const handleNext = () => {
-    const { mutate } = microStepsStore.get(ID);
-    
-
+    const store = microSteps.get(ID);
+    completeNextStep(store, [ID]);
   }
   const handlePrev = () => {
-    const { mutate } = microStepsStore.get(ID);
+    const store = microSteps.get(ID);
+    rollbackStep(store, [ID]);
   }
 
   return (
@@ -46,7 +47,6 @@ export const Basic = () => {
             id: 2,
             title: "2",
             subtitle: "dos",
-            done: true,
           },
           {
             id: 3,

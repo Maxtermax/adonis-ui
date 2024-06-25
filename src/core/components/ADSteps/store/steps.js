@@ -1,5 +1,5 @@
 import { MicroStore } from "hermes-io";
 
-export const microStepsStore = new MicroStore();
+export const microSteps = new MicroStore();
 
-window.microStepsStore = microStepsStore;
+window.microSteps = microSteps;
