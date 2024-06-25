@@ -51,6 +51,8 @@ export const TEXT_VARIANTS = {
   SUBTITLE: "subtitle",
 };
 
+export const COMPLETE_STEP = "COMPLETE_STEP";
+
 export const SELECT_IMAGE = "SELECT_IMAGE";
 
 export const SET_PRODUCT_FOCUS = "SET_PRODUCT_FOCUS";

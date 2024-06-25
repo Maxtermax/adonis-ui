@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import * as styles from "./style";
+import * as styles from "./styles";
 
 export const ADCard = forwardRef(function ADCard(
   {

@@ -30,7 +30,7 @@ export const ADRadio = ({
       <Radio onChange={handleChange} id={id} />
 
       {label ? (
-        <styles.Label className="__label" for={id}>
+        <styles.Label className="__label" htmlFor={id}>
           {label}
         </styles.Label>
       ) : null}

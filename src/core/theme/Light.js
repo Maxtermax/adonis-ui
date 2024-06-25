@@ -26,6 +26,8 @@ export default class Light extends Base {
     grey: "#f7f7f7",
     silver: "#efeeee",
     red: "red",
+    error: "red",
+    checked: "#009b00",
     semiTransparent: "rgba(0, 0, 0, 0.5)",
     contrast: {
       primary: "#FAFAFF",
@@ -46,11 +48,15 @@ export default class Light extends Base {
     [DIMENSIONS.low]: "4px",
     [DIMENSIONS.xs]: "2px",
     [DIMENSIONS.none]: "0px",
+    30: "30px",
+    25: "25px",
     24: "24px",
     20: "20px",
     17: "17px",
+    16: "16px",
     15: "15px",
     12: "12px",
+    10: "10px",
     6: "6px",
   };
   elevation = {

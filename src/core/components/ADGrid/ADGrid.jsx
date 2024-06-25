@@ -1,4 +1,4 @@
-import * as styles from "./style";
+import * as styles from "./styles";
 
 export const ADGrid = ({
   children,

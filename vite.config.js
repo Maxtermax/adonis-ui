@@ -61,6 +61,10 @@ export default defineConfig(({ mode }) => {
           replacement: path.resolve(__dirname, "src/core/components/ADDrawer"),
         },
         {
+          find: "ADSteps",
+          replacement: path.resolve(__dirname, "src/core/components/ADSteps"),
+        },
+        {
           find: "ADPanel",
           replacement: path.resolve(__dirname, "src/core/components/ADPanel"),
         },
