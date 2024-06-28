@@ -1,18 +1,18 @@
-import { COMPLETE_STEP, FAIL_STEP, PENDING_STEP } from "constants";
+import { COMPLETE_STEP, FAIL_STEP, PENDING_STEP, STEPS_STATUS } from "constants";
 
 export default function steps(state, action) {
   const actions = {
     [COMPLETE_STEP]: () => {
       const step = action.payload.value.step;
       if (!step) return state;
-      step.status = "completed";
+      step.status = STEPS_STATUS.completed;
       state.lastStepCompleted = step;
       return state;
     },
     [FAIL_STEP]: () => {
       const step = action.payload.value.step;
       if (!step) return state;
-      step.status = "failed";
+      step.status = STEPS_STATUS.failed;
       const prevStep = state.steps.indexOf(step);
       state.lastStepCompleted = state.steps[prevStep - 1] ?? null;
       return state;
@@ -20,7 +20,7 @@ export default function steps(state, action) {
     [PENDING_STEP]: () => {
       const step = action.payload.value.step;
       if (!step) return state;
-      step.status = "pending";
+      step.status = STEPS_STATUS.pending;
       const prevStep = state.steps.indexOf(step);
       state.lastStepCompleted = state.steps[prevStep - 1] ?? null;
       return state;
