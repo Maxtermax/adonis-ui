@@ -18,11 +18,11 @@ export const Basic = () => {
   const handleNext = () => {
     const store = microSteps.get(ID);
     completeNextStep(store, [ID]);
-  }
+  };
   const handlePrev = () => {
     const store = microSteps.get(ID);
     rollbackStep(store, [ID]);
-  }
+  };
 
   return (
     <div>
@@ -41,12 +41,13 @@ export const Basic = () => {
             id: 1,
             title: "1",
             subtitle: "uno",
-            error: true,
+            disabled: false,
           },
           {
             id: 2,
             title: "2",
             subtitle: "dos",
+            disabled: false,
           },
           {
             id: 3,
@@ -59,6 +60,7 @@ export const Basic = () => {
             title: "4",
             subtitle: "cuatro",
             customIcon: Instagram,
+            disabled: false,
           },
         ]}
       />

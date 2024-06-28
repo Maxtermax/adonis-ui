@@ -1,5 +1,5 @@
-import { COMPLETE_STEP } from "constants";
-import { getNextPendingStep } from "ADSteps/queries/steps";
+import { COMPLETE_STEP, PENDING_STEP } from "constants";
+import { getNextPendingStep, getLastStepCompleted } from "ADSteps/queries/steps";
 
 export const completeNextStep = (store, targets) => {
   const step = getNextPendingStep(store);
@@ -15,4 +15,16 @@ export const completeNextStep = (store, targets) => {
   });
 };
 
-export const rollbackStep = (mutate) => {};
+export const rollbackStep = (store, targets) => {
+  const step = getLastStepCompleted(store);
+  const payload = {
+    value: {
+      step,
+    },
+  };
+  store.mutate({
+    type: PENDING_STEP,
+    targets,
+    payload,
+  });
+};

@@ -53,6 +53,10 @@ export const TEXT_VARIANTS = {
 
 export const COMPLETE_STEP = "COMPLETE_STEP";
 
+export const FAIL_STEP = "FAIL_STEP";
+
+export const PENDING_STEP = "PENDING_STEP";
+
 export const SELECT_IMAGE = "SELECT_IMAGE";
 
 export const SET_PRODUCT_FOCUS = "SET_PRODUCT_FOCUS";

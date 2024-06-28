@@ -7,7 +7,8 @@ import { ADText } from "ADText/ADText";
 import { ADButton } from "ADButton/ADButton";
 import { microSteps } from "ADSteps/store/steps";
 import reducer from "ADSteps/reducer/steps";
-import { COMPLETE_STEP } from "constants";
+import { getSteps } from 'ADSteps/queries/steps';
+import { COMPLETE_STEP, FAIL_STEP, PENDING_STEP } from "constants";
 import * as styles from "./styles";
 
 const Icon = ({ variant, Content }) => (
@@ -24,10 +25,11 @@ const Step = ({ storeId, showGuide, id, ...rest }) => {
   const { state } = useMutations({
     initialState: { ...rest },
     noUpdate: true,
-    events: [COMPLETE_STEP],
+    events: [COMPLETE_STEP, FAIL_STEP, PENDING_STEP],
     onChange: ({ step }, _, setNoUpdate) => {
       if (!step) return setNoUpdate(true);
-      setNoUpdate(step.id !== id);
+      const noUpdate = step.id !== id;
+      setNoUpdate(noUpdate);
       return step;
     },
     store: microSteps,
@@ -37,25 +39,27 @@ const Step = ({ storeId, showGuide, id, ...rest }) => {
     title,
     subtitle,
     customIcon = null,
-    error = false,
-    completed = false,
     disabled = false,
+    status,
   } = state;
-  console.log({ completed, customIcon });
+  const isStatusPending = status === "pending";
+  const isStatusCompleted = status === "completed";
+  const isStatusFailed = status === "failed";
 
-  const renderIcon = () => {
-    if (completed) return <Icon variant="done" />;
-    if (error) return <Icon variant="error" />;
+  const renderStatus = () => {
+    if (isStatusCompleted) return <Icon variant="done" />;
+    if (isStatusFailed) return <Icon variant="error" />;
     if (customIcon) return <Icon variant="custom" Content={customIcon} />;
+    if (isStatusPending)
+      return (
+        <ADText value={title} variant="heading" className="ad-steps__title" />
+      );
   };
 
   return (
     <styles.Step className="ad-steps__step" showGuide={showGuide}>
       <ADButton disabled={disabled} variant="text">
-        {renderIcon()}
-        {!completed && !error && !customIcon ? (
-          <ADText value={title} variant="heading" className="ad-steps__title" />
-        ) : null}
+        {renderStatus()}
         {subtitle ? (
           <ADText
             value={subtitle}
@@ -68,17 +72,19 @@ const Step = ({ storeId, showGuide, id, ...rest }) => {
   );
 };
 
-const mapStepsToData = (steps = []) =>
-  steps.map(({ ...rest }) => ({
+const mapStepsToData = (steps = []) => ({
+  lastStepCompleted: null,
+  steps: steps.map(({ ...rest }) => ({
     ...rest,
-    completed: false,
-  }));
+    status: "pending",
+  })),
+});
 
 export const ADSteps = forwardRef(function ADSteps(
   { className = "", id = uniqueId(), ...rest },
   ref,
 ) {
-  const { query } = useStore({
+  const store = useStore({
     microStore: microSteps,
     store: new Store({
       id,
@@ -89,7 +95,7 @@ export const ADSteps = forwardRef(function ADSteps(
     data: mapStepsToData(rest?.steps ?? []),
   });
 
-  const steps = query(({ state }) => state, []);
+  const steps = getSteps(store);
 
   return (
     <styles.Container className={`ad-steps ${className}`} ref={ref} {...rest}>
