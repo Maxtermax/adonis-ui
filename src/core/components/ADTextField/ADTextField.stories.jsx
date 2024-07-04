@@ -17,10 +17,31 @@ export default {
 export const Basic = () => {
   return (
     <ADTextField
-      icon={<User size={20} />}
-      placeholder="test"
+      placeholder="Placeholder"
       label="label"
-      helperText="helper"
+      helperText="helper text"
+    />
+  );
+};
+
+export const Icon = () => {
+  return (
+    <ADTextField
+      icon={<User size={20} />}
+      placeholder="Placeholder"
+      label="label"
+      helperText="helper text"
+    />
+  );
+};
+
+export const Error = () => {
+  return (
+    <ADTextField
+      error
+      placeholder="Placeholder"
+      label="label"
+      helperText="helper text"
     />
   );
 };
