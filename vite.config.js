@@ -54,7 +54,10 @@ export default defineConfig(({ mode }) => {
         },
         {
           find: "ADBreadcrumbs",
-          replacement: path.resolve(__dirname, "src/core/components/ADBreadcrumbs"),
+          replacement: path.resolve(
+            __dirname,
+            "src/core/components/ADBreadcrumbs",
+          ),
         },
         {
           find: "ADDrawer",
@@ -63,6 +66,13 @@ export default defineConfig(({ mode }) => {
         {
           find: "ADSteps",
           replacement: path.resolve(__dirname, "src/core/components/ADSteps"),
+        },
+        {
+          find: "ADTextField",
+          replacement: path.resolve(
+            __dirname,
+            "src/core/components/ADTextField",
+          ),
         },
         {
           find: "ADPanel",

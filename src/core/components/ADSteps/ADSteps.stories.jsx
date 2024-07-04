@@ -41,13 +41,11 @@ export const Basic = () => {
             id: 1,
             title: "1",
             subtitle: "uno",
-            disabled: false,
           },
           {
             id: 2,
             title: "2",
             subtitle: "dos",
-            disabled: false,
           },
           {
             id: 3,
@@ -60,7 +58,6 @@ export const Basic = () => {
             title: "4",
             subtitle: "cuatro",
             customIcon: Instagram,
-            disabled: false,
           },
         ]}
       />

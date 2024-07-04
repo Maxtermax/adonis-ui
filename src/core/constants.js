@@ -51,6 +51,12 @@ export const TEXT_VARIANTS = {
   SUBTITLE: "subtitle",
 };
 
+export const STEPS_STATUS = {
+  completed: "completed",
+  pending: "pending",
+  failed: "failed"
+};
+
 export const COMPLETE_STEP = "COMPLETE_STEP";
 
 export const FAIL_STEP = "FAIL_STEP";

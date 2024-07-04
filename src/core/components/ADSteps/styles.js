@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { STEPS_STATUS } from "constants";
 
 export const Container = styled.div`
   align-items: center;
@@ -59,8 +60,8 @@ export const Step = styled.div`
 export const Icon = styled.div`
   background-color: ${({ theme, variant }) =>
     ({
-      error: theme.colors.error,
-      done: theme.colors.checked,
+      [STEPS_STATUS.failed]: theme.colors.error,
+      [STEPS_STATUS.completed]: theme.colors.checked,
       custom: theme.colors.silver,
     })[variant]};
   border-radius: ${({ theme }) => theme.spacing.regular};
