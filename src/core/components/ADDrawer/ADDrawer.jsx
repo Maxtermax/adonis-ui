@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useMutations, Context, Observer, Store, useStore } from "hermes-io";
+import { useMutations, useStoreFactory } from "hermes-io";
 import { uniqueId } from "lodash";
 import { ADPanel } from "ADPanel/ADPanel";
 import { drawerMicroStore } from "ADDrawer/store/drawer";
@@ -19,16 +19,7 @@ export const ADDrawer = ({
 }) => {
   const containerRef = useRef(null);
   const overlayRef = useRef(null);
-  useStore({
-    microStore: drawerMicroStore,
-    store: new Store({
-      id,
-      context: new Context("Drawer"),
-      observer: new Observer(),
-    }),
-    reducer,
-    data: { isOpen: false },
-  });
+  useStoreFactory(id, { isOpen: false }, reducer, drawerMicroStore);
 
   const openDrawer = () => {
     const overlay = overlayRef?.current;

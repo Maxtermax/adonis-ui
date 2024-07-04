@@ -1,5 +1,5 @@
 import { Children, cloneElement, forwardRef, useEffect, useRef } from "react";
-import { useStore, Store, Context, Observer } from "hermes-io";
+import { useStoreFactory } from "hermes-io";
 import { uniqueId } from "lodash";
 import { ADButton } from "ADButton/ADButton";
 import { ChevronLeft } from "@styled-icons/evaicons-solid/ChevronLeft";
@@ -16,16 +16,13 @@ export const ADTabs = forwardRef(function ADTabs(
   const containerRef = useRef(null);
   const prevButtonRef = useRef(null);
   const nextButtonRef = useRef(null);
-  const { store } = useStore({
-    microStore: tabsCollection,
-    store: new Store({
-      id,
-      context: new Context("Tabs"),
-      observer: new Observer(),
-    }),
+  const { store } = useStoreFactory(
+    id,
+    { id, focus: "" },
     reducer,
-    data: { id, focus: "" },
-  });
+    tabsCollection,
+  );
+  console.log({ store })
 
   useEffect(() => {
     if (arrows) {

@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { useMutations, useStore, Store, Context, Observer } from "hermes-io";
+import { useMutations, useStoreFactory } from "hermes-io";
 import { uniqueId } from "lodash";
 import { Check } from "@styled-icons/boxicons-regular/Check";
 import { CloseOutline } from "@styled-icons/evaicons-outline/CloseOutline";
@@ -7,7 +7,7 @@ import { ADText } from "ADText/ADText";
 import { ADButton } from "ADButton/ADButton";
 import { microSteps } from "ADSteps/store/steps";
 import reducer from "ADSteps/reducer/steps";
-import { getSteps } from 'ADSteps/queries/steps';
+import { getSteps } from "ADSteps/queries/steps";
 import { COMPLETE_STEP, FAIL_STEP, PENDING_STEP } from "constants";
 import * as styles from "./styles";
 
@@ -22,19 +22,22 @@ const Icon = ({ variant, Content }) => (
 );
 
 const Step = ({ storeId, showGuide, id, ...rest }) => {
-  const { state } = useMutations({
+  const { state, onEvent } = useMutations({
     initialState: { ...rest },
     noUpdate: true,
-    events: [COMPLETE_STEP, FAIL_STEP, PENDING_STEP],
-    onChange: ({ step }, _, setNoUpdate) => {
-      if (!step) return setNoUpdate(true);
-      const noUpdate = step.id !== id;
-      setNoUpdate(noUpdate);
-      return step;
-    },
     store: microSteps,
     id: storeId,
   });
+  const updateStep = ({ step }, _, setNoUpdate) => {
+    if (!step) return setNoUpdate(true);
+    const noUpdate = step.id !== id;
+    setNoUpdate(noUpdate);
+    return step;
+  };
+  onEvent(COMPLETE_STEP, updateStep);
+  onEvent(FAIL_STEP, updateStep);
+  onEvent(PENDING_STEP, updateStep);
+
   const {
     title,
     subtitle,
@@ -84,17 +87,8 @@ export const ADSteps = forwardRef(function ADSteps(
   { className = "", id = uniqueId(), ...rest },
   ref,
 ) {
-  const store = useStore({
-    microStore: microSteps,
-    store: new Store({
-      id,
-      context: new Context("ADSteps"),
-      observer: new Observer(),
-    }),
-    reducer,
-    data: mapStepsToData(rest?.steps ?? []),
-  });
-
+  const data = mapStepsToData(rest?.steps ?? []);
+  const { store } = useStoreFactory(id, data, reducer, microSteps);
   const steps = getSteps(store);
 
   return (

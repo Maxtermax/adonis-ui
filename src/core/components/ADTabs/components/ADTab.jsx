@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useMutations } from "hermes-io";
 import { uniqueId } from "lodash";
 import { FOCUS_TAB } from "constants";
-import tabsCollection from 'ADTabs/store/tabs';
+import tabsCollection from "ADTabs/store/tabs";
 import * as styles from "ADTabs/styles";
 
 export const ADTab = ({
@@ -14,19 +14,19 @@ export const ADTab = ({
   ...rest
 }) => {
   const tabRef = useRef(null);
-  const { state } = useMutations({
+  const { state, onEvent } = useMutations({
     initialState: { isSelected },
-    onChange: (value) => {
-      const isSelected = value === id;
-      if (isSelected) {
-        onSelect?.(id);
-        tabRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
-      }
-      return { isSelected };
-    },
-    events: [FOCUS_TAB],
     store: tabsCollection,
     id: store.id,
+  });
+
+  onEvent(FOCUS_TAB, (value) => {
+    const isSelected = value === id;
+    if (isSelected) {
+      onSelect?.(id);
+      tabRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
+    }
+    return { isSelected };
   });
 
   const handleClickTab = () => {

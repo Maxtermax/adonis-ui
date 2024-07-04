@@ -12,7 +12,7 @@ export default {
   tags: ["autodocs"],
 };
 
-const ID = "test";
+const ID = "ADSteps";
 
 export const Basic = () => {
   const handleNext = () => {
