@@ -1,4 +1,5 @@
 import { ADTextField } from "components/ADTextField/ADTextField";
+import { User } from "@styled-icons/boxicons-regular/User";
 
 export default {
   title: "Basic/ADTextField",
@@ -14,5 +15,12 @@ export default {
 };
 
 export const Basic = () => {
-  return <ADTextField label="label" helperText="helper" error />;
+  return (
+    <ADTextField
+      icon={<User size={20} />}
+      placeholder="test"
+      label="label"
+      helperText="helper"
+    />
+  );
 };

@@ -25,6 +25,7 @@ export default class Light extends Base {
     white: "#ffffff",
     grey: "#f7f7f7",
     silver: "#efeeee",
+    blue: "#3289e7",
     red: "red",
     error: "red",
     checked: "#009b00",
