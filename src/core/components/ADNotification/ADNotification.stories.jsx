@@ -7,10 +7,13 @@ export default {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-  },
+  argTypes: {},
 };
 
-export const Basic = () => {
-  return <ADNotification />;
-};
+export const Basic = () => <ADNotification text="Title" direction="left" />;
+
+export const Error = () => <ADNotification text="Title" variant="error" />;
+
+export const Warning = () => <ADNotification text="Title" variant="warning" />;
+
+export const Success = () => <ADNotification text="Title" variant="success" />;

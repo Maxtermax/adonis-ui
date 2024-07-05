@@ -1,32 +1,57 @@
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
 
-const appear = keyframes`
+const colorVariantFactory = (theme, variant) =>
+  ({
+    primary: theme.colors.primary,
+    success: theme.colors.success,
+    warning: theme.colors.warning,
+    error: theme.colors.error,
+  })[variant];
+
+const bgVariantFactory = (theme, variant) =>
+  ({
+    error: theme.colors.softRed,
+    success: theme.colors.softSuccess,
+    primary: theme.colors.silver,
+    warning: theme.colors.softWarning,
+  })[variant];
+
+const appearTop = (reverse = false) => keyframes`
   0% {
-    opacity: 0;
-    top: -100%;
+    opacity: ${reverse ? 1 : 0};
+    top: ${reverse ? '4%' : '-100%' };
   }
   100% {
-    opacity: 1;
-    top: 4%;
+    opacity: ${reverse ? 0 : 1};
+    top: ${reverse ? '-100%' : '4%' };
   }
 `;
 
-const discard = keyframes`
+const appearBottom = (reverse = false) => keyframes`
   0% {
-    opacity: 1;
-    top: 4%;
+    opacity: ${reverse ? 1 : 0};
+    bottom: ${reverse ? '4%' : '-100%' };
   }
   100% {
-    opacity: 0;
-    top: -100%;
+    opacity: ${reverse ? 0 : 1};
+    bottom: ${reverse ? '-100%' : '4%' };
   }
 `;
+
+const animationMap = {
+  top: appearTop(),
+  bottom: appearBottom(),
+  left: appearLeft(),
+};
+
+const animationDiscardMap = {
+  top: appearTop(true),
+  bottom: appearBottom(true),
+};
 
 export const Container = styled.div`
   align-items: center;
-  animation: ${appear} ${({ theme }) => theme.timing.smooth};
-  animation-fill-mode: forwards;
   border: 1px solid ${({ theme }) => theme.colors.primary};
   border-radius: ${({ theme }) => theme.border.radius.rounded};
   cursor: pointer;
@@ -39,12 +64,8 @@ export const Container = styled.div`
   font-family: ${({ theme }) => theme.fonts.primary.regular};
   position: fixed;
   flex-direction: row;
-  gap: ${({ theme }) => theme.spacing.regular};
-  padding-left: ${({ theme }) => theme.spacing.low};
-  padding-right: ${({ theme }) => theme.spacing.low};
   transition: ${({ theme }) => theme.transitions.smooth};
   &:hover {
-    background: #00000008;
     transform: ${({ theme }) => theme.transform.scale.small};
   }
 `;
@@ -60,23 +81,34 @@ export const Icon = styled.div`
   align-items: center;
   display: flex;
   padding: ${({ theme }) => theme.spacing.regular};
-  width: 80px;
-  height: 100%;
   justify-content: center;
-`;
-
-export const Actions = styled.div`
-  display: flex;
-  min-width: 80px;
+  width: 60px;
   height: 100%;
-  justify-content: center;
-  padding: ${({ theme }) => theme.spacing.regular};
 `;
 
 export const Wrapper = styled.div`
   display: inline;
+  & .ad-notification {
+    animation: ${({ direction }) => animationMap[direction]};
+    animation-duration: ${({ theme }) => theme.timing.smooth};
+    animation-fill-mode: forwards;
+    &:hover {
+      background: ${({ theme, variant }) => bgVariantFactory(theme, variant)};
+    }
+  }
+  & .ad-notification__icon {
+    color: ${({ variant, theme }) => colorVariantFactory(theme, variant)};
+  }
+  & .ad-notification {
+    border-color: ${({ variant, theme }) =>
+      colorVariantFactory(theme, variant)};
+  }
+  & .ad-notification__content .ad-text {
+    color: ${({ variant, theme }) => colorVariantFactory(theme, variant)};
+  }
   & .ad-notification-discard {
-    animation: ${discard} ${({ theme }) => theme.timing.mid};
+    animation: ${({ direction }) => animationDiscardMap[direction]};
+    animation-duration: ${({ theme }) => theme.timing.mid};
     animation-fill-mode: forwards;
   }
 `;

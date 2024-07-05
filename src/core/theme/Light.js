@@ -15,7 +15,7 @@ export default class Light extends Base {
     md: `(max-width: ${this.breakpoints.md})`,
     lg: `(max-width: ${this.breakpoints.lg})`,
     xl: `(max-width: ${this.breakpoints.xl})`,
-  }
+  };
   colors = {
     primary: "#0A100D",
     success: "#00aa00",
@@ -29,6 +29,9 @@ export default class Light extends Base {
     blue: "#3289e7",
     red: "red",
     error: "red",
+    softWarning: "#ffcc4e12",
+    softSuccess: "#74fa7414",
+    softRed: "#ff00050d",
     checked: "#009b00",
     semiTransparent: "rgba(0, 0, 0, 0.5)",
     contrast: {
