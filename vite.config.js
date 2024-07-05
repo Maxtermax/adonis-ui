@@ -68,6 +68,10 @@ export default defineConfig(({ mode }) => {
           replacement: path.resolve(__dirname, "src/core/components/ADSteps"),
         },
         {
+          find: "ADNotification",
+          replacement: path.resolve(__dirname, "src/core/components/ADNotification"),
+        },
+        {
           find: "ADTextField",
           replacement: path.resolve(
             __dirname,

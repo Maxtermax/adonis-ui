@@ -14,7 +14,7 @@ export const ADTextField = ({
   defaultValue = "",
   placeholder = "",
   disabled = false,
-  error = false,
+  colorVariant = "primary",
   icon = null,
   id = uniqueId("ad-text-field-"),
   ...rest
@@ -32,10 +32,9 @@ export const ADTextField = ({
   const handleFocus = () => labelRef.current.classList.add("label--focus");
 
   return (
-    <styles.Container className="ad-text-field" error={error}>
+    <styles.Container className="ad-text-field" colorVariant={colorVariant}>
       {label ? (
         <styles.Label
-          error={error}
           icon={icon}
           ref={labelRef}
           className="ad-text-field__label"
@@ -50,7 +49,7 @@ export const ADTextField = ({
         <Input
           className="ad-text-field__input"
           id={id}
-          error={error}
+          colorVariant={colorVariant}
           placeholder={placeholder}
           defaultValue={defaultValue}
           disabled={disabled}

@@ -35,10 +35,32 @@ export const Icon = () => {
   );
 };
 
+export const Success = () => {
+  return (
+    <ADTextField
+      colorVariant="success"
+      placeholder="Placeholder"
+      label="label"
+      helperText="helper text"
+    />
+  );
+};
+
+export const Warning = () => {
+  return (
+    <ADTextField
+      colorVariant="warning"
+      placeholder="Placeholder"
+      label="label"
+      helperText="helper text"
+    />
+  );
+};
+
 export const Error = () => {
   return (
     <ADTextField
-      error
+      colorVariant="error"
       placeholder="Placeholder"
       label="label"
       helperText="helper text"

@@ -8,7 +8,7 @@ export const Input = ({
   id,
   onBlur,
   onFocus,
-  error,
+  colorVariant = "",
   placeholder = "",
   defaultValue = "",
   disabled = false,
@@ -40,7 +40,7 @@ export const Input = ({
       onChange={handleChange}
       onFocus={onFocus}
       onBlur={onBlur}
-      error={error}
+      colorVariant={colorVariant}
       value={state.value}
       disabled={disabled}
       {...rest}

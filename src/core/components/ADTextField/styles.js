@@ -1,5 +1,20 @@
 import styled from "@emotion/styled";
 
+const colorVariantMap = (theme, color) => ({
+  error: theme.colors.error, 
+  primary: theme.colors.primary, 
+  warning: theme.colors.warning,
+  success: theme.colors.success,
+  blue: theme.colors.blue
+})[color];
+
+const colorVariantFocusMap = {
+  error: "error",
+  primary: "blue",
+  warning: "warning",
+  success: "success"
+}
+
 export const Container = styled.div`
   display: flex;
   min-width: 100px;
@@ -17,14 +32,12 @@ export const Container = styled.div`
     justify-content: center;
   }
   .ad-text-field__subtitle {
-    color: ${({ theme, error }) =>
-      error ? theme.colors.error : theme.colors.primary};
+    color: ${({ theme, colorVariant }) => colorVariantMap(theme, colorVariant)};
   }
   .label--focus {
+    color: ${({ theme, colorVariant }) => colorVariantMap(theme, colorVariantFocusMap[colorVariant])};
     top: 0px;
     left: 0px;
-    color: ${({ theme, error }) =>
-      error ? theme.colors.error : theme.colors.blue};
   }
 `;
 
@@ -32,8 +45,7 @@ export const Input = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.primary};
   border-radius: ${({ theme }) => theme.border.radius.rounded};
   background: ${({ theme }) => theme.colors.white};
-  border-color: ${({ theme, error }) =>
-    error ? theme.colors.error : theme.colors.primary};
+  border-color: ${({ theme, colorVariant }) => colorVariantMap(theme, colorVariant)};
   font-size: ${({ theme }) => theme.fonts.sizes.medium};
   font-family: ${({ theme }) => theme.fonts.primary.medium};
   padding: ${({ theme }) => theme.spacing.low};
@@ -43,14 +55,12 @@ export const Input = styled.input`
   outline: none;
   transition: ${({ theme }) => theme.transitions.quick};
   &:focus {
-    border-color: ${({ theme, error }) =>
-      error ? theme.colors.error : theme.colors.blue};
+    border-color: ${({ theme, colorVariant }) => colorVariantMap(theme, colorVariantFocusMap[colorVariant])};
   }
 `;
 
 export const Label = styled.label`
-  color: ${({ theme, error }) =>
-    error ? theme.colors.error : theme.colors.primary};
+  color: ${({ theme, colorVariant }) => colorVariantMap(theme, colorVariant)};
   position: relative;
   top: ${({ icon }) => icon ? "0px" : "16px"};
   left: ${({ icon }) => icon ? "0px" : "10px"};

@@ -18,6 +18,7 @@ export default class Light extends Base {
   }
   colors = {
     primary: "#0A100D",
+    success: "#00aa00",
     transparent: "#0000000",
     transparentBlack: "#0000007d",
     lightSilver: "#00000017",
@@ -99,6 +100,7 @@ export default class Light extends Base {
     },
   };
   timing = {
+    mid: "0.5s",
     smooth: "0.35s",
     quick: "0.15s",
     fast: "0.28s ",
