@@ -12,7 +12,7 @@ export default function steps(state, action) {
     [FAIL_STEP]: () => {
       const step = action.payload.value.step;
       if (!step) return state;
-      step.status = STEPS_STATUS.failed;
+      step.status = STEPS_STATUS.error;
       const prevStep = state.steps.indexOf(step);
       state.lastStepCompleted = state.steps[prevStep - 1] ?? null;
       return state;

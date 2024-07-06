@@ -10,21 +10,24 @@ export const Container = styled.div`
 
 export const Radio = styled.button`
   background: ${({ theme, isChecked }) =>
-    isChecked ? theme.colors.primary : theme.colors.contrast.primary};
-  border: ${({ theme }) => theme.spacing["6"]} solid ${({ theme }) => theme.colors.primary};
+    isChecked ? theme.colors.primary : theme.colors.transparent};
+  border: ${({ theme, isChecked }) =>
+      isChecked ? theme.spacing[6] : theme.spacing[3]}
+    solid ${({ theme }) => theme.colors.primary};
   border-radius: ${({ theme }) => theme.border.radius.circle};
   cursor: pointer;
   width: 20px;
   height: 20px;
   padding: 0px;
   margin: 0px;
+  transition: ${({ theme }) => theme.transitions.smooth};
   &:focus {
     background: ${({ theme, isChecked }) =>
-      isChecked ? theme.colors.primary : theme.colors.lightSilver};
+      isChecked ? theme.colors.primary : theme.colors.transparent};
   }
   &:hover {
     background: ${({ theme, isChecked }) =>
-      isChecked ? theme.colors.primary : theme.colors.lightSilver};
+      isChecked ? theme.colors.primary : theme.colors.transparent};
   }
 `;
 

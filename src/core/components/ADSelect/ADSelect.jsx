@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import { ArrowIosDownward } from "@styled-icons/evaicons-solid/ArrowIosDownward";
 import { ArrowIosUpward } from "@styled-icons/evaicons-solid/ArrowIosUpward";
 
@@ -18,17 +18,20 @@ const Selected = ({ onClick, disabled, name, content, showOptions }) => {
   );
 };
 
-export const ADSelect = ({
-  className = "",
-  options = [],
-  onSelect,
-  label = "",
-  maxHeight = "500px",
-  width = "150px",
-  variant = "primary",
-  disabled = false,
-  defaultOption,
-}) => {
+export const ADSelect = forwardRef(function ADSelect(
+  {
+    className = "",
+    options = [],
+    onSelect,
+    label = "",
+    maxHeight = "500px",
+    width = "150px",
+    variant = "primary",
+    disabled = false,
+    defaultOption,
+  },
+  ref,
+) {
   const [displayOptions, setDiplayOptions] = useState(false);
   const [selected, setSelected] = useState(
     options?.find(({ id }) => id === defaultOption) ?? options[0],
@@ -52,6 +55,7 @@ export const ADSelect = ({
 
   return (
     <styles.Container
+      ref={ref}
       width={width}
       variant={variant}
       className={`ad-select ${className}`}
@@ -99,4 +103,4 @@ export const ADSelect = ({
       </styles.Select>
     </styles.Container>
   );
-};
+});

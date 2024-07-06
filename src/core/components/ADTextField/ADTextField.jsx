@@ -1,3 +1,4 @@
+import { useRef, forwardRef } from "react";
 import { uniqueId } from "lodash";
 import { useStoreFactory } from "hermes-io";
 import { ADText } from "ADText/ADText";
@@ -6,19 +7,21 @@ import { Input } from "ADTextField/components/Input/Input";
 import { microTextField } from "ADTextField/store/field";
 import reducer from "ADTextField/reducer/field";
 import * as styles from "ADTextField/styles";
-import { useRef } from "react";
 
-export const ADTextField = ({
-  helperText = "",
-  label = "",
-  defaultValue = "",
-  placeholder = "",
-  disabled = false,
-  colorVariant = "primary",
-  icon = null,
-  id = uniqueId("ad-text-field-"),
-  ...rest
-}) => {
+export const ADTextField = forwardRef(function ADTextField(
+  {
+    helperText = "",
+    label = "",
+    defaultValue = "",
+    placeholder = "",
+    disabled = false,
+    colorVariant = "primary",
+    icon = null,
+    id = uniqueId("ad-text-field-"),
+    ...rest
+  },
+  ref,
+) {
   const labelRef = useRef(null);
   useStoreFactory(
     id,
@@ -32,7 +35,11 @@ export const ADTextField = ({
   const handleFocus = () => labelRef.current.classList.add("label--focus");
 
   return (
-    <styles.Container className="ad-text-field" colorVariant={colorVariant}>
+    <styles.Container
+      ref={ref}
+      className="ad-text-field"
+      colorVariant={colorVariant}
+    >
       {label ? (
         <styles.Label
           icon={icon}
@@ -49,7 +56,6 @@ export const ADTextField = ({
         <Input
           className="ad-text-field__input"
           id={id}
-          colorVariant={colorVariant}
           placeholder={placeholder}
           defaultValue={defaultValue}
           disabled={disabled}
@@ -67,4 +73,4 @@ export const ADTextField = ({
       ) : null}
     </styles.Container>
   );
-};
+});

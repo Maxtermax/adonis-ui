@@ -1,15 +1,20 @@
-import * as styles from "./styles";
+import { forwardRef } from "react";
 import { DIRECTIONS } from "constants";
+import * as styles from "./styles";
 
-export const ADTooltip = ({
-  className = "",
-  text,
-  direction = DIRECTIONS.TOP,
-  contrast = false,
-  children,
-}) => {
+export const ADTooltip = forwardRef(function ADTooltip(
+  {
+    className = "",
+    text,
+    direction = DIRECTIONS.TOP,
+    contrast = false,
+    children,
+  },
+  ref,
+) {
   return (
     <styles.Container
+      ref={ref}
       direction={direction}
       className={`ad-tooltip  ${className}`}
     >
@@ -23,4 +28,4 @@ export const ADTooltip = ({
       {children}
     </styles.Container>
   );
-};
+});

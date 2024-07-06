@@ -58,12 +58,13 @@ export const Step = styled.div`
 `;
 
 export const Icon = styled.div`
-  background-color: ${({ theme, variant }) =>
-    ({
-      [STEPS_STATUS.failed]: theme.colors.error,
+  background-color: ${({ theme, variant }) => {
+    return {
+      [STEPS_STATUS.error]: theme.colors.error,
       [STEPS_STATUS.completed]: theme.colors.checked,
       custom: theme.colors.silver,
-    })[variant]};
+    }[variant];
+  }};
   border-radius: ${({ theme }) => theme.spacing.regular};
   display: flex;
   padding: ${({ theme }) => theme.spacing[10]};

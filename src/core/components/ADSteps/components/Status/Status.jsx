@@ -6,8 +6,8 @@ import * as styles from "ADSteps/styles";
 
 const Icon = ({ variant, Content }) => (
   <styles.Icon variant={variant}>
-    {variant === "completed" ? <Check size={20} /> : null}
-    {variant === "failed" ? <CloseOutline size={20} /> : null}
+    {variant === STEPS_STATUS.completed ? <Check size={20} /> : null}
+    {variant === STEPS_STATUS.error ? <CloseOutline size={20} /> : null}
     {variant === "custom" ? (
       <Content className="icon__custom" size={20} />
     ) : null}
@@ -17,7 +17,7 @@ const Icon = ({ variant, Content }) => (
 export const Status = ({ status, customIcon, title }) => {
   const isStatusPending = status === STEPS_STATUS.pending;
   const isStatusCompleted = status === STEPS_STATUS.completed;
-  const isStatusFailed = status === STEPS_STATUS.failed;
+  const isStatusFailed = status === STEPS_STATUS.error;
 
   if (isStatusCompleted) return <Icon variant="completed" />;
   if (isStatusFailed) return <Icon variant="failed" />;

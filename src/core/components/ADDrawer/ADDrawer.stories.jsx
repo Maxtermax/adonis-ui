@@ -44,6 +44,7 @@ export const Default = Template.bind({});
 Default.args = {
   title: "Title",
   subtitle: "subtitle",
-  variant: "left",
-  width: "500px"
+  variant: "bottom",
+  width: "100%",
+  height: "600px"
 };

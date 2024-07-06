@@ -69,7 +69,29 @@ export default defineConfig(({ mode }) => {
         },
         {
           find: "ADNotification",
-          replacement: path.resolve(__dirname, "src/core/components/ADNotification"),
+          replacement: path.resolve(
+            __dirname,
+            "src/core/components/ADNotification",
+          ),
+        },
+        {
+          find: "ADLoader",
+          replacement: path.resolve(__dirname, "src/core/components/ADLoader"),
+        },
+        {
+          find: "ADOverlay",
+          replacement: path.resolve(__dirname, "src/core/components/ADOverlay"),
+        },
+        {
+          find: "ADPopup",
+          replacement: path.resolve(__dirname, "src/core/components/ADPopup"),
+        },
+        {
+          find: "ADCheckbox",
+          replacement: path.resolve(
+            __dirname,
+            "src/core/components/ADCheckbox",
+          ),
         },
         {
           find: "ADTextField",

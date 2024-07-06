@@ -8,13 +8,13 @@ import { ADButton } from "ADButton/ADButton";
 import { microSteps } from "ADSteps/store/steps";
 import reducer from "ADSteps/reducer/steps";
 import { getSteps } from "ADSteps/queries/steps";
-import { COMPLETE_STEP, FAIL_STEP, PENDING_STEP } from "constants";
+import { COMPLETE_STEP, STEPS_STATUS, FAIL_STEP, PENDING_STEP } from "constants";
 import * as styles from "./styles";
 
 const Icon = ({ variant, Content }) => (
   <styles.Icon variant={variant}>
-    {variant === "done" ? <Check size={20} /> : null}
-    {variant === "error" ? <CloseOutline size={20} /> : null}
+    {variant === STEPS_STATUS.completed ? <Check size={20} /> : null}
+    {variant === STEPS_STATUS.error ? <CloseOutline size={20} /> : null}
     {variant === "custom" ? (
       <Content className="icon__custom" size={20} />
     ) : null}
@@ -45,13 +45,14 @@ const Step = ({ storeId, showGuide, id, ...rest }) => {
     disabled = false,
     status,
   } = state;
-  const isStatusPending = status === "pending";
-  const isStatusCompleted = status === "completed";
-  const isStatusFailed = status === "failed";
+  const isStatusPending = status === STEPS_STATUS.pending;
+  const isStatusCompleted = status === STEPS_STATUS.completed;
+  const isStatusFailed = status === STEPS_STATUS.error;
+  console.log({ status });
 
   const renderStatus = () => {
-    if (isStatusCompleted) return <Icon variant="done" />;
-    if (isStatusFailed) return <Icon variant="error" />;
+    if (isStatusCompleted) return <Icon variant={STEPS_STATUS.completed} />;
+    if (isStatusFailed) return <Icon variant={STEPS_STATUS.error} />;
     if (customIcon) return <Icon variant="custom" Content={customIcon} />;
     if (isStatusPending)
       return (

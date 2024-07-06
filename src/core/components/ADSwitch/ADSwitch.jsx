@@ -1,14 +1,12 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import { Check } from "@styled-icons/fa-solid/Check";
 import { Close } from "@styled-icons/ionicons-solid/Close";
 import * as styles from "./styles";
 
-export const ADSwitch = ({
-  className = "",
-  onUnCheck,
-  onCheck,
-  checked = false,
-}) => {
+export const ADSwitch = forwardRef(function ADSwitch(
+  { className = "", onUnCheck, onCheck, checked = false },
+  ref,
+) {
   const [isChecked, setIsCheck] = useState(checked);
   const handleSwitch = () => {
     setIsCheck((prevVal) => !prevVal);
@@ -17,6 +15,7 @@ export const ADSwitch = ({
   };
   return (
     <styles.Container
+      ref={ref}
       onClick={handleSwitch}
       className={`ad-switch ${className}`}
     >
@@ -29,4 +28,4 @@ export const ADSwitch = ({
       </styles.Track>
     </styles.Container>
   );
-};
+});

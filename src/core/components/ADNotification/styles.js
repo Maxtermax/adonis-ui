@@ -17,37 +17,63 @@ const bgVariantFactory = (theme, variant) =>
     warning: theme.colors.softWarning,
   })[variant];
 
-const appearTop = (reverse = false) => keyframes`
+const animationTopFactory = (reverse = false) => keyframes`
   0% {
     opacity: ${reverse ? 1 : 0};
-    top: ${reverse ? '4%' : '-100%' };
+    top: ${reverse ? "4%" : "-100%"};
   }
   100% {
     opacity: ${reverse ? 0 : 1};
-    top: ${reverse ? '-100%' : '4%' };
+    top: ${reverse ? "-100%" : "4%"};
   }
 `;
 
-const appearBottom = (reverse = false) => keyframes`
+const animationBottomFactory = (reverse = false) => keyframes`
   0% {
     opacity: ${reverse ? 1 : 0};
-    bottom: ${reverse ? '4%' : '-100%' };
+    bottom: ${reverse ? "4%" : "-100%"};
   }
   100% {
     opacity: ${reverse ? 0 : 1};
-    bottom: ${reverse ? '-100%' : '4%' };
+    bottom: ${reverse ? "-100%" : "4%"};
   }
 `;
+
+const animationLeftFactory = (reverse = false) => keyframes`
+  0% {
+    opacity: ${reverse ? 1 : 0};
+    left: ${reverse ? "4%" : "-100%"};
+  }
+  100% {
+    opacity: ${reverse ? 0 : 1};
+    left: ${reverse ? "-100%" : "4%"};
+  }
+`;
+
+const animationRightFactory = (reverse = false) => keyframes`
+  0% {
+    opacity: ${reverse ? 1 : 0};
+    right: ${reverse ? "4%" : "-100%"};
+  }
+  100% {
+    opacity: ${reverse ? 0 : 1};
+    right: ${reverse ? "-100%" : "4%"};
+  }
+`;
+
 
 const animationMap = {
-  top: appearTop(),
-  bottom: appearBottom(),
-  left: appearLeft(),
+  top: animationTopFactory(),
+  bottom: animationBottomFactory(),
+  left: animationLeftFactory(),
+  right: animationRightFactory(),
 };
 
 const animationDiscardMap = {
-  top: appearTop(true),
-  bottom: appearBottom(true),
+  top: animationTopFactory(true),
+  bottom: animationBottomFactory(true),
+  left: animationLeftFactory(true),
+  right: animationRightFactory(true),
 };
 
 export const Container = styled.div`

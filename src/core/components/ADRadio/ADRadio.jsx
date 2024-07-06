@@ -1,5 +1,6 @@
-import { useRef, useState } from "react";
+import { useRef, useState, forwardRef } from "react";
 import { uniqueId } from "lodash";
+import { ADText } from "ADText/ADText";
 import * as styles from "./styles";
 
 const Radio = ({ onChange, id }) => {
@@ -10,13 +11,10 @@ const Radio = ({ onChange, id }) => {
   return <styles.Radio id={id} isChecked={isChecked} onClick={handleToggle} />;
 };
 
-export const ADRadio = ({
-  label,
-  onChecked,
-  onUnCheck,
-  id = uniqueId("ad-radio-"),
-  ...rest
-}) => {
+export const ADRadio = forwardRef(function ADRadio(
+  { label, onChecked, onUnCheck, id = uniqueId("ad-radio-"), ...rest },
+  ref,
+) {
   const inputRef = useRef(null);
   const handleChange = (e) => {
     const { target } = e;
@@ -25,15 +23,19 @@ export const ADRadio = ({
     onUnCheck?.();
   };
   return (
-    <styles.Container className="ad-radio __container">
-      <styles.Input className="__input" ref={inputRef} type="radio" {...rest} />
+    <styles.Container ref={ref} className="ad-radio">
+      <styles.Input className="ad-radio__input" ref={inputRef} type="radio" {...rest} />
       <Radio onChange={handleChange} id={id} />
 
       {label ? (
-        <styles.Label className="__label" htmlFor={id}>
-          {label}
-        </styles.Label>
+        <ADText
+          value={label}
+          className="ad-radio__label"
+          variant="subtitle"
+          htmlFor={id}
+          role="label"
+        />
       ) : null}
     </styles.Container>
   );
-};
+});

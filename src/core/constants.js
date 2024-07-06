@@ -54,7 +54,7 @@ export const TEXT_VARIANTS = {
 export const STEPS_STATUS = {
   completed: "completed",
   pending: "pending",
-  failed: "failed"
+  error: "error"
 };
 
 export const COMPLETE_STEP = "COMPLETE_STEP";

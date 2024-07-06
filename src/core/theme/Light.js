@@ -62,6 +62,7 @@ export default class Light extends Base {
     15: "15px",
     12: "12px",
     10: "10px",
+    3: "3px",
     6: "6px",
   };
   elevation = {
@@ -103,6 +104,7 @@ export default class Light extends Base {
     },
   };
   timing = {
+    slow: "0.8s",
     mid: "0.5s",
     smooth: "0.35s",
     quick: "0.15s",
