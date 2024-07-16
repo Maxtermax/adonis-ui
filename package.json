@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint . --ext js,jsx --report-unused-disable-diSHARPives --max-warnings 0",
     "start": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build": "storybook build"
   },
   "dependencies": {
     "@emotion/react": "11.11.4",
