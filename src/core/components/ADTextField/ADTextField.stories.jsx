@@ -9,8 +9,30 @@ export default {
   },
   tags: ["autodocs"],
   argTypes: {
-    label: "label",
-    helperText: "helper",
+    helperText: {
+      table: { disable: true },
+    },
+    label: {
+      table: { disable: true },
+    },
+    defaultValue: {
+      table: { disable: true },
+    },
+    placeholder: {
+      table: { disable: true },
+    },
+    disabled: {
+      table: { disable: true },
+    },
+    colorVariant: {
+      table: { disable: true },
+    },
+    icon: {
+      table: { disable: true },
+    },
+    id: {
+      table: { disable: true },
+    },
   },
 };
 

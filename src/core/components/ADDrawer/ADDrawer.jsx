@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useMutations, useStoreFactory } from "hermes-io";
+import { useMutations, useObservableStore } from "hermes-io";
 import { uniqueId } from "lodash";
 import { ADPanel } from "ADPanel/ADPanel";
 import { drawerMicroStore } from "ADDrawer/store/drawer";
@@ -19,7 +19,7 @@ export const ADDrawer = ({
 }) => {
   const containerRef = useRef(null);
   const overlayRef = useRef(null);
-  useStoreFactory(id, { isOpen: false }, reducer, drawerMicroStore);
+  useObservableStore(id, { isOpen: false }, reducer, drawerMicroStore);
 
   const openDrawer = () => {
     const overlay = overlayRef?.current;
@@ -37,22 +37,21 @@ export const ADDrawer = ({
     overlay?.classList.add?.("disappear");
   };
 
-  useMutations({
-    events: [SET_DRAWER_OPEN],
+  const { onEvent } = useMutations({
     noUpdate: true,
-    onChange: () => {
-      const store = drawerMicroStore.get(id);
-      const isOpen = getOpen(store);
-      if (isOpen) return openDrawer();
-      closeDrawer();
-    },
     store: drawerMicroStore,
     id,
   });
 
-  const handleClickOverlay = () => {
+  onEvent(SET_DRAWER_OPEN, () => {
+    const store = drawerMicroStore.get(id);
+    const isOpen = getOpen(store);
+    if (isOpen) return openDrawer();
+    closeDrawer();
+  });
+
+  const handleClickOverlay = () =>
     setOpen({ store: drawerMicroStore.get(id), value: false, id });
-  };
 
   return (
     <styles.Wrapper variant={variant} className={`ad-drawer ${className}`}>

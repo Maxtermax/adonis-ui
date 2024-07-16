@@ -1,4 +1,4 @@
-import { ADRadio } from 'ADRadio/ADRadio';
+import { ADRadio } from "ADRadio/ADRadio";
 
 export default {
   title: "Basic/ADRadio",
@@ -7,7 +7,11 @@ export default {
     layout: "centered",
   },
   tags: ["autodocs"],
+  argTypes: {
+    id: {
+      table: { disable: true },
+    },
+  },
 };
 
 export const Radio = () => <ADRadio id="test" label="hola mundo" />;
-

@@ -2,28 +2,28 @@ import { useRef } from "react";
 import { useMutations } from "hermes-io";
 import { uniqueId } from "lodash";
 import { FOCUS_TAB } from "constants";
-import tabsCollection from "ADTabs/store/tabs";
+import microTabsStore from "ADTabs/store/tabs";
 import * as styles from "ADTabs/styles";
 
 export const ADTab = ({
   children,
   isSelected,
-  id = uniqueId("ad-tab-"),
   onSelect,
   store,
   ...rest
 }) => {
+  const idRef = useRef(rest?.id || uniqueId("ad-tab-"));
   const tabRef = useRef(null);
   const { state, onEvent } = useMutations({
     initialState: { isSelected },
-    store: tabsCollection,
+    store: microTabsStore,
     id: store.id,
   });
 
   onEvent(FOCUS_TAB, (value) => {
-    const isSelected = value === id;
+    const isSelected = value === idRef.current;
     if (isSelected) {
-      onSelect?.(id);
+      onSelect?.(idRef.current);
       tabRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
     }
     return { isSelected };
@@ -33,7 +33,7 @@ export const ADTab = ({
     store.mutate({
       type: FOCUS_TAB,
       targets: [store.id],
-      payload: { value: id },
+      payload: { value: idRef.current },
     });
   };
 

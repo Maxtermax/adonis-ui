@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { useStoreFactory } from "hermes-io";
+import { useObservableStore } from "hermes-io";
 import reducer from "ADMedia/reducer/media";
 import { ADCard } from "components/ADCard/ADCard";
 import { Header } from "ADMedia/components/Header/Header";
@@ -36,7 +36,7 @@ export const ADMedia = forwardRef(function ADMedia(
     images,
   };
 
-  useStoreFactory(id, data, reducer, mediaStore);
+  useObservableStore(id, data, reducer, mediaStore);
 
   return (
     <styles.Media ref={ref} className={`ad-media ${className}`} {...rest}>

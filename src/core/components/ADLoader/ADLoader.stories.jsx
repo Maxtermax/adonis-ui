@@ -7,6 +7,14 @@ export default {
     layout: "centered",
   },
   tags: ["autodocs"],
+  argTypes: {
+    className: {
+      table: { disable: true },
+    },
+    text: {
+      table: { disable: true },
+    },
+  },
 };
 
 export const Basic = () => <ADLoader />;

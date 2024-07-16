@@ -1,7 +1,5 @@
 import { MicroStore } from "hermes-io";
 
-const tabsCollection = new MicroStore();
+const microTabsStore = new MicroStore();
 
-window.tabsCollection = tabsCollection; 
-
-export default tabsCollection;
+export default microTabsStore;

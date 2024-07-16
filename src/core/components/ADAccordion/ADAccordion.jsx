@@ -1,5 +1,5 @@
 import { forwardRef, useEffect, useRef } from "react";
-import { useStoreFactory } from "hermes-io";
+import { useObservableStore } from "hermes-io";
 import { KeyboardArrowDown } from "@styled-icons/material/KeyboardArrowDown";
 import { KeyboardArrowRight } from "@styled-icons/material-outlined/KeyboardArrowRight";
 import { ADText } from "components/ADText/ADText";
@@ -64,7 +64,7 @@ const Panels = forwardRef(function Panels(
   ref,
 ) {
   const panels = mapDataToComponentsTree(data);
-  const { store } = useStoreFactory(id, data, reducer, accordionStore);
+  const { store } = useObservableStore(id, data, reducer, accordionStore);
   const state = usePanel({ store: accordionStore, initialState: { isExpanded }, id });
 
   const handleToggle = async () => {

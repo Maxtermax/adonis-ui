@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { useMutations, useStoreFactory } from "hermes-io";
+import { useMutations, useObservableStore } from "hermes-io";
 import { uniqueId } from "lodash";
 import { Check } from "@styled-icons/boxicons-regular/Check";
 import { CloseOutline } from "@styled-icons/evaicons-outline/CloseOutline";
@@ -89,7 +89,7 @@ export const ADSteps = forwardRef(function ADSteps(
   ref,
 ) {
   const data = mapStepsToData(rest?.steps ?? []);
-  const { store } = useStoreFactory(id, data, reducer, microSteps);
+  const { store } = useObservableStore(id, data, reducer, microSteps);
   const steps = getSteps(store);
 
   return (

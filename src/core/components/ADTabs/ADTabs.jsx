@@ -1,11 +1,11 @@
 import { Children, cloneElement, forwardRef, useEffect, useRef } from "react";
-import { useStoreFactory } from "hermes-io";
+import { useObservableStore } from "hermes-io";
 import { uniqueId } from "lodash";
 import { ADButton } from "ADButton/ADButton";
 import { ChevronLeft } from "@styled-icons/evaicons-solid/ChevronLeft";
 import { ChevronRight } from "@styled-icons/evaicons-solid/ChevronRight";
 import { DIRECTIONS } from "constants";
-import tabsCollection from "ADTabs/store/tabs";
+import microTabsStore from "ADTabs/store/tabs";
 import reducer from "ADTabs/reducer/tabs";
 import * as styles from "./styles";
 
@@ -16,13 +16,12 @@ export const ADTabs = forwardRef(function ADTabs(
   const containerRef = useRef(null);
   const prevButtonRef = useRef(null);
   const nextButtonRef = useRef(null);
-  const { store } = useStoreFactory(
+  const { store } = useObservableStore(
     id,
-    { id, focus: "" },
+    { focus: "" },
     reducer,
-    tabsCollection,
+    microTabsStore,
   );
-  console.log({ store })
 
   useEffect(() => {
     if (arrows) {

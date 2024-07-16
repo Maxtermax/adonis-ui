@@ -8,6 +8,14 @@ export default {
     layout: "centered",
   },
   tags: ["autodocs"],
+  argTypes: {
+    className: {
+      table: { disable: true },
+    },
+    variant: {
+      table: { disable: true },
+    },
+  },
 };
 
 export const Panel = () => (

@@ -43,10 +43,12 @@ const animationLeftFactory = (reverse = false) => keyframes`
   0% {
     opacity: ${reverse ? 1 : 0};
     left: ${reverse ? "4%" : "-100%"};
+    top: 4%;
   }
   100% {
     opacity: ${reverse ? 0 : 1};
     left: ${reverse ? "-100%" : "4%"};
+    top: 4%;
   }
 `;
 
@@ -54,13 +56,14 @@ const animationRightFactory = (reverse = false) => keyframes`
   0% {
     opacity: ${reverse ? 1 : 0};
     right: ${reverse ? "4%" : "-100%"};
+    top: 4%;
   }
   100% {
     opacity: ${reverse ? 0 : 1};
     right: ${reverse ? "-100%" : "4%"};
+    top: 4%;
   }
 `;
-
 
 const animationMap = {
   top: animationTopFactory(),
@@ -115,12 +118,21 @@ export const Icon = styled.div`
 export const Wrapper = styled.div`
   display: inline;
   & .ad-notification {
-    animation: ${({ direction }) => animationMap[direction]};
-    animation-duration: ${({ theme }) => theme.timing.smooth};
-    animation-fill-mode: forwards;
+    height: 50px;
     &:hover {
       background: ${({ theme, variant }) => bgVariantFactory(theme, variant)};
     }
+  }
+  & .ad-notification-visible {
+    visibility: visible;
+  }
+  & .ad-notification-hidden {
+    visibility: hidden;
+  }
+  & .ad-notification-open {
+    animation: ${({ direction }) => animationMap[direction]};
+    animation-duration: ${({ theme }) => theme.timing.smooth};
+    animation-fill-mode: forwards;
   }
   & .ad-notification__icon {
     color: ${({ variant, theme }) => colorVariantFactory(theme, variant)};
@@ -134,7 +146,7 @@ export const Wrapper = styled.div`
   }
   & .ad-notification-discard {
     animation: ${({ direction }) => animationDiscardMap[direction]};
-    animation-duration: ${({ theme }) => theme.timing.mid};
+    animation-duration: ${({ theme }) => theme.timing.smooth};
     animation-fill-mode: forwards;
   }
 `;

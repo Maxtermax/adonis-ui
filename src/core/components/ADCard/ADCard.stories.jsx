@@ -12,6 +12,18 @@ export default {
   },
   tags: ["autodocs"],
   argTypes: {
+    Header: {
+      table: { disable: true },
+    },
+    Content: {
+      table: { disable: true },
+    },
+    Footer: {
+      table: { disable: true },
+    },
+    className: {
+      table: { disable: true },
+    },
     variant: {
       control: "select",
       options: [OUTLINED, CONTAINED],
@@ -34,10 +46,10 @@ export default {
 
 export const Primary = {
   args: {
-    elevation: DIMENSIONS.regular,
+    elevation: DIMENSIONS.high,
     variant: CONTAINED,
-    gap: DIMENSIONS.none,
-    shape: SHAPES.sharp,
+    gap: DIMENSIONS.high,
+    shape: SHAPES.rounded,
     Header: () => <div>header</div>,
     Content: () => <div style={{ width: "300px" }}>content</div>,
     Footer: () => <div>footer</div>,

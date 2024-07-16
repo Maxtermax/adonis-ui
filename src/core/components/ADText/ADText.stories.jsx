@@ -10,6 +10,14 @@ export default {
     layout: "centered",
   },
   tags: ["autodocs"],
+  argTypes: {
+    className: {
+      table: { disable: true },
+    },
+    variant: {
+      table: { disable: true },
+    },
+  },
 };
 
 const Template = (args) => <ADText {...args} />;

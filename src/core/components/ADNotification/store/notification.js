@@ -1,3 +1,3 @@
 import { MicroStore } from 'hermes-io';
 
-export const microNotification = new MicroStore(); 
+export const microNotificationStore = new MicroStore(); 

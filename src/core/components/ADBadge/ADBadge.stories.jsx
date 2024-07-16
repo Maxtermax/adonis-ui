@@ -14,6 +14,15 @@ export default {
   tags: ["autodocs"],
   args: { onClick: fn() },
   argTypes: {
+    onClick: {
+      table: { disable: true },
+    },
+    children: {
+      table: { disable: true },
+    },
+    className: {
+      table: { disable: true },
+    },
     variant: {
       control: "select",
       options: [rounded, sharp, circle],

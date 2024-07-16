@@ -16,7 +16,7 @@ const borderColor = ({ variant, theme }) =>
 const background = ({ variant, theme }) =>
   ({
     [OUTLINED]: theme.colors.transparent,
-    [CONTAINED]: theme.colors.lightSilver,
+    [CONTAINED]: theme.colors.grey,
   })[variant] ?? "";
 
 const borderWidth = ({ variant, theme }) =>

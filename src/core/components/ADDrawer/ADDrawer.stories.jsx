@@ -1,7 +1,7 @@
+import uniqueId from "lodash/uniqueId";
 import { ADDrawer } from "components/ADDrawer/ADDrawer";
 import { setOpen } from "ADDrawer/mutations/drawer";
 import { drawerMicroStore } from "ADDrawer/store/drawer";
-import { uniqueId } from "lodash";
 
 export default {
   title: "Basic/ADDrawer",
@@ -10,6 +10,35 @@ export default {
     layout: "centered",
   },
   tags: ["autodocs"],
+  argTypes: {
+    variant: {
+      table: { disable: true },
+    },
+    width: {
+      table: { disable: true },
+    },
+    height: {
+      table: { disable: true },
+    },
+    content: {
+      table: { disable: true },
+    },
+    id: {
+      table: { disable: true },
+    },
+    className: {
+      table: { disable: true },
+    },
+    fullWidth: {
+      table: { disable: true },
+    },
+    title: {
+      table: { disable: true },
+    },
+    subtitle: {
+      table: { disable: true },
+    },
+  },
 };
 
 const Template = (args) => {
@@ -44,7 +73,7 @@ export const Default = Template.bind({});
 Default.args = {
   title: "Title",
   subtitle: "subtitle",
-  variant: "bottom",
-  width: "100%",
-  height: "600px"
+  variant: "left",
+  width: "350px",
+  height: "100%",
 };

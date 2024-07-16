@@ -2,12 +2,14 @@ import { useEffect } from "react";
 
 export const useDirection = (containerRef, direction) => {
   useEffect(() => {
-    const { width } = containerRef.current.getBoundingClientRect();
-    containerRef.current.classList.remove("ad-notification-discard");
+    const $node = containerRef.current;
+    const { width } = $node.getBoundingClientRect();
     if (["top", "bottom"].includes(direction)) {
-      containerRef.current.style.left = `calc(50% - ${width / 2}px)`;
+      $node.style.left = `calc(50% - ${width / 2}px)`;
     }
-    if (direction === "left") containerRef.current.style.left = "0px";
-    if (direction === "right") containerRef.current.style.right = "-100%";
+    if (direction === "left") $node.style.left = "0px";
+    if (direction === "right") $node.style.right = "-100%";
+    if (direction === "top") $node.style.top = "-100%";
+    if (direction === "bottom") $node.style.bottom = "0px";
   }, [direction]);
 };

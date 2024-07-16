@@ -7,20 +7,28 @@ export default {
     layout: "centered",
   },
   tags: ["autodocs"],
+  argTypes: {
+    list: {
+      table: { disable: true },
+    },
+    className: {
+      table: { disable: true },
+    },
+  },
 };
 
 export const Primary = {
   args: {
     list: [
       {
-        value: "uno",
+        value: "One",
       },
       {
-        value: "dos",
+        value: "Two",
       },
       {
         value: "tres",
-        lineThrough: true
+        lineThrough: true,
       },
     ],
   },

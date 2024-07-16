@@ -108,7 +108,7 @@ export default class Light extends Base {
     mid: "0.5s",
     smooth: "0.35s",
     quick: "0.15s",
-    fast: "0.28s ",
+    fast: "0.28s",
   };
   transitions = {
     smooth: "all ease-in-out 0.35s",

@@ -11,6 +11,15 @@ export default {
   },
   tags: ["autodocs"],
   argTypes: {
+    text: {
+      table: { disable: true },
+    },
+    children: {
+      table: { disable: true },
+    },
+    className: {
+      table: { disable: true },
+    },
     direction: {
       control: "select",
       options: [

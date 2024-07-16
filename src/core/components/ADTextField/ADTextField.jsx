@@ -1,6 +1,6 @@
 import { useRef, forwardRef } from "react";
 import { uniqueId } from "lodash";
-import { useStoreFactory } from "hermes-io";
+import { useObservableStore } from "hermes-io";
 import { ADText } from "ADText/ADText";
 import { ADPanel } from "ADPanel/ADPanel";
 import { Input } from "ADTextField/components/Input/Input";
@@ -23,7 +23,7 @@ export const ADTextField = forwardRef(function ADTextField(
   ref,
 ) {
   const labelRef = useRef(null);
-  useStoreFactory(
+  useObservableStore(
     id,
     { value: defaultValue, disabled },
     reducer,

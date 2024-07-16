@@ -6,7 +6,7 @@ import { ADText } from "components/ADText/ADText";
 const mock = [
   {
     id: 1,
-    label: "Uno",
+    label: "One",
     type: ACCORDION_PANEL,
     isExpanded: true,
     content: [
@@ -27,7 +27,7 @@ const mock = [
       },
       {
         id: 3,
-        label: "Dos",
+        label: "Two",
         type: ACCORDION_PANEL,
         isExpanded: true,
         content: [
@@ -59,6 +59,14 @@ export default {
     layout: "centered",
   },
   tags: ["autodocs"],
+  argTypes: {
+    data: {
+      table: { disable: true },
+    },
+    id: {
+      table: { disable: true },
+    },
+  },
 };
 
 export const Accordion = (args) => (

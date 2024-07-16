@@ -10,6 +10,14 @@ export default {
     layout: "centered",
   },
   tags: ["autodocs"],
+  argTypes: {
+    className: {
+      table: { disable: true },
+    },
+    id: {
+      table: { disable: true },
+    },
+  },
 };
 
 const ID = "ADSteps";
@@ -40,12 +48,12 @@ export const Basic = () => {
           {
             id: 1,
             title: "1",
-            subtitle: "uno",
+            subtitle: "One",
           },
           {
             id: 2,
             title: "2",
-            subtitle: "dos",
+            subtitle: "Two",
           },
           {
             id: 3,

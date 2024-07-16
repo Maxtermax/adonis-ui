@@ -1,12 +1,11 @@
 export const events = {
-  SET_OPEN: "SET_OPEN",
+  SET_DISPLAY: "SET_DISPLAY",
 };
 
-export default function notification(state, action) {
+export default function overlay(state, action) {
   const actions = {
-    [events.SET_OPEN]: () => {
+    [events.SET_DISPLAY]: () => {
       state.isOpen = action.payload.value;
-      return state;
     }
   };
   return actions[action.type]?.();

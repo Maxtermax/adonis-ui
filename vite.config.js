@@ -87,6 +87,10 @@ export default defineConfig(({ mode }) => {
           replacement: path.resolve(__dirname, "src/core/components/ADPopup"),
         },
         {
+          find: "ADTooltip",
+          replacement: path.resolve(__dirname, "src/core/components/ADTooltip"),
+        },
+        {
           find: "ADCheckbox",
           replacement: path.resolve(
             __dirname,

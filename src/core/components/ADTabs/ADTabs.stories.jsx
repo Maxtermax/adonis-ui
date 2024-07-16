@@ -9,16 +9,34 @@ export default {
   parameters: {
     layout: "centered",
   },
+  tags: ["autodocs"],
+  argTypes: {
+    className: {
+      table: { disable: true },
+    },
+    checked: {
+      table: { disable: true },
+    },
+    id: {
+      table: { disable: true },
+    },
+  },
 };
 
 export const Tabs = () => {
   return (
-    <ADTabs arrows style={{ maxWidth: "300px" }}>
-      <ADTab isSelected>
-        <ADText value="text 1" variant={TEXT_VARIANTS.TEXT} />
+    <ADTabs arrows style={{ maxWidth: "500px" }}>
+      <ADTab id={"1"} isSelected>
+        <ADText value="Tab 1" variant={TEXT_VARIANTS.TEXT} />
       </ADTab>
-      <ADTab>
-        <ADText value="text 2" variant={TEXT_VARIANTS.TEXT} />
+      <ADTab id={"2"}>
+        <ADText value="Tab 2" variant={TEXT_VARIANTS.TEXT} />
+      </ADTab>
+      <ADTab id={"3"}>
+        <ADText value="Tab 3" variant={TEXT_VARIANTS.TEXT} />
+      </ADTab>
+      <ADTab id={"4"}>
+        <ADText value="Tab 4" variant={TEXT_VARIANTS.TEXT} />
       </ADTab>
     </ADTabs>
   );

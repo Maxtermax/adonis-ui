@@ -1,5 +1,5 @@
 import { ADOverlay } from "ADOverlay/ADOverlay";
-import { ADLoader } from "ADLoader/ADLoader";
+import { ADText } from "ADText/ADText";
 
 export default {
   title: "Basic/ADOverlay",
@@ -11,7 +11,7 @@ export default {
 };
 
 export const Basic = () => (
-  <ADOverlay>
-    <ADLoader text="Loading..." />
+  <ADOverlay isOpen>
+    <ADText value="Heading" variant="heading" />
   </ADOverlay>
 );
