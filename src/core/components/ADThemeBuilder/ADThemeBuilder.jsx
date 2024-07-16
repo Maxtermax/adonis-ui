@@ -1,4 +1,6 @@
 import { useMutations, useStore } from "hermes-io";
+import { Global, css } from '@emotion/react'
+import emotionNormalize from "emotion-normalize";
 import { ThemeProvider, useTheme } from "@emotion/react";
 import { ADGrid } from "components/ADGrid/ADGrid";
 import { ADCard } from "components/ADCard/ADCard";
@@ -87,6 +89,19 @@ export const ADThemeBuilder = ({ render, isEnabled = false }) => {
 
   return (
     <ThemeProvider theme={BASE_THEME}>
+      <Global
+        styles={css`
+          ${emotionNormalize}
+          html,
+          body {
+            padding: 0;
+            margin: 0;
+            background: white;
+            min-height: 100%;
+            font-family: Helvetica, Arial, sans-serif;
+          }
+        `}
+      />
       <styles.Container className="ad-builder__container">
         <ADGrid
           className="__grid"
