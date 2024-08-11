@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import React, { forwardRef } from "react";
 import * as styles from "./styles";
 import { TEXT_VARIANTS } from "constants";
 

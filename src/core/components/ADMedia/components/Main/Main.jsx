@@ -1,5 +1,5 @@
 import * as styles from "./styles";
-import { useADMedia } from "ADMedia/hooks/useADMedia";
+import { useADMedia } from "../../";
 
 export const Main = ({ images, id }) => {
   const image = useADMedia(images, id);

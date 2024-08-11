@@ -1,15 +1,30 @@
+import React from "react";
+import { Global, css } from "@emotion/react";
+import emotionNormalize from "emotion-normalize";
 import { ThemeProvider } from "@emotion/react";
-import { ADThemeBuilder } from "ADThemeBuilder/ADThemeBuilder";
+import { THEME } from "constants";
+import buildTheme from "theme";
 import "@/index.css";
 
-const ADProvider = ({ children }) => {
+export const ADProvider = ({ children }) => {
+  const BASE_THEME = buildTheme(THEME.LIGHT);
   return (
-    <ADThemeBuilder
-      render={(theme) => (
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
-      )}
-    />
+    <>
+      <Global
+        styles={css`
+          ${emotionNormalize}
+          html,
+              body {
+            padding: 0;
+            margin: 0;
+            background: white;
+            min-height: 100%;
+            font-family: Helvetica, Arial, sans-serif;
+          }
+        `}
+      />
+      <ThemeProvider theme={BASE_THEME}>{children}</ThemeProvider>
+    </>
   );
 };
 
-export default ADProvider;

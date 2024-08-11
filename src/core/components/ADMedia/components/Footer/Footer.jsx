@@ -22,7 +22,6 @@ const Button = () => {
 
   return (
     <ADTooltip
-      contrast
       text="Añadir"
       direction={match ? DIRECTIONS.TOP : DIRECTIONS.LEFT}
     >
@@ -36,13 +35,12 @@ const Button = () => {
 export const Footer = ({ name, price, sizes, discount }) => {
   return (
     <styles.Footer>
-      <ADGrid md={{ cols: 1, rows: 1 }} cols={2} rows={1}>
+      <ADGrid md={{ cols: 1, rows: 1 }} cols={"1fr 70px"} rows={1}>
         <styles.LeftCol className="left-col">
           <ADText variant={TEXT_VARIANTS.TITLE} value={name} />
           {discount ? (
             <styles.Discount>
               <ADTooltip
-                contrast
                 direction={DIRECTIONS.TOP}
                 text={`Antes: ${formatCurrency(discount.before)}`}
               >
@@ -54,10 +52,7 @@ export const Footer = ({ name, price, sizes, discount }) => {
                 />
               </ADTooltip>
               /
-              <ADTooltip
-                contrast
-                text={`Ahora: ${formatCurrency(discount.now)}`}
-              >
+              <ADTooltip text={`Ahora: ${formatCurrency(discount.now)}`}>
                 <ADText
                   variant={TEXT_VARIANTS.TEXT}
                   value={formatCurrency(discount.now)}
@@ -73,7 +68,7 @@ export const Footer = ({ name, price, sizes, discount }) => {
           )}
           <styles.Sizes className="sizes">
             {sizes.map((size, index) => (
-              <ADTooltip contrast text={size} key={index}>
+              <ADTooltip text={`Talla: ${size}`} key={index}>
                 <ADBadge size={DIMENSIONS.small}>
                   <ADText variant={TEXT_VARIANTS.SUBTITLE} value={size} />
                 </ADBadge>

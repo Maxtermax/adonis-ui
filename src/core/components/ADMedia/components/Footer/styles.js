@@ -76,23 +76,4 @@ export const Footer = styled.div`
   .ad-badge {
     border: 1px solid ${(props) => props.theme.colors.transparent};
   }
-  &:hover {
-    background-color: ${(props) => props.theme.colors.primary};
-    color: ${(props) => props.theme.colors.contrast.primary};
-  }
-  &:hover .ad-text-title {
-    color: ${(props) => props.theme.colors.contrast.primary};
-  }
-  &:hover .ad-text-body {
-    color: ${(props) => props.theme.colors.contrast.primary};
-  }
-  &:hover .ad-badge {
-    color: ${(props) => props.theme.colors.contrast.primary} !important;
-    background-color: ${(props) => props.theme.colors.contrast.primary};
-  }
-
-  &:hover .ad-button {
-    background-color: ${(props) => props.theme.colors.white};
-    color: ${(props) => props.theme.colors.primary};
-  }
 `;

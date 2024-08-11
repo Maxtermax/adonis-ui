@@ -1,6 +1,6 @@
 import * as styles from "./styles";
-import { Thumbnails } from "ADMedia/components/Thumbnails/Thumbnails";
-import { Main } from "ADMedia/components/Main/Main";
+import { Thumbnails } from "../Thumbnails/Thumbnails";
+import { Main } from "../Main/Main";
 
 export const Content = ({ images = [], thumbnails = [], id }) => {
   return (

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { useMutations, useObservableStore } from "hermes-io";
 import { uniqueId } from "lodash";
 import { ADPanel } from "ADPanel/ADPanel";
@@ -9,6 +9,18 @@ import reducer from "ADDrawer/reducer/drawer";
 import { SET_DRAWER_OPEN } from "constants";
 import * as styles from "./styles";
 
+/**
+ * ADDrawer component handles the rendering of a sliding drawer with customizable options.
+ * 
+ * @param {Object} props - The properties passed to the component.
+ * @param {React.ReactNode} [props.content=null] - The content to be displayed inside the drawer.
+ * @param {string} [props.id=uniqueId("ad-drawer-")] - The unique identifier for the drawer.
+ * @param {"left"|"right"|"top"|"bottom"} [props.variant="left"] - The variant of the drawer, specifying its position.
+ * @param {string} [props.className=""] - Additional class names to apply to the drawer.
+ * @param {boolean} [props.fullWidth=false] - Determines if the drawer should occupy the full width of the screen.
+ * @param {string} [props.width="300px"] - The width of the drawer when `fullWidth` is false.
+ * @returns {JSX.Element} The rendered ADDrawer component.
+ */
 export const ADDrawer = ({
   content = null,
   id = uniqueId("ad-drawer-"),

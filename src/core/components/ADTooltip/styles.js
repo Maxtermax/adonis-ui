@@ -83,6 +83,8 @@ const arrowXPos = ({ direction, theme }) => {
 };
 
 export const Text = styled.span`
+  border: 1ox solid ${({ theme, contrast }) =>
+    contrast ? theme.colors.contrast.primary : theme.colors.primary};
   background-color: ${({ theme, contrast }) =>
     contrast ? theme.colors.contrast.primary : theme.colors.primary};
   color: ${({ theme, contrast }) =>

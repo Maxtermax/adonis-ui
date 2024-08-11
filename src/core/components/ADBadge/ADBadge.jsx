@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import React, { forwardRef } from "react";
 import { SHAPES, DIMENSIONS } from "constants";
 import * as styles from "./styles";
 

@@ -145,10 +145,6 @@ export default defineConfig(({ mode }) => {
           replacement: path.resolve(__dirname, "src/core/reducers"),
         },
         {
-          find: "constants",
-          replacement: path.resolve(__dirname, "src/core/constants"),
-        },
-        {
           find: "theme",
           replacement: path.resolve(__dirname, "src/core/theme"),
         },

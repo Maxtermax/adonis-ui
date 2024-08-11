@@ -1,3 +1,4 @@
+import React from 'react';
 import { ADText } from "ADText/ADText";
 import { ADButton } from "ADButton/ADButton";
 import { ArrowIosForwardOutline } from "@styled-icons/evaicons-outline/ArrowIosForwardOutline";

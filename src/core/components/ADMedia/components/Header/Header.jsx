@@ -1,6 +1,6 @@
 import * as styles from "./styles";
-import { ADText } from "components/ADText/ADText";
-import { ADBadge } from "components/ADBadge/ADBadge";
+import ADText from "../../../ADText";
+import ADBadge from "../../../ADBadge";
 import { TEXT_VARIANTS } from "constants";
 
 export const Header = ({ discount }) => {
