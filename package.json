@@ -7,113 +7,16 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-diSHARPives --max-warnings 0",
     "start": "storybook dev -p 6006",
     "build": "storybook build",
-    "build-pack": "cd ./src && swc . -d ../lib"
+    "build-pack": "node build.js"
   },
-  "exports": {
-    ".": {
-      "import": "./lib/index.js",
-      "require": "./lib/index.js"
-    },
-    "./components/ADDrawer": {
-      "import": "./lib/core/components/ADDrawer/index.js",
-      "require": "./lib/core/components/ADDrawer/index.js"
-    },
-    "./components/ADAccordion": {
-      "import": "./lib/core/components/ADAccordion/index.js",
-      "require": "./lib/core/components/ADAccordion/index.js"
-    },
-    "./components/ADBadge": {
-      "import": "./lib/core/components/ADBadge/index.js",
-      "require": "./lib/core/components/ADBadge/index.js"
-    },
-    "./components/ADBreadcrumbs": {
-      "import": "./lib/core/components/ADBreadcrumbs/index.js",
-      "require": "./lib/core/components/ADBreadcrumbs/index.js"
-    },
-    "./components/ADButton": {
-      "import": "./lib/core/components/ADButton/index.js",
-      "require": "./lib/core/components/ADButton/index.js"
-    },
-    "./components/ADCard": {
-      "import": "./lib/core/components/ADCard/index.js",
-      "require": "./lib/core/components/ADCard/index.js"
-    },
-    "./components/ADCheckbox": {
-      "import": "./lib/core/components/ADCheckbox/index.js",
-      "require": "./lib/core/components/ADCheckbox/index.js"
-    },
-    "./components/ADGrid": {
-      "import": "./lib/core/components/ADGrid/index.js",
-      "require": "./lib/core/components/ADGrid/index.js"
-    },
-    "./components/ADLoader": {
-      "import": "./lib/core/components/ADLoader/index.js",
-      "require": "./lib/core/components/ADLoader/index.js"
-    },
-    "./components/ADMedia": {
-      "import": "./lib/core/components/ADMedia/index.js",
-      "require": "./lib/core/components/ADMedia/index.js"
-    },
-    "ADMedia/*": {
-      "import": "./lib/core/components/ADMedia/*",
-      "require": "./lib/core/components/ADMedia/*"
-    },
-    "./components/ADNotification": {
-      "import": "./lib/core/components/ADNotification/index.js",
-      "require": "./lib/core/components/ADNotification/index.js"
-    },
-    "./components/ADOverlay": {
-      "import": "./lib/core/components/ADOverlay/index.js",
-      "require": "./lib/core/components/ADOverlay/index.js"
-    },
-    "./components/ADPanel": {
-      "import": "./lib/core/components/ADPanel/index.js",
-      "require": "./lib/core/components/ADPanel/index.js"
-    },
-    "./components/ADPopup": {
-      "import": "./lib/core/components/ADPopup/index.js",
-      "require": "./lib/core/components/ADPopup/index.js"
-    },
-    "./components/ADProvider": {
-      "import": "./lib/core/components/ADProvider/index.js",
-      "require": "./lib/core/components/ADProvider/index.js"
-    },
-    "./components/ADRadio": {
-      "import": "./lib/core/components/ADRadio/index.js",
-      "require": "./lib/core/components/ADRadio/index.js"
-    },
-    "./components/ADSelect": {
-      "import": "./lib/core/components/ADSelect/index.js",
-      "require": "./lib/core/components/ADSelect/index.js"
-    },
-    "./components/ADSteps": {
-      "import": "./lib/core/components/ADSteps/index.js",
-      "require": "./lib/core/components/ADSteps/index.js"
-    },
-    "./components/ADSwitch": {
-      "import": "./lib/core/components/ADSwitch/index.js",
-      "require": "./lib/core/components/ADSwitch/index.js"
-    },
-    "./components/ADTabs": {
-      "import": "./lib/core/components/ADTabs/index.js",
-      "require": "./lib/core/components/ADTabs/index.js"
-    },
-    "./components/ADText": {
-      "import": "./lib/core/components/ADText/index.js",
-      "require": "./lib/core/components/ADText/index.js"
-    },
-    "./components/ADTextField": {
-      "import": "./lib/core/components/ADTextField/index.js",
-      "require": "./lib/core/components/ADTextField/index.js"
-    },
-    "./components/ADTooltip": {
-      "import": "./lib/core/components/ADTooltip/index.js",
-      "require": "./lib/core/components/ADTooltip/index.js"
-    }
+  "peerDependencies": {
+    "@emotion/styled": "11.13.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "dependencies": {
-    "@emotion/react": "11.11.4",
-    "@emotion/styled": "11.11.5",
+    "@emotion/react": "11.13.0",
+    "@emotion/styled": "11.13.0",
     "@styled-icons/bootstrap": "10.47.0",
     "@styled-icons/boxicons-logos": "10.47.0",
     "@styled-icons/boxicons-regular": "10.47.0",
@@ -124,7 +27,7 @@
     "@styled-icons/material": "10.47.0",
     "@styled-icons/material-outlined": "10.47.0",
     "emotion-normalize": "11.0.1",
-    "hermes-io": "^2.9.87",
+    "hermes-io": "^2.9.88",
     "lodash": "4.17.21",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -154,5 +57,127 @@
     "prop-types": "15.8.1",
     "storybook": "8.0.10",
     "vite": "5.2.0"
+  },
+  "exports": {
+    ".": {
+      "import": "./lib/src/index.js",
+      "require": "./lib/src/index.js"
+    },
+    "./index.css": {
+      "import": "../src/index.css",
+      "require": "../src/index.css"
+    },
+    "./theme": {
+      "import": "./lib/src/core/theme/theme.js",
+      "require": "./lib/src/core/theme/theme.js"
+    },
+    "./utils/formatCurrency": {
+      "import": "./lib/src/utils/formatCurrency.js",
+      "require": "./lib/src/utils/formatCurrency.js"
+    },
+    "./hooks/useMediaQuery": {
+      "import": "./lib/src/utils/hooks/useMediaQuery.js",
+      "require": "./lib/src/utils/hooks/useMediaQuery.js"
+    },
+    "./components/ADAccordion": {
+      "import": "./lib/src/core/components/ADAccordion/index.js",
+      "require": "./lib/src/core/components/ADAccordion/index.js"
+    },
+    "./components/ADBadge": {
+      "import": "./lib/src/core/components/ADBadge/index.js",
+      "require": "./lib/src/core/components/ADBadge/index.js"
+    },
+    "./components/ADBreadcrumbs": {
+      "import": "./lib/src/core/components/ADBreadcrumbs/index.js",
+      "require": "./lib/src/core/components/ADBreadcrumbs/index.js"
+    },
+    "./components/ADButton": {
+      "import": "./lib/src/core/components/ADButton/index.js",
+      "require": "./lib/src/core/components/ADButton/index.js"
+    },
+    "./components/ADCard": {
+      "import": "./lib/src/core/components/ADCard/index.js",
+      "require": "./lib/src/core/components/ADCard/index.js"
+    },
+    "./components/ADCheckbox": {
+      "import": "./lib/src/core/components/ADCheckbox/index.js",
+      "require": "./lib/src/core/components/ADCheckbox/index.js"
+    },
+    "./components/ADDrawer": {
+      "import": "./lib/src/core/components/ADDrawer/index.js",
+      "require": "./lib/src/core/components/ADDrawer/index.js"
+    },
+    "./components/ADGrid": {
+      "import": "./lib/src/core/components/ADGrid/index.js",
+      "require": "./lib/src/core/components/ADGrid/index.js"
+    },
+    "./components/ADLoader": {
+      "import": "./lib/src/core/components/ADLoader/index.js",
+      "require": "./lib/src/core/components/ADLoader/index.js"
+    },
+    "./components/ADMedia": {
+      "import": "./lib/src/core/components/ADMedia/index.js",
+      "require": "./lib/src/core/components/ADMedia/index.js"
+    },
+    "./components/ADMedia/ADMedia": {
+      "import": "./lib/src/core/components/ADMedia/ADMedia.js",
+      "require": "./lib/src/core/components/ADMedia/ADMedia.js"
+    },
+    "./components/ADNotification": {
+      "import": "./lib/src/core/components/ADNotification/index.js",
+      "require": "./lib/src/core/components/ADNotification/index.js"
+    },
+    "./components/ADOverlay": {
+      "import": "./lib/src/core/components/ADOverlay/index.js",
+      "require": "./lib/src/core/components/ADOverlay/index.js"
+    },
+    "./components/ADPanel": {
+      "import": "./lib/src/core/components/ADPanel/index.js",
+      "require": "./lib/src/core/components/ADPanel/index.js"
+    },
+    "./components/ADPopup": {
+      "import": "./lib/src/core/components/ADPopup/index.js",
+      "require": "./lib/src/core/components/ADPopup/index.js"
+    },
+    "./components/ADProvider": {
+      "import": "./lib/src/core/components/ADProvider/index.js",
+      "require": "./lib/src/core/components/ADProvider/index.js"
+    },
+    "./components/ADRadio": {
+      "import": "./lib/src/core/components/ADRadio/index.js",
+      "require": "./lib/src/core/components/ADRadio/index.js"
+    },
+    "./components/ADSelect": {
+      "import": "./lib/src/core/components/ADSelect/index.js",
+      "require": "./lib/src/core/components/ADSelect/index.js"
+    },
+    "./components/ADSteps": {
+      "import": "./lib/src/core/components/ADSteps/index.js",
+      "require": "./lib/src/core/components/ADSteps/index.js"
+    },
+    "./components/ADSwitch": {
+      "import": "./lib/src/core/components/ADSwitch/index.js",
+      "require": "./lib/src/core/components/ADSwitch/index.js"
+    },
+    "./components/ADTabs": {
+      "import": "./lib/src/core/components/ADTabs/index.js",
+      "require": "./lib/src/core/components/ADTabs/index.js"
+    },
+    "./components/ADText": {
+      "import": "./lib/src/core/components/ADText/index.js",
+      "require": "./lib/src/core/components/ADText/index.js"
+    },
+    "./components/ADTextField": {
+      "import": "./lib/src/core/components/ADTextField/index.js",
+      "require": "./lib/src/core/components/ADTextField/index.js"
+    },
+    "./components/ADThemeBuilder": {
+      "import": "./lib/src/core/components/ADThemeBuilder/index.js",
+      "require": "./lib/src/core/components/ADThemeBuilder/index.js"
+    },
+    "./components/ADTooltip": {
+      "import": "./lib/src/core/components/ADTooltip/index.js",
+      "require": "./lib/src/core/components/ADTooltip/index.js"
+    }
   }
 }

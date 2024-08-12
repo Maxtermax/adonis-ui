@@ -4,7 +4,7 @@ import emotionNormalize from "emotion-normalize";
 import { ThemeProvider } from "@emotion/react";
 import { THEME } from "constants";
 import buildTheme from "theme";
-import "@/index.css";
+// import "@/index.css";
 
 export const ADProvider = ({ children }) => {
   const BASE_THEME = buildTheme(THEME.LIGHT);
