@@ -63,5 +63,5 @@ function updatePackageJson(entries) {
 
 const build = await executeCommand("npx swc ./src -d ./lib");
 console.log(build);
-const list = await executeCommand("ls lib/src/core/components/");
+const list = await executeCommand("ls ./lib/src/core/components/");
 updatePackageJson(generateRootPaths(list.split(/\n|\s+/).filter(Boolean)));

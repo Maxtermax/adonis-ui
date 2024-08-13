@@ -1,7 +1,6 @@
 import React from "react";
-import { Global, css } from "@emotion/react";
 import emotionNormalize from "emotion-normalize";
-import { ThemeProvider } from "@emotion/react";
+import { Global, css, ThemeProvider } from "@emotion/react";
 import { THEME } from "constants";
 import buildTheme from "theme";
 // import "@/index.css";

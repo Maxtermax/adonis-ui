@@ -1,7 +1,6 @@
 // import React, { forwardRef } from "react";
 import React from "react";
-import styled from "@emotion/styled";
-// import * as styles from "./styles";
+import * as styles from "./styles";
 // import { useObservableStore } from "hermes-io";
 // import reducer from "./reducer/media";
 // import { ADCard } from "../ADCard/ADCard";
@@ -26,12 +25,12 @@ const Static = ({
   price,
   sizes,
   upperRef,
-  className,
+  className = '',
   ...rest
 }) => {
   return (
     <styles.Media className={`ad-media ${className}`} {...rest}>
-      <p>ENTRA</p>
+      <p>ENTRA 2</p>
       {/*
       
       <ADCard
@@ -80,9 +79,9 @@ const Dinamic = ({
 };
 */
 
-/*
-export const ADMedia = function ADMedia({ isServer = false, ...rest }, ref) {
+export const ADMedia = function ADMedia({ ...rest }, ref) {
   return <Static {...rest} upperRef={ref} />;
+  /*
   return (
     <>
       {isServer ? (
@@ -92,10 +91,5 @@ export const ADMedia = function ADMedia({ isServer = false, ...rest }, ref) {
       )}
     </>
   );
+  */
 };
-*/
-
-export const ADMedia = styled.div`
-  border: 1px solid red;
-  width: 350px;
-`;
