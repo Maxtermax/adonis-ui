@@ -1,3 +1,4 @@
+import React from 'react';
 import * as styles from "./styles";
 import formatCurrency from "utils/formatCurrency";
 import { CartPlus } from "@styled-icons/bootstrap/CartPlus";

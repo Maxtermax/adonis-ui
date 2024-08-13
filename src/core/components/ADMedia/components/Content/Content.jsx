@@ -1,3 +1,4 @@
+import React from 'react';
 import * as styles from "./styles";
 import { Thumbnails } from "../Thumbnails/Thumbnails";
 import { Main } from "../Main/Main";

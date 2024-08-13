@@ -1,3 +1,4 @@
+import React from 'react';
 import * as styles from "./styles";
 import ADText from "../../../ADText";
 import ADBadge from "../../../ADBadge";
