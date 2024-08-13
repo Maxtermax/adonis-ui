@@ -11,14 +11,14 @@ try {
 export const useMediaQuery = (breakpoints) => {
   const theme = useTheme();
   const query = breakpoints?.(theme) ?? "";
-  const [matches, setMatches] = useState(win.matchMedia(query).matches);
+  const [matches, setMatches] = useState(win?.matchMedia?.(query)?.matches);
 
   useEffect(() => {
-    const mediaQueryList = win.matchMedia(query);
+    const mediaQueryList = win?.matchMedia?.(query);
     const listener = (event) => setMatches(event.matches);
 
-    mediaQueryList.addListener(listener);
-    return () => mediaQueryList.removeListener(listener);
+    mediaQueryList?.addListener?.(listener);
+    return () => mediaQueryList?.removeListener?.(listener);
   }, [query]);
 
   return matches;
