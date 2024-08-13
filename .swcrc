@@ -26,6 +26,7 @@
       "ADBadge/*": ["./src/core/components/ADBadge/*"],
       "ADDrawer/*": ["./src/core/components/ADDrawer/*"],
       "ADCheckbox/*": ["./src/core/components/ADCheckbox/*"],
+      "ADTooltip/*": ["./src/core/components/ADTooltip/*"],
       "constants": ["./src/core/constants"],
       "theme": ["./src/core/theme/Light.js"]
     },
