@@ -6,7 +6,7 @@ import ADButton from "ADButton";
 import ADGrid from "ADGrid";
 import ADText from "ADText";
 import ADTooltip from "ADTooltip";
-import { useMediaQuery } from "hooks/useMediaQuery";
+import { useMediaQuery } from "../../../../../utils/hooks/useMediaQuery";
 
 import {
   TEXT_VARIANTS,
