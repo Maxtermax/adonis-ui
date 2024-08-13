@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import isPropValid from "@emotion/is-prop-valid";
 import { CARD_VARIANTS, DIMENSIONS, SHAPES } from "constants";
+import { withTheme } from '@emotion/react';
 
 const { TEXT, OUTLINED, CONTAINED } = CARD_VARIANTS;
 
-const withTheme = (value, theme) =>
+const withCustomTheme = (value, theme) =>
   typeof value === "function" ? value(theme) : value;
 
 const borderColor = ({ variant, theme }) =>
@@ -43,13 +44,13 @@ const radius = ({ variant, theme, shape = SHAPES.rounded }) =>
     [CONTAINED]: theme.border.radius[shape],
   })[variant] ?? "";
 
-export const Card = styled("div", {
+export const Card = withTheme(styled("div", {
   shouldForwardProp: (prop) =>
     isPropValid(prop) &&
     !["alignContent", "variant", "height", "width"].includes(prop),
 })`
   align-content: ${({ alignContent, theme }) =>
-    withTheme(alignContent, theme) ?? "center"};
+    withCustomTheme(alignContent, theme) ?? "center"};
   background-color: ${(props) => background(props)};
   border-width: ${(props) => borderWidth(props)};
   border-color: ${(props) => borderColor(props)};
@@ -66,12 +67,12 @@ export const Card = styled("div", {
   font-size: ${(props) => props.theme.fonts.sizes.normal};
   font-family: ${(props) => props.theme.fonts.primary.regular};
   justify-content: ${({ justifyContent, theme }) =>
-    withTheme(justifyContent, theme)};
+    withCustomTheme(justifyContent, theme)};
   overflow: hidden;
   width: ${({ fullWidth, width = "auto", theme }) =>
-    fullWidth ? "100%" : withTheme(width, theme)};
+    fullWidth ? "100%" : withCustomTheme(width, theme)};
   height: ${({ fullHeight, height = "auto", theme }) =>
-    fullHeight ? "100%" : withTheme(height, theme)};
+    fullHeight ? "100%" : withCustomTheme(height, theme)};
   gap: ${({ theme, gap }) => (gap ? theme.spacing[gap] ?? gap : "0px")};
   &:hover {
     transform: ${({ theme, noScaleOnHover, onHoverTransform }) =>
@@ -79,18 +80,18 @@ export const Card = styled("div", {
         ? "none"
         : onHoverTransform || theme.transform.scale.small};
   }
-`;
+`);
 
 export const Left = styled.div``;
 
-export const Right = styled.div`
+export const Right = withTheme(styled.div`
   align-items: center;
   background-color: ${({ theme }) => theme.colors.lightSilver};
   display: flex;
   justify-content: center;
   height: 100%;
   width: 100%;
-`;
+`);
 
 export const Header = styled.div`
   width: 100%;

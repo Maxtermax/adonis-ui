@@ -1,20 +1,18 @@
-// import React, { forwardRef } from "react";
 import React from "react";
-import * as styles from "./styles";
-// import { useObservableStore } from "hermes-io";
-// import reducer from "./reducer/media";
-// import { ADCard } from "../ADCard/ADCard";
-// import { Header } from "./components/Header/Header";
-// import { Content } from "./components/Content/Content";
-// import { Footer } from "./components/Footer/Footer";
-// import { mediaStore } from "./store/media";
-/*
-import { CARD_VARIANTS, DIMENSIONS, SHAPES } from "constants";
 import _ from "lodash";
+import { useObservableStore } from "hermes-io";
+import reducer from "./reducer/media";
+import { ADCard } from "../ADCard/ADCard";
+import { Header } from "./components/Header/Header";
+import { Content } from "./components/Content/Content";
+import { mediaStore } from "./store/media";
+import { Footer } from "./components/Footer/Footer";
+import * as styles from "./styles";
+
+import { CARD_VARIANTS, DIMENSIONS, SHAPES } from "constants";
 const { uniqueId } = _;
 
 const { OUTLINED } = CARD_VARIANTS;
-*/
 
 const Static = ({
   id,
@@ -24,36 +22,29 @@ const Static = ({
   discount,
   price,
   sizes,
-  upperRef,
-  className = '',
+  className = "",
   ...rest
 }) => {
+  console.log({ images, thumbnails, discount });
   return (
     <styles.Media className={`ad-media ${className}`} {...rest}>
-      <p>ENTRA 2</p>
-      {/*
-      
       <ADCard
         elevation={DIMENSIONS.regular}
         variant={OUTLINED}
         gap={DIMENSIONS.none}
         shape={SHAPES.rounded}
-        Header={() =>
-          <Header discount={discount} />
-        }
-        Content={() =>
+        Header={() => <Header discount={discount} />}
+        Content={() => (
           <Content id={id} images={images} thumbnails={thumbnails} />
-        }
-        Footer={
-          () => <Footer name={name} discount={discount} price={price} sizes={sizes} />
-        }
+        )}
+        Footer={() => (
+          <Footer name={name} price={price} sizes={sizes} discount={discount} />
+        )}
       />
-  */}
     </styles.Media>
   );
 };
 
-/*
 const Dinamic = ({
   upperRef,
   discount,
@@ -75,13 +66,22 @@ const Dinamic = ({
     images,
   };
   useObservableStore(id, data, reducer, mediaStore);
-  return <Static {...rest} upperRef={upperRef} />;
+  return (
+    <Static
+      id={id}
+      name={name}
+      sizes={sizes}
+      thumbnails={thumbnails}
+      discount={discount}
+      images={images}
+      upperRef={upperRef}
+      {...rest}
+    />
+  );
 };
-*/
 
 export const ADMedia = function ADMedia({ ...rest }, ref) {
-  return <Static {...rest} upperRef={ref} />;
-  /*
+  const isServer = typeof document === "undefined";
   return (
     <>
       {isServer ? (
@@ -91,5 +91,4 @@ export const ADMedia = function ADMedia({ ...rest }, ref) {
       )}
     </>
   );
-  */
 };

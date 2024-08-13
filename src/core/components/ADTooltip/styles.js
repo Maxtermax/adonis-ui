@@ -1,3 +1,4 @@
+import { withTheme } from '@emotion/react';
 import styled from "@emotion/styled";
 import { DIRECTIONS } from "constants";
 
@@ -82,7 +83,7 @@ const arrowXPos = ({ direction, theme }) => {
   }
 };
 
-export const Text = styled.span`
+export const Text = withTheme(styled.span`
   border: 1ox solid ${({ theme, contrast }) =>
     contrast ? theme.colors.contrast.primary : theme.colors.primary};
   background-color: ${({ theme, contrast }) =>
@@ -113,4 +114,4 @@ export const Text = styled.span`
     border-style: solid;
     border-color: ${arrowShape};
   }
-`;
+`);

@@ -1,6 +1,7 @@
+import { withTheme } from '@emotion/react';
 import styled from "@emotion/styled";
 
-export const Previews = styled.div`
+export const Previews = withTheme(styled.div`
   position: absolute;
   top: ${(props) => props.theme.spacing.low};
   left: ${(props) => props.theme.spacing.low};
@@ -28,9 +29,9 @@ export const Previews = styled.div`
   figure img:hover {
     opacity: ${(props) => props.theme.opacity.visible};
   }
-`;
+`);
 
-export const Content = styled.div`
+export const Content = withTheme(styled.div`
   background-color: ${(props) => props.theme.colors.white};
   cursor: zoom-in;
   display: block;
@@ -57,4 +58,4 @@ export const Content = styled.div`
   &:hover .previews {
     height: 70px;
   }
-`;
+`);

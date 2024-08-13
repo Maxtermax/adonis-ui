@@ -1,3 +1,4 @@
+import { withTheme } from '@emotion/react';
 import styled from "@emotion/styled";
 import { SHAPES, DIMENSIONS } from "constants";
 
@@ -15,7 +16,7 @@ const transform = ({ theme, size }) =>
     [DIMENSIONS.xs]: theme.transform.scale["50%"],
   })[size] ?? "";
 
-export const Badge = styled.div`
+export const Badge = withTheme(styled.div`
   display: flex;
   background-color: ${({ active, theme }) =>
     active ? theme.colors.contrast.lightSilver : theme.colors.lightSilver};
@@ -45,4 +46,4 @@ export const Badge = styled.div`
   &:hover [class^="ad-text"] {
     color: ${(props) => props.theme.colors.contrast.primary};
   }
-`;
+`);

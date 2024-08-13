@@ -1,3 +1,4 @@
+import { withTheme } from '@emotion/react';
 import styled from "@emotion/styled";
 import { FIGURE_VARIANTS } from "constants";
 
@@ -7,7 +8,7 @@ const figureTransform = ({ selected, theme, variant }) => {
   return theme.transform.scale.none;
 };
 
-export const Figure = styled.figure`
+export const Figure = withTheme(styled.figure`
   align-items: center;
   background-color: ${({ theme, variant }) =>
     variant === FIGURE_VARIANTS.MINI
@@ -22,7 +23,7 @@ export const Figure = styled.figure`
   width: 100%;
   height: 100%;
   overflow: hidden;
-`;
+`);
 
 export const Picture = styled.img`
   object-fit: contain;

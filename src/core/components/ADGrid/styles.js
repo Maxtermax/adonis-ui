@@ -1,3 +1,4 @@
+import { withTheme } from '@emotion/react';
 import styled from "@emotion/styled";
 
 const medium = ({ md = {} }) => {
@@ -25,7 +26,7 @@ const rows = (props) => {
   return `repeat(${props.rows}, 1fr)`;
 };
 
-export const Grid = styled.div`
+export const Grid = withTheme(styled.div`
   display: grid;
   justify-items: ${({ justifyCenter }) =>
     justifyCenter ? "center" : "center"};
@@ -36,4 +37,4 @@ export const Grid = styled.div`
   @media screen and ${(props) => props.theme.devices.sm} {
     ${(props) => medium(props)}
   }
-`;
+`);

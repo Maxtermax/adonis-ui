@@ -46,6 +46,10 @@ export const alias = [
     replacement: path.resolve(__dirname, "src/core/components/ADProvider"),
   },
   {
+    find: "ADGrid",
+    replacement: path.resolve(__dirname, "src/core/components/ADGrid"),
+  },
+  {
     find: "ADMedia",
     replacement: path.resolve(__dirname, "src/core/components/ADMedia"),
   },

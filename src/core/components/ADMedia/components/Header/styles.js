@@ -1,6 +1,7 @@
+import { withTheme } from '@emotion/react';
 import styled from "@emotion/styled";
 
-export const Header = styled.div`
+export const Header = withTheme(styled.div`
   display: flex;
   position: absolute;
   right: ${({ theme }) => theme.spacing.regular};
@@ -13,4 +14,4 @@ export const Header = styled.div`
     color: ${({ theme }) => theme.colors.white};
     font-size: ${({ theme }) => theme.fonts.sizes.big};
   }
-`;
+`);

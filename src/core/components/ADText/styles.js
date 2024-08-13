@@ -1,3 +1,4 @@
+import { withTheme } from '@emotion/react';
 import styled from "@emotion/styled";
 import { TEXT_VARIANTS } from "constants";
 
@@ -19,7 +20,7 @@ const fontFamily = ({ variant, theme }) =>
     [SUBTITLE]: theme.fonts.primary.light,
   })[variant] ?? "";
 
-export const Text = styled.p`
+export const Text = withTheme(styled.p`
   color: ${({ theme }) => theme.colors.primary};
   font-size: ${(props) => fontSize(props)};
   font-family: ${(props) => fontFamily(props)};
@@ -27,9 +28,9 @@ export const Text = styled.p`
   margin: 0px;
   text-decoration: ${({ lineThrough }) =>
     lineThrough ? "line-through" : "none"};
-`;
+`);
 
-export const Label = styled.label`
+export const Label = withTheme(styled.label`
   color: ${({ theme }) => theme.colors.primary};
   font-size: ${(props) => fontSize(props)};
   font-family: ${(props) => fontFamily(props)};
@@ -37,9 +38,9 @@ export const Label = styled.label`
   margin: 0px;
   text-decoration: ${({ lineThrough }) =>
     lineThrough ? "line-through" : "none"};
-`;
+`);
 
-export const Heading = styled.h1`
+export const Heading = withTheme(styled.h1`
   color: ${({ theme }) => theme.colors.primary};
   font-size: ${(props) => fontSize(props)};
   font-family: ${(props) => fontFamily(props)};
@@ -47,9 +48,9 @@ export const Heading = styled.h1`
   margin: 0px;
   text-decoration: ${({ lineThrough }) =>
     lineThrough ? "line-through" : "none"};
-`;
+`);
 
-export const Title = styled.span`
+export const Title = withTheme(styled.span`
   color: ${({ theme }) => theme.colors.primary};
   font-size: ${(props) => fontSize(props)};
   font-family: ${(props) => fontFamily(props)};
@@ -57,9 +58,9 @@ export const Title = styled.span`
   margin: 0px;
   text-decoration: ${({ lineThrough }) =>
     lineThrough ? "line-through" : "none"};
-`;
+`);
 
-export const SubTitle = styled.span`
+export const SubTitle = withTheme(styled.span`
   color: ${({ theme }) => theme.colors.primary};
   font-size: ${(props) => fontSize(props)};
   font-family: ${(props) => fontFamily(props)};
@@ -67,4 +68,4 @@ export const SubTitle = styled.span`
   margin: 0px;
   text-decoration: ${({ lineThrough }) =>
     lineThrough ? "line-through" : "none"};
-`;
+`);
