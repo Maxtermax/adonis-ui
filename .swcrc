@@ -27,7 +27,7 @@
       "ADDrawer/*": ["./src/core/components/ADDrawer/*"],
       "ADCheckbox/*": ["./src/core/components/ADCheckbox/*"],
       "constants": ["./src/core/constants"],
-      "theme": ["./src/core/theme/theme"]
+      "theme": ["./src/core/theme/Light.js"]
     },
     "target": "es2022",
     "minify": {
