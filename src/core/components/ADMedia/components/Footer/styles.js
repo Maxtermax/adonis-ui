@@ -1,3 +1,4 @@
+import { withTheme } from '@emotion/react';
 import styled from "@emotion/styled";
 
 export const Sizes = styled.div`
@@ -9,7 +10,7 @@ export const Sizes = styled.div`
   justify-content: flex-start;
 `;
 
-export const Discount = styled.div`
+export const Discount = withTheme(styled.div`
   align-items: center;
   display: flex;
   position: relative;
@@ -24,9 +25,9 @@ export const Discount = styled.div`
   & .ad-badge.discount-percentage:hover {
     background: ${({ theme }) => theme.colors.red};
   }
-`;
+`);
 
-export const LeftCol = styled.div`
+export const LeftCol = withTheme(styled.div`
   display: flex;
   flex-direction: column;
   height: 100px;
@@ -38,9 +39,9 @@ export const LeftCol = styled.div`
     display: flex;
     height: 30px;
   }
-`;
+`);
 
-export const RightCol = styled.div`
+export const RightCol = withTheme(styled.div`
   align-items: center;
   display: flex;
   justify-content: flex-end;
@@ -64,9 +65,9 @@ export const RightCol = styled.div`
     width: calc(100% - ${(props) => props.theme.spacing["12"]});
     margin-left: ${(props) => props.theme.spacing.low};
   }
-`;
+`);
 
-export const Footer = styled.div`
+export const Footer = withTheme(styled.div`
   display: flex;
   background-color: ${(props) => props.theme.colors.grey};
   flex-direction: column;
@@ -76,4 +77,4 @@ export const Footer = styled.div`
   .ad-badge {
     border: 1px solid ${(props) => props.theme.colors.transparent};
   }
-`;
+`);
