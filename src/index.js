@@ -3,7 +3,6 @@ export * from './core/components/ADAccordion';
 export * from './core/components/ADProvider';
 export * from './core/components/ADPanel';
 export * from './core/components/ADText';
-export * from './core/components/ADBreadcrumbs';
 export * from './core/components/ADDrawer';
 export * from './core/components/ADCard';
 export * from './core/components/ADBadge';

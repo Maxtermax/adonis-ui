@@ -1,7 +1,7 @@
 import { Children, cloneElement, forwardRef, useEffect, useRef } from "react";
 import { useObservableStore } from "hermes-io";
 import { uniqueId } from "lodash";
-import { ADButton } from "ADButton/ADButton";
+import ADButton from "ADButton";
 import { ChevronLeft } from "@styled-icons/evaicons-solid/ChevronLeft";
 import { ChevronRight } from "@styled-icons/evaicons-solid/ChevronRight";
 import { DIRECTIONS } from "constants";

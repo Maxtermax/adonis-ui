@@ -1,6 +1,6 @@
 import { ADTab } from "ADTabs/components/ADTab";
-import { ADText } from "ADText/ADText";
-import { ADTabs } from "ADTabs/ADTabs";
+import ADText from "ADText";
+import ADTabs from "ADTabs";
 import { TEXT_VARIANTS } from "constants";
 
 export default {

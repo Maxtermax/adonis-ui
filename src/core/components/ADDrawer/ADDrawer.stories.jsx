@@ -1,5 +1,5 @@
 import uniqueId from "lodash/uniqueId";
-import { ADDrawer } from "components/ADDrawer/ADDrawer";
+import ADDrawer from "ADDrawer";
 import { setOpen } from "ADDrawer/mutations/drawer";
 import { drawerMicroStore } from "ADDrawer/store/drawer";
 

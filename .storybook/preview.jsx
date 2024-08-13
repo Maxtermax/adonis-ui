@@ -1,4 +1,4 @@
-import { ADProvider } from "components/ADProvider/ADProvider";
+import ADProvider from "ADProvider";
 import "@/index.css";
 
 const preview = {

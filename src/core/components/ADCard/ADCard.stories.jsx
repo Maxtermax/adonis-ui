@@ -1,5 +1,5 @@
 import { fn } from "@storybook/test";
-import { ADCard } from "components/ADCard/ADCard";
+import ADCard from "ADCard";
 import { CARD_VARIANTS, DIMENSIONS, SHAPES } from "constants";
 
 const { OUTLINED, CONTAINED } = CARD_VARIANTS;

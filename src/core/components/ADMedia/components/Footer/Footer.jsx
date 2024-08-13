@@ -1,11 +1,11 @@
 import * as styles from "./styles";
 import formatCurrency from "utils/formatCurrency";
 import { CartPlus } from "@styled-icons/bootstrap/CartPlus";
-import ADBadge from "components/ADBadge";
-import ADButton from "components/ADButton";
-import ADGrid from "components/ADGrid";
-import ADText from "components/ADText";
-import ADTooltip from "components/ADTooltip";
+import ADBadge from "ADBadge";
+import ADButton from "ADButton";
+import ADGrid from "ADGrid";
+import ADText from "ADText";
+import ADTooltip from "ADTooltip";
 import { useMediaQuery } from "hooks/useMediaQuery";
 
 import {

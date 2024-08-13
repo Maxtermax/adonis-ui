@@ -1,7 +1,8 @@
 import { DIMENSIONS } from "constants";
 import Base from "./Base";
 
-export default class Light extends Base {
+
+class Light extends Base {
   breakpoints = {
     xl: "1200px",
     lg: "1024px",
@@ -126,3 +127,5 @@ export default class Light extends Base {
     normal: "1px",
   };
 }
+
+export default new Light();

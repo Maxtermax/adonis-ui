@@ -1,12 +1,9 @@
 import React from "react";
 import emotionNormalize from "emotion-normalize";
 import { Global, css, ThemeProvider } from "@emotion/react";
-import { THEME } from "constants";
-import buildTheme from "theme";
-// import "@/index.css";
+import theme from "theme";
 
 export const ADProvider = ({ children }) => {
-  const BASE_THEME = buildTheme(THEME.LIGHT);
   return (
     <>
       <Global
@@ -22,7 +19,7 @@ export const ADProvider = ({ children }) => {
           }
         `}
       />
-      <ThemeProvider theme={BASE_THEME}>{children}</ThemeProvider>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { ADSwitch } from "components/ADSwitch/ADSwitch";
+import ADSwitch from "ADSwitch";
 
 export default {
   title: "Basic/ADSwitch",

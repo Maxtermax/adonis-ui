@@ -1,7 +1,7 @@
 import { ACCORDION_PANEL, ACCORDION_CONTENT } from "constants";
-import { ADAccordion } from "components/ADAccordion/ADAccordion";
-import { ADPanel } from "components/ADPanel/ADPanel";
-import { ADText } from "components/ADText/ADText";
+import ADAccordion from "ADAccordion";
+import ADPanel from "ADPanel";
+import ADText from "ADText";
 
 const mock = [
   {

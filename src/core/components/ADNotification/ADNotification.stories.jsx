@@ -1,7 +1,7 @@
 import { uniqueId } from "lodash";
 import { microNotificationStore } from "ADNotification/store/notification";
 import { setOpen } from "ADNotification/mutations/notification";
-import { ADNotification } from "components/ADNotification/ADNotification";
+import ADNotification from "ADNotification";
 
 export default {
   title: "Basic/ADNotification",

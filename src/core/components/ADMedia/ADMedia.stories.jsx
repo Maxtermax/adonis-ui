@@ -1,4 +1,4 @@
-import { ADMedia } from "components/ADMedia/ADMedia";
+import ADMedia from "ADMedia";
 import mock from "ADMedia/mock";
 
 export default {

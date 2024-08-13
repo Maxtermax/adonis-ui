@@ -1,5 +1,5 @@
-import { ADTooltip } from "components/ADTooltip/ADTooltip";
-import { ADText } from "components/ADText/ADText";
+import ADTooltip from "ADTooltip";
+import ADText from "ADText";
 import { TEXT_VARIANTS, DIRECTIONS } from "constants";
 const { HEADING, TEXT } = TEXT_VARIANTS;
 

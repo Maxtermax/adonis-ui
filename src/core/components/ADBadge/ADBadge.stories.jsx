@@ -1,6 +1,6 @@
 import { fn } from "@storybook/test";
-import { ADBadge } from "components/ADBadge/ADBadge";
-import { ADText } from "components/ADText/ADText";
+import ADBadge from "ADBadge";
+import ADText from "ADText";
 import { SHAPES, TEXT_VARIANTS, DIMENSIONS } from "constants";
 
 const { circle, rounded, sharp } = SHAPES;

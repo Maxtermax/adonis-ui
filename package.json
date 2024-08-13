@@ -63,14 +63,6 @@
    "import": "./lib/src/index.js",
    "require": "./lib/src/index.js"
   },
-  "./index.css": {
-   "import": "../src/index.css",
-   "require": "../src/index.css"
-  },
-  "./theme": {
-   "import": "./lib/src/core/theme/theme.js",
-   "require": "./lib/src/core/theme/theme.js"
-  },
   "./utils/formatCurrency": {
    "import": "./lib/src/utils/formatCurrency.js",
    "require": "./lib/src/utils/formatCurrency.js"
@@ -86,10 +78,6 @@
   "./components/ADBadge": {
    "import": "./lib/src/core/components/ADBadge/index.js",
    "require": "./lib/src/core/components/ADBadge/index.js"
-  },
-  "./components/ADBreadcrumbs": {
-   "import": "./lib/src/core/components/ADBreadcrumbs/index.js",
-   "require": "./lib/src/core/components/ADBreadcrumbs/index.js"
   },
   "./components/ADButton": {
    "import": "./lib/src/core/components/ADButton/index.js",
@@ -166,10 +154,6 @@
   "./components/ADTextField": {
    "import": "./lib/src/core/components/ADTextField/index.js",
    "require": "./lib/src/core/components/ADTextField/index.js"
-  },
-  "./components/ADThemeBuilder": {
-   "import": "./lib/src/core/components/ADThemeBuilder/index.js",
-   "require": "./lib/src/core/components/ADThemeBuilder/index.js"
   },
   "./components/ADTooltip": {
    "import": "./lib/src/core/components/ADTooltip/index.js",

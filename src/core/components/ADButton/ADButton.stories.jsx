@@ -1,5 +1,5 @@
 import { fn } from "@storybook/test";
-import { ADButton } from "components/ADButton/ADButton";
+import ADButton from "ADButton";
 import { CARD_VARIANTS } from "constants";
 
 const { TEXT, OUTLINED, CONTAINED, SHARP } = CARD_VARIANTS;

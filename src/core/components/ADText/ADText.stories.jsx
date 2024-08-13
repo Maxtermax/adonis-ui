@@ -1,4 +1,4 @@
-import { ADText } from "components/ADText/ADText";
+import ADText from "ADText";
 import { TEXT_VARIANTS } from "constants";
 
 const { HEADING, TITLE, SUBTITLE } = TEXT_VARIANTS;

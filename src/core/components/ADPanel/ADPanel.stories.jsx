@@ -1,5 +1,5 @@
-import { ADPanel } from "components/ADPanel/ADPanel";
-import { ADText } from "components/ADText/ADText";
+import ADPanel from "ADPanel";
+import ADText from "ADText";
 
 export default {
   title: "Basic/ADPanel",

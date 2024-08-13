@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FIGURE_VARIANTS, DIRECTIONS } from "constants";
-import { ADTooltip } from "components/ADTooltip/ADTooltip";
+import ADTooltip from "ADTooltip";
 import * as mutations from "ADMedia/mutations/media";
 import { Figure } from "ADMedia/components/Main/styles";
 import { mediaStore } from "ADMedia/store/media";

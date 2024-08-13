@@ -48,7 +48,6 @@ const Step = ({ storeId, showGuide, id, ...rest }) => {
   const isStatusPending = status === STEPS_STATUS.pending;
   const isStatusCompleted = status === STEPS_STATUS.completed;
   const isStatusFailed = status === STEPS_STATUS.error;
-  console.log({ status });
 
   const renderStatus = () => {
     if (isStatusCompleted) return <Icon variant={STEPS_STATUS.completed} />;

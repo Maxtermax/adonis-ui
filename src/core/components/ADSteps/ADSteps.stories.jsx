@@ -1,4 +1,4 @@
-import { ADSteps } from "components/ADSteps/ADSteps";
+import ADSteps from "ADSteps";
 import { Instagram } from "@styled-icons/boxicons-logos/Instagram";
 import { microSteps } from "ADSteps/store/steps";
 import { completeNextStep, rollbackStep } from "ADSteps/mutations/steps";

@@ -1,4 +1,4 @@
-import { ADTextField } from "components/ADTextField/ADTextField";
+import ADTextField from "ADTextField";
 import { User } from "@styled-icons/boxicons-regular/User";
 
 export default {
