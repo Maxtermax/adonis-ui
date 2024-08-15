@@ -1,3 +1,4 @@
+import { withTheme } from '@emotion/react';
 import styled from "@emotion/styled";
 import { CARD_VARIANTS, DIMENSIONS } from "constants";
 
@@ -47,7 +48,7 @@ const radius = ({ variant, theme }) =>
     [SHARP]: theme.border.radius.sharp,
   })[variant] ?? "";
 
-export const Button = styled.button`
+export const Button = withTheme(styled.button`
   align-items: center;
   background-color: ${(props) => background(props)};
   border-width: ${(props) => borderWidth(props)};
@@ -71,4 +72,4 @@ export const Button = styled.button`
         ? theme.transform.scale.none
         : theme.transform.scale.slightly};
   }
-`;
+`);

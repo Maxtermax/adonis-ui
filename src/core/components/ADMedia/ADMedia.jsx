@@ -25,7 +25,6 @@ const Static = ({
   className = "",
   ...rest
 }) => {
-  console.log({ images, thumbnails, discount });
   return (
     <styles.Media className={`ad-media ${className}`} {...rest}>
       <ADCard

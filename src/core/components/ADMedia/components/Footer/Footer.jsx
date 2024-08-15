@@ -1,6 +1,6 @@
 import React from 'react';
 import * as styles from "./styles";
-import formatCurrency from "utils/formatCurrency";
+// import formatCurrency from "utils/formatCurrency";
 import { CartPlus } from "@styled-icons/bootstrap/CartPlus";
 import ADBadge from "ADBadge";
 import ADButton from "ADButton";
@@ -43,20 +43,20 @@ export const Footer = ({ name, price, sizes, discount }) => {
             <styles.Discount>
               <ADTooltip
                 direction={DIRECTIONS.TOP}
-                text={`Antes: ${formatCurrency(discount.before)}`}
+                text={`Antes: ${(discount.before)}`}
               >
                 <ADText
                   variant={TEXT_VARIANTS.TEXT}
-                  value={formatCurrency(discount.before)}
+                  value={(discount.before)}
                   lineThrough
                   title="Antes"
                 />
               </ADTooltip>
               /
-              <ADTooltip text={`Ahora: ${formatCurrency(discount.now)}`}>
+              <ADTooltip text={`Ahora: ${(discount.now)}`}>
                 <ADText
                   variant={TEXT_VARIANTS.TEXT}
-                  value={formatCurrency(discount.now)}
+                  value={(discount.now)}
                   title="Ahora"
                 />
               </ADTooltip>
@@ -64,7 +64,7 @@ export const Footer = ({ name, price, sizes, discount }) => {
           ) : (
             <ADText
               variant={TEXT_VARIANTS.TEXT}
-              value={formatCurrency(price)}
+              value={(price)}
             />
           )}
           <styles.Sizes className="sizes">
