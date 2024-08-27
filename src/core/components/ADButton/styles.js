@@ -13,7 +13,7 @@ const borderColor = ({ variant, theme }) =>
 
 const background = ({ variant, theme }) =>
   ({
-    [TEXT]: theme.colors.transparent,
+    [TEXT]: 'transparent',
     [OUTLINED]: theme.colors.transparent,
     [CONTAINED]: theme.colors.primary,
     [SHARP]: theme.colors.primary,

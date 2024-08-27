@@ -1,9 +1,11 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { useMutations } from "hermes-io";
-import { uniqueId } from "lodash";
+import _ from "lodash";
 import { FOCUS_TAB } from "constants";
 import microTabsStore from "ADTabs/store/tabs";
 import * as styles from "ADTabs/styles";
+
+const { uniqueId } = _;
 
 export const ADTab = ({
   children,

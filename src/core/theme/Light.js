@@ -1,6 +1,7 @@
 import { DIMENSIONS } from "constants";
 import Base from "./Base";
 
+const MIN_SPACING = 4;
 
 class Light extends Base {
   breakpoints = {
@@ -65,6 +66,7 @@ class Light extends Base {
     10: "10px",
     3: "3px",
     6: "6px",
+    calc: (factor) => `${MIN_SPACING * factor}px`,
   };
   elevation = {
     [DIMENSIONS.none]: "0px 0px 0px",
@@ -75,7 +77,7 @@ class Light extends Base {
     scale: {
       small: "scale(1.03)",
       mid: "scale(1.25)",
-      slightly: "scale(1.2)",
+      slightly: "scale(1.02)",
       double: "scale(2)",
       half: "scale(1.5)",
       six: "scale(1.6)",

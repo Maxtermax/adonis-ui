@@ -10,8 +10,6 @@
   "build-pack": "node build.js"
  },
  "dependencies": {
-  "@emotion/react": "11.13.0",
-  "@emotion/styled": "11.13.0",
   "@styled-icons/bootstrap": "10.47.0",
   "@styled-icons/boxicons-logos": "10.47.0",
   "@styled-icons/boxicons-regular": "10.47.0",
@@ -22,10 +20,8 @@
   "@styled-icons/material": "10.47.0",
   "@styled-icons/material-outlined": "10.47.0",
   "emotion-normalize": "11.0.1",
-  "hermes-io": "^2.9.88",
+  "hermes-io": "2.9.89",
   "lodash": "4.17.21",
-  "react": "18.2.0",
-  "react-dom": "18.2.0",
   "styled-components": "6.1.11"
  },
  "devDependencies": {
@@ -82,6 +78,10 @@
    "import": "./lib/src/core/components/ADCard/index.js",
    "require": "./lib/src/core/components/ADCard/index.js"
   },
+  "./components/ADCarousell": {
+   "import": "./lib/src/core/components/ADCarousell/index.js",
+   "require": "./lib/src/core/components/ADCarousell/index.js"
+  },
   "./components/ADCheckbox": {
    "import": "./lib/src/core/components/ADCheckbox/index.js",
    "require": "./lib/src/core/components/ADCheckbox/index.js"
@@ -93,6 +93,10 @@
   "./components/ADGrid": {
    "import": "./lib/src/core/components/ADGrid/index.js",
    "require": "./lib/src/core/components/ADGrid/index.js"
+  },
+  "./components/ADLayout": {
+   "import": "./lib/src/core/components/ADLayout/index.js",
+   "require": "./lib/src/core/components/ADLayout/index.js"
   },
   "./components/ADLoader": {
    "import": "./lib/src/core/components/ADLoader/index.js",

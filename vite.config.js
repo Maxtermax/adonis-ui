@@ -54,6 +54,10 @@ export const alias = [
     replacement: path.resolve(__dirname, "src/core/components/ADMedia"),
   },
   {
+    find: "ADLayout",
+    replacement: path.resolve(__dirname, "src/core/components/ADLayout"),
+  },
+  {
     find: "ADCard",
     replacement: path.resolve(__dirname, "src/core/components/ADCard"),
   },
@@ -72,6 +76,10 @@ export const alias = [
   {
     find: "ADTabs",
     replacement: path.resolve(__dirname, "src/core/components/ADTabs"),
+  },
+  {
+    find: "ADCarousell",
+    replacement: path.resolve(__dirname, "src/core/components/ADCarousell"),
   },
   {
     find: "ADText",

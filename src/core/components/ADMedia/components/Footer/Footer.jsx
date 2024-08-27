@@ -8,6 +8,7 @@ import ADGrid from "ADGrid";
 import ADText from "ADText";
 import ADTooltip from "ADTooltip";
 import { useMediaQuery } from "../../../../../utils/hooks/useMediaQuery";
+import formatCurrency from '../../../../../utils/formatCurrency';
 
 import {
   TEXT_VARIANTS,
@@ -43,20 +44,20 @@ export const Footer = ({ name, price, sizes, discount }) => {
             <styles.Discount>
               <ADTooltip
                 direction={DIRECTIONS.TOP}
-                text={`Antes: ${(discount.before)}`}
+                text={`Antes: ${formatCurrency(discount.before)}`}
               >
                 <ADText
                   variant={TEXT_VARIANTS.TEXT}
-                  value={(discount.before)}
+                  value={formatCurrency(discount.before)}
                   lineThrough
                   title="Antes"
                 />
               </ADTooltip>
               /
-              <ADTooltip text={`Ahora: ${(discount.now)}`}>
+              <ADTooltip text={`Ahora: ${formatCurrency(discount.now)}`}>
                 <ADText
                   variant={TEXT_VARIANTS.TEXT}
-                  value={(discount.now)}
+                  value={formatCurrency(discount.now)}
                   title="Ahora"
                 />
               </ADTooltip>
@@ -64,7 +65,7 @@ export const Footer = ({ name, price, sizes, discount }) => {
           ) : (
             <ADText
               variant={TEXT_VARIANTS.TEXT}
-              value={(price)}
+              value={formatCurrency(price)}
             />
           )}
           <styles.Sizes className="sizes">

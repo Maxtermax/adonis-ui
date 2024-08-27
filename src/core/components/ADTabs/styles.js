@@ -1,3 +1,4 @@
+import { withTheme } from '@emotion/react';
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
@@ -11,7 +12,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Tabs = styled.ul`
+export const Tabs = withTheme(styled.ul`
   color: ${({ theme }) => theme.colors.primary};
   display: flex;
   height: 100%;
@@ -22,9 +23,9 @@ export const Tabs = styled.ul`
   &::-webkit-scrollbar {
     display: none;
   }
-`;
+`);
 
-export const Tab = styled.li`
+export const Tab = withTheme(styled.li`
   align-items: center;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.primary};
@@ -45,7 +46,7 @@ export const Tab = styled.li`
   &:hover {
     background-color: ${({ theme }) => theme.colors.grey};
   }
-`;
+`);
 
 export const TabWrapper = styled.div`
   display: flex;

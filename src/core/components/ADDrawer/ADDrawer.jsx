@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useMutations, useObservableStore } from "hermes-io";
-import { uniqueId } from "lodash";
+// import _ from "lodash";
 import { ADPanel } from "ADPanel/ADPanel";
 import { drawerMicroStore } from "ADDrawer/store/drawer";
 import { setOpen } from "ADDrawer/mutations/drawer";
@@ -9,9 +9,11 @@ import reducer from "ADDrawer/reducer/drawer";
 import { SET_DRAWER_OPEN } from "constants";
 import * as styles from "./styles";
 
+// const { uniqueId } = _;
+
 export const ADDrawer = ({
   content = null,
-  id = uniqueId("ad-drawer-"),
+  id = 12,
   variant = "left",
   className = "",
   fullWidth = false,

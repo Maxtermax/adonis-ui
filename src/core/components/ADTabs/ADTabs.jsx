@@ -1,6 +1,6 @@
-import { Children, cloneElement, forwardRef, useEffect, useRef } from "react";
+import React, { Children, cloneElement, forwardRef, useEffect, useRef } from "react";
 import { useObservableStore } from "hermes-io";
-import { uniqueId } from "lodash";
+import _ from "lodash";
 import ADButton from "ADButton";
 import { ChevronLeft } from "@styled-icons/evaicons-solid/ChevronLeft";
 import { ChevronRight } from "@styled-icons/evaicons-solid/ChevronRight";
@@ -8,6 +8,8 @@ import { DIRECTIONS } from "constants";
 import microTabsStore from "ADTabs/store/tabs";
 import reducer from "ADTabs/reducer/tabs";
 import * as styles from "./styles";
+
+const { uniqueId } = _;
 
 export const ADTabs = forwardRef(function ADTabs(
   { className = "", id = uniqueId("ad-tabs-"), arrows, children, ...rest },
