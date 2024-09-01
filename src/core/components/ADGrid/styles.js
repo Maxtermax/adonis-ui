@@ -13,6 +13,11 @@ const medium = ({ md = {} }) => {
       grid-template-columns: repeat(${md.cols}, 1fr);
     `;
   }
+  if(md.gap) {
+    result += `
+      gap: ${md.gap};
+    `;
+  }
   return result;
 };
 
@@ -33,8 +38,25 @@ export const Grid = withTheme(styled.div`
   align-items: ${({ alignCenter, alignItems = "center" }) => (alignCenter ? "center" : alignItems)};
   grid-template-rows: ${(props) => rows(props)};
   grid-template-columns: ${(props) => cols(props)};
+  gap: ${({ theme }) => theme.spacing.medium};
   height: ${({ fullHeight, height = "auto" }) => (fullHeight ? "100%" : height)};
-  @media screen and ${(props) => props.theme.devices.sm} {
+  width: ${({ fullWidth, width = "auto" }) => (fullWidth ? "100%" : width)};
+  @media screen and ${(props) => props.theme.devices.md} {
     ${(props) => medium(props)}
   }
 `);
+
+export const Col = withTheme(
+  styled.div(({ align, lg, sm, md, theme }) => ({
+    display: "flex",
+    width: "100%",
+    gap: theme.spacing.medium,
+    justifyContent: align === "start" ? "flex-start" : "center",
+    minHeight: "10px",
+    [`@media screen and (min-width: ${theme.breakpoints.lg})`]: lg ? lg : {},
+    [`@media screen and (max-width: ${theme.breakpoints.lg})`]: lg ? lg : {},
+    [`@media screen and (max-width: ${theme.breakpoints.md})`]: md ? md : {},
+    [`@media screen and (max-width: ${theme.breakpoints.sm})`]: sm ? sm : {},
+  })),
+);
+

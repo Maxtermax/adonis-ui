@@ -4,29 +4,33 @@ import styled from "@emotion/styled";
 export const Header = withTheme(styled.header`
   align-items: center;
   background: ${({ theme }) => theme.colors.primary};
+  display: flex;
   color: ${({ theme }) => theme.colors.contrast.primary};
-  display: grid;
-  grid-template-columns: 350px 1fr 350px;
-  padding-left: ${({ theme }) => theme.spacing.calc(10)};
-  padding-right: ${({ theme }) => theme.spacing.calc(10)};
   justify-content: space-between;
-  & .ad-text-subtitle {
+  margin: 0px auto;
+  width: 100%;
+  height: 80px;
+  & > .ad-grid {
+    width: ${({ theme }) => `calc(100% - ${theme.spacing.calc(14)})`};
+    margin: 0px auto;
+  }
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    & > .ad-grid {
+      width: ${({ theme }) => `calc(100% - ${theme.spacing.calc(0)})`};
+    }
+  }
+  & .ad-text-subtitle,
+  .ad-text-heading {
     color: ${({ theme }) => theme.colors.contrast.primary};
+    text-align: center;
   }
 `);
 
 export const Container = withTheme(styled.div`
   align-content: stretch;
   display: grid;
-  grid-template-rows: 60px auto 100px;
+  grid-template-rows: 80px auto 100px;
   height: 100dvh;
-`);
-
-export const BurguerMenu = withTheme(styled.button`
-  display: flex;
-  background: none;
-  border: none;
-  color: ${({ theme }) => theme.colors.contrast.primary};
 `);
 
 export const Icon = styled.div`
@@ -40,18 +44,25 @@ export const Content = styled.div`
   width: 100%;
 `;
 
-export const Center = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: center;
-`;
-
-export const Item = styled.li`
+export const Item = withTheme(styled.li`
   display: flex;
   list-style-type: none;
   margin: 0;
   padding: 0;
-`;
+  & .ad-button {
+    color: ${({ theme }) => theme.colors.contrast.primary};
+  }
+  & .ad-button:hover {
+    background: ${({ theme }) => theme.colors.contrast.primary};
+    color: ${({ theme }) => theme.colors.primary};
+  }
+  & .ad-button:hover .ad-text {
+    color: ${({ theme }) => theme.colors.primary};
+  }
+  & .ad-card:hover {
+    color: ${({ theme }) => theme.colors.primary};
+  }
+`);
 
 export const List = styled.ul`
   display: flex;
@@ -61,3 +72,24 @@ export const List = styled.ul`
   padding: 0;
   justify-content: space-evenly;
 `;
+
+export const SubMenu = styled.div`
+  display: flex;
+  position: fixed;
+  width: 100%;
+  visibility: hidden;
+  & .ad-panel {
+    border-radius: 0px;
+    height: 150px;
+    width: 100%;
+  }
+`;
+
+export const HeaderContainer = styled.div`
+  .ad-button:hover {
+  }
+`;
+
+
+
+

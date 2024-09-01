@@ -9,8 +9,12 @@ export const ADProvider = ({ children }) => {
       <Global
         styles={css`
           ${emotionNormalize}
+          #storybook-root {
+            width: 100%;
+            padding: 0px !important;
+          }
           html,
-              body {
+          body {
             padding: 0;
             margin: 0;
             background: white;
@@ -23,4 +27,3 @@ export const ADProvider = ({ children }) => {
     </>
   );
 };
-
