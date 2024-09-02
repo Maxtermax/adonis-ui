@@ -13,6 +13,36 @@ export const ADProvider = ({ children }) => {
             width: 100%;
             padding: 0px !important;
           }
+          @keyframes fade-in {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+              border: 1px solid red !important;
+            }
+          }
+          @keyframes fade-out {
+            from {
+              opacity: 1;
+            }
+            to {
+              opacity: 0;
+            }
+          }
+          html {
+            view-transition-name: root;
+          }
+          html::view-transition-old(root) {
+            animation-name: fade-out;
+            animation-fill-mode: forwards;
+            animation-duration: 30000s;
+          }
+          html::view-transition-new(root) {
+            animation-name: fade-in;
+            animation-fill-mode: forwards;
+            animation-duration: 30000s;
+          }
           html,
           body {
             padding: 0;

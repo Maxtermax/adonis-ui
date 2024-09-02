@@ -37,6 +37,10 @@ export const FOCUS_TAB = "FOCUS_TAB";
 
 export const SET_DRAWER_OPEN = "SET_DRAWER_OPEN";
 
+export const FOCUS_OPTION = "FOCUS_OPTION";
+
+export const BLUR_OPTION = "BLUR_OPTION";
+
 export const SHAPES = {
   rounded: "rounded",
   sharp: "sharp",

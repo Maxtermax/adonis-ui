@@ -104,6 +104,8 @@ class Light extends Base {
       small: "14px",
       medium: "16px",
       big: "20px",
+      extra: "25",
+      parse2Num: (val = "") => Number(val.replaceAll("px", ""))
     },
   };
   timing = {
@@ -113,6 +115,9 @@ class Light extends Base {
     quick: "0.15s",
     fast: "0.28s",
   };
+  animationFunctions = {
+    sweet: "cubic-bezier(0, 1.33, 1, 0.97)"
+  }
   transitions = {
     smooth: "all ease-in-out 0.35s",
     quick: "all ease-in 0.15s",

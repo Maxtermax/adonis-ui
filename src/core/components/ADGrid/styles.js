@@ -1,4 +1,4 @@
-import { withTheme } from '@emotion/react';
+import { withTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 
 const medium = ({ md = {} }) => {
@@ -13,7 +13,7 @@ const medium = ({ md = {} }) => {
       grid-template-columns: repeat(${md.cols}, 1fr);
     `;
   }
-  if(md.gap) {
+  if (md.gap) {
     result += `
       gap: ${md.gap};
     `;
@@ -31,20 +31,36 @@ const rows = (props) => {
   return `repeat(${props.rows}, 1fr)`;
 };
 
-export const Grid = withTheme(styled.div`
-  display: grid;
-  justify-items: ${({ justifyCenter }) =>
-    justifyCenter ? "center" : "center"};
-  align-items: ${({ alignCenter, alignItems = "center" }) => (alignCenter ? "center" : alignItems)};
-  grid-template-rows: ${(props) => rows(props)};
-  grid-template-columns: ${(props) => cols(props)};
-  gap: ${({ theme }) => theme.spacing.medium};
-  height: ${({ fullHeight, height = "auto" }) => (fullHeight ? "100%" : height)};
-  width: ${({ fullWidth, width = "auto" }) => (fullWidth ? "100%" : width)};
-  @media screen and ${(props) => props.theme.devices.md} {
-    ${(props) => medium(props)}
-  }
-`);
+export const Grid = withTheme(
+  styled.div(
+    ({
+      lg,
+      sm,
+      md,
+      alignCenter,
+      alignItems = "center",
+      fullWidth,
+      fullHeight,
+      height = "auto",
+      width = "auto",
+      theme,
+      ...props
+    }) => ({
+      display: "grid",
+      justifyItems: "center",
+      alignItems: alignCenter ? "center" : alignItems,
+      gridTemplateRows: rows(props),
+      gridTemplateColumns: cols(props),
+      gap: theme.spacing.medium,
+      height: fullHeight ? "100%" : height,
+      width: fullWidth ? "100%" : width,
+      [`@media screen and (min-width: ${theme.breakpoints.lg})`]: lg ? lg : {},
+      [`@media screen and (max-width: ${theme.breakpoints.lg})`]: lg ? lg : {},
+      [`@media screen and (max-width: ${theme.breakpoints.md})`]: md ? md : {},
+      [`@media screen and (max-width: ${theme.breakpoints.sm})`]: sm ? sm : {},
+    }),
+  ),
+);
 
 export const Col = withTheme(
   styled.div(({ align, lg, sm, md, theme }) => ({
@@ -59,4 +75,3 @@ export const Col = withTheme(
     [`@media screen and (max-width: ${theme.breakpoints.sm})`]: sm ? sm : {},
   })),
 );
-

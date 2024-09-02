@@ -1,5 +1,16 @@
-import { withTheme } from "@emotion/react";
+import { keyframes, withTheme } from "@emotion/react";
 import styled from "@emotion/styled";
+
+const show = keyframes`
+  0% {
+    opacity: 0;
+    height: 0px;
+  }
+  100% {
+    opacity: 1;
+    height: 250px;
+  }
+`;
 
 export const Header = withTheme(styled.header`
   align-items: center;
@@ -51,6 +62,12 @@ export const Item = withTheme(styled.li`
   padding: 0;
   & .ad-button {
     color: ${({ theme }) => theme.colors.contrast.primary};
+    background: ${({ isSelected, theme }) =>
+      isSelected ? theme.colors.contrast.primary : theme.colors.primary};
+  }
+  & .ad-button .ad-text {
+    color: ${({ isSelected, theme }) =>
+      isSelected ? theme.colors.primary : theme.colors.contrast.primary};
   }
   & .ad-button:hover {
     background: ${({ theme }) => theme.colors.contrast.primary};
@@ -73,23 +90,24 @@ export const List = styled.ul`
   justify-content: space-evenly;
 `;
 
-export const SubMenu = styled.div`
+export const SubMenu = withTheme(styled.div`
+  border: 1px solid red;
   display: flex;
   position: fixed;
   width: 100%;
-  visibility: hidden;
+  top: 80px;
   & .ad-panel {
-    border-radius: 0px;
-    height: 150px;
+    animation-name: ${show};
+    animation-duration: ${({ theme }) => theme.timing.smooth};
+    animation-timing-function: ${({ theme }) => theme.animationFunctions.sweet};
+    animation-fill-mode: forwards;
+    height: 0px;
     width: 100%;
   }
-`;
+`);
 
 export const HeaderContainer = styled.div`
-  .ad-button:hover {
+  .hidden {
+    display: none;
   }
 `;
-
-
-
-
