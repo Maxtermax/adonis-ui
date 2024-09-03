@@ -1,5 +1,6 @@
 import { ADLayout } from './ADLayout';
-export { ADLayoutHeader } from './ADLayout';
+import ADLayoutHeader from './components/ADLayoutHeader';
 
+export { ADLayoutHeader };
 export default ADLayout;
 

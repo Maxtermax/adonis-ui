@@ -1,4 +1,4 @@
-import ADLayout, { ADLayoutHeader } from "ADLayout";
+import ADLayout, { ADLayoutHeader }  from "ADLayout";
 
 export default {
   title: "Basic/ADLayout",

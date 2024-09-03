@@ -1,7 +1,31 @@
 import React from "react";
 import emotionNormalize from "emotion-normalize";
-import { Global, css, ThemeProvider } from "@emotion/react";
+import { Global, css, ThemeProvider, keyframes } from "@emotion/react";
 import theme from "theme";
+
+const slideTopAndFadeIn = keyframes`
+  0% {
+    opacity: 0;
+    margin-top: 0px;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 20px;
+  }
+`;
+
+const growAndFadeIn = keyframes`
+  0% {
+    opacity: 0;
+    height: 0px;
+  }
+  100% {
+    opacity: 1;
+    height: 150px;
+  }
+`;
+
+export const animations = { slideTopAndFadeIn, growAndFadeIn };
 
 export const ADProvider = ({ children }) => {
   return (
@@ -13,35 +37,28 @@ export const ADProvider = ({ children }) => {
             width: 100%;
             padding: 0px !important;
           }
-          @keyframes fade-in {
-            from {
-              opacity: 0;
-            }
-            to {
-              opacity: 1;
-              border: 1px solid red !important;
-            }
-          }
-          @keyframes fade-out {
-            from {
-              opacity: 1;
-            }
-            to {
-              opacity: 0;
-            }
-          }
-          html {
-            view-transition-name: root;
-          }
-          html::view-transition-old(root) {
-            animation-name: fade-out;
+          ::view-transition-group(.submenu-transition-group) {
+            animation-duration: ${theme.timing.quick};
+            animation-timing-function: ${theme.animationFunctions.sweet};
             animation-fill-mode: forwards;
-            animation-duration: 30000s;
           }
-          html::view-transition-new(root) {
-            animation-name: fade-in;
-            animation-fill-mode: forwards;
-            animation-duration: 30000s;
+          ::view-transition-old(submenu-transition) {
+            animation-name: ${growAndFadeIn};
+            animation-direction: reverse;
+          }
+          ::view-transition-new(submenu-transition) {
+            animation-name: ${growAndFadeIn};
+          }
+          ::view-transition-old(submenu-transition-option) {
+            animation-name: ${slideTopAndFadeIn};
+            animation-direction: reverse;
+            animation-duration: ${theme.timing.quick};
+          }
+          ::view-transition-new(submenu-transition-option) {
+            animation-name: ${slideTopAndFadeIn};
+          }
+          .hide {
+            display: none !important;
           }
           html,
           body {
