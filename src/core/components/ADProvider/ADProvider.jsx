@@ -3,6 +3,15 @@ import emotionNormalize from "emotion-normalize";
 import { Global, css, ThemeProvider, keyframes } from "@emotion/react";
 import theme from "theme";
 
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
 const slideTopAndFadeIn = keyframes`
   0% {
     opacity: 0;
@@ -10,7 +19,7 @@ const slideTopAndFadeIn = keyframes`
   }
   100% {
     opacity: 1;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 `;
 
@@ -21,11 +30,11 @@ const growAndFadeIn = keyframes`
   }
   100% {
     opacity: 1;
-    height: 150px;
+    height: 250px;
   }
 `;
 
-export const animations = { slideTopAndFadeIn, growAndFadeIn };
+export const animations = { fadeIn, slideTopAndFadeIn, growAndFadeIn };
 
 export const ADProvider = ({ children }) => {
   return (

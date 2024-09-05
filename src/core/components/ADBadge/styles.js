@@ -13,7 +13,7 @@ const transform = ({ theme, size }) =>
   ({
     [DIMENSIONS.normal]: theme.transform.scale.normal,
     [DIMENSIONS.small]: theme.transform.scale.tiny,
-    [DIMENSIONS.xs]: theme.transform.scale["50%"],
+    [DIMENSIONS.extraSmall]: theme.transform.scale["50%"],
   })[size] ?? "";
 
 export const Badge = withTheme(styled.div`

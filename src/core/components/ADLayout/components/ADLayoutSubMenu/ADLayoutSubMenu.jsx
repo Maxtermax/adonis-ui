@@ -49,7 +49,9 @@ export const ADLayoutSubMenu = () => {
         className="hide ad-layout-submenu__container"
         variant="flat"
       >
-        Sub Menu: {state.focus}
+        <styles.Content key={state.focus}>
+          Submenu: {state.focus}
+        </styles.Content>
       </ADPanel>
     </styles.SubMenu>
   );

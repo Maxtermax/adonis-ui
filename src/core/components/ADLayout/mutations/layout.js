@@ -1,4 +1,4 @@
-import { FOCUS_TRANSITION_OPTION, FOCUS_OPTION, BLUR_OPTION } from "constants";
+import { FOCUS_OPTION, BLUR_OPTION } from "constants";
 
 export const blurOption = (store, targets = []) => {
   store.mutate({

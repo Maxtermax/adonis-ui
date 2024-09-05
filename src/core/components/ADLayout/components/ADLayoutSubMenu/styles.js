@@ -2,8 +2,15 @@ import { withTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 import { animations } from "ADProvider";
 
+export const Content = withTheme(styled.div`
+  animation-name: ${animations.slideTopAndFadeIn};
+  animation-duration: ${({ theme }) => theme.timing.fast};
+  animation-timing-function: ${({ theme }) => theme.animationFunctions.sweet};
+  animation-fill-mode: forwards;
+`);
+
 export const SubMenu = withTheme(styled.div`
-  background: whitesmoke;
+  background: ${({ theme }) => theme.colors.smoke};
   animation-name: ${animations.growAndFadeIn};
   animation-duration: ${({ theme }) => theme.timing.quick};
   animation-timing-function: ${({ theme }) => theme.animationFunctions.sweet};

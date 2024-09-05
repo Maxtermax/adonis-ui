@@ -29,7 +29,7 @@ export default {
     },
     size: {
       control: "select",
-      options: [DIMENSIONS.small, DIMENSIONS.normal, DIMENSIONS.xs],
+      options: [DIMENSIONS.small, DIMENSIONS.normal, DIMENSIONS.extraSmall],
     },
   },
 };

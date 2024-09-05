@@ -26,6 +26,7 @@ export const DIMENSIONS = {
   none: "none",
   normal: "normal",
   small: "small",
+  extraSmall: "extra-small",
   regular: "regular",
   medium: "medium",
   high: "high",
