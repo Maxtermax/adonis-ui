@@ -8,11 +8,13 @@ export const ADBadge = forwardRef(function ADBadge(
   {
     children,
     className = "",
+    position = "",
     size = DIMENSIONS.normal,
     variant = rounded,
+    value = null,
     ...rest
   },
-  ref
+  ref,
 ) {
   return (
     <styles.Badge
@@ -22,7 +24,10 @@ export const ADBadge = forwardRef(function ADBadge(
       variant={variant}
       {...rest}
     >
-      {children}
+      <styles.Content className="ad-badge__content">{children}</styles.Content>
+      <styles.Value position={position} className="ad-badge__value">
+        {value}
+      </styles.Value>
     </styles.Badge>
   );
 });

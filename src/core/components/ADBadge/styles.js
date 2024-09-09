@@ -1,6 +1,18 @@
-import { withTheme } from '@emotion/react';
+import { withTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 import { SHAPES, DIMENSIONS } from "constants";
+
+const calcPosition = (position = "top-left") =>
+  ({
+    ["top-left"]: {
+      top: "20px",
+      left: "-10px",
+    },
+    ["top-right"]: {
+      top: "20px",
+      left: "calc(100% - 10px)",
+    },
+  })[position] ?? "";
 
 const radius = ({ theme, variant }) =>
   ({
@@ -17,33 +29,22 @@ const transform = ({ theme, size }) =>
   })[size] ?? "";
 
 export const Badge = withTheme(styled.div`
-  display: flex;
-  background-color: ${({ active, theme }) =>
-    active ? theme.colors.contrast.lightSilver : theme.colors.lightSilver};
-  border-radius: ${(props) => radius(props)};
-  border: 1px solid
-    ${({ active, theme }) =>
-      active ? theme.colors.primary : theme.colors.transparent};
-  color: ${({ active, theme }) =>
-    active ? theme.colors.contrast.primary : theme.colors.primary};
-  cursor: pointer;
-  min-width: 30px;
-  height: 30px;
-  text-align: center;
-  align-items: center;
-  justify-content: space-around;
-  padding: ${(props) => props.theme.spacing.regular};
-  transform: ${(props) => transform(props)};
-  z-index: 1;
-  transition: ${(props) => props.theme.transitions.smooth};
-  &:hover {
-    background-color: ${(props) => props.theme.colors.contrast.lightSilver};
-    box-shadow: ${(props) => props.theme.elevation.regular}
-      ${(props) => props.theme.colors.contrast.lightSilver};
-    border: 1px solid ${(props) => props.theme.colors.primary};
-    color: ${(props) => props.theme.colors.contrast.primary};
-  }
-  &:hover [class^="ad-text"] {
-    color: ${(props) => props.theme.colors.contrast.primary};
-  }
+  display: inline-block;
+  position: relative;
+`);
+
+export const Content = withTheme(styled.div`
+  display: inline-block;
+  position: relative;
+`);
+
+export const Value = withTheme(styled.span`
+  position: absolute;
+  bottom: ${({ position = "" }) => calcPosition(position).top};
+  left: ${({ position = "" }) => calcPosition(position).left};
+  background: red;
+  min-width: 20px;
+  min-height: 20px;
+  border-radius: 100%;
+  padding: 2px;
 `);

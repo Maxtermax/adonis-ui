@@ -1,7 +1,6 @@
 import { useMutations } from "hermes-io";
 import ADButton from "ADButton";
 import ADText from "ADText";
-import ADBadge from "ADBadge";
 import { FOCUS_OPTION, BLUR_OPTION } from "constants";
 import { layoutMicroStore, layoutHeaderStore } from "ADLayout/store/layout";
 import * as mutations from "ADLayout/mutations/layout";
@@ -34,9 +33,6 @@ export const ADLayoutOption = (props = {}) => {
       <ADButton onMouseEnter={() => handleEnter(props.id)} variant="text">
         <ADText value={props.name} variant="subtitle" />
       </ADButton>
-      <ADBadge variant="circle" size={"extra-small"}>
-        1k
-      </ADBadge>
     </styles.Item>
   );
 };

@@ -1,7 +1,7 @@
 import { fn } from "@storybook/test";
 import ADBadge from "ADBadge";
-import ADText from "ADText";
-import { SHAPES, TEXT_VARIANTS, DIMENSIONS } from "constants";
+import ADButton from "ADButton";
+import { SHAPES, DIMENSIONS } from "constants";
 
 const { circle, rounded, sharp } = SHAPES;
 
@@ -38,6 +38,12 @@ export const Primary = {
   args: {
     variant: rounded,
     size: DIMENSIONS.small,
-    children: <ADText variant={TEXT_VARIANTS.HEADING} value="2" />,
+    value: "3K",
+    position: 'top-right',
+    children: (
+      <ADButton variant="contained">
+        <p>Hola mundo</p>
+      </ADButton>
+    ),
   },
 };
