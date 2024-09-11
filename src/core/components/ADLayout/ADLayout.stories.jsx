@@ -1,4 +1,4 @@
-import ADLayout, { ADLayoutHeader }  from "ADLayout";
+import ADLayout, { ADLayoutHeader, ADLayoutBody }  from "ADLayout";
 
 export default {
   title: "Basic/ADLayout",
@@ -11,6 +11,9 @@ export default {
 
 export const Default = {
   args: {
+    body: () => (
+      <ADLayoutBody />
+    ),
     header: () => (
       <ADLayoutHeader />
     ),

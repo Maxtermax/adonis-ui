@@ -1,32 +1,26 @@
 import { withTheme } from "@emotion/react";
 import styled from "@emotion/styled";
-import { SHAPES, DIMENSIONS } from "constants";
+import { POSITIONS } from "constants";
 
 const calcPosition = (position = "top-left") =>
   ({
-    ["top-left"]: {
+    [POSITIONS.topLeft]: {
       top: "20px",
       left: "-10px",
     },
-    ["top-right"]: {
+    [POSITIONS.topRight]: {
       top: "20px",
       left: "calc(100% - 10px)",
     },
+    [POSITIONS.bottomRight]: {
+      top: "-10px",
+      left: "calc(100% - 10px)",
+    },
+    [POSITIONS.bottomLeft]: {
+      top: "-10px",
+      left: "-10px",
+    },
   })[position] ?? "";
-
-const radius = ({ theme, variant }) =>
-  ({
-    [SHAPES.rounded]: theme.border.radius[SHAPES.rounded],
-    [SHAPES.sharp]: theme.border.radius[SHAPES.sharp],
-    [SHAPES.circle]: theme.border.radius[SHAPES.circle],
-  })[variant] ?? "";
-
-const transform = ({ theme, size }) =>
-  ({
-    [DIMENSIONS.normal]: theme.transform.scale.normal,
-    [DIMENSIONS.small]: theme.transform.scale.tiny,
-    [DIMENSIONS.extraSmall]: theme.transform.scale["50%"],
-  })[size] ?? "";
 
 export const Badge = withTheme(styled.div`
   display: inline-block;
@@ -42,9 +36,15 @@ export const Value = withTheme(styled.span`
   position: absolute;
   bottom: ${({ position = "" }) => calcPosition(position).top};
   left: ${({ position = "" }) => calcPosition(position).left};
-  background: red;
-  min-width: 20px;
-  min-height: 20px;
-  border-radius: 100%;
-  padding: 2px;
+  background: ${({ theme }) => theme.colors.red};
+  width: 20px;
+  height: 20px;
+  border-radius: ${({ theme }) => theme.border.radius.rounded};
+  padding: ${({ theme }) => theme.spacing.calc(1)};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.contrast.primary};
+  font-size: ${({ theme }) => theme.fonts.sizes.small};
+  transform: ${({ theme }) => theme.transform.scale["80%"]};
 `);

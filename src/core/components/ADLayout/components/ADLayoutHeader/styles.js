@@ -1,5 +1,6 @@
 import { withTheme } from "@emotion/react";
 import styled from "@emotion/styled";
+import logo from "./assets/logo.png";
 
 export const Header = withTheme(styled.header`
   align-items: center;
@@ -26,6 +27,18 @@ export const Header = withTheme(styled.header`
   }
 `);
 
+export const Logo = styled.div`
+  background-image: url(${logo});
+  background-size: 200px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 200px;
+  height: 40px;
+  transform: scale(2);
+  position: relative;
+  top: -4px;
+`;
+
 export const Icon = styled.div`
   align-items: center;
   display: flex;
@@ -47,6 +60,7 @@ export const List = styled.ul`
 `;
 
 export const HeaderContainer = styled.div`
+  z-index: 1;
   .hidden {
     display: none;
   }

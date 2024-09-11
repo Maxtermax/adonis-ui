@@ -8,6 +8,7 @@ export const Sizes = styled.div`
   left: -10px;
   top: -5px;
   justify-content: flex-start;
+  gap: ${({ theme }) => theme.spacing.calc(2)};
 `;
 
 export const Discount = withTheme(styled.div`
@@ -22,7 +23,7 @@ export const Discount = withTheme(styled.div`
     color: ${({ theme }) => theme.colors.white};
     transform: ${({ theme }) => theme.transform.scale["90%"]};
   }
-  & .ad-badge.discount-percentage:hover {
+  & .ad-panel.discount-percentage:hover {
     background: ${({ theme }) => theme.colors.red};
   }
 `);
@@ -71,10 +72,14 @@ export const Footer = withTheme(styled.div`
   display: flex;
   background-color: ${(props) => props.theme.colors.grey};
   flex-direction: column;
-  gap: ${(props) => props.theme.spacing.low};
   padding: ${(props) => props.theme.spacing.medium};
   transition: ${(props) => props.theme.transitions.smooth};
-  .ad-badge {
+  .ad-panel {
     border: 1px solid ${(props) => props.theme.colors.transparent};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
   }
 `);

@@ -3,7 +3,6 @@ import { withTheme } from "@emotion/react";
 
 export const Container = withTheme(styled.div`
   align-items: center;
-  border: 1px solid red;
   display: flex;
   height: fit-content;
   width: 100%;
@@ -14,7 +13,6 @@ export const Container = withTheme(styled.div`
 
 export const Content = withTheme(styled.div`
   align-items: center;
-  border: 1px solid green;
   display: flex;
   width: 100%;
   gap: ${({ theme }) => theme.spacing.medium};

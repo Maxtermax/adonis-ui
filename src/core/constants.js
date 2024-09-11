@@ -22,6 +22,15 @@ export const CARD_VARIANTS = {
   MINI: "mini",
 };
 
+export const SEARCH_DRAWE_ID = "search-drawer";
+
+export const POSITIONS = {
+  topLeft: "top-left",
+  topRight: "top-right",
+  bottomRight: "bottom-right",
+  bottomLeft: "bottom-left",
+}
+
 export const DIMENSIONS = {
   none: "none",
   normal: "normal",

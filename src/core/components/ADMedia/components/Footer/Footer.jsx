@@ -2,7 +2,7 @@ import React from 'react';
 import * as styles from "./styles";
 // import formatCurrency from "utils/formatCurrency";
 import { CartPlus } from "@styled-icons/bootstrap/CartPlus";
-import ADBadge from "ADBadge";
+import ADPanel from "ADPanel";
 import ADButton from "ADButton";
 import ADGrid from "ADGrid";
 import ADText from "ADText";
@@ -71,9 +71,9 @@ export const Footer = ({ name, price, sizes, discount }) => {
           <styles.Sizes className="sizes">
             {sizes.map((size, index) => (
               <ADTooltip text={`Talla: ${size}`} key={index}>
-                <ADBadge size={DIMENSIONS.small}>
+                <ADPanel>
                   <ADText variant={TEXT_VARIANTS.SUBTITLE} value={size} />
-                </ADBadge>
+                </ADPanel >
               </ADTooltip>
             ))}
           </styles.Sizes>

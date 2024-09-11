@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { SHAPES, DIMENSIONS } from "constants";
+import { SHAPES, DIMENSIONS, POSITIONS } from "constants";
 import * as styles from "./styles";
 
 const { rounded } = SHAPES;
@@ -8,7 +8,7 @@ export const ADBadge = forwardRef(function ADBadge(
   {
     children,
     className = "",
-    position = "",
+    position = POSITIONS.topRight,
     size = DIMENSIONS.normal,
     variant = rounded,
     value = null,

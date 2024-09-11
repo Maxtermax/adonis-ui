@@ -1,9 +1,7 @@
 import { fn } from "@storybook/test";
 import ADBadge from "ADBadge";
 import ADButton from "ADButton";
-import { SHAPES, DIMENSIONS } from "constants";
-
-const { circle, rounded, sharp } = SHAPES;
+import { POSITIONS } from "constants";
 
 export default {
   title: "Basic/ADBadge",
@@ -23,23 +21,23 @@ export default {
     className: {
       table: { disable: true },
     },
-    variant: {
+    position: {
       control: "select",
-      options: [rounded, sharp, circle],
-    },
-    size: {
-      control: "select",
-      options: [DIMENSIONS.small, DIMENSIONS.normal, DIMENSIONS.extraSmall],
+      options: [
+        POSITIONS.bottomLeft,
+        POSITIONS.bottomRight,
+        POSITIONS.topLeft,
+        POSITIONS.topLeft,
+        POSITIONS.topRight,
+      ],
     },
   },
 };
 
 export const Primary = {
   args: {
-    variant: rounded,
-    size: DIMENSIONS.small,
     value: "3K",
-    position: 'top-right',
+    position: POSITIONS.topRight,
     children: (
       <ADButton variant="contained">
         <p>Hola mundo</p>

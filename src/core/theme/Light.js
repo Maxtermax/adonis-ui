@@ -73,6 +73,7 @@ class Light extends Base {
     [DIMENSIONS.none]: "0px 0px 0px",
     [DIMENSIONS.regular]: "0px 4px 8px",
     [DIMENSIONS.high]: "0px 8px 8px",
+    little: "0px 15px 20px 0px #000000d4"
   };
   transform = {
     scale: {
@@ -105,7 +106,7 @@ class Light extends Base {
       small: "14px",
       medium: "16px",
       big: "20px",
-      extra: "25",
+      extra: "25px",
       parse2Num: (val = "") => Number(val.replaceAll("px", ""))
     },
   };
@@ -117,7 +118,8 @@ class Light extends Base {
     fast: "0.28s",
   };
   animationFunctions = {
-    sweet: "cubic-bezier(0, 1.33, 1, 0.97)"
+    sweet: "cubic-bezier(0, 1.33, 1, 0.97)",
+    easy: "ease-in-out"
   }
   transitions = {
     smooth: "all ease-in-out 0.35s",

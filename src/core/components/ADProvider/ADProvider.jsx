@@ -3,6 +3,17 @@ import emotionNormalize from "emotion-normalize";
 import { Global, css, ThemeProvider, keyframes } from "@emotion/react";
 import theme from "theme";
 
+const blur = keyframes`
+  0% {
+    filter: blur(0px);
+    position-event: auto;
+  }
+  100% {
+    filter: blur(15px);
+    position-event: none;
+  }
+`;
+
 const fadeIn = keyframes`
   0% {
     opacity: 0;
@@ -12,29 +23,16 @@ const fadeIn = keyframes`
   }
 `;
 
-const slideTopAndFadeIn = keyframes`
-  0% {
-    opacity: 0;
-    margin-top: 0px;
-  }
-  100% {
-    opacity: 1;
-    margin-top: 10px;
-  }
-`;
-
 const growAndFadeIn = keyframes`
   0% {
-    opacity: 0;
     height: 0px;
   }
   100% {
-    opacity: 1;
     height: 250px;
   }
 `;
 
-export const animations = { fadeIn, slideTopAndFadeIn, growAndFadeIn };
+export const animations = { fadeIn, blur, growAndFadeIn };
 
 export const ADProvider = ({ children }) => {
   return (
@@ -59,12 +57,12 @@ export const ADProvider = ({ children }) => {
             animation-name: ${growAndFadeIn};
           }
           ::view-transition-old(submenu-transition-option) {
-            animation-name: ${slideTopAndFadeIn};
+            animation-name: ${fadeIn};
             animation-direction: reverse;
             animation-duration: ${theme.timing.quick};
           }
           ::view-transition-new(submenu-transition-option) {
-            animation-name: ${slideTopAndFadeIn};
+            animation-name: ${fadeIn};
           }
           .hide {
             display: none !important;

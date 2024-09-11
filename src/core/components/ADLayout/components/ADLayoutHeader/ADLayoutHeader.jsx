@@ -2,7 +2,6 @@ import React from "react";
 import { useTheme } from "@emotion/react";
 import { useObservableStore } from "hermes-io";
 import ADButton from "ADButton";
-import ADText from "ADText";
 import ADGrid, { ADGridCol } from "ADGrid";
 import { Menu } from "@styled-icons/boxicons-regular/Menu";
 import ADLayoutSubMenu from "ADLayout/components/ADLayoutSubMenu";
@@ -82,7 +81,7 @@ export const ADLayoutHeader = () => {
               },
             }}
           >
-            <ADText value="ADONIS URBAN" variant="heading" />
+            <styles.Logo />
           </ADGridCol>
 
           <ADGridCol role="list" md={{ display: "none" }}>

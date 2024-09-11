@@ -12,6 +12,7 @@ export const Item = withTheme(styled.li`
       isSelected ? theme.colors.contrast.primary : theme.colors.primary};
   }
   & .ad-button .ad-text {
+    text-transform: uppercase;
     color: ${({ isSelected, theme }) =>
       isSelected ? theme.colors.primary : theme.colors.contrast.primary};
   }

@@ -14,7 +14,7 @@ export default {
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary = {
   args: {
-    children: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => (
+    children: [1, 2, 3, 4].map((index) => (
       <ADMedia key={index} {...mock} />
     )),
   },
