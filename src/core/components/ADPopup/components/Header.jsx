@@ -1,10 +1,11 @@
+import React from "react";
 import { overlayMicroStore } from "ADOverlay/store/overlay";
 import { setOpen } from "ADPopup/mutations/setOpen";
 import { ADButton } from "ADButton/ADButton";
 import { ADText } from "ADText/ADText";
 import { ADPanel } from "ADPanel/ADPanel";
 import { ADTooltip } from "ADTooltip/ADTooltip";
-import { CloseOutline } from "@styled-icons/evaicons-outline/CloseOutline";
+import { Close } from "@styled-icons/evil/Close"
 import * as styles from "ADPopup/styles";
 
 export const Header = ({ storeId, title = "", disableClose = false }) => {
@@ -15,7 +16,7 @@ export const Header = ({ storeId, title = "", disableClose = false }) => {
   return (
     <styles.Header>
       <ADPanel variant="flat" className="ad-popup__title">
-        {title ? <ADText value={title} variant={"title"} /> : null}
+        {typeof title === "string" ? <ADText value={title} variant={"title"} /> : title}
         <ADTooltip
           direction="top"
           text={<ADText value="Close" variant="subtitle" />}
@@ -26,7 +27,7 @@ export const Header = ({ storeId, title = "", disableClose = false }) => {
             onClick={handleClose}
             variant="text"
           >
-            <CloseOutline />
+            <Close size={25} />
           </ADButton>
         </ADTooltip>
       </ADPanel>

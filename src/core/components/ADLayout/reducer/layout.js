@@ -1,4 +1,4 @@
-import { FOCUS_OPTION, BLUR_OPTION } from "constants";
+import { BLUR_LAYOUT_BODY, FOCUS_OPTION, BLUR_OPTION } from "constants";
 
 export default function layoutReducer(state, action) {
   const actions = {
@@ -8,6 +8,9 @@ export default function layoutReducer(state, action) {
     },
     [BLUR_OPTION]: () => {
       state.header.focus = '';
+      return state;
+    },
+    [BLUR_LAYOUT_BODY]: () => {
       return state;
     },
   };

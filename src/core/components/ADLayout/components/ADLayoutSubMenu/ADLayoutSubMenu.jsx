@@ -3,7 +3,7 @@ import { useMutations } from "hermes-io";
 import ADPanel from "ADPanel";
 import ADText from "ADText";
 import { FOCUS_OPTION, BLUR_OPTION } from "constants";
-import { layoutMicroStore, layoutHeaderStore } from "ADLayout/store/layout";
+import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store/layout";
 import * as styles from "./styles";
 
 const subListMap = {
@@ -210,7 +210,7 @@ export const ADLayoutSubMenu = () => {
   const { state, onEvent } = useMutations({
     initialState: { isOpen: false, focus: "" },
     store: layoutMicroStore,
-    id: layoutHeaderStore,
+    id: LAYOUT_HEADER_STORE,
   });
 
   onEvent(FOCUS_OPTION, (value = {}) => {

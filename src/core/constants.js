@@ -22,7 +22,7 @@ export const CARD_VARIANTS = {
   MINI: "mini",
 };
 
-export const SEARCH_DRAWE_ID = "search-drawer";
+export const SEARCH_MODAL = "search-drawer";
 
 export const POSITIONS = {
   topLeft: "top-left",
@@ -52,6 +52,8 @@ export const FOCUS_OPTION = "FOCUS_OPTION";
 export const FOCUS_TRANSITION_OPTION = "FOCUS_TRANSITION_OPTION";
 
 export const BLUR_OPTION = "BLUR_OPTION";
+
+export const BLUR_LAYOUT_BODY = "BLUR_LAYOUT_BODY";
 
 export const SHAPES = {
   rounded: "rounded",

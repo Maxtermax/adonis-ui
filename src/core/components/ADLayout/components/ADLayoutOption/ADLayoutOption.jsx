@@ -2,7 +2,7 @@ import { useMutations } from "hermes-io";
 import ADButton from "ADButton";
 import ADText from "ADText";
 import { FOCUS_OPTION, BLUR_OPTION } from "constants";
-import { layoutMicroStore, layoutHeaderStore } from "ADLayout/store/layout";
+import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store/layout";
 import * as mutations from "ADLayout/mutations/layout";
 import * as styles from "./styles";
 
@@ -18,14 +18,14 @@ export const ADLayoutOption = (props = {}) => {
     events: [FOCUS_OPTION, BLUR_OPTION],
     onChange: handleFocusChange,
     store: layoutMicroStore,
-    id: layoutHeaderStore,
+    id: LAYOUT_HEADER_STORE,
   });
 
   const isSelected = state.focus === props.id;
 
   const handleEnter = (focus = "") => {
-    const store = layoutMicroStore.get(layoutHeaderStore);
-    mutations.focusOption(store, { focus }, [layoutHeaderStore]);
+    const store = layoutMicroStore.get(LAYOUT_HEADER_STORE);
+    mutations.focusOption(store, { focus }, [LAYOUT_HEADER_STORE]);
   };
 
   return (

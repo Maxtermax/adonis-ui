@@ -1,4 +1,4 @@
 import { MicroStore } from "hermes-io";
 
 export const layoutMicroStore = new MicroStore();
-export const layoutHeaderStore = 'LAYOUT_STORE';
+export const LAYOUT_HEADER_STORE = 'LAYOUT_STORE';

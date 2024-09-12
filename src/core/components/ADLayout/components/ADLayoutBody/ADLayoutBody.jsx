@@ -1,25 +1,24 @@
 import React, { useRef } from "react";
 import { useMutations } from "hermes-io";
-import ADCarousell from "ADCarousell";
-import ADDrawer from "ADDrawer";
+import { BLUR_LAYOUT_BODY, FOCUS_OPTION, BLUR_OPTION } from "constants";
+import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store/layout";
 import ADMedia from "ADMedia";
-import { SEARCH_DRAWE_ID, FOCUS_OPTION, BLUR_OPTION } from "constants";
-import { layoutMicroStore, layoutHeaderStore } from "ADLayout/store/layout";
-import { drawerMicroStore } from "ADDrawer/store/drawer";
-import { setOpen } from "ADDrawer/mutations/drawer";
+import ADCarousell from "ADCarousell";
 import * as styles from "./styles";
 
 export const ADLayoutBody = () => {
   const containerRef = useRef(null);
   const { onEvent } = useMutations({
     store: layoutMicroStore,
-    id: layoutHeaderStore,
+    id: LAYOUT_HEADER_STORE,
   });
-
-  onEvent(FOCUS_OPTION, () => {
+  const blurBackground = () => {
     containerRef.current.style.filter = "blur(20px) grayscale(1)";
     containerRef.current.style.pointerEvents = "none";
-  });
+  }
+
+  onEvent(FOCUS_OPTION, blurBackground);
+  onEvent(BLUR_LAYOUT_BODY, blurBackground);
 
   onEvent(BLUR_OPTION, () => {
     setTimeout(() => {
@@ -27,11 +26,6 @@ export const ADLayoutBody = () => {
       containerRef.current.style.pointerEvents = "auto";
     }, 350);
   });
-
-  const handleClose = () => {
-    const store = drawerMicroStore.get(SEARCH_DRAWE_ID);
-    setOpen({ store, id: SEARCH_DRAWE_ID, value: false });
-  };
 
   return (
     <styles.Container ref={containerRef}>
@@ -94,21 +88,6 @@ export const ADLayoutBody = () => {
           ]}
         />
       </ADCarousell>
-
-      <ADDrawer
-        content={
-          <div>
-            <button onClick={handleClose}>Close</button>
-          </div>
-        }
-        className="search-drawer"
-        height="100%"
-        id={SEARCH_DRAWE_ID}
-        subtitle="subtitle"
-        title="Title"
-        variant="left"
-        width="100%"
-      />
     </styles.Container>
   );
 };

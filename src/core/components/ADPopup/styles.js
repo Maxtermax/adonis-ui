@@ -26,8 +26,9 @@ export const Container = styled.div`
   left: 0px;
   min-width: 280px;
   min-height: 200px;
+  width: ${({ width = 'auto' }) => width};
+  height: ${({ height = 'auto' }) => height};
   border-radius: ${({ theme }) => theme.border.radius.rounded};
-  padding: ${({ theme }) => theme.spacing.regular};
 `;
 
 export const Header = styled.header`
@@ -35,6 +36,13 @@ export const Header = styled.header`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding: ${({ theme }) => theme.spacing.calc(2)};
+  padding-left: 0px;
+  padding-right: 0px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.primary};
+  & .ad-popup__title {
+    width: 100%;
+  }
   & .ad-popup__btn-close:disabled {
     & svg {
       opacity: 0.5;

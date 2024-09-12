@@ -1,5 +1,5 @@
 import ADTextField from "ADTextField";
-import { User } from "@styled-icons/boxicons-regular/User";
+import { Search } from "@styled-icons/feather/Search";
 
 export default {
   title: "Basic/ADTextField",
@@ -24,7 +24,7 @@ export default {
     disabled: {
       table: { disable: true },
     },
-    colorVariant: {
+    color: {
       table: { disable: true },
     },
     icon: {
@@ -46,10 +46,20 @@ export const Basic = () => {
   );
 };
 
+export const Flat = () => {
+  return (
+    <ADTextField
+      icon={<Search size={20} />}
+      placeholder="Type to search"
+      variant="flat"
+    />
+  );
+};
+
 export const Icon = () => {
   return (
     <ADTextField
-      icon={<User size={20} />}
+      icon={<Search size={20} />}
       placeholder="Placeholder"
       label="label"
       helperText="helper text"
@@ -60,7 +70,7 @@ export const Icon = () => {
 export const Success = () => {
   return (
     <ADTextField
-      colorVariant="success"
+      color="success"
       placeholder="Placeholder"
       label="label"
       helperText="helper text"
@@ -71,7 +81,7 @@ export const Success = () => {
 export const Warning = () => {
   return (
     <ADTextField
-      colorVariant="warning"
+      color="warning"
       placeholder="Placeholder"
       label="label"
       helperText="helper text"
@@ -82,7 +92,7 @@ export const Warning = () => {
 export const Error = () => {
   return (
     <ADTextField
-      colorVariant="error"
+      color="error"
       placeholder="Placeholder"
       label="label"
       helperText="helper text"

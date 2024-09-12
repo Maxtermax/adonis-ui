@@ -15,7 +15,8 @@ export const ADTextField = forwardRef(function ADTextField(
     defaultValue = "",
     placeholder = "",
     disabled = false,
-    colorVariant = "primary",
+    color = "primary",
+    variant = "outlined",
     icon = null,
     id = uniqueId("ad-text-field-"),
     ...rest
@@ -30,16 +31,13 @@ export const ADTextField = forwardRef(function ADTextField(
     microTextField,
   );
 
-  const handleBlur = () => labelRef.current.classList.remove("label--focus");
+  const handleBlur = () =>
+    labelRef.current?.classList?.remove?.("label--focus");
 
-  const handleFocus = () => labelRef.current.classList.add("label--focus");
+  const handleFocus = () => labelRef.current?.classList?.add?.("label--focus");
 
   return (
-    <styles.Container
-      ref={ref}
-      className="ad-text-field"
-      colorVariant={colorVariant}
-    >
+    <styles.Container ref={ref} className="ad-text-field" color={color}>
       {label ? (
         <styles.Label
           icon={icon}
@@ -49,7 +47,10 @@ export const ADTextField = forwardRef(function ADTextField(
           {label}
         </styles.Label>
       ) : null}
-      <ADPanel className="ad-text-field__input-wrapper">
+      <ADPanel
+        variant={variant === "outlined" ? "text" : variant}
+        className="ad-text-field__input-wrapper"
+      >
         {icon ? (
           <styles.Icon className="ad-text-field__icon">{icon}</styles.Icon>
         ) : null}
@@ -61,6 +62,7 @@ export const ADTextField = forwardRef(function ADTextField(
           disabled={disabled}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          variant={variant}
           {...rest}
         />
       </ADPanel>

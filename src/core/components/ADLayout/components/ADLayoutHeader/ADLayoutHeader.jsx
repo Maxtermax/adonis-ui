@@ -10,7 +10,7 @@ import ADLayoutSearch from "ADLayout/components/ADLayoutSearch";
 import ADLayoutOption, {
   ADLayoutItem,
 } from "ADLayout/components/ADLayoutOption";
-import { layoutMicroStore, layoutHeaderStore } from "ADLayout/store/layout";
+import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store/layout";
 import layoutReducer from "ADLayout/reducer/layout";
 import * as mutations from "ADLayout/mutations/layout";
 import * as queries from "ADLayout/queries/layout";
@@ -34,18 +34,18 @@ const options = [
 export const ADLayoutHeader = () => {
   const theme = useTheme();
   useObservableStore(
-    layoutHeaderStore,
+    LAYOUT_HEADER_STORE,
     { header: { focus: "" } },
     layoutReducer,
     layoutMicroStore,
   );
 
   const handleLeave = async () => {
-    const store = layoutMicroStore.get(layoutHeaderStore);
+    const store = layoutMicroStore.get(LAYOUT_HEADER_STORE);
     const isOpen = queries.getIsOpen(store);
     if (!isOpen) return;
-    mutations.blurOption(layoutMicroStore.get(layoutHeaderStore), [
-      layoutHeaderStore,
+    mutations.blurOption(layoutMicroStore.get(LAYOUT_HEADER_STORE), [
+      LAYOUT_HEADER_STORE,
     ]);
   };
 

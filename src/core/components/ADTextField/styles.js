@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-const colorVariantMap = (theme, color) =>
+const colorMap = (theme, color) =>
   ({
     error: theme.colors.error,
     primary: theme.colors.primary,
@@ -9,7 +9,7 @@ const colorVariantMap = (theme, color) =>
     blue: theme.colors.blue,
   })[color];
 
-const colorVariantFocusMap = {
+const colorFocusMap = {
   error: "error",
   primary: "blue",
   warning: "warning",
@@ -26,33 +26,34 @@ export const Container = styled.div`
   gap: ${({ theme }) => theme.spacing.regular};
   font-family: ${({ theme }) => theme.fonts.primary.regular};
   position: relative;
+  width: 100%;
   .ad-text-field__input-wrapper {
     align-items: center;
     display: flex;
     padding: 0px;
     justify-content: center;
+    width: 100%;
   }
   .ad-text-field__input {
-    border-color: ${({ theme, colorVariant }) =>
-      colorVariantMap(theme, colorVariant)};
+    border-color: ${({ theme, color }) => colorMap(theme, color)};
     &:focus {
-      border-color: ${({ theme, colorVariant }) =>
-        colorVariantMap(theme, colorVariantFocusMap[colorVariant])};
+      border-color: ${({ theme, color }) =>
+        colorMap(theme, colorFocusMap[color])};
     }
   }
   .ad-text-field__subtitle {
-    color: ${({ theme, colorVariant }) => colorVariantMap(theme, colorVariant)};
+    color: ${({ theme, color }) => colorMap(theme, color)};
   }
   .label--focus {
-    color: ${({ theme, colorVariant }) =>
-      colorVariantMap(theme, colorVariantFocusMap[colorVariant])};
+    color: ${({ theme, color }) => colorMap(theme, colorFocusMap[color])};
     top: 0px;
     left: 0px;
   }
 `;
 
 export const Input = styled.input`
-  border: 1px solid ${({ theme }) => theme.colors.primary};
+  border: ${({ variant }) => (variant === "outlined" ? 1 : 0)}px solid
+    ${({ theme }) => theme.colors.primary};
   border-radius: ${({ theme }) => theme.border.radius.rounded};
   background: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fonts.sizes.medium};
@@ -63,10 +64,11 @@ export const Input = styled.input`
   min-height: 40px;
   outline: none;
   transition: ${({ theme }) => theme.transitions.quick};
+  width: 100%;
 `;
 
 export const Label = styled.label`
-  color: ${({ theme, colorVariant }) => colorVariantMap(theme, colorVariant)};
+  color: ${({ theme, color }) => colorMap(theme, color)};
   position: relative;
   top: ${({ icon }) => (icon ? "0px" : "16px")};
   left: ${({ icon }) => (icon ? "0px" : "10px")};

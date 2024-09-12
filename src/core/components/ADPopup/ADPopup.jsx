@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import React, { forwardRef } from "react";
 import { overlayMicroStore } from "ADOverlay/store/overlay";
 import { events } from "ADOverlay/reducer/overlay";
 import { ADOverlay } from "ADOverlay/ADOverlay";
@@ -16,6 +16,7 @@ export const ADPopup = forwardRef(function ADPopup(
     reRenderOnClose = true,
     id = uniqueId("ad-pop-up-"),
     className = "",
+    ...rest
   },
   ref,
 ) {
@@ -36,6 +37,7 @@ export const ADPopup = forwardRef(function ADPopup(
         key={state.key}
         ref={ref}
         className={`ad-popup ${className}`}
+        {...rest}
       >
         <Header title={title} disableClose={disableClose} storeId={id} />
         {children}

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
 
-const colorVariantFactory = (theme, variant) =>
+const colorFactory = (theme, variant) =>
   ({
     primary: theme.colors.primary,
     success: theme.colors.success,
@@ -135,14 +135,14 @@ export const Wrapper = styled.div`
     animation-fill-mode: forwards;
   }
   & .ad-notification__icon {
-    color: ${({ variant, theme }) => colorVariantFactory(theme, variant)};
+    color: ${({ variant, theme }) => colorFactory(theme, variant)};
   }
   & .ad-notification {
     border-color: ${({ variant, theme }) =>
-      colorVariantFactory(theme, variant)};
+      colorFactory(theme, variant)};
   }
   & .ad-notification__content .ad-text {
-    color: ${({ variant, theme }) => colorVariantFactory(theme, variant)};
+    color: ${({ variant, theme }) => colorFactory(theme, variant)};
   }
   & .ad-notification-discard {
     animation: ${({ direction }) => animationDiscardMap[direction]};
