@@ -11,8 +11,8 @@ import ADRecommendations from "ADLayout/components/ADRecommendations";
 import ADLayoutOption, {
   ADLayoutItem,
 } from "ADLayout/components/ADLayoutOption";
-import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store/layout";
-import layoutReducer from "ADLayout/reducer/layout";
+import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store";
+import { reducer } from "ADLayout/reducer";
 import * as mutations from "ADLayout/mutations/layout";
 import * as queries from "ADLayout/queries/layout";
 import * as styles from "./styles";
@@ -115,7 +115,7 @@ export const ADLayoutHeader = () => {
   useObservableStore(
     LAYOUT_HEADER_STORE,
     { header: { focus: "" } },
-    layoutReducer,
+    reducer,
     layoutMicroStore,
   );
 

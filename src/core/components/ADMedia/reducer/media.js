@@ -1,9 +1,12 @@
-import { SELECT_IMAGE } from "constants";
-import { getImageById, getSelectedImage } from "ADMedia/queries/media";
+import { getImageById, getSelectedImage } from "ADMedia/queries";
 
-export default function media(state, action) {
-  const actions = {
-    [SELECT_IMAGE]: () => {
+export const actions = {
+  SELECT_IMAGE: "SELECT_IMAGE" 
+}
+
+export const reducer = (state, action) => {
+  const actionsMap = {
+    [actions.SELECT_IMAGE]: () => {
       const { imageId } = action.payload.value;
       const image = getImageById(state.images, imageId);
       const prevImage = getSelectedImage(state.images);
@@ -12,5 +15,5 @@ export default function media(state, action) {
       return state;
     },
   };
-  return actions[action.type]?.();
+  return actionsMap[action.type]?.();
 }

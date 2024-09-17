@@ -1,5 +1,5 @@
 import { ADPopup } from "./ADPopup";
-export * from './mutations/setOpen';
+export * from './mutations';
 
 export default ADPopup;
 

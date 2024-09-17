@@ -5,12 +5,11 @@ import { ADText } from "ADText/ADText";
 import { Warning } from "@styled-icons/entypo/Warning";
 import { CheckCircleFill } from "@styled-icons/bootstrap/CheckCircleFill";
 import { NotificationsActive } from "@styled-icons/material/NotificationsActive";
-import { microNotificationStore } from "ADNotification/store/notification";
+import { microNotificationStore } from "ADNotification/store";
 import { useDirection } from "ADNotification/hooks/useDirection";
 import { useCountDown } from "ADNotification/hooks/useCountDown";
-import { setOpen } from "ADNotification/mutations/notification";
-import reducer from "ADNotification/reducer/notification";
-import { events } from "ADNotification/reducer/notification";
+import { setOpen } from "ADNotification/mutations";
+import { actions, reducer } from "ADNotification/reducer";
 import * as styles from "ADNotification/styles";
 
 export const ADNotification = forwardRef(function ADNotification(
@@ -41,7 +40,7 @@ export const ADNotification = forwardRef(function ADNotification(
     noUpdate: true,
   });
 
-  onEvent(events.SET_OPEN, (isOpen) => {
+  onEvent(actions.SET_OPEN, (isOpen) => {
     const $node = containerRef.current;
     if (isOpen) {
       $node.classList.remove("ad-notification-hidden");

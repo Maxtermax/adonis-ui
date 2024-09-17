@@ -29,6 +29,11 @@ export const Input = ({
     value,
   }));
 
+  onEvent(actions.DISABLED, (value, _, __, currentState) => ({
+    ...currentState,
+    disabled: value,
+  }));
+
   const handleChange = (e) => {
     const { value = "" } = e.target;
     clearInterval(intervalIdRef.current);
@@ -50,7 +55,7 @@ export const Input = ({
       onFocus={onFocus}
       onBlur={onBlur}
       value={state.value}
-      disabled={disabled}
+      disabled={state.disabled}
       {...rest}
     />
   );

@@ -1,8 +1,12 @@
-import { FOCUS_OPTION, BLUR_OPTION, BLUR_LAYOUT_BODY } from "constants";
+export const actions = {
+  FOCUS_OPTION: "FOCUS_OPTION",
+  BLUR_OPTION: "BLUR_OPTION",
+  BLUR_LAYOUT_BODY: "BLUR_LAYOUT_BODY",
+};
 
 export const blurLayoutBackground = (store, targets = []) => {
   return store.mutate({
-    type: BLUR_LAYOUT_BODY,
+    type: actions.BLUR_LAYOUT_BODY,
     targets,
     payload: {},
   });
@@ -10,7 +14,7 @@ export const blurLayoutBackground = (store, targets = []) => {
 
 export const blurOption = (store, targets = []) => {
   return store.mutate({
-    type: BLUR_OPTION,
+    type: actions.BLUR_OPTION,
     targets,
     payload: { value: "" },
   });
@@ -18,7 +22,7 @@ export const blurOption = (store, targets = []) => {
 
 export const focusOption = (store, value, targets = []) => {
   return store.mutate({
-    type: FOCUS_OPTION,
+    type: actions.FOCUS_OPTION,
     targets,
     payload: { value },
   });

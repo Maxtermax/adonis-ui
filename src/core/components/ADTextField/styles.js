@@ -65,6 +65,9 @@ export const Input = styled.input`
   outline: none;
   transition: ${({ theme }) => theme.transitions.quick};
   width: 100%;
+  &:disabled {
+    opacity: 0.5;
+  }
 `;
 
 export const Label = styled.label`

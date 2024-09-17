@@ -3,8 +3,8 @@ import { useMutations } from "hermes-io";
 import ADPanel from "ADPanel";
 import ADFlex from "ADFlex";
 import ADText from "ADText";
-import { FOCUS_OPTION, BLUR_OPTION } from "constants";
-import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store/layout";
+import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store";
+import { actions } from "ADLayout/reducer";
 import { ArrowRight } from "@styled-icons/bootstrap";
 import * as styles from "./styles";
 
@@ -218,7 +218,7 @@ export const ADLayoutSubMenu = () => {
     id: LAYOUT_HEADER_STORE,
   });
 
-  onEvent(FOCUS_OPTION, (value = {}) => {
+  onEvent(actions.FOCUS_OPTION, (value = {}) => {
     subMenuRef.current.classList.remove("hide");
     subMenuContainerRef.current.classList.remove("hide");
     return {
@@ -227,7 +227,7 @@ export const ADLayoutSubMenu = () => {
     };
   });
 
-  onEvent(BLUR_OPTION, async (value = {}, resolver) => {
+  onEvent(actions.BLUR_OPTION, async (value = {}, resolver) => {
     if (document.startViewTransition) {
       const transition = document.startViewTransition(() =>
         subMenuContainerRef.current.classList.add("hide"),

@@ -1,6 +1,17 @@
 import { microTextFieldStore } from "ADTextField/store";
 import { actions } from "ADTextField/reducer";
 
+export const disableInput = (id, value) => {
+  const store = microTextFieldStore.get(id);
+  store.mutate({
+    type: actions.DISABLED,
+    targets: [id],
+    payload: {
+      value,
+    },
+  });
+};
+
 export const fireChangeEvent = (id, value) => {
   const store = microTextFieldStore.get(id);
   store.mutate({

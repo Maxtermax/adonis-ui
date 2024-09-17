@@ -1,18 +1,22 @@
-import { BLUR_LAYOUT_BODY, FOCUS_OPTION, BLUR_OPTION } from "constants";
+export const actions = {
+  BLUR_LAYOUT_BODY: "BLUR_LAYOUT_BODY",
+  FOCUS_OPTION: "FOCUS_OPTION",
+  BLUR_OPTION: "BLUR_OPTION",
+};
 
-export default function layoutReducer(state, action) {
-  const actions = {
-    [FOCUS_OPTION]: () => {
+export const reducer = (state, action) => {
+  const actionsMap = {
+    [actions.FOCUS_OPTION]: () => {
       state.header.focus = action.payload.value.focus;
       return state;
     },
-    [BLUR_OPTION]: () => {
-      state.header.focus = '';
+    [actions.BLUR_OPTION]: () => {
+      state.header.focus = "";
       return state;
     },
-    [BLUR_LAYOUT_BODY]: () => {
+    [actions.BLUR_LAYOUT_BODY]: () => {
       return state;
     },
   };
-  return actions[action.type]?.();
-}
+  return actionsMap[action.type]?.();
+};

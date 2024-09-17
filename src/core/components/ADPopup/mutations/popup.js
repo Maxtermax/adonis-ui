@@ -1,8 +1,8 @@
-import { events } from "ADOverlay/reducer/overlay";
+import { actions } from "ADOverlay/reducer";
 
 export const setOpen = ({ store, id, value }) =>
   store.mutate({
     targets: [id],
-    type: events.SET_DISPLAY,
+    type: actions.SET_DISPLAY,
     payload: { value },
   });

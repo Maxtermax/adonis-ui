@@ -1,9 +1,9 @@
 import { useMutations } from "hermes-io";
 import ADButton from "ADButton";
 import ADText from "ADText";
-import { FOCUS_OPTION, BLUR_OPTION } from "constants";
-import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store/layout";
-import * as mutations from "ADLayout/mutations/layout";
+import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store";
+import { actions } from "ADLayout/reducer";
+import * as mutations from "ADLayout/mutations";
 import * as styles from "./styles";
 
 export const ADLayoutOption = (props = {}) => {
@@ -15,7 +15,7 @@ export const ADLayoutOption = (props = {}) => {
 
   const { state } = useMutations({
     initialState: { focus: "" },
-    events: [FOCUS_OPTION, BLUR_OPTION],
+    events: [actions.FOCUS_OPTION, actions.BLUR_OPTION],
     onChange: handleFocusChange,
     store: layoutMicroStore,
     id: LAYOUT_HEADER_STORE,

@@ -1,9 +1,8 @@
 import React, { useRef } from "react";
 import { useMutations } from "hermes-io";
-import { BLUR_LAYOUT_BODY, FOCUS_OPTION, BLUR_OPTION } from "constants";
-import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store/layout";
+import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store";
+import { actions } from "ADLayout/reducer";
 import ADMedia from "ADMedia";
-import ADCarousell from "ADCarousell";
 import * as styles from "./styles";
 
 export const ADLayoutBody = () => {
@@ -17,10 +16,10 @@ export const ADLayoutBody = () => {
     containerRef.current.style.pointerEvents = "none";
   };
 
-  onEvent(FOCUS_OPTION, blurBackground);
-  onEvent(BLUR_LAYOUT_BODY, blurBackground);
+  onEvent(actions.FOCUS_OPTION, blurBackground);
+  onEvent(actions.BLUR_LAYOUT_BODY, blurBackground);
 
-  onEvent(BLUR_OPTION, () => {
+  onEvent(actions.BLUR_OPTION, () => {
     setTimeout(() => {
       containerRef.current.style.filter = "blur(0px) grayscale(0)";
       containerRef.current.style.pointerEvents = "auto";

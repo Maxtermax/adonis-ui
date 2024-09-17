@@ -1,10 +1,10 @@
 import { useRef } from "react";
+import { uniqueId } from "lodash";
 import { createPortal } from "react-dom";
 import { useObservableStore, useMutations } from "hermes-io";
 import { useAnimationVisibility } from "ADOverlay/hooks/useAnimationVisibility";
-import { uniqueId } from "lodash";
-import { overlayMicroStore } from "ADOverlay/store/overlay";
-import reducer, { events } from "ADOverlay/reducer/overlay";
+import { overlayMicroStore } from "ADOverlay/store";
+import { actions, reducer } from "ADOverlay/reducer";
 import * as styles from "ADOverlay/styles";
 
 export const ADOverlay = ({
@@ -22,7 +22,7 @@ export const ADOverlay = ({
     id,
   });
 
-  onEvent(events.SET_DISPLAY, (isOpen) => {
+  onEvent(actions.SET_DISPLAY, (isOpen) => {
     animateVisibility(isOpen);
     return { isOpen };
   });

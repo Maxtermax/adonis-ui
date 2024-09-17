@@ -1,10 +1,10 @@
 import React from "react";
-import { overlayMicroStore } from "ADOverlay/store/overlay";
-import { setOpen } from "ADPopup/mutations/setOpen";
-import { ADButton } from "ADButton/ADButton";
-import { ADText } from "ADText/ADText";
-import { ADPanel } from "ADPanel/ADPanel";
-import { ADTooltip } from "ADTooltip/ADTooltip";
+import { overlayMicroStore } from "ADOverlay/store";
+import { setOpen } from "ADPopup/mutations";
+import ADButton from "ADButton";
+import ADText from "ADText";
+import ADPanel from "ADPanel";
+import ADTooltip from "ADTooltip";
 import { Close } from "@styled-icons/evil/Close"
 import * as styles from "ADPopup/styles";
 

@@ -1,12 +1,12 @@
-export const events = {
+export const actions = {
   SET_DISPLAY: "SET_DISPLAY",
 };
 
-export default function overlay(state, action) {
-  const actions = {
-    [events.SET_DISPLAY]: () => {
+export const reducer = (state, action) => {
+  const actionsMap = {
+    [actions.SET_DISPLAY]: () => {
       state.isOpen = action.payload.value;
     }
   };
-  return actions[action.type]?.();
+  return actionsMap[action.type]?.();
 }

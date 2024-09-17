@@ -1,11 +1,11 @@
 import React, { forwardRef } from "react";
-import { overlayMicroStore } from "ADOverlay/store/overlay";
-import { events } from "ADOverlay/reducer/overlay";
-import { ADOverlay } from "ADOverlay/ADOverlay";
-import { Header } from "ADPopup/components/Header";
 import { uniqueId } from "lodash";
-import * as styles from "ADPopup/styles";
 import { useMutations } from "hermes-io";
+import { Header } from "ADPopup/components/Header";
+import { overlayMicroStore } from "ADOverlay/store";
+import { actions } from "ADOverlay/reducer";
+import ADOverlay from "ADOverlay";
+import * as styles from "ADPopup/styles";
 
 export const ADPopup = forwardRef(function ADPopup(
   {
@@ -26,7 +26,7 @@ export const ADPopup = forwardRef(function ADPopup(
     id
   });
 
-  onEvent(events.SET_DISPLAY, (isOpen, _resolver, setNoUpdate) => {
+  onEvent(actions.SET_DISPLAY, (isOpen, _resolver, setNoUpdate) => {
     setNoUpdate(!reRenderOnClose);
     if (!isOpen && reRenderOnClose) return { key: uniqueId() };
   });

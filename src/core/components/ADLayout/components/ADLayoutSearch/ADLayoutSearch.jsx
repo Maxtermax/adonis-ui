@@ -4,19 +4,20 @@ import { withTheme } from "@emotion/react";
 import { MagnifyingGlass } from "@styled-icons/fa-solid/MagnifyingGlass";
 import { Search } from "@styled-icons/feather/Search";
 import { microTextFieldStore } from "ADTextField/store";
-import { actions } from "ADTextField/reducer";
-import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store/layout";
-import * as mutations from "ADLayout/mutations/layout";
-import * as queries from "ADLayout/queries/layout";
-import { overlayMicroStore } from "ADOverlay/store/overlay";
-import { setOpen } from "ADPopup/mutations/setOpen";
+import { actions  as searchActions } from "ADTextField/reducer";
+import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store";
 import ADPopup from "ADPopup";
 import ADButton from "ADButton";
 import ADPanel from "ADPanel";
 import ADLoader from "ADLoader";
 import ADTextField from "ADTextField";
-import { SEARCH_MODAL } from "constants";
+import { setOpen } from "ADPopup/mutations";
+import { overlayMicroStore } from "ADOverlay/store";
+import { disableInput } from "ADTextField/mutations";
+import * as mutations from "ADLayout/mutations";
+import * as queries from "ADLayout/queries";
 import * as styles from "./styles";
+import { SEARCH_MODAL } from "constants";
 
 const id = SEARCH_MODAL;
 const SEARCH_TEXT_FIELD = "search-text-field";
@@ -29,7 +30,18 @@ const Content = ({ body = [] }) => {
     id: SEARCH_TEXT_FIELD,
   });
 
-  onEvent(actions.CHANGE, (value) => ({ isLoading: value !== "" }));
+  onEvent(searchActions.CHANGE, (value) => {
+    const isLoading = value !== "";
+    disableInput(SEARCH_TEXT_FIELD, isLoading); 
+    return { isLoading };
+  });
+
+  /*
+  onEvent(actions.COMPLETE, (value) => {
+    disableInput(SEARCH_TEXT_FIELD, false); 
+    return { isLoading: false };
+  });
+  */
 
   return (
     <styles.ContentWrapper>
