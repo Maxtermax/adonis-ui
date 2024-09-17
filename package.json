@@ -96,6 +96,10 @@
    "import": "./lib/src/core/components/ADDrawer/index.js",
    "require": "./lib/src/core/components/ADDrawer/index.js"
   },
+  "./components/ADFlex": {
+   "import": "./lib/src/core/components/ADFlex/index.js",
+   "require": "./lib/src/core/components/ADFlex/index.js"
+  },
   "./components/ADGrid": {
    "import": "./lib/src/core/components/ADGrid/index.js",
    "require": "./lib/src/core/components/ADGrid/index.js"

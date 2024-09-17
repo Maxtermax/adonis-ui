@@ -7,4 +7,6 @@ export const Panel = styled.div`
   padding: ${({ theme }) => theme.spacing.medium};
   border-radius: ${({ variant, theme }) =>
     variant === "flat" ? theme.spacing.none : theme.spacing.regular};
+  display: block;
+  width: ${({ width }) => width ? width : "100%"};
 `;

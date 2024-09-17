@@ -1,9 +1,9 @@
 import { useMutations } from "hermes-io";
-import { SET_PANEL_STATE } from "constants";
+import { actions } from "ADAccordion/reducer";
 
 export default function usePanel({ initialState, store, id }) {
   const { state } = useMutations({
-    events: [SET_PANEL_STATE],
+    events: [actions.SET_PANEL_STATE],
     initialState,
     onChange: (event) => ({ isExpanded: event.isExpanded }),
     store,

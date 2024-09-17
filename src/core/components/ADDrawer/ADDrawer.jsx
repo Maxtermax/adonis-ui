@@ -1,11 +1,10 @@
 import React, { useRef } from "react";
 import { useMutations, useObservableStore } from "hermes-io";
 import { ADPanel } from "ADPanel/ADPanel";
-import { drawerMicroStore } from "ADDrawer/store/drawer";
-import { setOpen } from "ADDrawer/mutations/drawer";
-import { getOpen } from "ADDrawer/queries/drawer";
-import reducer from "ADDrawer/reducer/drawer";
-import { SET_DRAWER_OPEN } from "constants";
+import { drawerMicroStore } from "ADDrawer/store";
+import { setOpen } from "ADDrawer/mutations";
+import { getOpen } from "ADDrawer/queries";
+import { actions, reducer } from "ADDrawer/reducer";
 import * as styles from "./styles";
 
 export const ADDrawer = ({
@@ -42,7 +41,7 @@ export const ADDrawer = ({
     id,
   });
 
-  onEvent(SET_DRAWER_OPEN, () => {
+  onEvent(actions.SET_DRAWER_OPEN, () => {
     const store = drawerMicroStore.get(id);
     const isOpen = getOpen(store);
     if (isOpen) return openDrawer();

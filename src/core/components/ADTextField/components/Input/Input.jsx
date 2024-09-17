@@ -1,38 +1,48 @@
+import React from "react";
+import { useRef } from "react";
 import { useMutations } from "hermes-io";
-import { microTextField } from "ADTextField/store/field";
+import { microTextFieldStore } from "ADTextField/store";
+import { actions } from "ADTextField/reducer";
+import * as mutations from "ADTextField/mutations";
 import * as styles from "ADTextField/styles";
-
-const SET_VALUE = "SET_VALUE";
 
 export const Input = ({
   id,
   onBlur,
   onFocus,
+  onChange,
+  debounce = 0,
   placeholder = "",
   defaultValue = "",
   disabled = false,
   ...rest
 }) => {
+  const intervalIdRef = useRef(null);
   const { state, onEvent } = useMutations({
     initialState: { value: defaultValue, disabled },
-    store: microTextField,
+    store: microTextFieldStore,
     id,
   });
-  onEvent(SET_VALUE, (value, _resolver, _setNoUpdate, state) => ({
-    ...state,
+
+  onEvent(actions.SET_VALUE, (value, _, __, currentState) => ({
+    ...currentState,
     value,
   }));
+
   const handleChange = (e) => {
     const { value = "" } = e.target;
-    const store = microTextField.get(id);
-    store.mutate({
-      type: SET_VALUE,
-      targets: [id],
-      payload: {
-        value,
-      },
-    });
+    clearInterval(intervalIdRef.current);
+    mutations.updateValue(id, value);
+    if (debounce) {
+      intervalIdRef.current = setTimeout(() => {
+        mutations.fireChangeEvent(id, value);
+        onChange?.(e);
+      }, debounce);
+    } else {
+      onChange?.(e);
+    }
   };
+
   return (
     <styles.Input
       placeholder={placeholder}

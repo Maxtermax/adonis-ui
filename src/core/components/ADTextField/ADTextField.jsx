@@ -4,8 +4,8 @@ import { useObservableStore } from "hermes-io";
 import { ADText } from "ADText/ADText";
 import { ADPanel } from "ADPanel/ADPanel";
 import { Input } from "ADTextField/components/Input/Input";
-import { microTextField } from "ADTextField/store/field";
-import reducer from "ADTextField/reducer/field";
+import { microTextFieldStore } from "ADTextField/store";
+import { reducer } from "ADTextField/reducer";
 import * as styles from "ADTextField/styles";
 
 export const ADTextField = forwardRef(function ADTextField(
@@ -28,7 +28,7 @@ export const ADTextField = forwardRef(function ADTextField(
     id,
     { value: defaultValue, disabled },
     reducer,
-    microTextField,
+    microTextFieldStore,
   );
 
   const handleBlur = () =>

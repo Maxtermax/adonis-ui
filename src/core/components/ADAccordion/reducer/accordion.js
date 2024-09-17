@@ -1,9 +1,13 @@
-import { SET_PANEL_STATE, ACCORDION_PANEL } from "constants";
 import map from "utils/map";
+import { ACCORDION_PANEL } from "constants";
 
-export default function accordion(state, action) {
-  const actions = {
-    [SET_PANEL_STATE]: () => {
+export const actions = {
+  SET_PANEL_STATE: "SET_PANEL_STATE",
+};
+
+export const reducer = (state, action) => {
+  const actionsMap = {
+    [actions.SET_PANEL_STATE]: () => {
       return map(
         state,
         ({ type, id }) => type === ACCORDION_PANEL && id === action.payload.id,
@@ -11,5 +15,5 @@ export default function accordion(state, action) {
       );
     },
   };
-  return actions[action.type]?.();
-}
+  return actionsMap[action.type]?.();
+};

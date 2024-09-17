@@ -1,15 +1,15 @@
 import React, { forwardRef, useEffect, useRef } from "react";
+import { uniqueId } from "lodash";
 import { useObservableStore } from "hermes-io";
 import { KeyboardArrowDown } from "@styled-icons/material/KeyboardArrowDown";
 import { KeyboardArrowRight } from "@styled-icons/material-outlined/KeyboardArrowRight";
 import ADText from "ADText";
 import ADButton from "ADButton";
-import reducer from "ADAccordion/reducer/accordion";
-import { accordionStore } from 'ADAccordion/store/accordion';
-import { uniqueId } from "lodash";
-import { ACCORDION_PANEL, SET_PANEL_STATE } from "constants";
-import * as styles from "./styles";
+import { actions, reducer } from "ADAccordion/reducer";
+import { accordionStore } from 'ADAccordion/store';
 import usePanel from "ADAccordion/hooks/usePanel";
+import { ACCORDION_PANEL } from "constants";
+import * as styles from "./styles";
 
 const Label = ({ children, isExpanded, onToggle }) => {
   return (
@@ -77,7 +77,7 @@ const Panels = forwardRef(function Panels(
     };
     store.mutate({
       targets: [id],
-      type: SET_PANEL_STATE,
+      type: actions.SET_PANEL_STATE,
       payload,
     });
   };

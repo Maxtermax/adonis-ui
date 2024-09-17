@@ -5,7 +5,7 @@ import { animations } from "ADProvider";
 export const BottomLine = withTheme(styled.div`
   background: ${({ theme }) => theme.colors.contrast.primary}; 
   display: block;
-  height: 5px;
+  height: 4px;
   width: 0%;
   margin-top: ${({ theme }) => theme.spacing.calc(1)};
   transition: ${({ theme }) => theme.transitions.quick};
@@ -40,7 +40,7 @@ export const UnOrderList = withTheme(styled.ul`
     display: inline-block;
   }
   & a:hover .ad-bottom-line {
-    width: 100%;
+    width: 50%;
   }
 `);
 

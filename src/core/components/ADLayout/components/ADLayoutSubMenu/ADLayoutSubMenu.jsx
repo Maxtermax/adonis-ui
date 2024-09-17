@@ -1,9 +1,11 @@
 import React, { useRef } from "react";
 import { useMutations } from "hermes-io";
 import ADPanel from "ADPanel";
+import ADFlex from "ADFlex";
 import ADText from "ADText";
 import { FOCUS_OPTION, BLUR_OPTION } from "constants";
 import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store/layout";
+import { ArrowRight } from "@styled-icons/bootstrap";
 import * as styles from "./styles";
 
 const subListMap = {
@@ -189,11 +191,14 @@ const SubList = ({ focus = "" }) => {
           {items.map((item) => (
             <styles.Item key={item.ix} delay={item.ix}>
               <a href={item.link}>
-                <ADText
-                  className="ad-text-item"
-                  value={item.name}
-                  variant="subtitle"
-                />
+                <ADFlex gap={4}>
+                  <ADText
+                    className="ad-text-item"
+                    value={item.name}
+                    variant="subtitle"
+                  />
+                  <ArrowRight color="white" size={25} />
+                </ADFlex>
                 <styles.BottomLine className="ad-bottom-line" />
               </a>
             </styles.Item>
@@ -231,7 +236,7 @@ export const ADLayoutSubMenu = () => {
       const closeSubMenuTransition = document.startViewTransition(() =>
         subMenuRef.current.classList.add("hide"),
       );
-      await closeSubMenuTransition.finished; 
+      await closeSubMenuTransition.finished;
       resolver();
     } else {
       subMenuContainerRef.current.classList.add("hide");

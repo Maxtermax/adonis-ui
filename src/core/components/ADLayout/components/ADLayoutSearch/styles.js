@@ -8,5 +8,8 @@ export const ContentWrapper = withTheme(styled.div`
     margin: 0px auto;
     width: calc(100% - ${({ theme }) => theme.spacing.calc(7)});
     height: calc(100% - ${({ theme }) => theme.spacing.calc(7)});
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `);

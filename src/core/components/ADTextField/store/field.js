@@ -1,3 +1,3 @@
 import { MicroStore } from "hermes-io";
 
-export const microTextField = new MicroStore();
+export const microTextFieldStore = new MicroStore();

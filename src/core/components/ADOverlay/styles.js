@@ -29,7 +29,7 @@ export const Container = styled.div`
     border: 4px solid ${({ theme }) => theme.colors.contrast.primary};
     border-bottom-color: transparent;
   }
-  & .ad-text-body {
+  & > .ad-text-body {
     color: ${({ theme }) => theme.colors.contrast.primary};
   }
 `;

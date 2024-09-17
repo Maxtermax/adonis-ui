@@ -34,24 +34,26 @@ const rows = (props) => {
 export const Grid = withTheme(
   styled.div(
     ({
-      lg,
-      sm,
-      md,
       alignCenter,
       alignItems = "center",
+      justifyItems = "center",
       fullWidth,
       fullHeight,
       height = "auto",
       width = "auto",
+      gap = 1,
+      lg,
+      sm,
+      md,
       theme,
       ...props
     }) => ({
       display: "grid",
-      justifyItems: "center",
+      justifyItems,
       alignItems: alignCenter ? "center" : alignItems,
       gridTemplateRows: rows(props),
       gridTemplateColumns: cols(props),
-      gap: theme.spacing.medium,
+      gap: theme.spacing.calc(gap),
       height: fullHeight ? "100%" : height,
       width: fullWidth ? "100%" : width,
       [`@media screen and (min-width: ${theme.breakpoints.lg})`]: lg ? lg : {},

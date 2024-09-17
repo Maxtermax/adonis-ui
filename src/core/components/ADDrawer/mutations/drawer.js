@@ -1,8 +1,8 @@
-import { SET_DRAWER_OPEN } from "constants";
+import { actions } from "ADDrawer/reducer";
 
 export const setOpen = ({ store, id, value }) =>
   store.mutate({
     targets: [id],
-    type: SET_DRAWER_OPEN,
+    type: actions.SET_DRAWER_OPEN,
     payload: { value },
   });

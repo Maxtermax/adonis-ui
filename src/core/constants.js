@@ -45,8 +45,6 @@ export const DIMENSIONS = {
 
 export const FOCUS_TAB = "FOCUS_TAB";
 
-export const SET_DRAWER_OPEN = "SET_DRAWER_OPEN";
-
 export const FOCUS_OPTION = "FOCUS_OPTION";
 
 export const FOCUS_TRANSITION_OPTION = "FOCUS_TRANSITION_OPTION";
@@ -88,8 +86,6 @@ export const SET_PRODUCT_FOCUS = "SET_PRODUCT_FOCUS";
 export const SET_THEME_FIELD = "SET_THEME_FIELD";
 
 export const SAVE_THEME = "SAVE_THEME"; 
-
-export const SET_PANEL_STATE = "SET_PANEL_STATE";
 
 export const ACCORDION_PANEL = "ACCORDION_PANEL";
 
