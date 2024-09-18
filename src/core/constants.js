@@ -22,8 +22,6 @@ export const CARD_VARIANTS = {
   MINI: "mini",
 };
 
-export const SEARCH_MODAL = "search-drawer";
-
 export const POSITIONS = {
   topLeft: "top-left",
   topRight: "top-right",

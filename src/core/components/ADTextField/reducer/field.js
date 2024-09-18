@@ -1,7 +1,9 @@
 export const actions = {
   SET_VALUE: "SET_VALUE",
   CHANGE: "CHANGE",
-  DISABLED: "DISABLED"
+  DISABLED: "DISABLED",
+  SEARCH_START: "SEARCH_START",
+  SEARCH_COMPLETED: "SEARCH_COMPLETED",
 };
 
 export const reducer = (state, action) => {

@@ -8,184 +8,10 @@ import { actions } from "ADLayout/reducer";
 import { ArrowRight } from "@styled-icons/bootstrap";
 import * as styles from "./styles";
 
-const subListMap = {
-  recents: [
-    {
-      name: "Recientes",
-      items: [
-        {
-          name: "Item 1",
-          link: "#",
-          ix: 0,
-        },
-        {
-          name: "Item 2",
-          link: "#",
-          ix: 1,
-        },
-        {
-          name: "Item 3",
-          link: "#",
-          ix: 2,
-        },
-      ],
-    },
-    {
-      name: "Recientes 2",
-      items: [
-        {
-          name: "Item 1",
-          link: "#",
-          ix: 3,
-        },
-        {
-          name: "Item 2",
-          link: "#",
-          ix: 4,
-        },
-        {
-          name: "Item 3",
-          link: "#",
-          ix: 5,
-        },
-      ],
-    },
-    {
-      name: "Recientes 3",
-      items: [
-        {
-          name: "Item 1",
-          link: "#",
-          ix: 4,
-        },
-        {
-          name: "Item 2",
-          link: "#",
-          ix: 5,
-        },
-      ],
-    },
-  ],
-  categories: [
-    {
-      name: "Recientes",
-      items: [
-        {
-          name: "Item 1",
-          link: "#",
-          ix: 0,
-        },
-        {
-          name: "Item 2",
-          link: "#",
-          ix: 1,
-        },
-        {
-          name: "Item 3",
-          link: "#",
-          ix: 2,
-        },
-      ],
-    },
-    {
-      name: "Recientes 2",
-      items: [
-        {
-          name: "Item 1",
-          link: "#",
-          ix: 3,
-        },
-        {
-          name: "Item 2",
-          link: "#",
-          ix: 4,
-        },
-        {
-          name: "Item 3",
-          link: "#",
-          ix: 5,
-        },
-      ],
-    },
-    {
-      name: "Recientes 3",
-      items: [
-        {
-          name: "Item 1",
-          link: "#",
-          ix: 4,
-        },
-        {
-          name: "Item 2",
-          link: "#",
-          ix: 5,
-        },
-      ],
-    },
-  ],
-  offers: [
-    {
-      name: "Recientes",
-      items: [
-        {
-          name: "Item 1",
-          link: "#",
-          ix: 0,
-        },
-        {
-          name: "Item 2",
-          link: "#",
-          ix: 1,
-        },
-        {
-          name: "Item 3",
-          link: "#",
-          ix: 2,
-        },
-      ],
-    },
-    {
-      name: "Recientes 2",
-      items: [
-        {
-          name: "Item 1",
-          link: "#",
-          ix: 3,
-        },
-        {
-          name: "Item 2",
-          link: "#",
-          ix: 4,
-        },
-        {
-          name: "Item 3",
-          link: "#",
-          ix: 5,
-        },
-      ],
-    },
-    {
-      name: "Recientes 3",
-      items: [
-        {
-          name: "Item 1",
-          link: "#",
-          ix: 4,
-        },
-        {
-          name: "Item 2",
-          link: "#",
-          ix: 5,
-        },
-      ],
-    },
-  ],
-};
-
-const SubList = ({ focus = "" }) => {
+const SubList = ({ data = {}, focus = "" }) => {
   return (
     <styles.Nav>
-      {subListMap[focus].map(({ name = "", items = [] }) => (
+      {data[focus].map(({ name = "", items = [] }) => (
         <styles.UnOrderList key={focus}>
           <ADText className="ad-text-title" value={name} variant="title" />
           {items.map((item) => (
@@ -209,7 +35,7 @@ const SubList = ({ focus = "" }) => {
   );
 };
 
-export const ADLayoutSubMenu = () => {
+export const ADLayoutSubMenu = ({ sublist = [] }) => {
   const subMenuRef = useRef(null);
   const subMenuContainerRef = useRef(null);
   const { state, onEvent } = useMutations({
@@ -257,7 +83,12 @@ export const ADLayoutSubMenu = () => {
         variant="flat"
       >
         <styles.Content key={state.focus}>
-          {state.focus ? <SubList focus={state.focus} /> : null}
+          {state.focus ? (
+            <SubList
+              data={sublist}
+              focus={state.focus}
+            />
+          ) : null}
         </styles.Content>
       </ADPanel>
     </styles.SubMenu>

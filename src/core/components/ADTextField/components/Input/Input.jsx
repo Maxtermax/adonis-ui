@@ -28,7 +28,6 @@ export const Input = ({
     ...currentState,
     value,
   }));
-
   onEvent(actions.DISABLED, (value, _, __, currentState) => ({
     ...currentState,
     disabled: value,
@@ -44,6 +43,7 @@ export const Input = ({
         onChange?.(e);
       }, debounce);
     } else {
+      mutations.fireChangeEvent(id, value);
       onChange?.(e);
     }
   };
