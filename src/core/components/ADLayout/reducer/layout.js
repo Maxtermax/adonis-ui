@@ -2,6 +2,8 @@ export const actions = {
   BLUR_LAYOUT_BODY: "BLUR_LAYOUT_BODY",
   FOCUS_OPTION: "FOCUS_OPTION",
   BLUR_OPTION: "BLUR_OPTION",
+  START_SEARCH: "START_SEARCH",
+  SEARCH_COMPLETED: "SEARCH_COMPLETED",
 };
 
 export const reducer = (state, action) => {

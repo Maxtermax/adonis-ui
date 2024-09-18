@@ -7,7 +7,6 @@ import { Menu } from "@styled-icons/boxicons-regular/Menu";
 import ADLayoutSubMenu from "ADLayout/components/ADLayoutSubMenu";
 import ADLayoutCart from "ADLayout/components/ADLayoutCart";
 import ADLayoutSearch from "ADLayout/components/ADLayoutSearch";
-import ADRecommendations from "ADLayout/components/ADRecommendations";
 import ADLayoutOption, {
   ADLayoutItem,
 } from "ADLayout/components/ADLayoutOption";
@@ -17,7 +16,11 @@ import * as mutations from "ADLayout/mutations/layout";
 import * as queries from "ADLayout/queries/layout";
 import * as styles from "./styles";
 
-export const ADLayoutHeader = ({ list = [], sublist = null, recommendations = [] }) => {
+export const ADLayoutHeader = ({
+  list = [],
+  sublist = null,
+  recommendations = [],
+}) => {
   const theme = useTheme();
   useObservableStore(
     LAYOUT_HEADER_STORE,
@@ -36,11 +39,7 @@ export const ADLayoutHeader = ({ list = [], sublist = null, recommendations = []
   };
 
   const cart = <ADLayoutCart />;
-  const search = (
-    <ADLayoutSearch
-      recommendations={<ADRecommendations data={recommendations} />}
-    />
-  );
+  const search = <ADLayoutSearch recommendations={recommendations} />;
 
   return (
     <styles.HeaderContainer onMouseLeave={handleLeave}>
@@ -98,9 +97,7 @@ export const ADLayoutHeader = ({ list = [], sublist = null, recommendations = []
           </ADGridCol>
         </ADGrid>
       </styles.Header>
-      <ADLayoutSubMenu 
-        sublist={sublist}
-      />
+      <ADLayoutSubMenu sublist={sublist} />
     </styles.HeaderContainer>
   );
 };

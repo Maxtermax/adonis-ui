@@ -1,19 +1,31 @@
 import { microTextFieldStore } from "ADTextField/store";
-import { actions } from "ADTextField/reducer";
+import { actions } from "ADLayout/reducer";
+import { actions as textFieldActions } from "ADTextField/reducer";
+
+export const completeSearch = (id, value) => {
+  const store = microTextFieldStore.get(id);
+  store.mutate({
+    type: actions.SEARCH_COMPLETED,
+    targets: [id],
+    payload: {
+      value,
+    },
+  });
+};
 
 export const fireSearch = (id) => {
   const store = microTextFieldStore.get(id);
   store.mutate({
-    type: actions.SEARCH_START,
+    type: actions.START_SEARCH,
     targets: [id],
     payload: {},
   });
-} 
+};
 
 export const disableInput = (id, value) => {
   const store = microTextFieldStore.get(id);
   store.mutate({
-    type: actions.DISABLED,
+    type: textFieldActions.DISABLED,
     targets: [id],
     payload: {
       value,
@@ -23,9 +35,8 @@ export const disableInput = (id, value) => {
 
 export const fireChangeEvent = (id, value) => {
   const store = microTextFieldStore.get(id);
-  console.log("FIRE CHANGE");
   store.mutate({
-    type: actions.CHANGE,
+    type: textFieldActions.CHANGE,
     targets: [id],
     payload: {
       value,
@@ -36,7 +47,7 @@ export const fireChangeEvent = (id, value) => {
 export const updateValue = (id, value) => {
   const store = microTextFieldStore.get(id);
   store.mutate({
-    type: actions.SET_VALUE,
+    type: textFieldActions.SET_VALUE,
     targets: [id],
     payload: {
       value,

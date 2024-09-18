@@ -4,17 +4,18 @@ import { withTheme } from "@emotion/react";
 import { MagnifyingGlass } from "@styled-icons/fa-solid/MagnifyingGlass";
 import { Search } from "@styled-icons/feather/Search";
 import { microTextFieldStore } from "ADTextField/store";
-import { actions as searchActions } from "ADTextField/reducer";
+import { actions } from "ADLayout/reducer";
+import { actions as textFieldActions } from "ADTextField/reducer";
 import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store";
 import ADPopup from "ADPopup";
 import ADButton from "ADButton";
 import ADPanel from "ADPanel";
 import ADLoader from "ADLoader";
 import ADTextField from "ADTextField";
+import ADRecommendations from "ADLayout/components/ADRecommendations";
 import { setOpen } from "ADPopup/mutations";
 import { overlayMicroStore } from "ADOverlay/store";
 import { disableInput, fireSearch } from "ADTextField/mutations";
-import { actions } from "ADLayout/reducer";
 import * as mutations from "ADLayout/mutations";
 import * as queries from "ADLayout/queries";
 import * as styles from "./styles";
@@ -30,19 +31,16 @@ const Content = ({ recommendations = [] }) => {
     id: SEARCH_TEXT_FIELD,
   });
 
-  onEvent(searchActions.CHANGE, (value) => {
+  onEvent(textFieldActions.CHANGE, (value) => {
     const isLoading = value !== "";
     disableInput(SEARCH_TEXT_FIELD, isLoading);
-    console.trace("LISTEN CHANGE");
-    if (isLoading) {
-      fireSearch(SEARCH_TEXT_FIELD);
-    }
+    if (isLoading) fireSearch(SEARCH_TEXT_FIELD);
     return { isLoading };
   });
 
-  onEvent(actions.SEARCH_COMPLETED, () => {
+  onEvent(actions.SEARCH_COMPLETED, (products) => {
     disableInput(SEARCH_TEXT_FIELD, false);
-    return { isLoading: false };
+    return { isLoading: false, products };
   });
 
   return (
@@ -51,7 +49,7 @@ const Content = ({ recommendations = [] }) => {
         {state.isLoading ? (
           <ADLoader text="Buscando..." />
         ) : (
-          (state.products ?? recommendations)
+          <ADRecommendations data={state.products ?? recommendations} />
         )}
       </ADPanel>
     </styles.ContentWrapper>
@@ -86,7 +84,7 @@ export const ADLayoutSearch = withTheme(({ theme, recommendations = [] }) => {
         height={"620px"}
         title={
           <ADTextField
-            debounce={0}
+            debounce={300}
             id={SEARCH_TEXT_FIELD}
             icon={<Search size={20} />}
             placeholder="Buscar vestidos en descuento..."

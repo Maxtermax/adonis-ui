@@ -24,10 +24,13 @@ export const Input = ({
     id,
   });
 
-  onEvent(actions.SET_VALUE, (value, _, __, currentState) => ({
-    ...currentState,
-    value,
-  }));
+  onEvent(actions.SET_VALUE, (value, _, __, currentState) => {
+    return {
+      ...currentState,
+      value,
+    };
+  });
+
   onEvent(actions.DISABLED, (value, _, __, currentState) => ({
     ...currentState,
     disabled: value,
