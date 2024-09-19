@@ -15,7 +15,7 @@ import ADTextField from "ADTextField";
 import ADRecommendations from "ADLayout/components/ADRecommendations";
 import { setOpen } from "ADPopup/mutations";
 import { overlayMicroStore } from "ADOverlay/store";
-import { disableInput, fireSearch } from "ADTextField/mutations";
+import { disableInput } from "ADTextField/mutations";
 import * as mutations from "ADLayout/mutations";
 import * as queries from "ADLayout/queries";
 import * as styles from "./styles";
@@ -26,7 +26,7 @@ const targets = [LAYOUT_HEADER_STORE];
 
 const Content = ({ recommendations = [] }) => {
   const { state, onEvent } = useMutations({
-    initialState: { isLoading: false, products: null },
+    initialState: { isLoading: false, isInputEmpty: false, products: null },
     store: microTextFieldStore,
     id: SEARCH_TEXT_FIELD,
   });
@@ -34,8 +34,13 @@ const Content = ({ recommendations = [] }) => {
   onEvent(textFieldActions.CHANGE, (value) => {
     const isLoading = value !== "";
     disableInput(SEARCH_TEXT_FIELD, isLoading);
-    if (isLoading) fireSearch(SEARCH_TEXT_FIELD);
-    return { isLoading };
+    if (isLoading) mutations.fireSearch(microTextFieldStore, SEARCH_TEXT_FIELD);
+    const isInputEmpty = value === "";
+    return {
+      isLoading,
+      isInputEmpty,
+      products: isInputEmpty ? null : state.products,
+    };
   });
 
   onEvent(actions.SEARCH_COMPLETED, (products) => {

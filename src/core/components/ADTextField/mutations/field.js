@@ -2,26 +2,6 @@ import { microTextFieldStore } from "ADTextField/store";
 import { actions } from "ADLayout/reducer";
 import { actions as textFieldActions } from "ADTextField/reducer";
 
-export const completeSearch = (id, value) => {
-  const store = microTextFieldStore.get(id);
-  store.mutate({
-    type: actions.SEARCH_COMPLETED,
-    targets: [id],
-    payload: {
-      value,
-    },
-  });
-};
-
-export const fireSearch = (id) => {
-  const store = microTextFieldStore.get(id);
-  store.mutate({
-    type: actions.START_SEARCH,
-    targets: [id],
-    payload: {},
-  });
-};
-
 export const disableInput = (id, value) => {
   const store = microTextFieldStore.get(id);
   store.mutate({

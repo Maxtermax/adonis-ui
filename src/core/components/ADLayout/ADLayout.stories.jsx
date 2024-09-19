@@ -3,7 +3,7 @@ import ADLayout, { ADLayoutHeader, ADLayoutBody } from "ADLayout";
 import { SEARCH_TEXT_FIELD } from "ADLayout/components/ADLayoutSearch";
 import { microTextFieldStore } from "ADTextField/store";
 import { actions } from "ADLayout/reducer";
-import { completeSearch } from "ADTextField/mutations";
+import { completeSearch } from "ADLayout/mutations";
 
 export default {
   title: "Basic/ADLayout",
@@ -23,7 +23,7 @@ const Template = () => {
 
   onEvent(actions.START_SEARCH, () => {
     setTimeout(() => {
-      completeSearch(SEARCH_TEXT_FIELD, [
+      completeSearch(microTextFieldStore, SEARCH_TEXT_FIELD, [
         {
           id: "upper",
           name: "Prendas superiores",
