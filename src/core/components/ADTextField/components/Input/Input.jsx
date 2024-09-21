@@ -36,6 +36,11 @@ export const Input = ({
     disabled: value,
   }));
 
+
+  onEvent('HOLA', (value, _, __, currentState) => ({
+    ...currentState,
+  }));
+
   const handleChange = (e) => {
     const { value = "" } = e.target;
     clearInterval(intervalIdRef.current);
