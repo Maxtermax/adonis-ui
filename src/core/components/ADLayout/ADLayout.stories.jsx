@@ -19,13 +19,12 @@ const Template = () => {
     noUpdate: true,
     store: microTextFieldStore,
     id: SEARCH_TEXT_FIELD,
-    parent: true,
   });
 
   onEvent(actions.START_SEARCH, () => {
-    // console.log("START_SEARCH")
+    console.log("START_SEARCH")
     setTimeout(() => {
-      // console.log("Complete search");
+      console.log("Complete search");
       completeSearch(microTextFieldStore, SEARCH_TEXT_FIELD, [
         {
           id: "upper",

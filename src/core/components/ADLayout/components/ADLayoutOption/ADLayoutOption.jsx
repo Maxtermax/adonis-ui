@@ -9,12 +9,14 @@ import * as styles from "./styles";
 export const ADLayoutOption = (props = {}) => {
   const handleFocusChange = (value, _resolver, setNoUpdate, currentState) => {
     const match = value?.focus === props.id || currentState?.focus === props.id;
-    setNoUpdate(!match);
+    // setNoUpdate(!match);
+    console.log({ focus: value.focus, match, id: props.id });
     return { focus: value?.focus ?? "" };
   };
 
   const { state } = useMutations({
     initialState: { focus: "" },
+    noUpdate: false,
     events: [actions.FOCUS_OPTION, actions.BLUR_OPTION],
     onChange: handleFocusChange,
     store: layoutMicroStore,

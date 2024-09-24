@@ -30,9 +30,8 @@ const Content = ({ recommendations = [] }) => {
     store: microTextFieldStore,
     id: SEARCH_TEXT_FIELD,
   });
-
+  
   onEvent(textFieldActions.CHANGE, (value) => {
-    console.log("ENTRA");
     const isLoading = value !== "";
     disableInput(SEARCH_TEXT_FIELD, isLoading);
     if (isLoading) mutations.fireSearch(microTextFieldStore, SEARCH_TEXT_FIELD);
