@@ -74,9 +74,7 @@ export const ADLayoutHeader = ({
           </ADGridCol>
 
           <ADGridCol role="list" md={{ display: "none" }}>
-            {list.map(({ id, ...rest }) => (
-              <ADLayoutOption key={id} id={id} {...rest} />
-            ))}
+            <ADLayoutOption data={list} />
             <ADLayoutItem>{search}</ADLayoutItem>
             <ADLayoutItem>{cart}</ADLayoutItem>
           </ADGridCol>

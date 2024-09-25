@@ -11,8 +11,8 @@ import * as styles from "./styles";
 const SubList = ({ data = {}, focus = "" }) => {
   return (
     <styles.Nav>
-      {data[focus].map(({ name = "", items = [] }) => (
-        <styles.UnOrderList key={focus}>
+      {data[focus].map(({ name = "", items = [] }, index) => (
+        <styles.UnOrderList key={focus + index}>
           <ADText className="ad-text-title" value={name} variant="title" />
           {items.map((item) => (
             <styles.Item key={item.ix} delay={item.ix}>
