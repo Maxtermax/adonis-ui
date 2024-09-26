@@ -8,6 +8,7 @@ import * as styles from "./styles";
 export const ADLayoutBody = () => {
   const containerRef = useRef(null);
   const { onEvent } = useMutations({
+    noUpdate: true,
     store: layoutMicroStore,
     id: LAYOUT_HEADER_STORE,
   });

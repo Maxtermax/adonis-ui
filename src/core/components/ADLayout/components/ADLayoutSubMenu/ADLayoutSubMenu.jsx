@@ -83,12 +83,7 @@ export const ADLayoutSubMenu = ({ sublist = [] }) => {
         variant="flat"
       >
         <styles.Content key={state.focus}>
-          {state.focus ? (
-            <SubList
-              data={sublist}
-              focus={state.focus}
-            />
-          ) : null}
+          {state.focus ? <SubList data={sublist} focus={state.focus} /> : null}
         </styles.Content>
       </ADPanel>
     </styles.SubMenu>
