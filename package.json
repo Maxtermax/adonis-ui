@@ -26,7 +26,7 @@
   "@styled-icons/material-outlined": "^10.47.0",
   "@styled-icons/remix-fill": "^10.46.0",
   "emotion-normalize": "11.0.1",
-  "hermes-io": "2.11.81",
+  "hermes-io": "2.11.84",
   "lodash": "4.17.21",
   "styled-components": "6.1.11"
  },
