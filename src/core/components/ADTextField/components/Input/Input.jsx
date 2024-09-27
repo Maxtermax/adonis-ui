@@ -1,5 +1,4 @@
-import React from "react";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { useMutations } from "hermes-io";
 import { microTextFieldStore } from "ADTextField/store";
 import { actions } from "ADTextField/reducer";

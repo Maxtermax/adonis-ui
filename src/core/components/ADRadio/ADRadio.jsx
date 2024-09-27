@@ -1,4 +1,4 @@
-import { useRef, useState, forwardRef } from "react";
+import React, { useRef, useState, forwardRef } from "react";
 import uniqueId from "lodash/uniqueId";
 import { ADText } from "ADText/ADText";
 import * as styles from "./styles";
