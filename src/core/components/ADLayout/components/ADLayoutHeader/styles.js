@@ -1,6 +1,5 @@
 import { withTheme } from "@emotion/react";
 import styled from "@emotion/styled";
-import logo from "./assets/logo.png";
 
 export const Header = withTheme(styled.header`
   align-items: center;
@@ -28,7 +27,7 @@ export const Header = withTheme(styled.header`
 `);
 
 export const Logo = styled.div`
-  background-image: url(${logo});
+  border: 1px solid red;
   background-size: 200px;
   background-repeat: no-repeat;
   background-position: center center;
