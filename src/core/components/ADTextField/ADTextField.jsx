@@ -1,5 +1,5 @@
 import { useRef, forwardRef } from "react";
-import { uniqueId } from "lodash";
+import uniqueId from "lodash/uniqueId";
 import { useObservableStore } from "hermes-io";
 import { ADText } from "ADText/ADText";
 import { ADPanel } from "ADPanel/ADPanel";

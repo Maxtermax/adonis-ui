@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { uniqueId } from "lodash";
+import uniqueId from "lodash/uniqueId";
 import { createPortal } from "react-dom";
 import { useObservableStore, useMutations } from "hermes-io";
 import { useAnimationVisibility } from "ADOverlay/hooks/useAnimationVisibility";

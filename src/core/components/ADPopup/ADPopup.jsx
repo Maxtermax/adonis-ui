@@ -1,13 +1,11 @@
 import React, { forwardRef } from "react";
-import _ from "lodash";
+import uniqueId from "lodash/uniqueId";
 import { useMutations } from "hermes-io";
 import { Header } from "ADPopup/components/Header";
 import { overlayMicroStore } from "ADOverlay/store";
 import { actions } from "ADOverlay/reducer";
 import ADOverlay from "ADOverlay";
 import * as styles from "ADPopup/styles";
-
-const { uniqueId } = _;
 
 export const ADPopup = forwardRef(function ADPopup(
   {

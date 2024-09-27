@@ -1,4 +1,4 @@
-import { uniqueId } from "lodash";
+import uniqueId from "lodash/uniqueId";
 import { microNotificationStore } from "ADNotification/store/notification";
 import { setOpen } from "ADNotification/mutations/notification";
 import ADNotification from "ADNotification";

@@ -1,5 +1,5 @@
 import React, { forwardRef, useState } from "react";
-import { uniqueId } from "lodash";
+import uniqueId from "lodash/uniqueId";
 import { ADText } from "ADText/ADText";
 import { Check } from "@styled-icons/boxicons-regular/Check";
 import * as styles from "ADCheckbox/styles";

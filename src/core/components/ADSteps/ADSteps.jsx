@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { useMutations, useObservableStore } from "hermes-io";
-import { uniqueId } from "lodash";
+import uniqueId from "lodash/uniqueId";
 import { Check } from "@styled-icons/boxicons-regular/Check";
 import { CloseOutline } from "@styled-icons/evaicons-outline/CloseOutline";
 import { ADText } from "ADText/ADText";
