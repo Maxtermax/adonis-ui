@@ -1,7 +1,7 @@
 import { withTheme } from '@emotion/react';
 import styled from "@emotion/styled";
 
-export const Sizes = styled.div`
+export const Sizes = withTheme(styled.div`
   align-items: center;
   display: flex;
   position: relative;
@@ -9,7 +9,7 @@ export const Sizes = styled.div`
   top: -5px;
   justify-content: flex-start;
   gap: ${({ theme }) => theme.spacing.calc(2)};
-`;
+`);
 
 export const Discount = withTheme(styled.div`
   align-items: center;

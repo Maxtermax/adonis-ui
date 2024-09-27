@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import React, { forwardRef } from "react";
 import { ADText } from "ADText/ADText";
 import * as styles from "./styles";
 

@@ -30,11 +30,12 @@ const Content = ({ recommendations = [] }) => {
     store: microTextFieldStore,
     id: SEARCH_TEXT_FIELD,
   });
-  
+
   onEvent(textFieldActions.CHANGE, (value) => {
     const isLoading = value !== "";
     disableInput(SEARCH_TEXT_FIELD, isLoading);
-    if (isLoading) layoutMutations.fireSearch(microTextFieldStore, SEARCH_TEXT_FIELD);
+    if (isLoading)
+      layoutMutations.fireSearch(microTextFieldStore, SEARCH_TEXT_FIELD);
     const isInputEmpty = value === "";
     return {
       isLoading,

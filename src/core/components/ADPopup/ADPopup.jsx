@@ -34,7 +34,6 @@ export const ADPopup = forwardRef(function ADPopup(
   return (
     <ADOverlay isOpen={isOpen} id={id}>
       <styles.Container
-        key={state.key}
         ref={ref}
         className={`ad-popup ${className}`}
         {...rest}

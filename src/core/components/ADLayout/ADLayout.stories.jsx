@@ -22,9 +22,7 @@ const Template = () => {
   });
 
   onEvent(actions.START_SEARCH, () => {
-    console.log("START_SEARCH")
     setTimeout(() => {
-      console.log("Complete search");
       completeSearch(microTextFieldStore, SEARCH_TEXT_FIELD, [
         {
           id: "upper",

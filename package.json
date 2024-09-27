@@ -28,7 +28,7 @@
   "emotion-normalize": "11.0.1",
   "hermes-io": "2.11.90",
   "lodash": "4.17.21",
-  "styled-components": "6.1.11"
+  "styled-components": "6.1.13"
  },
  "devDependencies": {
   "@chromatic-com/storybook": "1.3.4",

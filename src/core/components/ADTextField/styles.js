@@ -1,3 +1,4 @@
+import { withTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 
 const colorMap = (theme, color) =>
@@ -16,7 +17,7 @@ const colorFocusMap = {
   success: "success",
 };
 
-export const Container = styled.div`
+export const Container = withTheme(styled.div`
   display: flex;
   min-width: 100px;
   flex-direction: row;
@@ -49,9 +50,9 @@ export const Container = styled.div`
     top: 0px;
     left: 0px;
   }
-`;
+`);
 
-export const Input = styled.input`
+export const Input = withTheme(styled.input`
   border: ${({ variant }) => (variant === "outlined" ? 1 : 0)}px solid
     ${({ theme }) => theme.colors.primary};
   border-radius: ${({ theme }) => theme.border.radius.rounded};
@@ -68,9 +69,9 @@ export const Input = styled.input`
   &:disabled {
     opacity: 0.5;
   }
-`;
+`);
 
-export const Label = styled.label`
+export const Label = withTheme(styled.label`
   color: ${({ theme, color }) => colorMap(theme, color)};
   position: relative;
   top: ${({ icon }) => (icon ? "0px" : "16px")};
@@ -80,13 +81,13 @@ export const Label = styled.label`
   padding-right: ${({ theme }) => theme.spacing.regular};
   font-size: ${({ theme }) => theme.fonts.sizes.small};
   transition: ${({ theme }) => theme.transitions.quick};
-`;
+`);
 
-export const Icon = styled.div`
+export const Icon = withTheme(styled.div`
   display: flex;
   justify-content: center;
   min-width: 40px;
   svg {
     color: ${({ theme }) => theme.colors.primary};
   }
-`;
+`);

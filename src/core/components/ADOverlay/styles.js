@@ -1,4 +1,4 @@
-import { keyframes } from "@emotion/react";
+import { keyframes, withTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const appear = (isOpen = false) => keyframes`
@@ -10,7 +10,7 @@ export const appear = (isOpen = false) => keyframes`
   }
 `;
 
-export const Container = styled.div`
+export const Container = withTheme(styled.div`
   align-items: center;
   animation: ${({ isOpen }) => appear(!isOpen)};
   animation-duration: ${({ theme }) => theme.timing.fast};
@@ -32,4 +32,4 @@ export const Container = styled.div`
   & > .ad-text-body {
     color: ${({ theme }) => theme.colors.contrast.primary};
   }
-`;
+`);

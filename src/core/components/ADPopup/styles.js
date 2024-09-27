@@ -1,4 +1,4 @@
-import { keyframes } from "@emotion/react";
+import { keyframes, withTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 
 const appear = (theme) => keyframes`
@@ -12,7 +12,7 @@ const appear = (theme) => keyframes`
   }
 `;
 
-export const Container = styled.div`
+export const Container = withTheme(styled.div`
   align-items: center;
   animation: ${({ theme }) => appear(theme)};
   animation-fill-mode: forwards;
@@ -29,9 +29,9 @@ export const Container = styled.div`
   width: ${({ width = 'auto' }) => width};
   height: ${({ height = 'auto' }) => height};
   border-radius: ${({ theme }) => theme.border.radius.rounded};
-`;
+`);
 
-export const Header = styled.header`
+export const Header = withTheme(styled.header`
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -58,4 +58,4 @@ export const Header = styled.header`
     width: 100%;
     justify-content: space-between;
   }
-`;
+`);

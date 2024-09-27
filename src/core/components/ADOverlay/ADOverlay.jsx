@@ -26,18 +26,18 @@ export const ADOverlay = ({
     animateVisibility(isOpen);
     return { isOpen };
   });
+  const content = (
+    <styles.Container
+      defaultOpen={isOpen}
+      isOpen={state.isOpen}
+      ref={containerRef}
+      className={`ad-overlay ${className}`}
+    >
+      {children}
+    </styles.Container>
+  );
   if (typeof document !== "undefined") {
-    return createPortal(
-      <styles.Container
-        defaultOpen={isOpen}
-        isOpen={state.isOpen}
-        ref={containerRef}
-        className={`ad-overlay ${className}`}
-      >
-        {children}
-      </styles.Container>,
-      document.body,
-    );
+    return createPortal(content, document.body);
   }
-  return null;
+  return content;
 };
