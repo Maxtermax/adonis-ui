@@ -54,7 +54,7 @@ export const ADLayoutSubMenu = ({ sublist = [] }) => {
   });
 
   onEvent(actions.BLUR_OPTION, async (value = {}, resolver) => {
-    if (document.startViewTransition) {
+    if (typeof document !== "undefined" && document.startViewTransition) {
       const transition = document.startViewTransition(() =>
         subMenuContainerRef.current.classList.add("hide"),
       );
