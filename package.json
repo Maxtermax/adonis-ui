@@ -10,8 +10,8 @@
   "build-pack": "node build.js"
  },
  "dependencies": {
-  "@emotion/react": "^11.13.3",
-  "@emotion/styled": "^11.13.0",
+  "@emotion/react": "11.13.3",
+  "@emotion/styled": "11.13.0",
   "@styled-icons/bootstrap": "10.47.0",
   "@styled-icons/boxicons-logos": "10.47.0",
   "@styled-icons/boxicons-regular": "10.47.0",
