@@ -5,8 +5,8 @@ export const Sizes = withTheme(styled.div`
   align-items: center;
   display: flex;
   position: relative;
-  left: -10px;
-  top: -5px;
+  left: 0px;
+  top: 0px;
   justify-content: flex-start;
   gap: ${({ theme }) => theme.spacing.calc(2)};
 `);
@@ -31,14 +31,19 @@ export const Discount = withTheme(styled.div`
 export const LeftCol = withTheme(styled.div`
   display: flex;
   flex-direction: column;
-  height: 100px;
+  height: 105px;
   gap: ${(props) => props.theme.spacing.regular};
   width: calc(100% - 10px);
+  align-items: flex-start;
+  justify-content: center;
   .ad-text-title,
   .ad-text-body {
     align-items: center;
     display: flex;
     height: 30px;
+  }
+  .ad-text-heading {
+    font-size: 25px;
   }
 `);
 
@@ -70,16 +75,19 @@ export const RightCol = withTheme(styled.div`
 
 export const Footer = withTheme(styled.div`
   display: flex;
-  background-color: ${(props) => props.theme.colors.grey};
+  background-color: ${(props) => props.theme.colors.white};
   flex-direction: column;
-  padding: ${(props) => props.theme.spacing.medium};
+  padding-top: 20px;
+  padding-bottom: 20px; 
+  padding-left: 15px;
+  padding-right: 15px;
   transition: ${(props) => props.theme.transitions.smooth};
   .ad-panel {
     border: 1px solid ${(props) => props.theme.colors.transparent};
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
   }
 `);

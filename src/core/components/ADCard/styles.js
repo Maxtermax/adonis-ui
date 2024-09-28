@@ -74,12 +74,6 @@ export const Card = withTheme(styled("div", {
   height: ${({ fullHeight, height = "auto", theme }) =>
     fullHeight ? "100%" : withCustomTheme(height, theme)};
   gap: ${({ theme, gap }) => (gap ? theme.spacing[gap] ?? gap : "0px")};
-  &:hover {
-    transform: ${({ theme, noScaleOnHover, onHoverTransform }) =>
-      noScaleOnHover
-        ? "none"
-        : onHoverTransform || theme.transform.scale.small};
-  }
 `);
 
 export const Left = styled.div``;
