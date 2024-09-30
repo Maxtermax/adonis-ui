@@ -4,6 +4,9 @@ import { SEARCH_TEXT_FIELD } from "ADLayout/components/ADLayoutSearch";
 import { microTextFieldStore } from "ADTextField/store";
 import { actions } from "ADLayout/reducer";
 import { completeSearch } from "ADLayout/mutations";
+import ADCarousell from "ADCarousell";
+import ADMedia from "ADMedia";
+import mock from "ADMedia/mock";
 
 export default {
   title: "Basic/ADLayout",
@@ -74,7 +77,15 @@ const Template = () => {
 
   return (
     <ADLayout
-      body={() => <ADLayoutBody />}
+      body={() => (
+        <ADLayoutBody>
+          <ADCarousell>
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((id) => (
+              <ADMedia key={id} {...mock} />
+            ))}
+          </ADCarousell>
+        </ADLayoutBody>
+      )}
       header={() => (
         <ADLayoutHeader
           list={[
