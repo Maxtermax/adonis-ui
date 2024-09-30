@@ -1,3 +1,4 @@
+import React from "react";
 import { useMutations } from "hermes-io";
 import ADButton from "ADButton";
 import ADText from "ADText";
@@ -6,43 +7,34 @@ import { actions } from "ADLayout/reducer";
 import * as mutations from "ADLayout/mutations";
 import * as styles from "./styles";
 
-export const ADLayoutOption = (props = {}) => {
+export const ADLayoutOption = ({ data = [] }) => {
   const { state, onEvent } = useMutations({
-    initialState: { focus: "" },
     noUpdate: false,
     store: layoutMicroStore,
+    initialState: { focus: "" },
     id: LAYOUT_HEADER_STORE,
   });
 
-  const handleFocus = (value, _, setNoUpdate) => {
-    const hasNotMatch = value?.focus !== props.id;
-    setNoUpdate(hasNotMatch);
-    return { focus: value?.focus ?? "" };
+  const handleFocus = (value) => {
+    const focus = value?.focus ?? "";
+    return { focus };
   };
 
-  const handleBlur = (value, __, setNoUpdate) => {
-    const hasNotMatch = value?.focus !== props.id;
-    setNoUpdate(hasNotMatch);
-    return { focus: "" };
-  };
+  const handleHeaderBlur = () => ({ focus: "" });
 
   onEvent(actions.FOCUS_OPTION, handleFocus);
-  // onEvent(actions.BLUR_OPTION, handleBlur);
+  onEvent(actions.BLUR_OPTION, handleHeaderBlur);
 
-  const isSelected = state.focus === props.id;
-
-  const handleEnter = () => {
-    const { id: focus } = props;
-    console.trace("focus:" + focus);
+  const handleEnter = (focus = "") => {
     const store = layoutMicroStore.get(LAYOUT_HEADER_STORE);
     mutations.focusOption(store, { focus }, [LAYOUT_HEADER_STORE]);
   };
 
-  return (
-    <styles.Item isSelected={isSelected}>
-      <ADButton onMouseEnter={handleEnter} variant="text">
-        <ADText value={props.name} variant="subtitle" />
+  return data.map(({ id = "", name = "" }) => (
+    <styles.Item key={id} isSelected={state.focus === id}>
+      <ADButton onMouseEnter={() => handleEnter(id)} variant="text">
+        <ADText value={name} variant="subtitle" />
       </ADButton>
     </styles.Item>
-  );
+  ));
 };

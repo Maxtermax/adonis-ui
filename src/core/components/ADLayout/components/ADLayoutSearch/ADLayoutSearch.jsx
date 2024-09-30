@@ -13,11 +13,11 @@ import ADPanel from "ADPanel";
 import ADLoader from "ADLoader";
 import ADTextField from "ADTextField";
 import ADRecommendations from "ADLayout/components/ADRecommendations";
-import { setOpen } from "ADPopup/mutations";
 import { overlayMicroStore } from "ADOverlay/store";
 import { disableInput } from "ADTextField/mutations";
-import * as mutations from "ADLayout/mutations";
-import * as queries from "ADLayout/queries";
+import * as popupMutations from "ADPopup/mutations";
+import * as layoutMutations from "ADLayout/mutations";
+import * as layoutQueries from "ADLayout/queries";
 import * as styles from "./styles";
 
 export const SEARCH_MODAL = "SEARCH_MODAL";
@@ -30,11 +30,12 @@ const Content = ({ recommendations = [] }) => {
     store: microTextFieldStore,
     id: SEARCH_TEXT_FIELD,
   });
-  
+
   onEvent(textFieldActions.CHANGE, (value) => {
     const isLoading = value !== "";
     disableInput(SEARCH_TEXT_FIELD, isLoading);
-    if (isLoading) mutations.fireSearch(microTextFieldStore, SEARCH_TEXT_FIELD);
+    if (isLoading)
+      layoutMutations.fireSearch(microTextFieldStore, SEARCH_TEXT_FIELD);
     const isInputEmpty = value === "";
     return {
       isLoading,
@@ -64,10 +65,10 @@ const Content = ({ recommendations = [] }) => {
 export const ADLayoutSearch = withTheme(({ theme, recommendations = [] }) => {
   const handleClick = async () => {
     const headerStore = layoutMicroStore.get(LAYOUT_HEADER_STORE);
-    const isOpen = queries.getIsOpen(headerStore);
-    if (isOpen) await mutations.blurOption(headerStore, targets);
+    const isOpen = layoutQueries.getIsOpen(headerStore);
+    if (isOpen) await layoutMutations.blurOption(headerStore, targets);
     const store = overlayMicroStore.get(SEARCH_MODAL);
-    setOpen({ store, id: SEARCH_MODAL, value: true });
+    popupMutations.setOpen({ store, id: SEARCH_MODAL, value: true });
   };
 
   return (

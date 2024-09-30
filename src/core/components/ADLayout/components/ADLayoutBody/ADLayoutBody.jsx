@@ -2,12 +2,12 @@ import React, { useRef } from "react";
 import { useMutations } from "hermes-io";
 import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store";
 import { actions } from "ADLayout/reducer";
-import ADMedia from "ADMedia";
 import * as styles from "./styles";
 
-export const ADLayoutBody = () => {
+export const ADLayoutBody = ({ children = null }) => {
   const containerRef = useRef(null);
   const { onEvent } = useMutations({
+    noUpdate: true,
     store: layoutMicroStore,
     id: LAYOUT_HEADER_STORE,
   });
@@ -26,65 +26,5 @@ export const ADLayoutBody = () => {
     }, 350);
   });
 
-  return (
-    <styles.Container ref={containerRef}>
-      <ADMedia
-        discount={{
-          before: 1000000,
-          now: 500000,
-          percentage: "50%",
-        }}
-        id={1}
-        images={[
-          {
-            description: "test",
-            id: 1,
-            productId: 1,
-            selected: true,
-            src: "https://hmcolombia.vtexassets.com/arquivos/ids/3675203-483-725?v=638511011914100000&width=483&height=725&aspect=true",
-          },
-          {
-            description: "test2",
-            id: 2,
-            productId: 1,
-            selected: false,
-            src: "https://hmcolombia.vtexassets.com/arquivos/ids/3675229-483-725?v=638511012045930000&width=483&height=725&aspect=true",
-          },
-          {
-            description: "test3",
-            id: 3,
-            productId: 1,
-            selected: false,
-            src: "https://hmcolombia.vtexassets.com/arquivos/ids/3675230/Vestido-linea-A-en-tejido-fino---Crema-Negro---H-M-CO.jpg?v=638511012049670000",
-          },
-        ]}
-        name="Vestido"
-        price="150000000"
-        sizes={["M", "S", "XS", "L"]}
-        thumbnails={[
-          {
-            belongsTo: 1,
-            description: "test",
-            id: 1,
-            productId: 1,
-            src: "https://hmcolombia.vtexassets.com/arquivos/ids/3675203-483-725?v=638511011914100000&width=483&height=725&aspect=true",
-          },
-          {
-            belongsTo: 2,
-            description: "test2",
-            id: 2,
-            productId: 1,
-            src: "https://hmcolombia.vtexassets.com/arquivos/ids/3675229-483-725?v=638511012045930000&width=483&height=725&aspect=true",
-          },
-          {
-            belongsTo: 3,
-            description: "test3",
-            id: 3,
-            productId: 1,
-            src: "https://hmcolombia.vtexassets.com/arquivos/ids/3675230/Vestido-linea-A-en-tejido-fino---Crema-Negro---H-M-CO.jpg?v=638511012049670000",
-          },
-        ]}
-      />
-    </styles.Container>
-  );
+  return <styles.Container ref={containerRef}>{children}</styles.Container>;
 };

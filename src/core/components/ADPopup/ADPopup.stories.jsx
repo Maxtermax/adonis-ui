@@ -4,7 +4,7 @@ import { ADButton } from "ADButton/ADButton";
 import { ADTextField } from "ADTextField/ADTextField";
 import { ADPanel } from "ADPanel/ADPanel";
 import { setOpen } from "ADPopup/mutations/setOpen";
-import { uniqueId } from "lodash";
+import uniqueId from "lodash/uniqueId";
 
 export default {
   title: "Basic/ADPopup",

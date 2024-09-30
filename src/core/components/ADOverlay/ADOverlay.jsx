@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { uniqueId } from "lodash";
+import React, { useRef } from "react";
+import uniqueId from "lodash/uniqueId";
 import { createPortal } from "react-dom";
 import { useObservableStore, useMutations } from "hermes-io";
 import { useAnimationVisibility } from "ADOverlay/hooks/useAnimationVisibility";
@@ -26,8 +26,7 @@ export const ADOverlay = ({
     animateVisibility(isOpen);
     return { isOpen };
   });
-
-  return createPortal(
+  const content = (
     <styles.Container
       defaultOpen={isOpen}
       isOpen={state.isOpen}
@@ -35,7 +34,10 @@ export const ADOverlay = ({
       className={`ad-overlay ${className}`}
     >
       {children}
-    </styles.Container>,
-    document.body,
+    </styles.Container>
   );
+  if (typeof document !== "undefined") {
+    return createPortal(content, document.body);
+  }
+  return content;
 };

@@ -11,8 +11,8 @@ import * as styles from "./styles";
 const SubList = ({ data = {}, focus = "" }) => {
   return (
     <styles.Nav>
-      {data[focus].map(({ name = "", items = [] }) => (
-        <styles.UnOrderList key={focus}>
+      {data[focus].map(({ name = "", items = [] }, index) => (
+        <styles.UnOrderList key={focus + index}>
           <ADText className="ad-text-title" value={name} variant="title" />
           {items.map((item) => (
             <styles.Item key={item.ix} delay={item.ix}>
@@ -54,7 +54,7 @@ export const ADLayoutSubMenu = ({ sublist = [] }) => {
   });
 
   onEvent(actions.BLUR_OPTION, async (value = {}, resolver) => {
-    if (document.startViewTransition) {
+    if (typeof document !== "undefined" && document.startViewTransition) {
       const transition = document.startViewTransition(() =>
         subMenuContainerRef.current.classList.add("hide"),
       );
@@ -83,12 +83,7 @@ export const ADLayoutSubMenu = ({ sublist = [] }) => {
         variant="flat"
       >
         <styles.Content key={state.focus}>
-          {state.focus ? (
-            <SubList
-              data={sublist}
-              focus={state.focus}
-            />
-          ) : null}
+          {state.focus ? <SubList data={sublist} focus={state.focus} /> : null}
         </styles.Content>
       </ADPanel>
     </styles.SubMenu>

@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useRef } from "react";
-import { uniqueId } from "lodash";
+import uniqueId from "lodash/uniqueId";
 import { useObservableStore } from "hermes-io";
 import { KeyboardArrowDown } from "@styled-icons/material/KeyboardArrowDown";
 import { KeyboardArrowRight } from "@styled-icons/material-outlined/KeyboardArrowRight";

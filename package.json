@@ -10,8 +10,8 @@
   "build-pack": "node build.js"
  },
  "dependencies": {
-  "@emotion/react": "^11.13.3",
-  "@emotion/styled": "^11.13.0",
+  "@emotion/react": "11.13.3",
+  "@emotion/styled": "11.13.0",
   "@styled-icons/bootstrap": "10.47.0",
   "@styled-icons/boxicons-logos": "10.47.0",
   "@styled-icons/boxicons-regular": "10.47.0",
@@ -26,9 +26,9 @@
   "@styled-icons/material-outlined": "^10.47.0",
   "@styled-icons/remix-fill": "^10.46.0",
   "emotion-normalize": "11.0.1",
-  "hermes-io": "2.11.91",
+  "hermes-io": "2.11.90",
   "lodash": "4.17.21",
-  "styled-components": "6.1.11"
+  "styled-components": "6.1.13"
  },
  "devDependencies": {
   "@chromatic-com/storybook": "1.3.4",

@@ -12,7 +12,7 @@ import * as styles from "./styles";
 import { CARD_VARIANTS, DIMENSIONS, SHAPES } from "constants";
 const { uniqueId } = _;
 
-const { OUTLINED } = CARD_VARIANTS;
+const { SHARP } = CARD_VARIANTS;
 
 const Static = ({
   id,
@@ -29,12 +29,17 @@ const Static = ({
     <styles.Media className={`ad-media ${className}`} {...rest}>
       <ADCard
         elevation={DIMENSIONS.regular}
-        variant={OUTLINED}
+        variant={SHARP}
         gap={DIMENSIONS.none}
         shape={SHAPES.rounded}
-        Header={() => <Header discount={discount} />}
+        Header={() => null}
         Content={() => (
-          <Content id={id} images={images} thumbnails={thumbnails} />
+          <Content
+            id={id}
+            discount={discount}
+            images={images}
+            thumbnails={thumbnails}
+          />
         )}
         Footer={() => (
           <Footer name={name} price={price} sizes={sizes} discount={discount} />

@@ -1,6 +1,7 @@
+import { withTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 
-export const Panel = styled.div`
+export const Panel = withTheme(styled.div`
   color: ${({ theme }) => theme.colors.primary};
   background-color: ${({ theme, variant }) =>
     variant === "flat" ? theme.colors.transparent : theme.colors.lightSilver};
@@ -9,4 +10,4 @@ export const Panel = styled.div`
     variant === "flat" ? theme.spacing.none : theme.spacing.regular};
   display: block;
   width: ${({ width }) => width ? width : "100%"};
-`;
+`);

@@ -39,7 +39,7 @@ export const Footer = ({ name, price, sizes, discount }) => {
     <styles.Footer>
       <ADGrid md={{ cols: 1, rows: 1 }} cols={"1fr 70px"} rows={1}>
         <styles.LeftCol className="left-col">
-          <ADText variant={TEXT_VARIANTS.TITLE} value={name} />
+          <ADText variant={TEXT_VARIANTS.HEADING} value={name} />
           {discount ? (
             <styles.Discount>
               <ADTooltip

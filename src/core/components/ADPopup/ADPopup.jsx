@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { uniqueId } from "lodash";
+import uniqueId from "lodash/uniqueId";
 import { useMutations } from "hermes-io";
 import { Header } from "ADPopup/components/Header";
 import { overlayMicroStore } from "ADOverlay/store";
@@ -34,7 +34,6 @@ export const ADPopup = forwardRef(function ADPopup(
   return (
     <ADOverlay isOpen={isOpen} id={id}>
       <styles.Container
-        key={state.key}
         ref={ref}
         className={`ad-popup ${className}`}
         {...rest}
