@@ -35,7 +35,7 @@ export const Content = withTheme(styled.div`
   background-color: ${(props) => props.theme.colors.white};
   cursor: zoom-in;
   display: block;
-  height: 385px;
+  height: 325px;
   gap: ${(props) => props.theme.spacing.medium};
   @media screen and ${(props) => props.theme.devices.sm} {
     padding: 0px;

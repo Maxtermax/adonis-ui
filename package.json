@@ -22,11 +22,11 @@
   "@styled-icons/feather": "^10.47.0",
   "@styled-icons/heroicons-outline": "^10.47.0",
   "@styled-icons/ionicons-solid": "10.46.0",
-  "@styled-icons/material": "10.47.0",
+  "@styled-icons/material": "^10.47.0",
   "@styled-icons/material-outlined": "^10.47.0",
   "@styled-icons/remix-fill": "^10.46.0",
   "emotion-normalize": "11.0.1",
-  "hermes-io": "2.11.90",
+  "hermes-io": "2.11.92",
   "lodash": "4.17.21",
   "styled-components": "6.1.13"
  },

@@ -2,8 +2,8 @@ import { withTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const Media = withTheme(styled.div`
-  width: 350px;
-  & .ad-card {
+  & > .ad-card {
     border-color: transparent;
+    width: 340px;
   }
 `);

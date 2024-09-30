@@ -65,6 +65,9 @@ export const Button = withTheme(styled.button`
   font-size: ${(props) => props.theme.fonts.sizes.normal};
   font-family: ${(props) => props.theme.fonts.primary.regular};
   justify-content: center;
+  &:disabled {
+    opacity: 0.5;
+  }
   &:hover {
     box-shadow: ${(props) => boxShadow(props)};
     transform: ${({ theme, noScaleOnHover }) =>
