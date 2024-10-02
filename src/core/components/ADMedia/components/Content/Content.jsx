@@ -1,8 +1,8 @@
 import React from "react";
 import ADText from "ADText";
+import { TEXT_VARIANTS } from "constants";
 import { Thumbnails } from "../Thumbnails/Thumbnails";
 import { Main } from "../Main/Main";
-import { TEXT_VARIANTS } from "constants";
 import * as styles from "./styles";
 
 export const Content = ({ discount, images = [], thumbnails = [], id }) => {

@@ -1,17 +1,83 @@
-import React, { useRef } from "react";
+import React, { forwardRef, useRef } from "react";
+import { useObservableStore, useMutations } from "hermes-io";
+import _ from "lodash";
 import { KeyboardArrowLeft } from "@styled-icons/material/KeyboardArrowLeft";
 import { KeyboardArrowRight } from "@styled-icons/material-outlined/KeyboardArrowRight";
 import ADButton from "ADButton";
-import { DIRECTIONS } from "constants";
+import ADLoader from "ADLoader";
+import { ADCarousellContent } from "./components/ADCarousellContent";
+import { actions, reducer } from "./reducer";
+import { microCarousellStore } from "./store";
+import { nextPage, setLoader } from "./mutations";
+import { getLastItem } from "./queries";
 import * as styles from "./styles";
 
-export const ADCarousell = ({ children = [] }) => {
-  const containerRef = useRef(null);
-  const prevButtonRef = useRef(null);
-  const nextButtonRef = useRef(null);
+const { uniqueId } = _;
 
-  const focusFirstVisibleTab = () => {
-    const container = containerRef.current;
+const ADCarousellPrev = ({ onClick }) => {
+  return (
+    <ADButton
+      onClick={onClick}
+      variant="text"
+      className="ad-carousell__arrow __arrow-left"
+    >
+      <KeyboardArrowLeft />
+    </ADButton>
+  );
+};
+
+const ADCarousellNext = ({ store, id }) => {
+  const { state, onEvent } = useMutations({
+    initialState: { isLoading: false },
+    store,
+    id,
+  });
+
+  onEvent(actions.LOADING, (isLoading) => ({ isLoading }));
+
+  const handleNext = async () => {
+    const { id: lastItemId } = getLastItem(store);
+    setLoader({ store, id, value: true });
+    await nextPage({ store, id, value: lastItemId });
+    setLoader({ store, id, value: false });
+  };
+
+  if (state.isLoading) return <ADLoader />;
+
+  return (
+    <ADButton
+      onClick={handleNext}
+      variant="text"
+      className="ad-carousell__arrow __arrow-right"
+    >
+      <KeyboardArrowRight />
+    </ADButton>
+  );
+};
+
+export const ADCarousell = ({ data = [], id = uniqueId("ad-carousell") }) => {
+  const wrapperRef = useRef(null);
+  const { store } = useObservableStore(
+    id,
+    {
+      data,
+      page: 0,
+      isLoading: false,
+    },
+    reducer,
+    microCarousellStore,
+  );
+
+  const handleScroll = () => {
+    const container = wrapperRef.current.querySelector(".ad-carousell");
+    const prevButton = wrapperRef.current.querySelector(".__arrow-left");
+    const posX = container.scrollLeft;
+    if (posX === 0) prevButton.disabled = true;
+    if (posX > 0) prevButton.disabled = false;
+  };
+
+  const handlePrev = () => {
+    const container = wrapperRef.current;
     const items = container.querySelectorAll(".ad-media");
     let width = 0;
     let focusTab = null;
@@ -26,65 +92,16 @@ export const ADCarousell = ({ children = [] }) => {
     focusTab?.scrollIntoView?.({ block: "center", behavior: "smooth" });
   };
 
-  const focusLastVisibleTab = () => {
-    const container = containerRef.current;
-    const items = container.querySelectorAll(".ad-media");
-    let width = 0;
-    let focusTab = null;
-    for (const item of items) {
-      width += item.clientWidth;
-      if (width > container.clientWidth + container.scrollLeft) {
-        focusTab = item;
-        break;
-      }
-    }
-    focusTab?.scrollIntoView?.({ block: "center", behavior: "smooth" });
-  };
-
-  const handleFocus = (direction) => {
-    const isLeft = direction === DIRECTIONS.LEFT;
-    const isRight = direction === DIRECTIONS.RIGHT;
-    if (isLeft) focusFirstVisibleTab();
-    if (isRight) focusLastVisibleTab();
-  };
-
-  const handleScroll = () => {
-    const container = containerRef.current;
-    const posX = container.scrollLeft;
-    if (posX === 0) prevButtonRef.current.disabled = true;
-    if (posX > 0) prevButtonRef.current.disabled = false;
-    if (container.scrollWidth - posX === container.clientWidth) {
-      nextButtonRef.current.disabled = true;
-    } else {
-      nextButtonRef.current.disabled = false;
-    }
-  };
-
   return (
-    <styles.Wrapper>
-      <ADButton
-        ref={prevButtonRef}
-        onClick={() => handleFocus(DIRECTIONS.LEFT)}
-        variant="text"
-        className="ad-carousell__arrow __arrow-left"
-      >
-        <KeyboardArrowLeft />
-      </ADButton>
-      <styles.Container
+    <styles.Wrapper ref={wrapperRef}>
+      <ADCarousellPrev onClick={handlePrev} />
+      <ADCarousellContent
         onScroll={handleScroll}
-        ref={containerRef}
-        className="ad-carousell"
-      >
-        <styles.Content>{children}</styles.Content>
-      </styles.Container>
-      <ADButton
-        ref={nextButtonRef}
-        onClick={() => handleFocus(DIRECTIONS.RIGHT)}
-        variant="text"
-        className="ad-carousell__arrow __arrow-right"
-      >
-        <KeyboardArrowRight />
-      </ADButton>
+        store={store}
+        id={id}
+        data={data}
+      />
+      <ADCarousellNext store={store} id={id} />
     </styles.Wrapper>
   );
 };
