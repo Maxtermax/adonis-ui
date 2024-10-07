@@ -1,100 +1,75 @@
-import React, { forwardRef, useRef } from "react";
-import { useObservableStore, useMutations } from "hermes-io";
+import React, { useRef } from "react";
+import { useObservableStore } from "hermes-io";
 import _ from "lodash";
-import { KeyboardArrowLeft } from "@styled-icons/material/KeyboardArrowLeft";
-import { KeyboardArrowRight } from "@styled-icons/material-outlined/KeyboardArrowRight";
 import ADButton from "ADButton";
-import ADLoader from "ADLoader";
+import { KeyboardArrowLeft } from "@styled-icons/material/KeyboardArrowLeft";
 import { ADCarousellContent } from "./components/ADCarousellContent";
-import { actions, reducer } from "./reducer";
+import { ADCarousellNext } from "./components/ADCarousellNext";
+import { reducer } from "./reducer";
 import { microCarousellStore } from "./store";
-import { nextPage, setLoader } from "./mutations";
-import { getLastItem } from "./queries";
+import { setHasReachedLastItem } from "./mutations";
+import { getHasReachedLastItem } from "./queries";
 import * as styles from "./styles";
 
 const { uniqueId } = _;
-
-const ADCarousellPrev = ({ onClick }) => {
-  return (
-    <ADButton
-      onClick={onClick}
-      variant="text"
-      className="ad-carousell__arrow __arrow-left"
-    >
-      <KeyboardArrowLeft />
-    </ADButton>
-  );
-};
-
-const ADCarousellNext = ({ store, id }) => {
-  const { state, onEvent } = useMutations({
-    initialState: { isLoading: false },
-    store,
-    id,
-  });
-
-  onEvent(actions.LOADING, (isLoading) => ({ isLoading }));
-
-  const handleNext = async () => {
-    const { id: lastItemId } = getLastItem(store);
-    setLoader({ store, id, value: true });
-    await nextPage({ store, id, value: lastItemId });
-    setLoader({ store, id, value: false });
-  };
-
-  if (state.isLoading) return <ADLoader />;
-
-  return (
-    <ADButton
-      onClick={handleNext}
-      variant="text"
-      className="ad-carousell__arrow __arrow-right"
-    >
-      <KeyboardArrowRight />
-    </ADButton>
-  );
-};
+const OFFSET = 50;
 
 export const ADCarousell = ({ data = [], id = uniqueId("ad-carousell") }) => {
   const wrapperRef = useRef(null);
+  const prevButtonRef = useRef(null);
   const { store } = useObservableStore(
     id,
     {
       data,
       page: 0,
+      hasReachedLastItem: true,
       isLoading: false,
     },
     reducer,
     microCarousellStore,
   );
 
-  const handleScroll = () => {
-    const container = wrapperRef.current.querySelector(".ad-carousell");
-    const prevButton = wrapperRef.current.querySelector(".__arrow-left");
-    const posX = container.scrollLeft;
-    if (posX === 0) prevButton.disabled = true;
-    if (posX > 0) prevButton.disabled = false;
-  };
-
-  const handlePrev = () => {
-    const container = wrapperRef.current;
-    const items = container.querySelectorAll(".ad-media");
+  const getPreviuosNodeToFocus = (nodes, scrollLeft) => {
     let width = 0;
-    let focusTab = null;
-    for (const item of items) {
-      width += item.clientWidth + 49;
-      console.log({ tab: item, width, scrollLeft: container.scrollLeft });
-      if (width >= container.scrollLeft) {
-        focusTab = item;
+    let result = null;
+    for (const node of nodes) {
+      width += node.clientWidth + OFFSET;
+      if (width >= scrollLeft) {
+        result = node;
         break;
       }
     }
-    focusTab?.scrollIntoView?.({ block: "center", behavior: "smooth" });
+    return result;
+  };
+
+  const handleScroll = (e) => {
+    const container = e.target;
+    const { scrollLeft, scrollWidth, clientWidth } = container;
+    const x = scrollWidth - scrollLeft;
+    const hasReachedLastItem = x >= clientWidth - OFFSET && x <= clientWidth;
+    prevButtonRef.current.disabled = scrollLeft === 0;
+    if (getHasReachedLastItem(store) === hasReachedLastItem) return;
+    // only update if it's different
+    setHasReachedLastItem({ store, id, value: hasReachedLastItem });
+  };
+
+  const handlePrev = () => {
+    const container = wrapperRef.current.querySelector(".ad-carousell");
+    const items = container.querySelectorAll(".ad-media");
+    let node = getPreviuosNodeToFocus(items, container.scrollLeft);
+    node?.scrollIntoView?.({ block: "center", behavior: "smooth" });
   };
 
   return (
     <styles.Wrapper ref={wrapperRef}>
-      <ADCarousellPrev onClick={handlePrev} />
+      <ADButton
+        onClick={handlePrev}
+        variant="text"
+        className="ad-carousell__arrow __arrow-left"
+        ref={prevButtonRef}
+      >
+        <KeyboardArrowLeft />
+      </ADButton>
       <ADCarousellContent
         onScroll={handleScroll}
         store={store}

@@ -21,4 +21,17 @@ export const newPage = ({ store, id, value }) =>
     payload: { value },
   });
 
+export const setHasReachedLastItem = ({ store, id, value }) =>
+  store.mutate({
+    targets: [id],
+    type: actions.HAS_REACHED_LAST_ITEM,
+    payload: { value },
+  });
+
+export const focusNextItem = ({ store, id, value }) =>
+  store.mutate({
+    targets: [id],
+    type: actions.FOCUS_NEXT_ITEM,
+    payload: { value },
+  });
 
