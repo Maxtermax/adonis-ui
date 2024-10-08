@@ -7,6 +7,13 @@ export const setLoader = ({ store, id, value }) =>
     payload: { value },
   });
 
+export const setIsMobile = ({ store, id, value }) =>
+  store.mutate({
+    targets: [id],
+    type: actions.MOBILE_LAYOUT,
+    payload: { value },
+  });
+
 export const nextPage = ({ store, id, value }) =>
   store.mutate({
     targets: [id],
@@ -35,3 +42,9 @@ export const focusNextItem = ({ store, id, value }) =>
     payload: { value },
   });
 
+export const updateUINextPage = ({ store, id }) =>
+  store.mutate({
+    targets: [id],
+    type: actions.UPDATE_UI_NEXT_PAGE,
+    payload: {},
+  });

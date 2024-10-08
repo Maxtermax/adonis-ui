@@ -7,6 +7,7 @@ export const Container = withTheme(
     display: "flex",
     justifyContent: "center",
     overflowX: "auto",
+    scrollSnapType: "x mandatory",
     height: "fit-content",
     width: "calc(100vw - 140px)",
     ["&::-webkit-scrollbar"]: {
@@ -18,10 +19,19 @@ export const Container = withTheme(
   })),
 );
 
-export const Content = withTheme(styled.div`
-  align-items: center;
-  justify-content: flex-start;
-  display: flex;
-  width: 100%;
-  gap: ${({ theme }) => theme.spacing.medium};
+export const Content = withTheme(
+  styled.div(({ theme = {} }) => ({
+    alignItems: "center",
+    justifyContent: "flex-start",
+    display: "flex",
+    width: "100%",
+    gap: theme.spacing.medium,
+    [`@media screen and (max-width: ${theme.breakpoints.sm})`]: {
+      gap: "0px",
+    },
+  })),
+);
+
+export const Item = withTheme(styled.div`
+  scroll-snap-align: start;
 `);

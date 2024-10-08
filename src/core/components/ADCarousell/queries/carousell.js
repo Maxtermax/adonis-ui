@@ -9,3 +9,9 @@ export const getLastItem = (store) =>
 
 export const getCarousellData = (store) =>
   store.query(({ state = {} }) => get(state, "data", []));
+
+export const getIsMobile = (store) =>
+  store.query(({ state = {} }) => get(state, "isMobile", false));
+
+export const getIsLoading = (store) =>
+  store.query(({ state = {} }) => get(state, "isLoading", false));

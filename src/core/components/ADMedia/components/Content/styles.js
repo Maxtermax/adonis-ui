@@ -36,24 +36,27 @@ export const Content = withTheme(styled.div`
   cursor: zoom-in;
   display: block;
   height: 325px;
+  border: 2px solid ${(props) => props.theme.colors.primary};
+  overflow: hidden;
   gap: ${(props) => props.theme.spacing.medium};
   @media screen and ${(props) => props.theme.devices.sm} {
     padding: 0px;
   }
   .main-picture {
     position: relative;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
   }
   .main-picture img {
-    transform: ${(props) => props.theme.transform.scale.six};
     transition: ${(props) => props.theme.transitions.quick};
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 1;
     width: 100%;
     height: auto;
-    object-position: left top;
-    object-fit: cover;
-    &:hover {
-      transform: ${(props) => props.theme.transform.scale.extra};
-    }
+    object-position: center;
+    object-fit: contain;
+    scroll-snap-align: start;
   }
   &:hover .previews {
     height: 70px;

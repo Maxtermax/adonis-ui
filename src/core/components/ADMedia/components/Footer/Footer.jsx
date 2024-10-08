@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import * as styles from "./styles";
 // import formatCurrency from "utils/formatCurrency";
 import { CartPlus } from "@styled-icons/bootstrap/CartPlus";
@@ -8,14 +8,8 @@ import ADGrid from "ADGrid";
 import ADText from "ADText";
 import ADTooltip from "ADTooltip";
 import { useMediaQuery } from "../../../../../utils/hooks/useMediaQuery";
-import formatCurrency from '../../../../../utils/formatCurrency';
-
-import {
-  TEXT_VARIANTS,
-  DIMENSIONS,
-  DIRECTIONS,
-  CARD_VARIANTS,
-} from "constants";
+import formatCurrency from "../../../../../utils/formatCurrency";
+import { TEXT_VARIANTS, DIRECTIONS, CARD_VARIANTS } from "constants";
 
 const Button = () => {
   const match = useMediaQuery(
@@ -73,7 +67,7 @@ export const Footer = ({ name, price, sizes, discount }) => {
               <ADTooltip text={`Talla: ${size}`} key={index}>
                 <ADPanel>
                   <ADText variant={TEXT_VARIANTS.SUBTITLE} value={size} />
-                </ADPanel >
+                </ADPanel>
               </ADTooltip>
             ))}
           </styles.Sizes>

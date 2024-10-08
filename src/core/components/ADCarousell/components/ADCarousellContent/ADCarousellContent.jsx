@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useRef } from "react";
 import { useMutations } from "hermes-io";
 import ADMedia from "ADMedia";
 import { actions } from "ADCarousell/reducer";
-import { getCarousellData } from "ADCarousell/queries";
+import { getCarousellData, getIsMobile } from "ADCarousell/queries";
 import * as styles from "./styles";
 
 export const ADCarousellContent = ({ store, id, data, onScroll }) => {
@@ -23,12 +23,18 @@ export const ADCarousellContent = ({ store, id, data, onScroll }) => {
 
   onEvent(actions.NEW_PAGE, (value, _resolver, setNoUpdate) => {
     const data = getCarousellData(store);
-    pivotNode.current = value.at(-1);
+    const isMobile = getIsMobile(store);
+    pivotNode.current = isMobile ? value.at(0) : value.at(-1);
     setNoUpdate(false);
     return { data };
   });
 
-  onEvent(actions.FOCUS_NEXT_ITEM, (_value, _resolver, setNoUpdate) => {  
+  onEvent(actions.LOADING, (loading, _resolver, setNoUpdate) => {
+    containerRef.current.style = `pointer-events: ${loading ? "none" : "auto"}`;
+    setNoUpdate(false);
+  });
+
+  onEvent(actions.FOCUS_NEXT_ITEM, (_value, _resolver, setNoUpdate) => {
     const container = containerRef.current;
     const items = container.querySelectorAll(".ad-media");
     let width = 0;
@@ -52,9 +58,9 @@ export const ADCarousellContent = ({ store, id, data, onScroll }) => {
     >
       <styles.Content>
         {state.data.map(({ id, ...rest }) => (
-          <div key={id} id={id}>
+          <styles.Item key={id} id={id}>
             <ADMedia {...rest} />
-          </div>
+          </styles.Item>
         ))}
       </styles.Content>
     </styles.Container>

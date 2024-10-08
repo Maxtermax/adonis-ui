@@ -19,8 +19,6 @@ export const ADCarousellNext = ({ store, id }) => {
     id,
   });
 
-  onEvent(actions.LOADING, (isLoading) => ({ isLoading }));
-
   const handleNext = async () => {
     const hasReachedLastItem = getHasReachedLastItem(store);
     if (!hasReachedLastItem) return focusNextItem({ store, id, value: null });
@@ -30,6 +28,10 @@ export const ADCarousellNext = ({ store, id }) => {
     setLoader({ store, id, value: false });
     setHasReachedLastItem({ store, id, value: false });
   };
+
+  onEvent(actions.LOADING, (isLoading) => ({ isLoading }));
+
+  onEvent(actions.UPDATE_UI_NEXT_PAGE, handleNext);
 
   if (state.isLoading) return <ADLoader />;
 

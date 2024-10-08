@@ -3,7 +3,6 @@ import _ from "lodash";
 import { useObservableStore } from "hermes-io";
 import { reducer } from "./reducer";
 import { ADCard } from "../ADCard/ADCard";
-import { Header } from "./components/Header/Header";
 import { Content } from "./components/Content/Content";
 import { mediaStore } from "./store/media";
 import { Footer } from "./components/Footer/Footer";

@@ -75,7 +75,7 @@ export const RightCol = withTheme(styled.div`
 
 export const Footer = withTheme(styled.div`
   display: flex;
-  background-color: ${(props) => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.smoke};
   flex-direction: column;
   padding-top: 20px;
   padding-bottom: 20px; 

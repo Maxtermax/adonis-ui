@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useObservableStore } from "hermes-io";
 import _ from "lodash";
 import ADButton from "ADButton";
@@ -7,21 +7,43 @@ import { ADCarousellContent } from "./components/ADCarousellContent";
 import { ADCarousellNext } from "./components/ADCarousellNext";
 import { reducer } from "./reducer";
 import { microCarousellStore } from "./store";
-import { setHasReachedLastItem } from "./mutations";
-import { getHasReachedLastItem } from "./queries";
+import { useMediaQuery } from "./../../../utils/hooks/useMediaQuery";
+import {
+  setHasReachedLastItem,
+  updateUINextPage,
+  setIsMobile,
+} from "./mutations";
+import { getHasReachedLastItem, getIsMobile, getIsLoading } from "./queries";
 import * as styles from "./styles";
 
 const { uniqueId } = _;
 const OFFSET = 50;
 
+const getPreviuosNodeToFocus = (nodes, scrollLeft) => {
+  let width = 0;
+  let result = null;
+  for (const node of nodes) {
+    width += node.clientWidth + OFFSET;
+    if (width >= scrollLeft) {
+      result = node;
+      break;
+    }
+  }
+  return result;
+};
+
 export const ADCarousell = ({ data = [], id = uniqueId("ad-carousell") }) => {
   const wrapperRef = useRef(null);
   const prevButtonRef = useRef(null);
+  const match = useMediaQuery(
+    (theme) => `(max-width: ${theme.breakpoints.sm})`,
+  );
   const { store } = useObservableStore(
     id,
     {
       data,
       page: 0,
+      isMobile: false,
       hasReachedLastItem: true,
       isLoading: false,
     },
@@ -29,18 +51,9 @@ export const ADCarousell = ({ data = [], id = uniqueId("ad-carousell") }) => {
     microCarousellStore,
   );
 
-  const getPreviuosNodeToFocus = (nodes, scrollLeft) => {
-    let width = 0;
-    let result = null;
-    for (const node of nodes) {
-      width += node.clientWidth + OFFSET;
-      if (width >= scrollLeft) {
-        result = node;
-        break;
-      }
-    }
-    return result;
-  };
+  useEffect(() => {
+    setIsMobile({ store, id, value: match });
+  }, [match]);
 
   const handleScroll = (e) => {
     const container = e.target;
@@ -51,6 +64,9 @@ export const ADCarousell = ({ data = [], id = uniqueId("ad-carousell") }) => {
     if (getHasReachedLastItem(store) === hasReachedLastItem) return;
     // only update if it's different
     setHasReachedLastItem({ store, id, value: hasReachedLastItem });
+    if (getIsMobile(store) && !getIsLoading(store) && hasReachedLastItem) {
+      updateUINextPage({ store, id });
+    }
   };
 
   const handlePrev = () => {
@@ -66,6 +82,7 @@ export const ADCarousell = ({ data = [], id = uniqueId("ad-carousell") }) => {
         onClick={handlePrev}
         variant="text"
         className="ad-carousell__arrow __arrow-left"
+        id={`ad-carousell_arrow-${id}`}
         ref={prevButtonRef}
       >
         <KeyboardArrowLeft />

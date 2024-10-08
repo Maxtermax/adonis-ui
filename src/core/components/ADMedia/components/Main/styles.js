@@ -1,4 +1,4 @@
-import { withTheme } from '@emotion/react';
+import { withTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 import { FIGURE_VARIANTS } from "constants";
 
@@ -23,6 +23,9 @@ export const Figure = withTheme(styled.figure`
   width: 100%;
   height: 100%;
   overflow: hidden;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `);
 
 export const Picture = styled.img`
