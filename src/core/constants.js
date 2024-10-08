@@ -77,8 +77,6 @@ export const FAIL_STEP = "FAIL_STEP";
 
 export const PENDING_STEP = "PENDING_STEP";
 
-export const SELECT_IMAGE = "SELECT_IMAGE";
-
 export const SET_PRODUCT_FOCUS = "SET_PRODUCT_FOCUS";
 
 export const SET_THEME_FIELD = "SET_THEME_FIELD";

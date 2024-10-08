@@ -6,7 +6,8 @@ export const Container = withTheme(styled.div`
   transtion: ${({ theme }) => theme.transitions.smooth};
   width 100%;
   height: 100%;
-  padding-top: 40px;
+  padding-top: ${({ theme }) => theme.spacing.calc(4)};
+  padding-bottom: ${({ theme }) => theme.spacing.calc(4)};
   position: relative;
   display: flex;
   justify-content: center;

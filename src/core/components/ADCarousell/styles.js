@@ -5,12 +5,16 @@ export const Wrapper = withTheme(
   styled.div(({ theme = {} }) => ({
     alignItems: "center",
     display: "flex",
-    gap: "10px",
+    width: "100%",
+    "& .ad-carousell__arrow": {
+      padding: "2px",
+      minWidth: "40px",
+    },
     [`@media screen and (max-width: ${theme.breakpoints.sm})`]: {
       "& .ad-loader": {
         position: "absolute",
-        boxShadow : theme.elevation.regular,
-        right: "10px",
+        boxShadow: theme.elevation.center,
+        right: "15px",
         background: theme.colors.white,
         padding: theme.spacing.calc(3),
         borderRadius: theme.border.radius.rounded,

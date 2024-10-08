@@ -1,8 +1,9 @@
 import React from "react";
 import ADText from "ADText";
 import { TEXT_VARIANTS } from "constants";
-import { Thumbnails } from "../Thumbnails/Thumbnails";
-import { Main } from "../Main/Main";
+import Thumbnails from "../Thumbnails";
+import Figure from "../Figure";
+import Indicator from "../Indicator";
 import * as styles from "./styles";
 
 export const Content = ({ discount, images = [], thumbnails = [], id }) => {
@@ -21,7 +22,8 @@ export const Content = ({ discount, images = [], thumbnails = [], id }) => {
       <styles.Previews className="previews">
         <Thumbnails data={thumbnails} id={id} />
       </styles.Previews>
-      <Main id={id} images={images} />
+      <Figure id={id} images={images} />
+      <Indicator id={id} images={images}/>
     </styles.Content>
   );
 };

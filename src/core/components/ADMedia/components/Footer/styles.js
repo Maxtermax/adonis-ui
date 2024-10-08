@@ -1,4 +1,4 @@
-import { withTheme } from '@emotion/react';
+import { withTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const Sizes = withTheme(styled.div`
@@ -9,6 +9,17 @@ export const Sizes = withTheme(styled.div`
   top: 0px;
   justify-content: flex-start;
   gap: ${({ theme }) => theme.spacing.calc(2)};
+  & .ad-button.size-selected {
+    background: ${({ theme }) => theme.colors.primary};
+  }
+  & .ad-button.size-selected .ad-text {
+    color: ${({ theme }) => theme.colors.white};
+  }
+  & .ad-button {
+    background: ${({ theme }) => theme.colors.lightSilver};
+    min-width: 42px;
+    height: 38px;
+  }
 `);
 
 export const Discount = withTheme(styled.div`
@@ -55,11 +66,6 @@ export const RightCol = withTheme(styled.div`
   height: 100px;
   .ad-button {
     transform: ${(props) => props.theme.transform.scale.mid};
-    @media screen and ${(props) => props.theme.devices.sm} {
-      position: relative;
-      width: calc(100% - 40px);
-      top: ${(props) => props.theme.spacing.regular};
-    }
   }
   .ad-tooltip {
     @media screen and ${(props) => props.theme.devices.sm} {
@@ -78,7 +84,7 @@ export const Footer = withTheme(styled.div`
   background-color: ${(props) => props.theme.colors.smoke};
   flex-direction: column;
   padding-top: 20px;
-  padding-bottom: 20px; 
+  padding-bottom: 20px;
   padding-left: 15px;
   padding-right: 15px;
   transition: ${(props) => props.theme.transitions.smooth};

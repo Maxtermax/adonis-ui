@@ -11,7 +11,6 @@ export const useADMedia = (images, id, container) => {
     store: mediaStore,
     id,
   });
-
   useEffect(() => {
     const observers = [];
     const pictures = container.current.querySelectorAll("img");
@@ -21,7 +20,9 @@ export const useADMedia = (images, id, container) => {
           for (const entry of entries) {
             if (entry.isIntersecting) {
               const store = mediaStore.get(id);
-              selectImage(store, [id], { imageId: Number(entry.target.id) });
+              selectImage(store, [id], {
+                imageId: Number(entry.target.id),
+              });
               break;
             }
           }
@@ -39,8 +40,9 @@ export const useADMedia = (images, id, container) => {
   onEvent(actions.SELECT_IMAGE, ({ imageId }) => {
     const image = find(images, ({ id }) => imageId === id);
     const node = container?.current?.querySelector?.(`img[src="${image.src}"]`);
-    node?.scrollIntoView?.({
-      block: "start",
+    console.log(node);
+    node.scrollIntoView({
+      block: "center",
       behavior: "smooth",
     });
   });

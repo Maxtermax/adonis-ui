@@ -70,9 +70,5 @@ export const Button = withTheme(styled.button`
   }
   &:hover {
     box-shadow: ${(props) => boxShadow(props)};
-    transform: ${({ theme, noScaleOnHover }) =>
-      noScaleOnHover
-        ? theme.transform.scale.none
-        : theme.transform.scale.slightly};
   }
 `);

@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
-import { useADMedia } from "../../";
+import { useADMedia } from "ADMedia/hooks/useADMedia";
 import * as styles from "./styles";
 
-export const Main = ({ images, id }) => {
+export const Figure = ({ images, id }) => {
   const containerRef = useRef(null);
   useADMedia(images, id, containerRef);
 

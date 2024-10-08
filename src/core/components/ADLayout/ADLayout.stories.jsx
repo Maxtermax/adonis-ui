@@ -1,12 +1,23 @@
+import React from "react";
 import { useMutations } from "hermes-io";
+import _ from "lodash";
 import ADLayout, { ADLayoutHeader, ADLayoutBody } from "ADLayout";
 import { SEARCH_TEXT_FIELD } from "ADLayout/components/ADLayoutSearch";
 import { microTextFieldStore } from "ADTextField/store";
-import { actions } from "ADLayout/reducer";
+import { actions as layoutActions } from "ADLayout/reducer";
 import { completeSearch } from "ADLayout/mutations";
 import ADCarousell from "ADCarousell";
-import ADMedia from "ADMedia";
+import { actions as carousellActions } from "ADCarousell/reducer";
+import { newPage } from "ADCarousell/mutations";
+import { microCarousellStore } from "ADCarousell/store";
 import mock from "ADMedia/mock";
+
+const { uniqueId } = _;
+
+const data = new Array(5).fill(null).map(() => {
+  const uniq = uniqueId();
+  return { ...mock, id: uniq };
+});
 
 export default {
   title: "Basic/ADLayout",
@@ -17,6 +28,37 @@ export default {
   tags: ["autodocs"],
 };
 
+const id = "carousell";
+
+const Carousell = () => {
+  const { onEvent } = useMutations({
+    noUpdate: true,
+    store: microCarousellStore,
+    id,
+  });
+
+  onEvent(carousellActions.NEXT_PAGE, (_, resolver) => {
+    setTimeout(() => {
+      resolver();
+      newPage({
+        value: new Array(5).fill(null).map(() => {
+          const uniq = uniqueId();
+          return {
+            ...mock,
+            id: uniq,
+          };
+        }),
+        store: microCarousellStore.get(id),
+        id,
+      });
+    }, 1000);
+  });
+
+  return <ADCarousell id={id} data={data} />;
+};
+
+
+
 const Template = () => {
   const { onEvent } = useMutations({
     noUpdate: true,
@@ -24,7 +66,7 @@ const Template = () => {
     id: SEARCH_TEXT_FIELD,
   });
 
-  onEvent(actions.START_SEARCH, () => {
+  onEvent(layoutActions.START_SEARCH, () => {
     setTimeout(() => {
       completeSearch(microTextFieldStore, SEARCH_TEXT_FIELD, [
         {
@@ -79,11 +121,7 @@ const Template = () => {
     <ADLayout
       body={() => (
         <ADLayoutBody>
-          <ADCarousell>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((id) => (
-              <ADMedia key={id} {...mock} />
-            ))}
-          </ADCarousell>
+          <Carousell />
         </ADLayoutBody>
       )}
       header={() => (

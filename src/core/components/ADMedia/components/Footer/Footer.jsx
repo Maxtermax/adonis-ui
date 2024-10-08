@@ -1,34 +1,62 @@
-import React from "react";
-import * as styles from "./styles";
-// import formatCurrency from "utils/formatCurrency";
-import { CartPlus } from "@styled-icons/bootstrap/CartPlus";
-import ADPanel from "ADPanel";
+import React, { useState } from "react";
+import { useMutations } from "hermes-io";
+import { Eye } from "@styled-icons/fluentui-system-regular/Eye";
 import ADButton from "ADButton";
 import ADGrid from "ADGrid";
 import ADText from "ADText";
 import ADTooltip from "ADTooltip";
+import { mediaStore } from "ADMedia/store";
+import { selectSize } from "ADMedia/mutations";
+import { actions } from "ADMedia/reducer";
 import { useMediaQuery } from "../../../../../utils/hooks/useMediaQuery";
 import formatCurrency from "../../../../../utils/formatCurrency";
 import { TEXT_VARIANTS, DIRECTIONS, CARD_VARIANTS } from "constants";
+import * as styles from "./styles";
 
-const Button = () => {
+const Sizes = ({ id, data = [] }) => {
+  const { state, onEvent } = useMutations({
+    initialState: { selected: null },
+    store: mediaStore,
+    id,
+  });
+
+  onEvent(actions.SELECT_SIZE, (selected) => ({ selected }));
+
+  const handleSelectSize = (size) =>
+    selectSize({ store: mediaStore.get(id), targets: [id], value: size });
+
+  return (
+    <styles.Sizes className="sizes">
+      {data.map((size, index) => (
+        <ADTooltip text={`Talla: ${size}`} key={index}>
+          <ADButton
+            onClick={() => handleSelectSize(size)}
+            className={`${state.selected === size ? "size-selected" : ""}`}
+            variant="text"
+          >
+            <ADText variant={TEXT_VARIANTS.SUBTITLE} value={size} />
+          </ADButton>
+        </ADTooltip>
+      ))}
+    </styles.Sizes>
+  );
+};
+
+const ActionButton = () => {
   const match = useMediaQuery(
     (theme) => `(max-width: ${theme.breakpoints.sm})`,
   );
 
   return (
-    <ADTooltip
-      text="Añadir"
-      direction={match ? DIRECTIONS.TOP : DIRECTIONS.LEFT}
-    >
+    <ADTooltip text="Ver" direction={match ? DIRECTIONS.TOP : DIRECTIONS.LEFT}>
       <ADButton variant={CARD_VARIANTS.CONTAINED}>
-        <CartPlus size={20} />
+        <Eye size={25} />
       </ADButton>
     </ADTooltip>
   );
 };
 
-export const Footer = ({ name, price, sizes, discount }) => {
+export const Footer = ({ id, name, price, sizes, discount }) => {
   return (
     <styles.Footer>
       <ADGrid md={{ cols: 1, rows: 1 }} cols={"1fr 70px"} rows={1}>
@@ -62,18 +90,10 @@ export const Footer = ({ name, price, sizes, discount }) => {
               value={formatCurrency(price)}
             />
           )}
-          <styles.Sizes className="sizes">
-            {sizes.map((size, index) => (
-              <ADTooltip text={`Talla: ${size}`} key={index}>
-                <ADPanel>
-                  <ADText variant={TEXT_VARIANTS.SUBTITLE} value={size} />
-                </ADPanel>
-              </ADTooltip>
-            ))}
-          </styles.Sizes>
+          <Sizes id={id} data={sizes} />
         </styles.LeftCol>
         <styles.RightCol className="right-col">
-          <Button />
+          <ActionButton />
         </styles.RightCol>
       </ADGrid>
     </styles.Footer>

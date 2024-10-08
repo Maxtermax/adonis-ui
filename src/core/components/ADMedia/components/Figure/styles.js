@@ -18,11 +18,15 @@ export const Figure = withTheme(styled.figure`
   transition: ${({ theme }) => theme.transitions.smooth};
   margin: 0px;
   padding: 0px;
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 100% 100% 100%;
   width: 100%;
   height: 100%;
   overflow: hidden;
+  position: relative;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -30,4 +34,10 @@ export const Figure = withTheme(styled.figure`
 
 export const Picture = styled.img`
   object-fit: contain;
+  aspect-ratio: 1;
+  width: 100%;
+  height: auto;
+  object-position: center;
+  object-fit: contain;
+  scroll-snap-align: start;
 `;

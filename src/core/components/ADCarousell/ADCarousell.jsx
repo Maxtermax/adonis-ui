@@ -52,6 +52,10 @@ export const ADCarousell = ({ data = [], id = uniqueId("ad-carousell") }) => {
   );
 
   useEffect(() => {
+    prevButtonRef.current.disabled = true;
+  }, []);
+
+  useEffect(() => {
     setIsMobile({ store, id, value: match });
   }, [match]);
 
@@ -60,7 +64,8 @@ export const ADCarousell = ({ data = [], id = uniqueId("ad-carousell") }) => {
     const { scrollLeft, scrollWidth, clientWidth } = container;
     const x = scrollWidth - scrollLeft;
     const hasReachedLastItem = x >= clientWidth - OFFSET && x <= clientWidth;
-    prevButtonRef.current.disabled = scrollLeft === 0;
+    const isDisabled = scrollLeft === 0;
+    prevButtonRef.current.disabled = isDisabled;
     if (getHasReachedLastItem(store) === hasReachedLastItem) return;
     // only update if it's different
     setHasReachedLastItem({ store, id, value: hasReachedLastItem });

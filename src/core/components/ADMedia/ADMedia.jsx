@@ -6,9 +6,9 @@ import { ADCard } from "../ADCard/ADCard";
 import { Content } from "./components/Content/Content";
 import { mediaStore } from "./store/media";
 import { Footer } from "./components/Footer/Footer";
+import { CARD_VARIANTS, DIMENSIONS, SHAPES } from "constants";
 import * as styles from "./styles";
 
-import { CARD_VARIANTS, DIMENSIONS, SHAPES } from "constants";
 const { uniqueId } = _;
 
 const { SHARP } = CARD_VARIANTS;
@@ -27,7 +27,6 @@ const Static = ({
   return (
     <styles.Media className={`ad-media ${className}`} {...rest}>
       <ADCard
-        elevation={DIMENSIONS.regular}
         variant={SHARP}
         gap={DIMENSIONS.none}
         shape={SHAPES.rounded}
@@ -41,7 +40,7 @@ const Static = ({
           />
         )}
         Footer={() => (
-          <Footer name={name} price={price} sizes={sizes} discount={discount} />
+          <Footer id={id} name={name} price={price} sizes={sizes} discount={discount} />
         )}
       />
     </styles.Media>
@@ -62,6 +61,7 @@ const Dinamic = ({
   const data = {
     thumbnails,
     sizes,
+    size: null,
     discount,
     price,
     name,

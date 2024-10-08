@@ -42,22 +42,6 @@ export const Content = withTheme(styled.div`
   @media screen and ${(props) => props.theme.devices.sm} {
     padding: 0px;
   }
-  .main-picture {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-  }
-  .main-picture img {
-    transition: ${(props) => props.theme.transitions.quick};
-    aspect-ratio: 1;
-    width: 100%;
-    height: auto;
-    object-position: center;
-    object-fit: contain;
-    scroll-snap-align: start;
-  }
   &:hover .previews {
     height: 70px;
   }

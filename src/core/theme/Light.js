@@ -73,7 +73,8 @@ class Light extends Base {
     [DIMENSIONS.none]: "0px 0px 0px",
     [DIMENSIONS.regular]: "0px 4px 8px",
     [DIMENSIONS.high]: "0px 8px 8px",
-    little: "0px 15px 20px 0px #000000d4"
+    little: "0px 15px 20px 0px #000000d4",
+    center: "0px 0px 8px 0px #595959e0"
   };
   transform = {
     scale: {

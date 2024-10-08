@@ -1,9 +1,19 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { memo, useLayoutEffect, useRef } from "react";
 import { useMutations } from "hermes-io";
 import ADMedia from "ADMedia";
 import { actions } from "ADCarousell/reducer";
 import { getCarousellData, getIsMobile } from "ADCarousell/queries";
 import * as styles from "./styles";
+
+const Item = ({ id, ...rest }) => {
+  return (
+    <styles.Item id={id}>
+      <ADMedia {...rest} />
+    </styles.Item>
+  );
+};
+
+const MemoizedItem = memo(Item);
 
 export const ADCarousellContent = ({ store, id, data, onScroll }) => {
   const containerRef = useRef(null);
@@ -53,14 +63,13 @@ export const ADCarousellContent = ({ store, id, data, onScroll }) => {
   return (
     <styles.Container
       ref={containerRef}
+      id={id}
       onScroll={onScroll}
       className="ad-carousell"
     >
       <styles.Content>
         {state.data.map(({ id, ...rest }) => (
-          <styles.Item key={id} id={id}>
-            <ADMedia {...rest} />
-          </styles.Item>
+          <MemoizedItem key={id} id={id} {...rest} />
         ))}
       </styles.Content>
     </styles.Container>

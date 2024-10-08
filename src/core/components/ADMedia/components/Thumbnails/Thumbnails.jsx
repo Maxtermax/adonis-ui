@@ -3,7 +3,7 @@ import { useMutations } from "hermes-io";
 import { FIGURE_VARIANTS, DIRECTIONS } from "constants";
 import ADTooltip from "ADTooltip";
 import * as mutations from "ADMedia/mutations/media";
-import { Figure } from "ADMedia/components/Main/styles";
+import { Figure } from "ADMedia/components/Figure/styles";
 import { mediaStore } from "ADMedia/store";
 import { actions } from "ADMedia/reducer";
 import { Image } from "./styles";

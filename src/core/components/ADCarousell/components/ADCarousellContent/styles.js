@@ -9,7 +9,7 @@ export const Container = withTheme(
     overflowX: "auto",
     scrollSnapType: "x mandatory",
     height: "fit-content",
-    width: "calc(100vw - 140px)",
+    width: "calc(100vw - 85px)",
     ["&::-webkit-scrollbar"]: {
       display: "none",
     },
@@ -22,7 +22,7 @@ export const Container = withTheme(
 export const Content = withTheme(
   styled.div(({ theme = {} }) => ({
     alignItems: "center",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
     display: "flex",
     width: "100%",
     gap: theme.spacing.medium,
