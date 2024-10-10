@@ -25,10 +25,12 @@ export const ADCarousellContent = ({ store, id, data, onScroll }) => {
   });
 
   useLayoutEffect(() => {
-    document.getElementById(pivotNode.current?.id)?.scrollIntoView?.({
-      block: "start",
+    const node = document.getElementById(pivotNode.current?.id);
+    node?.scrollIntoView?.({
+      inline: "start",
       behavior: "smooth",
     });
+    console.log(node);
   }, [state.data]);
 
   onEvent(actions.NEW_PAGE, (value, _resolver, setNoUpdate) => {
@@ -56,7 +58,8 @@ export const ADCarousellContent = ({ store, id, data, onScroll }) => {
         break;
       }
     }
-    node?.scrollIntoView?.({ block: "center", behavior: "smooth" });
+    node?.scrollIntoView?.({ inline: "start", behavior: "smooth" });
+    console.log(node);
     setNoUpdate(true);
   });
 

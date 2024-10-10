@@ -2,6 +2,7 @@ import { DIMENSIONS } from "constants";
 import Base from "./Base";
 
 const MIN_SPACING = 4;
+const SCALE_FACTOR = 1;
 
 class Light extends Base {
   breakpoints = {
@@ -90,6 +91,7 @@ class Light extends Base {
       ["80%"]: "scale(0.8)",
       ["90%"]: "scale(0.9)",
       none: "scale(1)",
+      calc: (factor) => `scale(${SCALE_FACTOR * factor})`,
     },
   };
   fonts = {

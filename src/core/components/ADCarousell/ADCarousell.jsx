@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
-import { useObservableStore } from "hermes-io";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import _ from "lodash";
+import { ArrowRight } from "@styled-icons/feather/ArrowRight";
+import { useObservableStore } from "hermes-io";
 import ADButton from "ADButton";
-import { KeyboardArrowLeft } from "@styled-icons/material/KeyboardArrowLeft";
 import { ADCarousellContent } from "./components/ADCarousellContent";
 import { ADCarousellNext } from "./components/ADCarousellNext";
 import { reducer } from "./reducer";
@@ -44,12 +44,20 @@ export const ADCarousell = ({ data = [], id = uniqueId("ad-carousell") }) => {
       data,
       page: 0,
       isMobile: false,
-      hasReachedLastItem: true,
+      hasReachedLastItem: false,
       isLoading: false,
     },
     reducer,
     microCarousellStore,
   );
+
+  useLayoutEffect(() => {
+    const container = wrapperRef.current.querySelector(".ad-carousell");
+    const { scrollLeft, scrollWidth, clientWidth } = container;
+    const x = scrollWidth - scrollLeft;
+    const hasReachedLastItem = x >= clientWidth - OFFSET && x <= clientWidth;
+    setHasReachedLastItem({ store, id, value: hasReachedLastItem });
+  }, []);
 
   useEffect(() => {
     prevButtonRef.current.disabled = true;
@@ -85,12 +93,12 @@ export const ADCarousell = ({ data = [], id = uniqueId("ad-carousell") }) => {
     <styles.Wrapper ref={wrapperRef}>
       <ADButton
         onClick={handlePrev}
-        variant="text"
+        variant="contained"
         className="ad-carousell__arrow __arrow-left"
         id={`ad-carousell_arrow-${id}`}
         ref={prevButtonRef}
       >
-        <KeyboardArrowLeft />
+        <ArrowRight style={{ transform: "rotate(180deg)" }} />
       </ADButton>
       <ADCarousellContent
         onScroll={handleScroll}

@@ -1,8 +1,8 @@
 import React from "react";
 import { useMutations } from "hermes-io";
-import { KeyboardArrowRight } from "@styled-icons/material-outlined/KeyboardArrowRight";
 import ADLoader from "ADLoader";
 import ADButton from "ADButton";
+import { ArrowRight } from "@styled-icons/feather/ArrowRight";
 import {
   nextPage,
   focusNextItem,
@@ -38,10 +38,10 @@ export const ADCarousellNext = ({ store, id }) => {
   return (
     <ADButton
       onClick={handleNext}
-      variant="text"
+      variant="contained"
       className="ad-carousell__arrow __arrow-right"
     >
-      <KeyboardArrowRight />
+      <ArrowRight />
     </ADButton>
   );
 };

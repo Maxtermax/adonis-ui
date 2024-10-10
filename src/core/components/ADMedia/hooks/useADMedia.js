@@ -40,7 +40,6 @@ export const useADMedia = (images, id, container) => {
   onEvent(actions.SELECT_IMAGE, ({ imageId }) => {
     const image = find(images, ({ id }) => imageId === id);
     const node = container?.current?.querySelector?.(`img[src="${image.src}"]`);
-    console.log(node);
     node.scrollIntoView({
       block: "center",
       behavior: "smooth",

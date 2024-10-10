@@ -9,6 +9,9 @@ export const Wrapper = withTheme(
     "& .ad-carousell__arrow": {
       padding: "2px",
       minWidth: "40px",
+      background: theme.colors.silver,
+      color: theme.colors.primary,
+      transform: theme.transform.scale.calc(0.8),
     },
     [`@media screen and (max-width: ${theme.breakpoints.sm})`]: {
       "& .ad-loader": {
