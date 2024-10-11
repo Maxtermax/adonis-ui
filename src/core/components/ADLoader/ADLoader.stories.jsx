@@ -19,4 +19,6 @@ export default {
 
 export const Basic = () => <ADLoader />;
 
+export const Small = () => <ADLoader size={0.5} />;
+
 export const Text = () => <ADLoader text="hello word" />;

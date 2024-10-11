@@ -11,6 +11,7 @@ export const useADMedia = (images, id, container) => {
     store: mediaStore,
     id,
   });
+
   useEffect(() => {
     const observers = [];
     const pictures = container.current.querySelectorAll("img");

@@ -7,7 +7,7 @@ export const Figure = ({ images, id }) => {
   useADMedia(images, id, containerRef);
 
   return (
-    <styles.Figure ref={containerRef} className="main-picture">
+    <styles.Figure ref={containerRef}>
       {images.map((item) => (
         <styles.Picture
           key={item.id}

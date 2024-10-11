@@ -67,17 +67,23 @@ export const ADCarousell = ({ data = [], id = uniqueId("ad-carousell") }) => {
     setIsMobile({ store, id, value: match });
   }, [match]);
 
+  const handleTouchEnd = (e) => {
+    const container = e.target;
+    container.style.scrollSnapType = "x mandatory";
+  };
+
   const handleScroll = (e) => {
     const container = e.target;
     const { scrollLeft, scrollWidth, clientWidth } = container;
     const x = scrollWidth - scrollLeft;
     const hasReachedLastItem = x >= clientWidth - OFFSET && x <= clientWidth;
     const isDisabled = scrollLeft === 0;
+    const isMobile = getIsMobile(store);
     prevButtonRef.current.disabled = isDisabled;
     if (getHasReachedLastItem(store) === hasReachedLastItem) return;
     // only update if it's different
     setHasReachedLastItem({ store, id, value: hasReachedLastItem });
-    if (getIsMobile(store) && !getIsLoading(store) && hasReachedLastItem) {
+    if (isMobile && !getIsLoading(store) && hasReachedLastItem) {
       updateUINextPage({ store, id });
     }
   };
@@ -102,6 +108,7 @@ export const ADCarousell = ({ data = [], id = uniqueId("ad-carousell") }) => {
       </ADButton>
       <ADCarousellContent
         onScroll={handleScroll}
+        onTouchEnd={handleTouchEnd}
         store={store}
         id={id}
         data={data}

@@ -20,11 +20,11 @@ export const Container = styled.div`
 export const Spinner = styled.div`
   animation: ${rotation} linear infinite;
   animation-duration: ${({ theme }) => theme.timing.slow};
-  border: 4px solid ${({ theme }) => theme.colors.primary};
+  border: 2px solid ${({ theme }) => theme.colors.primary};
   border-bottom-color: transparent;
   box-sizing: border-box;
   border-radius: 50%;
   display: inline-block;
-  width: 40px;
-  height: 40px;
+  width: ${({ size = 1 }) => size * 40}px;
+  height: ${({ size = 1 }) => size * 40}px;
 `;

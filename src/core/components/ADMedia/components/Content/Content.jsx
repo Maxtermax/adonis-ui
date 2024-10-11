@@ -23,7 +23,7 @@ export const Content = ({ discount, images = [], thumbnails = [], id }) => {
         <Thumbnails data={thumbnails} id={id} />
       </styles.Previews>
       <Figure id={id} images={images} />
-      <Indicator id={id} images={images}/>
+      <Indicator id={id} images={images} />
     </styles.Content>
   );
 };

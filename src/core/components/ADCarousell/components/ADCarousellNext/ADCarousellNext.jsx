@@ -11,6 +11,7 @@ import {
 } from "ADCarousell/mutations";
 import { actions } from "ADCarousell/reducer";
 import { getLastItem, getHasReachedLastItem } from "ADCarousell/queries";
+import * as styles from "./styles";
 
 export const ADCarousellNext = ({ store, id }) => {
   const { state, onEvent } = useMutations({
@@ -33,7 +34,12 @@ export const ADCarousellNext = ({ store, id }) => {
 
   onEvent(actions.UPDATE_UI_NEXT_PAGE, handleNext);
 
-  if (state.isLoading) return <ADLoader />;
+  if (state.isLoading)
+    return (
+      <styles.LoaderWrapper>
+        <ADLoader size={0.8} />
+      </styles.LoaderWrapper>
+    );
 
   return (
     <ADButton

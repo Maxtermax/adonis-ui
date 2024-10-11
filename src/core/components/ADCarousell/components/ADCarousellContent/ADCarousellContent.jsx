@@ -2,7 +2,7 @@ import React, { memo, useLayoutEffect, useRef } from "react";
 import { useMutations } from "hermes-io";
 import ADMedia from "ADMedia";
 import { actions } from "ADCarousell/reducer";
-import { getCarousellData, getIsMobile } from "ADCarousell/queries";
+import { getCarousellData } from "ADCarousell/queries";
 import * as styles from "./styles";
 
 const Item = ({ id, ...rest }) => {
@@ -17,6 +17,7 @@ const MemoizedItem = memo(Item);
 
 export const ADCarousellContent = ({ store, id, data, onScroll }) => {
   const containerRef = useRef(null);
+  const contentRef = useRef(null);
   const pivotNode = useRef(null);
   const { state, onEvent } = useMutations({
     initialState: { data },
@@ -30,13 +31,11 @@ export const ADCarousellContent = ({ store, id, data, onScroll }) => {
       inline: "start",
       behavior: "smooth",
     });
-    console.log(node);
   }, [state.data]);
 
   onEvent(actions.NEW_PAGE, (value, _resolver, setNoUpdate) => {
     const data = getCarousellData(store);
-    const isMobile = getIsMobile(store);
-    pivotNode.current = isMobile ? value.at(0) : value.at(-1);
+    pivotNode.current = value.at(0);
     setNoUpdate(false);
     return { data };
   });
@@ -58,8 +57,8 @@ export const ADCarousellContent = ({ store, id, data, onScroll }) => {
         break;
       }
     }
-    node?.scrollIntoView?.({ inline: "start", behavior: "smooth" });
-    console.log(node);
+    container.style.scrollSnapType = "none";
+    node?.scrollIntoView?.({ inline: "end", behavior: "smooth" });
     setNoUpdate(true);
   });
 
@@ -70,7 +69,7 @@ export const ADCarousellContent = ({ store, id, data, onScroll }) => {
       onScroll={onScroll}
       className="ad-carousell"
     >
-      <styles.Content>
+      <styles.Content ref={contentRef}>
         {state.data.map(({ id, ...rest }) => (
           <MemoizedItem key={id} id={id} {...rest} />
         ))}

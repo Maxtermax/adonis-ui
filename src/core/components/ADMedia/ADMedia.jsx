@@ -69,6 +69,7 @@ const Dinamic = ({
     images,
   };
   useObservableStore(id, data, reducer, mediaStore);
+  
   return (
     <Static
       id={id}
