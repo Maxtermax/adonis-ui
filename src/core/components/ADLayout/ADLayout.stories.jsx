@@ -1,7 +1,12 @@
 import React from "react";
 import { useMutations } from "hermes-io";
 import _ from "lodash";
-import ADLayout, { ADLayoutHeader, ADLayoutBody } from "ADLayout";
+import ADLayout, {
+  ADLayoutHeader,
+  ADLayoutBody,
+  ADLayoutCategories,
+  ADLayoutSectionTitle
+} from "ADLayout";
 import { SEARCH_TEXT_FIELD } from "ADLayout/components/ADLayoutSearch";
 import { microTextFieldStore } from "ADTextField/store";
 import { actions as layoutActions } from "ADLayout/reducer";
@@ -14,10 +19,14 @@ import mock from "ADMedia/mock";
 
 const { uniqueId } = _;
 
-const data = new Array(5).fill(null).map(() => {
-  const uniq = uniqueId();
-  return { ...mock, id: uniq };
-});
+const getProducts = (total) =>
+  new Array(total).fill(null).map(() => {
+    const uniq = uniqueId();
+    return { ...mock, id: uniq };
+  });
+
+const recommendations = getProducts(5);
+const products = getProducts(10);
 
 export default {
   title: "Basic/ADLayout",
@@ -28,9 +37,7 @@ export default {
   tags: ["autodocs"],
 };
 
-const id = "carousell";
-
-const Carousell = () => {
+const Carousell = ({ id = "carousell" }) => {
   const { onEvent } = useMutations({
     noUpdate: true,
     store: microCarousellStore,
@@ -54,10 +61,8 @@ const Carousell = () => {
     }, 1000);
   });
 
-  return <ADCarousell id={id} data={data} />;
+  return <ADCarousell id={id} data={recommendations} />;
 };
-
-
 
 const Template = () => {
   const { onEvent } = useMutations({
@@ -121,7 +126,181 @@ const Template = () => {
     <ADLayout
       body={() => (
         <ADLayoutBody>
-          <Carousell />
+          <ADLayoutCategories
+            collections={[
+              {
+                id: "collections-1",
+                src: "https://placehold.co/1200x700",
+                title: "collections-1",
+                link: "#",
+              },
+              {
+                id: "collections-2",
+                src: "https://placehold.co/1200x700",
+                title: "collections-2",
+                link: "#",
+              },
+              {
+                id: "collections-3",
+                src: "https://placehold.co/1200x700",
+                title: "collections-3",
+                link: "#",
+              },
+            ]}
+            sets={[
+              {
+                id: "sets-1",
+                src: "https://placehold.co/1200x700",
+                title: "sets-1",
+                link: "#",
+              },
+              {
+                id: "sets-2",
+                src: "https://placehold.co/1200x700",
+                title: "sets-2",
+                link: "#",
+              },
+              {
+                id: "sets-3",
+                src: "https://placehold.co/1200x700",
+                title: "sets-3",
+                link: "#",
+              },
+            ]}
+            trends={[
+              {
+                id: "trends-1",
+                src: "https://placehold.co/1700x800",
+                title: "trends-1",
+                link: "#",
+              },
+              {
+                id: "trends-2",
+                src: "https://placehold.co/1700x800",
+                title: "trends-2",
+                link: "#",
+              },
+              {
+                id: "trends-3",
+                src: "https://placehold.co/1700x800",
+                title: "trends-3",
+                link: "#",
+              },
+            ]}
+          />
+          <ADLayoutSectionTitle
+            title="Tendencias"
+            subtitle="¡Lo ultimo en guaracha 🔥!"
+          />
+          <Carousell id="1" />
+
+          {/*
+            
+         
+          <ADLayoutCategories
+            collections={[
+              {
+                id: "collections-1",
+                src: "https://placehold.co/1200x700",
+              },
+              {
+                id: "collections-2",
+                src: "https://placehold.co/1200x700",
+              },
+              {
+                id: "collections-3",
+                src: "https://placehold.co/1200x700",
+              },
+            ]}
+            sets={[
+              {
+                id: "sets-1",
+                src: "https://placehold.co/1200x700",
+              },
+              {
+                id: "sets-2",
+                src: "https://placehold.co/1200x700",
+              },
+              {
+                id: "sets-3",
+                src: "https://placehold.co/1200x700",
+              },
+            ]}
+            offerts={[
+              {
+                id: "offerts-1",
+                src: "https://placehold.co/1200x700",
+              },
+              {
+                id: "offerts-2",
+                src: "https://placehold.co/1200x700",
+              },
+              {
+                id: "offerts-3",
+                src: "https://placehold.co/1200x700",
+              },
+            ]}
+            trends={[
+              {
+                id: "trends-1",
+                src: "https://placehold.co/1700x800",
+              },
+              {
+                id: "trends-2",
+                src: "https://placehold.co/1700x800",
+              },
+              {
+                id: "trends-3",
+                src: "https://placehold.co/1700x800",
+              },
+            ]}
+            exclusives={[
+              {
+                id: "exclusives-1",
+                src: "https://placehold.co/1200x700",
+              },
+              {
+                id: "exclusives-2",
+                src: "https://placehold.co/1200x700",
+              },
+              {
+                id: "exclusives-3",
+                src: "https://placehold.co/1200x700",
+              },
+            ]}
+          />
+          <ADPanel
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "25px",
+            }}
+            variant="flat"
+          >
+            <Carousell id="2" />
+            <Carousell id="3" />
+          </ADPanel>
+            */}
+          {/* 
+          <ADProductsGrid data={products} />
+          <ADLayoutSectionTitle
+            title="Descuentos"
+            subtitle="No te pierdas!!! 😉"
+          />
+          <ADProductsGrid data={products} />
+
+          <ADLayoutSectionTitle
+            title="Conjuntos"
+            subtitle="Vistelo en conjunto 😍"
+          />
+          <ADProductsGrid data={products} />
+
+          <ADLayoutSectionTitle
+            title="Colecciones"
+            subtitle="¡Las coleciones mas parchadas 🔥!"
+          />
+          <ADProductsGrid data={products} />
+            */}
         </ADLayoutBody>
       )}
       header={() => (

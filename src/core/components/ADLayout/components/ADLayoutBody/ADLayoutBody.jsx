@@ -26,5 +26,9 @@ export const ADLayoutBody = ({ children = null }) => {
     }, 350);
   });
 
-  return <styles.Container ref={containerRef}>{children}</styles.Container>;
+  return (
+    <styles.Container className="ad-layout-body" ref={containerRef}>
+      {children}
+    </styles.Container>
+  );
 };

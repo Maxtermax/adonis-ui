@@ -7,11 +7,11 @@ export const Wrapper = withTheme(
     display: "flex",
     width: "100%",
     "& .ad-carousell__arrow": {
+      background: theme.colors.silver,
       borderRadius: "100%",
       color: theme.colors.primary,
       padding: "2px",
       minWidth: "40px",
-      background: theme.colors.silver,
     },
     [`@media screen and (max-width: ${theme.breakpoints.sm})`]: {
       "& .ad-loader": {

@@ -133,6 +133,14 @@
    "import": "./lib/src/core/components/ADPopup/index.js",
    "require": "./lib/src/core/components/ADPopup/index.js"
   },
+  "./components/ADProductGrid": {
+   "import": "./lib/src/core/components/ADProductGrid/index.js",
+   "require": "./lib/src/core/components/ADProductGrid/index.js"
+  },
+  "./components/ADProductsGrid": {
+   "import": "./lib/src/core/components/ADProductsGrid/index.js",
+   "require": "./lib/src/core/components/ADProductsGrid/index.js"
+  },
   "./components/ADProvider": {
    "import": "./lib/src/core/components/ADProvider/index.js",
    "require": "./lib/src/core/components/ADProvider/index.js"
@@ -144,6 +152,10 @@
   "./components/ADSelect": {
    "import": "./lib/src/core/components/ADSelect/index.js",
    "require": "./lib/src/core/components/ADSelect/index.js"
+  },
+  "./components/ADSlides": {
+   "import": "./lib/src/core/components/ADSlides/index.js",
+   "require": "./lib/src/core/components/ADSlides/index.js"
   },
   "./components/ADSteps": {
    "import": "./lib/src/core/components/ADSteps/index.js",

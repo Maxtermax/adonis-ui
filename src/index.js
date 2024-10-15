@@ -7,3 +7,4 @@ export * from './core/components/ADDrawer';
 export * from './core/components/ADCard';
 export * from './core/components/ADBadge';
 export * from './core/components/ADCheckbox';
+export * from './core/components/ADProductsGrid';

@@ -3,6 +3,7 @@ import Base from "./Base";
 
 const MIN_SPACING = 4;
 const SCALE_FACTOR = 1;
+const FONT_SIZE_FACTOR = 16; 
 
 class Light extends Base {
   breakpoints = {
@@ -24,6 +25,7 @@ class Light extends Base {
     success: "#00aa00",
     transparent: "#0000000",
     transparentBlack: "#0000007d",
+    transparentWhite: "rgba(255, 255, 255, 0.5)",
     lightSilver: "#00000017",
     smoke: "whitesmoke",
     warning: "#ffcc4e",
@@ -110,7 +112,8 @@ class Light extends Base {
       medium: "16px",
       big: "20px",
       extra: "25px",
-      parse2Num: (val = "") => Number(val.replaceAll("px", ""))
+      parse2Num: (val = "") => Number(val.replaceAll("px", "")),
+      calc: (factor) => `${FONT_SIZE_FACTOR * factor}px`,
     },
   };
   timing = {

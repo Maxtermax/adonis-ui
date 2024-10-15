@@ -32,7 +32,11 @@ const getPreviuosNodeToFocus = (nodes, scrollLeft) => {
   return result;
 };
 
-export const ADCarousell = ({ data = [], id = uniqueId("ad-carousell") }) => {
+export const ADCarousell = ({
+  data = [],
+  showArrows = true,
+  id = uniqueId("ad-carousell"),
+}) => {
   const wrapperRef = useRef(null);
   const prevButtonRef = useRef(null);
   const match = useMediaQuery(
@@ -60,7 +64,7 @@ export const ADCarousell = ({ data = [], id = uniqueId("ad-carousell") }) => {
   }, []);
 
   useEffect(() => {
-    prevButtonRef.current.disabled = true;
+    if (prevButtonRef.current) prevButtonRef.current.disabled = true;
   }, []);
 
   useEffect(() => {
@@ -79,7 +83,7 @@ export const ADCarousell = ({ data = [], id = uniqueId("ad-carousell") }) => {
     const hasReachedLastItem = x >= clientWidth - OFFSET && x <= clientWidth;
     const isDisabled = scrollLeft === 0;
     const isMobile = getIsMobile(store);
-    prevButtonRef.current.disabled = isDisabled;
+    if (prevButtonRef.current) prevButtonRef.current.disabled = isDisabled;
     if (getHasReachedLastItem(store) === hasReachedLastItem) return;
     // only update if it's different
     setHasReachedLastItem({ store, id, value: hasReachedLastItem });
@@ -97,15 +101,18 @@ export const ADCarousell = ({ data = [], id = uniqueId("ad-carousell") }) => {
 
   return (
     <styles.Wrapper ref={wrapperRef}>
-      <ADButton
-        onClick={handlePrev}
-        variant="contained"
-        className="ad-carousell__arrow __arrow-left"
-        id={`ad-carousell_arrow-${id}`}
-        ref={prevButtonRef}
-      >
-        <ArrowRight style={{ transform: "rotate(180deg)" }} />
-      </ADButton>
+      {showArrows ? (
+        <ADButton
+          onClick={handlePrev}
+          variant="contained"
+          className="ad-carousell__arrow __arrow-left"
+          id={`ad-carousell_arrow-${id}`}
+          ref={prevButtonRef}
+        >
+          <ArrowRight style={{ transform: "rotate(180deg)" }} />
+        </ADButton>
+      ) : null}
+
       <ADCarousellContent
         onScroll={handleScroll}
         onTouchEnd={handleTouchEnd}
@@ -113,7 +120,7 @@ export const ADCarousell = ({ data = [], id = uniqueId("ad-carousell") }) => {
         id={id}
         data={data}
       />
-      <ADCarousellNext store={store} id={id} />
+      {showArrows ? <ADCarousellNext store={store} id={id} /> : null}
     </styles.Wrapper>
   );
 };

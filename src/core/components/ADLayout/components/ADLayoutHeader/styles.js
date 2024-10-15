@@ -27,7 +27,6 @@ export const Header = withTheme(styled.header`
 `);
 
 export const Logo = styled.div`
-  border: 1px solid red;
   background-size: 200px;
   background-repeat: no-repeat;
   background-position: center center;

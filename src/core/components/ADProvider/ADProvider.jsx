@@ -32,7 +32,16 @@ const growAndFadeIn = keyframes`
   }
 `;
 
-export const animations = { fadeIn, blur, growAndFadeIn };
+const growWidth = keyframes`
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+`;
+
+export const animations = { fadeIn, blur, growAndFadeIn, growWidth };
 
 export const ADProvider = ({ children }) => {
   return (

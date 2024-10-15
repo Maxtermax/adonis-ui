@@ -9,7 +9,7 @@ export const Container = withTheme(
     overflowX: "auto",
     scrollSnapType: "x mandatory",
     height: "fit-content",
-    width: "calc(100vw - 85px)",
+    width: "calc(100vw - 80px)",
     ["&::-webkit-scrollbar"]: {
       display: "none",
     },
