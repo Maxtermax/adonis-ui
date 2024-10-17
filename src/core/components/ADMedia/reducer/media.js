@@ -3,6 +3,7 @@ import { getImageById, getSelectedImage } from "ADMedia/queries";
 export const actions = {
   SELECT_IMAGE: "SELECT_IMAGE",
   SELECT_SIZE: "SELECT_SIZE",
+  SET_PAUSED: "SET_PAUSED",
 };
 
 export const reducer = (state, action) => {
@@ -17,6 +18,10 @@ export const reducer = (state, action) => {
     },
     [actions.SELECT_SIZE]: () => {
       state.size = action.payload.value;
+      return state;
+    },
+    [actions.SET_PAUSED]: () => {
+      state.isPaused = action.payload.value;
       return state;
     },
   };

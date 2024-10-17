@@ -4,6 +4,7 @@ import find from "lodash/find";
 import { mediaStore } from "ADMedia/store";
 import { selectImage } from "ADMedia/mutations/media";
 import { actions } from "ADMedia/reducer";
+import { useMediaQuery } from "../../../../utils/hooks/useMediaQuery";
 
 export const useADMedia = (images, id, container) => {
   const { onEvent } = useMutations({
@@ -11,6 +12,10 @@ export const useADMedia = (images, id, container) => {
     store: mediaStore,
     id,
   });
+
+  const isMobile = useMediaQuery(
+    (theme) => `(max-width: ${theme.breakpoints.sm})`,
+  );
 
   useEffect(() => {
     const observers = [];
@@ -21,14 +26,18 @@ export const useADMedia = (images, id, container) => {
           for (const entry of entries) {
             if (entry.isIntersecting) {
               const store = mediaStore.get(id);
-              selectImage(store, [id], {
-                imageId: Number(entry.target.id),
+              selectImage({
+                store,
+                targets: [id],
+                value: {
+                  imageId: Number(entry.target.id),
+                },
               });
               break;
             }
           }
         },
-        { threshold: 0.5 },
+        { threshold: isMobile ? 0.5 : 1 },
       );
       observer.observe(picture);
       observers.push(observer);

@@ -62,6 +62,7 @@ const Dinamic = ({
     thumbnails,
     sizes,
     size: null,
+    isPaused: true,
     discount,
     price,
     name,

@@ -42,8 +42,14 @@ export const Content = withTheme(styled.div`
   @media screen and ${(props) => props.theme.devices.sm} {
     padding: 0px;
   }
+  &:hover {
+    border: 3px solid ${(props) => props.theme.colors.primary};
+  }
   &:hover .previews {
     height: 70px;
+  }
+  &:hover .ad-media__figure {
+    transform: ${({ theme }) => theme.transform.scale.calc(1.1)};
   }
 `);
 

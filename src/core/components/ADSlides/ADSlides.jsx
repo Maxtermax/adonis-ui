@@ -1,24 +1,7 @@
 import React, { useState } from "react";
 import ADButton from "ADButton";
+import ADSlideIndicator from "./components/ADSlideIndicator";
 import * as styles from "./styles";
-
-const Indicator = ({ data = [], selectedId = "", onClick }) => {
-  return (
-    <styles.IndicatorWrapper className="ad-slides__indicator-wrapper">
-      {data.map(({ id }, index) => (
-        <styles.Indicator
-          className="ad-slides__indicator"
-          onAnimationEnd={() =>
-            onClick(data[index + 1]?.id ?? data[0]?.id)
-          }
-          isSelected={id === selectedId}
-          onClick={() => onClick(id)}
-          key={id}
-        />
-      ))}
-    </styles.IndicatorWrapper>
-  );
-};
 
 export const ADSlides = ({ data = [] }) => {
   const [selectedId, setSelectedId] = useState(data[0]?.id);
@@ -41,12 +24,13 @@ export const ADSlides = ({ data = [] }) => {
           >
             <ADButton variant="sharp">{title}</ADButton>
           </styles.Link>
-
-          <Indicator
-            onClick={handleClick}
-            selectedId={selectedId}
-            data={data}
-          />
+          <div style={{ visibility: "hidden" }}>
+            <ADSlideIndicator
+              onClick={handleClick}
+              selectedId={selectedId}
+              data={data}
+            />
+          </div>
         </styles.Item>
       ))}
     </styles.Container>

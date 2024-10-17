@@ -22,9 +22,13 @@ export const Thumbnails = ({ data = [], id }) => {
 
   const handleSelectThumbnail = (thumbnail) => {
     const store = mediaStore.get(id);
-    mutations.selectImage(store, [id], {
-      id,
-      imageId: thumbnail.belongsTo,
+    mutations.selectImage({
+      store,
+      targets: [id],
+      value: {
+        id,
+        imageId: thumbnail.belongsTo,
+      },
     });
   };
 
