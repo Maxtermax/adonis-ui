@@ -3,7 +3,7 @@ import ADCard from "ADCard";
 import ADText from "ADText";
 import ADButton from "ADButton";
 import ADFlex from "ADFlex";
-import ADSlideIndicator from "ADSlideIndicator";
+import ADSlideIndicator from "ADSlides/components/ADSlideIndicator";
 import { useIntersection } from "ADSlides/components/ADSlideIndicator/hooks/useIntersection";
 import formatCurrency from "../../../utils/formatCurrency";
 import * as styles from "./styles";

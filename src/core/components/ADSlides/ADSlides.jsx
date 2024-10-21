@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 import ADButton from "ADButton";
 import ADText from "ADText";
-import ADSlideIndicator from "./components/ADSlideIndicator";
+import ADSlideIndicator from "ADSlides/components/ADSlideIndicator";
 import { useIntersection } from "ADSlides/components/ADSlideIndicator/hooks/useIntersection";
 import * as styles from "./styles";
 
