@@ -1,6 +1,8 @@
 import findIndex from "lodash/findIndex";
 import find from "lodash/find";
 
+export const getIsPaused = (store) => store.state.isPaused;
+
 export const getProductById = (store, id) =>
   find(store.state, (product) => product.id === id);
 

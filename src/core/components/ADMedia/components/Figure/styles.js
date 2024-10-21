@@ -30,6 +30,10 @@ export const Figure = withTheme(styled.figure`
   &::-webkit-scrollbar {
     display: none;
   }
+  & .ad-media__picture--loading {
+    position: absolute;
+    right: calc(50% - 38px / 2);
+  }
 `);
 
 export const Picture = styled.img`
@@ -40,4 +44,5 @@ export const Picture = styled.img`
   object-position: center;
   object-fit: contain;
   scroll-snap-align: start;
+  visibility: hidden;
 `;

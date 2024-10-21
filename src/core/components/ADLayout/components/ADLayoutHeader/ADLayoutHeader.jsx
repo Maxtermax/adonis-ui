@@ -3,7 +3,7 @@ import { useTheme } from "@emotion/react";
 import { useObservableStore } from "hermes-io";
 import ADButton from "ADButton";
 import ADGrid, { ADGridCol } from "ADGrid";
-import { Menu } from "@styled-icons/boxicons-regular/Menu";
+import { Menu } from "@styled-icons/feather/Menu";
 import ADLayoutSubMenu from "ADLayout/components/ADLayoutSubMenu";
 import ADLayoutCart from "ADLayout/components/ADLayoutCart";
 import ADLayoutSearch from "ADLayout/components/ADLayoutSearch";
@@ -48,14 +48,18 @@ export const ADLayoutHeader = ({
           fullWidth
           md={{ cols: 3, rows: 1, gap: "0px" }}
           sm={{
-            gridTemplateColumns: "50px minmax(167px, 1fr) 95px",
+            gridTemplateColumns: "80px minmax(167px, 1fr) 150px",
           }}
           cols={"repeat(3, 1fr)"}
           rows={1}
         >
-          <ADGridCol md={{ display: "none" }} />
+          <ADGridCol className="ad-grid-col" md={{ display: "none" }} />
 
-          <ADGridCol md={{ display: "flex" }} lg={{ display: "none" }}>
+          <ADGridCol
+            className="ad-grid-col"
+            md={{ display: "flex" }}
+            lg={{ display: "none" }}
+          >
             <ADLayoutItem>
               <ADButton className="ad-layout__header-menu" variant="text">
                 <Menu color="inherit" size={28} />
@@ -64,6 +68,7 @@ export const ADLayoutHeader = ({
           </ADGridCol>
 
           <ADGridCol
+            className="ad-grid-col"
             sm={{
               "& .ad-text-heading": {
                 fontSize: theme.fonts.sizes.medium,
@@ -73,7 +78,11 @@ export const ADLayoutHeader = ({
             <styles.Logo />
           </ADGridCol>
 
-          <ADGridCol role="list" md={{ display: "none" }}>
+          <ADGridCol
+            className="ad-grid-col"
+            role="list"
+            md={{ display: "none" }}
+          >
             <ADLayoutOption data={list} />
             <ADLayoutItem>{search}</ADLayoutItem>
             <ADLayoutItem>{cart}</ADLayoutItem>
@@ -81,17 +90,16 @@ export const ADLayoutHeader = ({
 
           <ADGridCol
             sm={{
-              gap: theme.spacing.calc(1),
+              gap: theme.spacing.calc(2),
               maxWidth: "130px",
-              "& .ad-button": {
-                minWidth: "40px",
-              },
+              marginRight: theme.spacing.calc(2),
+              justifyContent: "space-evenly",
             }}
             md={{ display: "flex" }}
             lg={{ display: "none" }}
           >
-            <ADLayoutItem>{cart}</ADLayoutItem>
             <ADLayoutItem>{search}</ADLayoutItem>
+            <ADLayoutItem>{cart}</ADLayoutItem>
           </ADGridCol>
         </ADGrid>
       </styles.Header>

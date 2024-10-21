@@ -53,3 +53,9 @@
     local("Montserrat-LightItalic"),
     url("/fonts/static/Montserrat-LightItalic.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "molle";
+  font-style: normal;
+  src: url("/fonts/static/Molle-Italic.ttf") format("truetype");
+}

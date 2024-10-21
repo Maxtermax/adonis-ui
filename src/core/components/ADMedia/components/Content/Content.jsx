@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import ADText from "ADText";
 import { setPaused } from "ADMedia/mutations/media";
 import { mediaStore } from "ADMedia/store";
@@ -8,24 +8,30 @@ import Indicator from "../Indicator";
 import { TEXT_VARIANTS } from "constants";
 import * as styles from "./styles";
 
-const hasClickedOnButton = (event) => {
-  const target = event.target;
-  return ["ad-slides__indicator-pause", "ad-slides__indicator-play"].some(
-    (className) => target.classList.contains(className),
-  );
-};
-
 export const Content = ({ discount, images = [], thumbnails = [], id }) => {
-  const handleMouseEnter = (event) => {
-    if (hasClickedOnButton(event)) return;
+  const indicatorRef = useRef(null);
+  const pause = () => {
+    const store = mediaStore.get(id);
+    setPaused({ store, targets: [id], value: true });
+  };
+
+  const play = () => {
     const store = mediaStore.get(id);
     setPaused({ store, targets: [id], value: false });
   };
 
-  const handleMouseLeave = () => {
-    const store = mediaStore.get(id);
-    setPaused({ store, targets: [id], value: true });
+  const handleMouseEnter = (event) => {
+    const { target } = event;
+    let hasClickedToggleButton = false;
+    for (const node of indicatorRef.current.childNodes) {
+      hasClickedToggleButton = node.contains(target);
+      if (hasClickedToggleButton) break;
+    }
+    if (hasClickedToggleButton) return;
+    play();
   };
+
+  const handleMouseLeave = () => pause();
 
   return (
     <styles.Content
@@ -47,7 +53,7 @@ export const Content = ({ discount, images = [], thumbnails = [], id }) => {
         <Thumbnails data={thumbnails} id={id} />
       </styles.Previews>
       <Figure id={id} images={images} />
-      <Indicator storeId={id} images={images} />
+      <Indicator ref={indicatorRef} storeId={id} images={images} />
     </styles.Content>
   );
 };

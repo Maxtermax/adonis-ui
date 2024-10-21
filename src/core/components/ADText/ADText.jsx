@@ -2,11 +2,11 @@ import React, { forwardRef } from "react";
 import * as styles from "./styles";
 import { TEXT_VARIANTS } from "constants";
 
-const { HEADING, TITLE, TEXT, SUBTITLE, LABEL } = TEXT_VARIANTS;
+const { FANCY, HEADING, TITLE, TEXT, SUBTITLE, LABEL } = TEXT_VARIANTS;
 
 export const ADText = forwardRef(function ADText(
   { className = "", variant = TEXT, value, ...rest },
-  ref
+  ref,
 ) {
   if (variant === HEADING)
     return (
@@ -30,6 +30,18 @@ export const ADText = forwardRef(function ADText(
         {value}
       </styles.Text>
     );
+  if (variant === FANCY)
+    return (
+      <styles.Fancy
+        ref={ref}
+        className={`ad-text ad-text-fancy ${className}`}
+        variant={variant}
+        {...rest}
+      >
+        {value}
+      </styles.Fancy>
+    );
+
   if (variant === LABEL)
     return (
       <styles.Label

@@ -6,6 +6,7 @@ export const Item = withTheme(styled.li`
   list-style-type: none;
   margin: 0;
   padding: 0;
+  z-index: 2;
   & .ad-button {
     color: ${({ theme }) => theme.colors.contrast.primary};
     background: ${({ isSelected, theme }) =>

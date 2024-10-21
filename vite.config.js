@@ -142,8 +142,17 @@ export const alias = [
     replacement: path.resolve(__dirname, "src/core/components/ADPanel"),
   },
   {
+    
     find: "ADSlides",
     replacement: path.resolve(__dirname, "src/core/components/ADSlides"),
+  },
+  {
+    find: "ADSlideIndicator",
+    replacement: path.resolve(__dirname, "src/core/components/ADSlides/components/ADSlideIndicator"),
+  },
+  {
+    find: "ADProductsGrid",
+    replacement: path.resolve(__dirname, "src/core/components/ADProductsGrid"),
   },
   {
     find: "stores",

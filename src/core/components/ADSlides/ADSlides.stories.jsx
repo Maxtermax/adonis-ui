@@ -14,21 +14,21 @@ export const Basic = () => (
     data={[
       {
         link: "#",
-        id: 1,
-        title: "Product 1",
+        id: "1",
+        title: "Ver más",
         src: "https://placehold.co/1200x700",
       },
 
       {
         link: "#",
-        id: 2,
+        id: "2",
         title: "Product 2",
         src: "https://placehold.co/1200x700",
       },
 
       {
         link: "#",
-        id: 3,
+        id: "3",
         title: "Product 3",
         src: "https://placehold.co/1200x700",
       },

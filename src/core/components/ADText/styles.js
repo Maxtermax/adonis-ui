@@ -2,7 +2,7 @@ import { withTheme } from '@emotion/react';
 import styled from "@emotion/styled";
 import { TEXT_VARIANTS } from "constants";
 
-const { TEXT, TITLE, SUBTITLE, HEADING } = TEXT_VARIANTS;
+const { TEXT, TITLE, SUBTITLE, HEADING, FANCY } = TEXT_VARIANTS;
 
 const fontSize = ({ variant, theme }) =>
   ({
@@ -10,6 +10,7 @@ const fontSize = ({ variant, theme }) =>
     [HEADING]: theme.fonts.sizes.big,
     [TITLE]: theme.fonts.sizes.big,
     [SUBTITLE]: theme.fonts.sizes.small,
+    [FANCY]: theme.fonts.sizes.big
   })[variant] ?? "";
 
 const fontFamily = ({ variant, theme }) =>
@@ -18,9 +19,20 @@ const fontFamily = ({ variant, theme }) =>
     [HEADING]: theme.fonts.primary.bold,
     [TITLE]: theme.fonts.primary.bold,
     [SUBTITLE]: theme.fonts.primary.light,
+    [FANCY]: theme.fonts.primary.fancy,
   })[variant] ?? "";
 
 export const Text = withTheme(styled.p`
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: ${(props) => fontSize(props)};
+  font-family: ${(props) => fontFamily(props)};
+  padding: 0px;
+  margin: 0px;
+  text-decoration: ${({ lineThrough }) =>
+    lineThrough ? "line-through" : "none"};
+`);
+
+export const Fancy = withTheme(styled.span`
   color: ${({ theme }) => theme.colors.primary};
   font-size: ${(props) => fontSize(props)};
   font-family: ${(props) => fontFamily(props)};

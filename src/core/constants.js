@@ -61,6 +61,7 @@ export const TEXT_VARIANTS = {
   TEXT: "text",
   LABEL: "label",
   HEADING: "heading",
+  FANCY: "fancy", 
   TITLE: "title",
   SUBTITLE: "subtitle",
 };

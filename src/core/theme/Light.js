@@ -105,6 +105,7 @@ class Light extends Base {
       bold: "Montserrat-Bold",
       light: "Montserrat-Light",
       lightItalic: "Montserrat-LightItalic",
+      fancy: "molle",
     },
     sizes: {
       tiny: "10px",
@@ -122,6 +123,7 @@ class Light extends Base {
     smooth: "0.35s",
     quick: "0.15s",
     fast: "0.28s",
+    calc: (factor) => `${factor}s`,
   };
   animationFunctions = {
     sweet: "cubic-bezier(0, 1.33, 1, 0.97)",

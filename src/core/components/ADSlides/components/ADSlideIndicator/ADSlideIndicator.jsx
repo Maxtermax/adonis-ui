@@ -12,6 +12,10 @@ export const ADSlideIndicator = ({
   onToggleAnimationState,
   onClick,
 }) => {
+  const handleMouseEnter = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  };
   return (
     <styles.Wrapper isPaused={isPaused} showButton={!!onToggleAnimationState}>
       <styles.Container
@@ -23,26 +27,27 @@ export const ADSlideIndicator = ({
             duration={duration}
             className="ad-slides__indicator"
             isPaused={isPaused}
-            onAnimationEnd={() => onClick(data[index + 1]?.id ?? data[0]?.id)}
-            isSelected={id === selectedId}
-            onClick={() => onClick(id)}
+            onAnimationEnd={() => onClick?.(data[index + 1]?.id ?? data[0]?.id)}
+            isSelected={String(id) === String(selectedId)}
+            onClick={() => onClick?.(id)}
             key={id}
           />
         ))}
       </styles.Container>
-      {
-        onToggleAnimationState ? <ADButton
-        onClick={onToggleAnimationState}
-        className="ad-slides__indicator-button"
-        variant="text"
-      >
-        {isPaused ? (
-          <PlayCircle className="ad-slides__indicator-play" size={25} />
-        ) : (
-          <PauseCircle className="ad-slides__indicator-pause" size={25} />
-        )}
-      </ADButton> :  null
-      }
+      {onToggleAnimationState ? (
+        <ADButton
+          onMouseEnter={handleMouseEnter}
+          onClick={onToggleAnimationState}
+          className="ad-slides__indicator-button"
+          variant="text"
+        >
+          {isPaused ? (
+            <PlayCircle className="ad-slides__indicator-play" size={25} />
+          ) : (
+            <PauseCircle className="ad-slides__indicator-pause" size={25} />
+          )}
+        </ADButton>
+      ) : null}
     </styles.Wrapper>
   );
 };

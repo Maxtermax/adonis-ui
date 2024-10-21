@@ -1,11 +1,15 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { useMutations } from "hermes-io";
 import ADSlideIndicator from "ADSlides/components/ADSlideIndicator";
 import { mediaStore } from "ADMedia/store";
 import { actions } from "ADMedia/reducer";
 import { selectImage, setPaused } from "ADMedia/mutations";
+import * as styles from "./styles";
 
-export const Indicator = ({ storeId, images = [] }) => {
+export const Indicator = forwardRef(function Indicator(
+  { storeId, images = [] },
+  ref,
+) {
   const { onEvent, state } = useMutations({
     initialState: { isPaused: true, imageId: images[0].id },
     store: mediaStore,
@@ -34,13 +38,15 @@ export const Indicator = ({ storeId, images = [] }) => {
   };
 
   return (
-    <ADSlideIndicator
-      duration="4000ms"
-      isPaused={state.isPaused}
-      selectedId={state.imageId}
-      data={images}
-      onClick={handleSelectIndicator}
-      onToggleAnimationState={handleToggleAnimationState}
-    />
+    <styles.IndicatorWrapper ref={ref}>
+      <ADSlideIndicator
+        duration="4000ms"
+        isPaused={state.isPaused}
+        selectedId={state.imageId}
+        data={images}
+        onClick={handleSelectIndicator}
+        onToggleAnimationState={handleToggleAnimationState}
+      />
+    </styles.IndicatorWrapper>
   );
-};
+});

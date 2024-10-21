@@ -5,7 +5,7 @@ import * as styles from "./styles";
 export const ADLayoutTitle = ({ children }) => {
   return (
     <styles.Container>
-      <ADText variant="title" value={children} />
+      <ADText variant="fancy" value={children} />
     </styles.Container>
   );
 };

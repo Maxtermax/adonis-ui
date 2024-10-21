@@ -1,57 +1,47 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useMutations } from "hermes-io";
 import find from "lodash/find";
 import { mediaStore } from "ADMedia/store";
 import { selectImage } from "ADMedia/mutations/media";
 import { actions } from "ADMedia/reducer";
-import { useMediaQuery } from "../../../../utils/hooks/useMediaQuery";
+import { getIsPaused } from "ADMedia/queries";
+import { useIntersection } from "ADSlides/components/ADSlideIndicator/hooks/useIntersection";
 
-export const useADMedia = (images, id, container) => {
+export const useADMedia = (images, id, containerRef) => {
   const { onEvent } = useMutations({
     noUpdate: true,
     store: mediaStore,
     id,
   });
 
-  const isMobile = useMediaQuery(
-    (theme) => `(max-width: ${theme.breakpoints.sm})`,
-  );
+  const handleIntersection = (isSliding, entry) => {
+    const store = mediaStore.get(id);
+    const isRunning = !getIsPaused(store);
+    if (isSliding && isRunning) return;
+    const imageId = Number(entry.target.id);
+    selectImage({
+      store,
+      targets: [id],
+      value: {
+        imageId,
+      },
+    });
+  };
 
-  useEffect(() => {
-    const observers = [];
-    const pictures = container.current.querySelectorAll("img");
-    for (const picture of pictures) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting) {
-              const store = mediaStore.get(id);
-              selectImage({
-                store,
-                targets: [id],
-                value: {
-                  imageId: Number(entry.target.id),
-                },
-              });
-              break;
-            }
-          }
-        },
-        { threshold: isMobile ? 0.5 : 1 },
-      );
-      observer.observe(picture);
-      observers.push(observer);
-    }
-    return () => {
-      for (const observer of observers) observer.disconnect();
-    };
-  }, []);
+  useIntersection({
+    containerRef,
+    onIntersection: handleIntersection,
+  });
 
   onEvent(actions.SELECT_IMAGE, ({ imageId }) => {
     const image = find(images, ({ id }) => imageId === id);
-    const node = container?.current?.querySelector?.(`img[src="${image.src}"]`);
-    node.scrollIntoView({
-      block: "center",
+    const container = containerRef.current;
+    const node = container?.querySelector?.(`img[src="${image.src}"]`);
+    if (!node) return;
+    const { offsetLeft } = node;
+    container.targetLeft = offsetLeft;
+    container.scrollTo({
+      left: offsetLeft,
       behavior: "smooth",
     });
   });

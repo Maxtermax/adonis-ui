@@ -4,13 +4,14 @@ import _ from "lodash";
 import ADLayout, {
   ADLayoutHeader,
   ADLayoutBody,
-  ADLayoutCategories,
-  ADLayoutSectionTitle
+  ADLayoutSectionTitle,
 } from "ADLayout";
+import ADSlides from "ADSlides";
 import { SEARCH_TEXT_FIELD } from "ADLayout/components/ADLayoutSearch";
 import { microTextFieldStore } from "ADTextField/store";
 import { actions as layoutActions } from "ADLayout/reducer";
 import { completeSearch } from "ADLayout/mutations";
+import ADProductsGrid from "../ADProductsGrid";
 import ADCarousell from "ADCarousell";
 import { actions as carousellActions } from "ADCarousell/reducer";
 import { newPage } from "ADCarousell/mutations";
@@ -26,7 +27,7 @@ const getProducts = (total) =>
   });
 
 const recommendations = getProducts(5);
-const products = getProducts(10);
+const products = getProducts(5);
 
 export default {
   title: "Basic/ADLayout",
@@ -126,181 +127,61 @@ const Template = () => {
     <ADLayout
       body={() => (
         <ADLayoutBody>
-          <ADLayoutCategories
-            collections={[
+          <ADSlides
+            data={[
               {
-                id: "collections-1",
-                src: "https://placehold.co/1200x700",
-                title: "collections-1",
                 link: "#",
+                id: "1",
+                title: "Descuentos",
+                subtitle: "!hasta el 50%!",
+                src: "https://www.brokenchains.com.co/cdn/shop/files/BANNERS-WEB-01_2048x.jpg?v=1727302066",
+              },
+
+              {
+                link: "#",
+                id: "2",
+                title: "Tendencias",
+                subtitle: "¡Ultima moda!",
+                src: "https://www.brokenchains.com.co/cdn/shop/files/BANNER-NEW_BALANCE-DESKTOP_bf513dc8-4243-432c-9efa-4341f1470bc6_3072x.jpg?v=1721073702",
               },
               {
-                id: "collections-2",
-                src: "https://placehold.co/1200x700",
-                title: "collections-2",
                 link: "#",
-              },
-              {
-                id: "collections-3",
-                src: "https://placehold.co/1200x700",
-                title: "collections-3",
-                link: "#",
-              },
-            ]}
-            sets={[
-              {
-                id: "sets-1",
-                src: "https://placehold.co/1200x700",
-                title: "sets-1",
-                link: "#",
-              },
-              {
-                id: "sets-2",
-                src: "https://placehold.co/1200x700",
-                title: "sets-2",
-                link: "#",
-              },
-              {
-                id: "sets-3",
-                src: "https://placehold.co/1200x700",
-                title: "sets-3",
-                link: "#",
-              },
-            ]}
-            trends={[
-              {
-                id: "trends-1",
-                src: "https://placehold.co/1700x800",
-                title: "trends-1",
-                link: "#",
-              },
-              {
-                id: "trends-2",
-                src: "https://placehold.co/1700x800",
-                title: "trends-2",
-                link: "#",
-              },
-              {
-                id: "trends-3",
-                src: "https://placehold.co/1700x800",
-                title: "trends-3",
-                link: "#",
+                id: "3",
+                title: "Conjuntos",
+                subtitle: "!Estilo que combina!",
+                src: "https://www.brokenchains.com.co/cdn/shop/files/EDITORIAL-FCF100-04.jpg?v=1728743060&width=2048",
               },
             ]}
           />
+
           <ADLayoutSectionTitle
             title="Tendencias"
             subtitle="¡Lo ultimo en guaracha 🔥!"
           />
           <Carousell id="1" />
+          <ADSlides
+            data={[
+              {
+                id: "a-1",
+                title: "Descuentos",
+                subtitle: "¡Hasta 50% de descuento!",
+                src: "https://www.brokenchains.com.co/cdn/shop/files/BANNERS-WEB-01_2048x.jpg?v=1727302066",
+              },
+            ]}
+          />
 
-          {/*
-            
-         
-          <ADLayoutCategories
-            collections={[
+          <ADProductsGrid data={products} />
+          <ADSlides
+            data={[
               {
-                id: "collections-1",
-                src: "https://placehold.co/1200x700",
-              },
-              {
-                id: "collections-2",
-                src: "https://placehold.co/1200x700",
-              },
-              {
-                id: "collections-3",
-                src: "https://placehold.co/1200x700",
-              },
-            ]}
-            sets={[
-              {
-                id: "sets-1",
-                src: "https://placehold.co/1200x700",
-              },
-              {
-                id: "sets-2",
-                src: "https://placehold.co/1200x700",
-              },
-              {
-                id: "sets-3",
-                src: "https://placehold.co/1200x700",
-              },
-            ]}
-            offerts={[
-              {
-                id: "offerts-1",
-                src: "https://placehold.co/1200x700",
-              },
-              {
-                id: "offerts-2",
-                src: "https://placehold.co/1200x700",
-              },
-              {
-                id: "offerts-3",
-                src: "https://placehold.co/1200x700",
-              },
-            ]}
-            trends={[
-              {
-                id: "trends-1",
-                src: "https://placehold.co/1700x800",
-              },
-              {
-                id: "trends-2",
-                src: "https://placehold.co/1700x800",
-              },
-              {
-                id: "trends-3",
-                src: "https://placehold.co/1700x800",
-              },
-            ]}
-            exclusives={[
-              {
-                id: "exclusives-1",
-                src: "https://placehold.co/1200x700",
-              },
-              {
-                id: "exclusives-2",
-                src: "https://placehold.co/1200x700",
-              },
-              {
-                id: "exclusives-3",
-                src: "https://placehold.co/1200x700",
+                id: "a-2",
+                title: "Conjuntos",
+                subtitle: "!Estilo que combina!",
+                src: "https://www.brokenchains.com.co/cdn/shop/files/EDITORIAL-FCF100-04.jpg?v=1728743060&width=2048",
               },
             ]}
           />
-          <ADPanel
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "25px",
-            }}
-            variant="flat"
-          >
-            <Carousell id="2" />
-            <Carousell id="3" />
-          </ADPanel>
-            */}
-          {/* 
           <ADProductsGrid data={products} />
-          <ADLayoutSectionTitle
-            title="Descuentos"
-            subtitle="No te pierdas!!! 😉"
-          />
-          <ADProductsGrid data={products} />
-
-          <ADLayoutSectionTitle
-            title="Conjuntos"
-            subtitle="Vistelo en conjunto 😍"
-          />
-          <ADProductsGrid data={products} />
-
-          <ADLayoutSectionTitle
-            title="Colecciones"
-            subtitle="¡Las coleciones mas parchadas 🔥!"
-          />
-          <ADProductsGrid data={products} />
-            */}
         </ADLayoutBody>
       )}
       header={() => (

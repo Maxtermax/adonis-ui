@@ -1,6 +1,5 @@
 import React from "react";
 import ADGrid, { ADGridCol } from "ADGrid";
-import ADSlides from "ADSlides";
 import * as styles from "./styles";
 
 export const ADLayoutCategories = ({
@@ -20,30 +19,7 @@ export const ADLayoutCategories = ({
         }}
       >
         <ADGridCol className="ad-grid-col">
-          <ADSlides
-            data={[
-              {
-                link: "#",
-                id: 1,
-                title: "Product 1",
-                src: "https://placehold.co/1200x700",
-              },
 
-              {
-                link: "#",
-                id: 2,
-                title: "Product 2",
-                src: "https://placehold.co/1200x700",
-              },
-
-              {
-                link: "#",
-                id: 3,
-                title: "Product 3",
-                src: "https://placehold.co/1200x700",
-              },
-            ]}
-          />
         </ADGridCol>
       </ADGrid>
     </styles.Container>

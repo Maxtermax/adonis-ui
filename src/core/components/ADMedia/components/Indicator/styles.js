@@ -30,3 +30,11 @@ export const Slice = withTheme(styled.div`
   transition: ${({ theme }) => theme.transitions.smooth};
   opacity: 0.25;
 `);
+
+export const IndicatorWrapper = withTheme(styled.div`
+  position: absolute;
+  right: calc(50% - 63px);
+  bottom: 20px;
+`);
+
+

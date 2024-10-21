@@ -7,10 +7,10 @@ export const Wrapper = withTheme(styled.div`
   gap: ${({ theme }) => theme.spacing.calc(2.1)};
   align-items: center;
   justify-content: space-around;
-  position: absolute;
-  bottom: 15px;
-  right: calc(50% - 72px);
   height: 20px;
+  position: relative;
+  max-width: 130px;
+  z-index: 1;
   transition: ${({ theme }) => theme.transitions.smooth};
   &:hover {
     transform: ${({ theme }) => theme.transform.scale.calc(1.1)};
@@ -20,10 +20,11 @@ export const Wrapper = withTheme(styled.div`
     background: ${({ theme }) => theme.colors.white};
     border: 1px solid ${({ theme }) => theme.colors.white};
     color: ${({ theme }) => theme.colors.primary};
-    min-width: 25px;
-    padding: 0px;
-    width: 25px;
-    height: 25px;
+    min-width: 30px;
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+    z-index: 2;
 `);
 
 export const Container = withTheme(styled.div`
@@ -53,7 +54,7 @@ export const Indicator = withTheme(styled.div`
   transition: ${({ theme }) => theme.transitions.smooth};
   position: relative;
   overflow: hidden;
-  width: ${({ isSelected }) => (isSelected ? "40px" : "12px")};
+  width: ${({ isSelected }) => (isSelected ? "40px" : "8px")};
   height: 8px;
   &:before {
     content: " ";

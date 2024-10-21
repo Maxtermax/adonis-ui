@@ -1,7 +1,7 @@
 import ADText from "ADText";
 import { TEXT_VARIANTS } from "constants";
 
-const { HEADING, TITLE, SUBTITLE } = TEXT_VARIANTS;
+const { FANCY, HEADING, TITLE, SUBTITLE } = TEXT_VARIANTS;
 
 export default {
   title: "Basic/ADText",
@@ -40,3 +40,11 @@ SubTitle.args = {
   variant: SUBTITLE,
   value: "Sub title",
 };
+
+export const Fancy = Template.bind({});
+Fancy.args = {
+  variant: FANCY,
+  value: "Fancy",
+};
+
+

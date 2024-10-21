@@ -1,7 +1,6 @@
 import React from "react";
 import { useMutations } from "hermes-io";
 import { withTheme } from "@emotion/react";
-import { MagnifyingGlass } from "@styled-icons/fa-solid/MagnifyingGlass";
 import { Search } from "@styled-icons/feather/Search";
 import { microTextFieldStore } from "ADTextField/store";
 import { actions } from "ADLayout/reducer";
@@ -78,9 +77,9 @@ export const ADLayoutSearch = withTheme(({ theme, recommendations = [] }) => {
         className="ad-layout__header-search"
         variant="text"
       >
-        <MagnifyingGlass
+        <Search
           color="inherit"
-          size={theme.fonts.sizes.parse2Num(theme.fonts.sizes.big)}
+          size={theme.fonts.sizes.parse2Num(theme.fonts.sizes.extra)}
         />
       </ADButton>
 

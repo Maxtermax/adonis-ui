@@ -1,21 +1,51 @@
 import React, { useRef } from "react";
 import { useADMedia } from "ADMedia/hooks/useADMedia";
+import ADLoader from "ADLoader";
 import * as styles from "./styles";
+
+function Picture({ id, src, description }) {
+  const loaderRef = useRef(null);
+  const handleLoad = (event) => {
+    event.target.style.visibility = "visible";
+    loaderRef.current.style.visibility = "hidden";
+  };
+
+  return (
+    <>
+      <styles.Picture
+        className="intersection-item"
+        onLoad={handleLoad}
+        key={id}
+        src={src}
+        id={id}
+        title={description}
+        alt={description}
+      />
+      <ADLoader
+        className="ad-media__picture--loading"
+        variant="dots"
+        ref={loaderRef}
+      />
+    </>
+  );
+}
 
 export const Figure = ({ images, id }) => {
   const containerRef = useRef(null);
   useADMedia(images, id, containerRef);
+  const handleScroll = () => {
+    const { scrollLeft, targetLeft } = containerRef.current;
+    if (scrollLeft === targetLeft) delete containerRef.current.targetLeft;
+  };
 
   return (
-    <styles.Figure className="ad-media__figure" ref={containerRef}>
-      {images.map((item) => (
-        <styles.Picture
-          key={item.id}
-          src={item.src}
-          id={item.id}
-          title={item.description}
-          alt={item.description}
-        />
+    <styles.Figure
+      onScroll={handleScroll}
+      className="ad-media__figure"
+      ref={containerRef}
+    >
+      {images.map((item, index) => (
+        <Picture {...item} key={index} />
       ))}
     </styles.Figure>
   );
