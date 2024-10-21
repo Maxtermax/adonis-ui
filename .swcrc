@@ -24,6 +24,7 @@
       "ADCard/*": ["./src/core/components/ADCard/*"],
       "ADPanel/*": ["./src/core/components/ADPanel/*"],
       "ADSlides/*": ["./src/core/components/ADSlides/*"],
+      "ADSlideIndicator/*": ["./src/core/components/ADSlideIndicator/*"],
       "ADBadge/*": ["./src/core/components/ADBadge/*"],
       "ADDrawer/*": ["./src/core/components/ADDrawer/*"],
       "ADCheckbox/*": ["./src/core/components/ADCheckbox/*"],
