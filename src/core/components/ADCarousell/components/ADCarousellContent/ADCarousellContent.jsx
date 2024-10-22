@@ -1,4 +1,4 @@
-import React, { memo, useLayoutEffect, useRef } from "react";
+import React, { memo, useEffect, useRef } from "react";
 import { useMutations } from "hermes-io";
 import ADMedia from "ADMedia";
 import { actions } from "ADCarousell/reducer";
@@ -25,7 +25,7 @@ export const ADCarousellContent = ({ store, id, data, onScroll }) => {
     id,
   });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const node = document.getElementById(pivotNode.current?.id);
     node?.scrollIntoView?.({
       inline: "start",

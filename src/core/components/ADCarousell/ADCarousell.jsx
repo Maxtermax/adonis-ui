@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import _ from "lodash";
 import { ArrowRight } from "@styled-icons/feather/ArrowRight";
 import { useObservableStore } from "hermes-io";
@@ -55,7 +55,7 @@ export const ADCarousell = ({
     microCarousellStore,
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const container = wrapperRef.current.querySelector(".ad-carousell");
     const { scrollLeft, scrollWidth, clientWidth } = container;
     const x = scrollWidth - scrollLeft;
