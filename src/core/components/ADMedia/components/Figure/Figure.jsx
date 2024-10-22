@@ -8,6 +8,7 @@ function Picture({ id, src, description }) {
   const handleLoad = (event) => {
     event.target.style.visibility = "visible";
     loaderRef.current.style.visibility = "hidden";
+    debugger;
   };
 
   return (
