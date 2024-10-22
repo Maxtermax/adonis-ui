@@ -137,10 +137,6 @@
    "import": "./lib/src/core/components/ADProductCard/index.js",
    "require": "./lib/src/core/components/ADProductCard/index.js"
   },
-  "./components/ADProductGrid": {
-   "import": "./lib/src/core/components/ADProductGrid/index.js",
-   "require": "./lib/src/core/components/ADProductGrid/index.js"
-  },
   "./components/ADProductsGrid": {
    "import": "./lib/src/core/components/ADProductsGrid/index.js",
    "require": "./lib/src/core/components/ADProductsGrid/index.js"

@@ -1,4 +1,4 @@
-import { keyframes } from "@emotion/react";
+import { keyframes, withTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 
 const rotation = keyframes`
@@ -25,14 +25,14 @@ const bounce = keyframes`
   }
 `;
 
-export const Container = styled.div`
+export const Container = withTheme(styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.medium};
-`;
+`);
 
-export const Spinner = styled.div`
+export const Spinner = withTheme(styled.div`
   animation: ${rotation} linear infinite;
   animation-duration: ${({ theme }) => theme.timing.slow};
   border: 3px solid ${({ theme }) => theme.colors.primary};
@@ -42,9 +42,9 @@ export const Spinner = styled.div`
   display: inline-block;
   width: ${({ size = 1 }) => size * 40}px;
   height: ${({ size = 1 }) => size * 40}px;
-`;
+`);
 
-export const DotLoader = styled.div`
+export const DotLoader = withTheme(styled.div`
   display: flex;
   gap: ${({ theme }) => theme.spacing.calc(1)};
   & .ad-loader__dot {
@@ -66,4 +66,4 @@ export const DotLoader = styled.div`
   .ad-loader__dot:nth-of-type(3) {
     animation-delay: ${({ theme }) => theme.timing.calc(0)};
   }
-`;
+`);
