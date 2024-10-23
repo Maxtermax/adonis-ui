@@ -44,5 +44,4 @@ export const Picture = styled.img`
   object-position: center;
   object-fit: contain;
   scroll-snap-align: start;
-  visibility: hidden;
 `;

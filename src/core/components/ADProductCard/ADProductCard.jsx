@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ADCard from "ADCard";
 import ADText from "ADText";
 import ADButton from "ADButton";
@@ -15,7 +15,7 @@ const Indicator = ({
   containerRef,
 }) => {
   const [selectedId, setSelectedId] = useState(data[0].id);
-  useLayoutEffect(() => {
+  useEffect(() => {
     const container = containerRef.current;
     const node = container?.querySelector?.(`[id="${selectedId}"]`);
     if (node) {

@@ -5,16 +5,10 @@ import * as styles from "./styles";
 
 function Picture({ id, src, description }) {
   const loaderRef = useRef(null);
-  const handleLoad = (event) => {
-    event.target.style.visibility = "visible";
-    loaderRef.current.style.visibility = "hidden";
-  };
-
   return (
     <>
       <styles.Picture
         className="intersection-item"
-        onLoad={handleLoad}
         key={id}
         src={src}
         id={id}

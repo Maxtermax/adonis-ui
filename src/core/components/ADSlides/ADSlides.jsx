@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ADButton from "ADButton";
 import ADText from "ADText";
 import ADSlideIndicator from "ADSlides/components/ADSlideIndicator";
@@ -9,7 +9,7 @@ export const ADSlides = ({ data = [] }) => {
   const containerRef = useRef(null);
   const [selectedId, setSelectedId] = useState(data[0]?.id);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const container = containerRef.current;
     const node = container.querySelector(`[id='${selectedId}']`);
     const { offsetLeft } = node;
