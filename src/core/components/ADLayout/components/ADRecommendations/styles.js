@@ -24,7 +24,7 @@ export const Link = withTheme(styled.a`
   height: 100%;
   text-decoration: none;
   transition: ${({ theme }) => theme.transitions.quick};
-  display: grid;
+  display: flex;
   grid-template-columns: 60px 1fr;
   gap: ${({ theme }) => theme.spacing.calc(2)};
   justify-items: start;

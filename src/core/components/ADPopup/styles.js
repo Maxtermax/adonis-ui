@@ -1,6 +1,10 @@
 import { keyframes, withTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 
+export const variants = {
+  fullscreen: "fullscreen",
+};
+
 const appear = (theme) => keyframes`
   0% {
     opacity: 0;
@@ -11,6 +15,15 @@ const appear = (theme) => keyframes`
     transform: ${theme.transform.scale.none};
   }
 `;
+
+const styleVariants = (variant = "") =>
+  ({
+    [variants.fullscreen]: {
+      width: "100dvw",
+      height: "100dvh",
+      position: "fixed",
+    },
+  })[variant];
 
 export const Container = withTheme(styled.div`
   align-items: center;
@@ -26,9 +39,14 @@ export const Container = withTheme(styled.div`
   left: 0px;
   min-width: 280px;
   min-height: 200px;
-  width: ${({ width = 'auto' }) => width};
-  height: ${({ height = 'auto' }) => height};
-  border-radius: ${({ theme }) => theme.border.radius.rounded};
+  width: ${({ width = "auto", variant = "" }) =>
+    styleVariants(variant)?.width || width};
+  height: ${({ height = "auto", variant = "" }) =>
+    styleVariants(variant)?.height || height};
+  border-radius: ${({ theme, variant = "" }) =>
+    variant === variants.fullscreen ? "none" : theme.border.radius.rounded};
+  position: ${({ variant = "" }) =>
+    styleVariants(variant)?.position || "relative"};
 `);
 
 export const Header = withTheme(styled.header`

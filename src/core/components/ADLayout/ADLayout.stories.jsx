@@ -2,9 +2,10 @@ import React from "react";
 import { useMutations } from "hermes-io";
 import _ from "lodash";
 import ADLayout, {
+  ADLayoutSectionTitle,
   ADLayoutHeader,
   ADLayoutBody,
-  ADLayoutSectionTitle,
+  ADLayoutFooter 
 } from "ADLayout";
 import ADSlides from "ADSlides";
 import { SEARCH_TEXT_FIELD } from "ADLayout/components/ADLayoutSearch";
@@ -125,65 +126,6 @@ const Template = () => {
 
   return (
     <ADLayout
-      body={() => (
-        <ADLayoutBody>
-          <ADSlides
-            data={[
-              {
-                link: "#",
-                id: "1",
-                title: "Descuentos",
-                subtitle: "!hasta el 50%!",
-                src: "https://www.brokenchains.com.co/cdn/shop/files/BANNERS-WEB-01_2048x.jpg?v=1727302066",
-              },
-
-              {
-                link: "#",
-                id: "2",
-                title: "Tendencias",
-                subtitle: "¡Ultima moda!",
-                src: "https://www.brokenchains.com.co/cdn/shop/files/BANNER-NEW_BALANCE-DESKTOP_bf513dc8-4243-432c-9efa-4341f1470bc6_3072x.jpg?v=1721073702",
-              },
-              {
-                link: "#",
-                id: "3",
-                title: "Conjuntos",
-                subtitle: "!Estilo que combina!",
-                src: "https://www.brokenchains.com.co/cdn/shop/files/EDITORIAL-FCF100-04.jpg?v=1728743060&width=2048",
-              },
-            ]}
-          />
-
-          <ADLayoutSectionTitle
-            title="Tendencias"
-            subtitle="¡Lo ultimo en guaracha 🔥!"
-          />
-          <Carousell id="1" />
-          <ADSlides
-            data={[
-              {
-                id: "a-1",
-                title: "Descuentos",
-                subtitle: "¡Hasta 50% de descuento!",
-                src: "https://www.brokenchains.com.co/cdn/shop/files/BANNERS-WEB-01_2048x.jpg?v=1727302066",
-              },
-            ]}
-          />
-
-          <ADProductsGrid data={products} />
-          <ADSlides
-            data={[
-              {
-                id: "a-2",
-                title: "Conjuntos",
-                subtitle: "!Estilo que combina!",
-                src: "https://www.brokenchains.com.co/cdn/shop/files/EDITORIAL-FCF100-04.jpg?v=1728743060&width=2048",
-              },
-            ]}
-          />
-          <ADProductsGrid data={products} />
-        </ADLayoutBody>
-      )}
       header={() => (
         <ADLayoutHeader
           list={[
@@ -452,6 +394,72 @@ const Template = () => {
           }}
         />
       )}
+
+      body={() => (
+        <ADLayoutBody>
+          <ADSlides
+            data={[
+              {
+                link: "#",
+                id: "1",
+                title: "Descuentos",
+                subtitle: "!hasta el 50%!",
+                src: "https://www.brokenchains.com.co/cdn/shop/files/BANNERS-WEB-01_2048x.jpg?v=1727302066",
+              },
+
+              {
+                link: "#",
+                id: "2",
+                title: "Tendencias",
+                subtitle: "¡Ultima moda!",
+                src: "https://www.brokenchains.com.co/cdn/shop/files/BANNER-NEW_BALANCE-DESKTOP_bf513dc8-4243-432c-9efa-4341f1470bc6_3072x.jpg?v=1721073702",
+              },
+              {
+                link: "#",
+                id: "3",
+                title: "Conjuntos",
+                subtitle: "!Estilo que combina!",
+                src: "https://www.brokenchains.com.co/cdn/shop/files/EDITORIAL-FCF100-04.jpg?v=1728743060&width=2048",
+              },
+            ]}
+          />
+
+          <ADLayoutSectionTitle
+            title="Tendencias"
+            subtitle="¡Lo ultimo en guaracha 🔥!"
+          />
+          <Carousell id="1" />
+          <ADSlides
+            data={[
+              {
+                id: "a-1",
+                title: "Descuentos",
+                subtitle: "¡Hasta 50% de descuento!",
+                src: "https://www.brokenchains.com.co/cdn/shop/files/BANNERS-WEB-01_2048x.jpg?v=1727302066",
+              },
+            ]}
+          />
+
+          <ADProductsGrid data={products} />
+          <ADSlides
+            data={[
+              {
+                id: "a-2",
+                title: "Conjuntos",
+                subtitle: "!Estilo que combina!",
+                src: "https://www.brokenchains.com.co/cdn/shop/files/EDITORIAL-FCF100-04.jpg?v=1728743060&width=2048",
+              },
+            ]}
+          />
+          <ADProductsGrid data={products} />
+        </ADLayoutBody>
+      )}
+
+      footer={
+        () => (
+          <ADLayoutFooter />
+        )
+      }
     />
   );
 };

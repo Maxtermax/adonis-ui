@@ -13,6 +13,7 @@ export const ADPopup = forwardRef(function ADPopup(
     disableClose = false,
     title = "",
     isOpen = false,
+    variant = "",
     reRenderOnClose = true,
     id = uniqueId("ad-pop-up-"),
     className = "",
@@ -20,7 +21,7 @@ export const ADPopup = forwardRef(function ADPopup(
   },
   ref,
 ) {
-  const { state, onEvent } = useMutations({
+  const { onEvent } = useMutations({
     initialState: { key: uniqueId() },
     store: overlayMicroStore,
     id
@@ -35,6 +36,7 @@ export const ADPopup = forwardRef(function ADPopup(
     <ADOverlay isOpen={isOpen} id={id}>
       <styles.Container
         ref={ref}
+        variant={variant}
         className={`ad-popup ${className}`}
         {...rest}
       >

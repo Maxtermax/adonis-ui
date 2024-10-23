@@ -18,8 +18,8 @@ export const Header = ({ storeId, title = "", disableClose = false }) => {
       <ADPanel variant="flat" className="ad-popup__title">
         {typeof title === "string" ? <ADText value={title} variant={"title"} /> : title}
         <ADTooltip
-          direction="top"
-          text={<ADText value="Close" variant="subtitle" />}
+          direction="bottom"
+          text={<ADText value="Cerrar" variant="subtitle" />}
         >
           <ADButton
             className="ad-popup__btn-close"

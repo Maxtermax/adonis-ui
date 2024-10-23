@@ -6,7 +6,7 @@ import { microTextFieldStore } from "ADTextField/store";
 import { actions } from "ADLayout/reducer";
 import { actions as textFieldActions } from "ADTextField/reducer";
 import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store";
-import ADPopup from "ADPopup";
+import ADPopup, { variants } from "ADPopup";
 import ADButton from "ADButton";
 import ADPanel from "ADPanel";
 import ADLoader from "ADLoader";
@@ -18,6 +18,7 @@ import * as popupMutations from "ADPopup/mutations";
 import * as layoutMutations from "ADLayout/mutations";
 import * as layoutQueries from "ADLayout/queries";
 import * as styles from "./styles";
+import { useMediaQuery } from "../../../../../utils/hooks/useMediaQuery";
 
 export const SEARCH_MODAL = "SEARCH_MODAL";
 export const SEARCH_TEXT_FIELD = "SEARCH_TEXT_FIELD";
@@ -62,6 +63,10 @@ const Content = ({ recommendations = [] }) => {
 };
 
 export const ADLayoutSearch = withTheme(({ theme, recommendations = [] }) => {
+  const isMobile = useMediaQuery(
+    (theme) => `(max-width: ${theme.breakpoints.sm})`,
+  );
+
   const handleClick = async () => {
     const headerStore = layoutMicroStore.get(LAYOUT_HEADER_STORE);
     const isOpen = layoutQueries.getIsOpen(headerStore);
@@ -85,7 +90,8 @@ export const ADLayoutSearch = withTheme(({ theme, recommendations = [] }) => {
 
       <ADPopup
         id={SEARCH_MODAL}
-        width={"600px"}
+        variant={isMobile ? variants.fullscreen : "normal"}
+        width={"700px"}
         height={"620px"}
         title={
           <ADTextField

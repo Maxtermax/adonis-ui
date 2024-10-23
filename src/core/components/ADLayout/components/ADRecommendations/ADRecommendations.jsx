@@ -57,11 +57,21 @@ export const ADRecommendations = ({ data = [] }) => {
         cols: 2,
         rows: 1,
       }}
+      sm={{
+        gap: "10px",
+        gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+      }}
       width="calc(100% - 20px)"
       height="100%"
     >
       {data.map(({ id = "", name = "", products = [] }) => (
-        <ADFlex fullWidth alignItems="flex-start" direction="column" gap={4} key={id}>
+        <ADFlex
+          fullWidth
+          alignItems="flex-start"
+          direction="column"
+          gap={4}
+          key={id}
+        >
           <ADText variant="title" value={name} />
           <Product key={id} data={products} />
         </ADFlex>

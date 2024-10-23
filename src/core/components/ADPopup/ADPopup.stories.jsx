@@ -1,9 +1,9 @@
 import { overlayMicroStore } from "ADOverlay/store/overlay";
-import { ADPopup } from "ADPopup/ADPopup";
+import ADPopup from "ADPopup";
 import { ADButton } from "ADButton/ADButton";
 import { ADTextField } from "ADTextField/ADTextField";
 import { ADPanel } from "ADPanel/ADPanel";
-import { setOpen } from "ADPopup/mutations/setOpen";
+import * as mutations from "ADPopup/mutations";
 import uniqueId from "lodash/uniqueId";
 
 export default {
@@ -39,11 +39,34 @@ const id = uniqueId("");
 export const Basic = ({ ...args }) => {
   const handleVisibility = () => {
     const store = overlayMicroStore.get(id);
-    setOpen({ store, id, value: true });
+    mutations.setOpen({ store, id, value: true });
   };
   return (
     <div>
       <ADPopup title="Hello word" id={id} {...args}>
+        <ADPanel variant="flat">
+          <ADTextField
+            placeholder="Placeholder"
+            label="label"
+            helperText="helper text"
+          />
+        </ADPanel>
+      </ADPopup>
+      <ADButton variant="outlined" onClick={handleVisibility}>
+        Show
+      </ADButton>
+    </div>
+  );
+};
+
+export const Fullscreen = ({ ...args }) => {
+  const handleVisibility = () => {
+    const store = overlayMicroStore.get(id);
+    mutations.setOpen({ store, id, value: true });
+  };
+  return (
+    <div>
+      <ADPopup variant="fullscreen" title="Hello word" id={id} {...args}>
         <ADPanel variant="flat">
           <ADTextField
             placeholder="Placeholder"
