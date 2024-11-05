@@ -1,19 +1,23 @@
 import React, { memo, useEffect, useRef } from "react";
 import { useMutations } from "hermes-io";
 import ADMedia from "ADMedia";
+import { useIntersection } from "ADSlides/components/ADSlideIndicator/hooks/useIntersection";
 import { actions } from "ADCarousell/reducer";
+import { mediaStore } from "ADMedia/store";
+import { setPaused } from "ADMedia/mutations/media";
 import { getCarousellData } from "ADCarousell/queries";
 import * as styles from "./styles";
+import { getIsMobile } from "../../queries";
 
 const Item = ({ id, ...rest }) => {
   return (
-    <styles.Item id={id}>
-      <ADMedia {...rest} />
+    <styles.Item>
+      <ADMedia id={id} {...rest} />
     </styles.Item>
   );
 };
 
-const MemoizedItem = memo(Item);
+const MemoizedItem = memo(Item, () => true);
 
 export const ADCarousellContent = ({ store, id, data, onScroll }) => {
   const containerRef = useRef(null);
@@ -26,12 +30,37 @@ export const ADCarousellContent = ({ store, id, data, onScroll }) => {
   });
 
   useEffect(() => {
-    const node = document.getElementById(pivotNode.current?.id);
-    node?.scrollIntoView?.({
-      inline: "start",
-      behavior: "smooth",
-    });
+    const container = containerRef.current;
+    const node = document.getElementById(`ad-card-id-${pivotNode.current?.id}`);
+    if (node) {
+      container.scrollTo({ left: node.offsetLeft, behavior: "smooth" });
+    }
   }, [state.data]);
+
+  const handleIntersection = (_, entry) => {
+    const isMobile = getIsMobile(store);
+    if (!isMobile) return;
+    const container = containerRef.current;
+    const items = container.querySelectorAll(".ad-card");
+    for (const item of items) {
+      item.classList.add("ad-carousell-item--shrink");
+    }
+    const { target } = entry;
+    target.classList.remove("ad-carousell-item--shrink");
+    const id = target.id.replace("ad-card-id-", "");
+    setPaused({
+      store: mediaStore.get(id),
+      targets: [id],
+      value: false,
+    });
+  };
+
+  useIntersection({
+    data: state.data,
+    itemsSelector: ".ad-card",
+    containerRef,
+    onIntersection: handleIntersection,
+  });
 
   onEvent(actions.NEW_PAGE, (value, _resolver, setNoUpdate) => {
     const data = getCarousellData(store);
@@ -58,7 +87,8 @@ export const ADCarousellContent = ({ store, id, data, onScroll }) => {
       }
     }
     container.style.scrollSnapType = "none";
-    node?.scrollIntoView?.({ inline: "end", behavior: "smooth" });
+    const left = node.offsetLeft;
+    container.scrollTo({ left, behavior: "smooth" });
     setNoUpdate(true);
   });
 
@@ -70,8 +100,16 @@ export const ADCarousellContent = ({ store, id, data, onScroll }) => {
       className="ad-carousell"
     >
       <styles.Content ref={contentRef}>
-        {state.data.map(({ id, ...rest }) => (
-          <MemoizedItem key={id} id={id} {...rest} />
+        {state.data.map(({ id, ...rest }, index) => (
+          <MemoizedItem
+            key={id}
+            id={id}
+            cardProps={{
+              className: index >= 1 ? "ad-carousell-item--shrink" : "",
+              id: `ad-card-id-${id}`,
+            }}
+            {...rest}
+          />
         ))}
       </styles.Content>
     </styles.Container>

@@ -22,6 +22,7 @@ const Static = ({
   price,
   sizes,
   className = "",
+  cardProps = {},
   ...rest
 }) => {
   return (
@@ -40,8 +41,15 @@ const Static = ({
           />
         )}
         Footer={() => (
-          <Footer id={id} name={name} price={price} sizes={sizes} discount={discount} />
+          <Footer
+            id={id}
+            name={name}
+            price={price}
+            sizes={sizes}
+            discount={discount}
+          />
         )}
+        {...cardProps}
       />
     </styles.Media>
   );
@@ -70,7 +78,7 @@ const Dinamic = ({
     images,
   };
   useObservableStore(id, data, reducer, mediaStore);
-  
+
   return (
     <Static
       id={id}

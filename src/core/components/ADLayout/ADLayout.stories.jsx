@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useMutations } from "hermes-io";
-import _ from "lodash";
 import ADLayout, {
-  ADLayoutSectionTitle,
   ADLayoutHeader,
   ADLayoutBody,
-  ADLayoutFooter 
+  ADLayoutFooter,
+  ADProductFilter,
 } from "ADLayout";
 import ADSlides from "ADSlides";
+import ADDrawer from "ADDrawer";
+import { setOpen } from "ADDrawer/mutations/drawer";
+import { drawerMicroStore } from "ADDrawer/store/drawer";
+import loaderMicroStore from "ADLoaderButton/store";
+import { setLoader } from "ADLoaderButton/mutations";
 import { SEARCH_TEXT_FIELD } from "ADLayout/components/ADLayoutSearch";
 import { microTextFieldStore } from "ADTextField/store";
 import { actions as layoutActions } from "ADLayout/reducer";
@@ -17,18 +21,33 @@ import ADCarousell from "ADCarousell";
 import { actions as carousellActions } from "ADCarousell/reducer";
 import { newPage } from "ADCarousell/mutations";
 import { microCarousellStore } from "ADCarousell/store";
+import _, { delay } from "lodash";
 import mock from "ADMedia/mock";
 
 const { uniqueId } = _;
 
 const getProducts = (total) =>
-  new Array(total).fill(null).map(() => {
-    const uniq = uniqueId();
-    return { ...mock, id: uniq };
+  new Array(total).fill(null).map(() => ({ ...mock, id: uniqueId() }));
+
+function loadProducts({ id = "", setProducts, products = [], max = 5 }) {
+  const store = loaderMicroStore.get(id);
+  setLoader({ store, targets: [id], value: true });
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      setLoader({ store, targets: [id], value: false });
+      if (typeof document !== "undefined" && document.startViewTransition) {
+        document.startViewTransition(() =>
+          setProducts([...products, ...getProducts(max)]),
+        );
+      } else {
+        setProducts([...products, ...getProducts(max)]);
+      }
+      resolve();
+    }, 1000);
   });
+}
 
 const recommendations = getProducts(5);
-const products = getProducts(5);
 
 export default {
   title: "Basic/ADLayout",
@@ -39,7 +58,7 @@ export default {
   tags: ["autodocs"],
 };
 
-const Carousell = ({ id = "carousell" }) => {
+const CarousellManager = ({ id = "carousell" }) => {
   const { onEvent } = useMutations({
     noUpdate: true,
     store: microCarousellStore,
@@ -64,6 +83,71 @@ const Carousell = ({ id = "carousell" }) => {
   });
 
   return <ADCarousell id={id} data={recommendations} />;
+};
+
+const ProductsManager = (props = {}) => {
+  const [products, setProducts] = useState(getProducts(5));
+  const drawerId = `${props.id}-drawer`;
+
+  const setFilterState = ({ open }) => {
+    const drawerStore = drawerMicroStore.get(drawerId);
+    setOpen({
+      store: drawerStore,
+      id: drawerId,
+      value: open,
+    });
+  };
+
+  const handleLoaderMore = async (id = "") => {
+    await loadProducts({ id, setProducts, products, max: 5 });
+    const $productsGrid = document.getElementById(
+      `ad-products-grid-${props.id}`,
+    );
+    delay(
+      () =>
+        $productsGrid?.scrollIntoView?.({ behavior: "smooth", block: "end" }),
+      250,
+    );
+  };
+
+  const handleFilter = async (filters = {}, id = "") => {
+    await loadProducts({ id, setProducts, products, max: 3 });
+    setFilterState({ open: false });
+    const $productsGrid = document.getElementById(
+      `ad-products-grid-${props.id}`,
+    );
+    delay(
+      () =>
+        $productsGrid?.scrollIntoView?.({ behavior: "smooth", block: "end" }),
+      250,
+    );
+  };
+
+  return (
+    <>
+      <ADProductsGrid
+        id={props.id}
+        onOpenFilter={() => setFilterState({ open: true })}
+        onLoadMore={handleLoaderMore}
+        data={products}
+      />
+      <ADDrawer
+        content={
+          <ADProductFilter
+            id={`${props.id}-product-filter`}
+            onFilter={handleFilter}
+            onClose={() => setFilterState({ open: false })}
+          />
+        }
+        height="100%"
+        id={`${props.id}-drawer`}
+        subtitle="subtitle"
+        title="Title"
+        variant="left"
+        width="350px"
+      />
+    </>
+  );
 };
 
 const Template = () => {
@@ -394,7 +478,6 @@ const Template = () => {
           }}
         />
       )}
-
       body={() => (
         <ADLayoutBody>
           <ADSlides
@@ -423,12 +506,7 @@ const Template = () => {
               },
             ]}
           />
-
-          <ADLayoutSectionTitle
-            title="Tendencias"
-            subtitle="¡Lo ultimo en guaracha 🔥!"
-          />
-          <Carousell id="1" />
+          <CarousellManager id="1" />
           <ADSlides
             data={[
               {
@@ -440,7 +518,7 @@ const Template = () => {
             ]}
           />
 
-          <ADProductsGrid data={products} />
+          <ProductsManager id="discount-products" />
           <ADSlides
             data={[
               {
@@ -451,15 +529,10 @@ const Template = () => {
               },
             ]}
           />
-          <ADProductsGrid data={products} />
+          <ProductsManager id="sets-products" />
         </ADLayoutBody>
       )}
-
-      footer={
-        () => (
-          <ADLayoutFooter />
-        )
-      }
+      footer={() => <ADLayoutFooter />}
     />
   );
 };

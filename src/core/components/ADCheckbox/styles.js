@@ -33,4 +33,7 @@ export const Checkbox = styled.div`
 
 export const Input = styled.input`
   visibility: hidden;
+  overflow: hidden;
+  width: 0px;
+  height: 0px;
 `;

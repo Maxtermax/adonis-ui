@@ -1,76 +1,69 @@
 import React from "react";
 import ADGrid from "ADGrid";
 import ADText from "ADText";
-import ADFlex from "ADFlex";
-import { Whatsapp } from "@styled-icons/remix-line/Whatsapp";
-import { ShoppingBag } from "@styled-icons/feather/ShoppingBag";
-import { Instagram } from "@styled-icons/feather/Instagram";
-import { Box } from "@styled-icons/feather/Box";
 import * as styles from "./styles";
-import { useMediaQuery } from "../../../../../utils/hooks/useMediaQuery";
 
 export const ADLayoutFooter = () => {
-  const isMobile = useMediaQuery(
-    (theme) => `(max-width: ${theme.breakpoints.sm})`,
-  );
-  let iconSize = 50;
-  let titleVariant = "title";
-  if (isMobile) {
-    iconSize = 30;
-    titleVariant = "subtitle";
-  }
-
   return (
-    <styles.Container>
+    <styles.Container className="ad-layout-footer">
       <ADGrid
         fullWidth
         cols={"repeat(auto-fit, minmax(300px, 1fr))"}
         lg={{
+          alignItems: "start",
+          height: "max-content",
           gap: "20px",
         }}
         sm={{
-          gap: "10px",
-          gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-          columnGap: "15px",
+          gap: "40px",
+          justifyItems: "start",
         }}
       >
-        <styles.Item>
-          <ADText value="Contacto" variant={titleVariant} />
-          <ADFlex gap={5} alignItems="center" justifContent="center">
+        <styles.List className="ad-layout-footer-list">
+          <styles.Item className="ad-layout-footer-list__item">
+            <ADText value="Sobre nosotros" variant={"title"} />
             <a href="#">
-              <Whatsapp size={iconSize} />
-            </a>
-          </ADFlex>
-        </styles.Item>
-        <styles.Item>
-          <ADText value="Redes Sociales" variant={titleVariant} />
-          <ADFlex gap={5} alignItems="center" justifContent="center">
-            <a href="#">
-              <Instagram size={iconSize} />
+              <ADText value="Contacto" variant={"subtitle"} />
             </a>
             <a href="#">
-              <Whatsapp size={iconSize} />
+              <ADText value="Sugerencias" variant={"subtitle"} />
             </a>
-          </ADFlex>
-        </styles.Item>
-        <styles.Item>
-          <ADText value="Devoluciones" variant={titleVariant} />
-          <ADFlex gap={5} alignItems="center" justifContent="center">
-            <a href="#">
-              <ShoppingBag size={iconSize} />
-            </a>
-          </ADFlex>
-        </styles.Item>
+          </styles.Item>
+        </styles.List>
 
-        <styles.Item>
-          <ADText value="Consultar pedido" variant={titleVariant} />
-          <ADFlex gap={5} alignItems="center" justifContent="center">
+        <styles.List className="ad-layout-footer-list">
+          <styles.Item className="ad-layout-footer-list__item">
+            <ADText value="Guía de compra" variant={"title"} />
             <a href="#">
-              <Box size={iconSize} />
+              <ADText value="Envíos y plazos de entrega" variant={"subtitle"} />
             </a>
-          </ADFlex>
-        </styles.Item>
+            <a href="#">
+              <ADText value="Cambios / Devoluciones" variant={"subtitle"} />
+            </a>
+            <a href="#">
+              <ADText value="Metodos de pago" variant={"subtitle"} />
+            </a>
+          </styles.Item>
+        </styles.List>
+
+        <styles.List className="ad-layout-footer-list">
+          <styles.Item className="ad-layout-footer-list__item">
+            <ADText value="Atención al cliente" variant={"title"} />
+            <a href="#">
+              <ADText value="ayuda@adonisurban.com" variant={"subtitle"} />
+            </a>
+            <a href="#">
+              <ADText value="WhatsApp" variant={"subtitle"} />
+            </a>
+          </styles.Item>
+        </styles.List>
       </ADGrid>
+      <styles.Trademark className="ad-layout-footer-trademark">
+        <ADText
+          variant="subtitle"
+          value={`© ${new Date().getFullYear()} Adonis Urban`}
+        />
+      </styles.Trademark>
     </styles.Container>
   );
 };

@@ -125,7 +125,7 @@ export const Content = withTheme(styled.div`
   display: flex;
   flex-direction: column;
   min-height: 350px;
-  justify-content: center;
+  justify-content: space-evenly;
 `);
 
 

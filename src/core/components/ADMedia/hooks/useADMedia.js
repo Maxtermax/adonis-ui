@@ -29,6 +29,7 @@ export const useADMedia = (images, id, containerRef) => {
   };
 
   useIntersection({
+    itemsSelector: ".intersection-item",
     containerRef,
     onIntersection: handleIntersection,
   });

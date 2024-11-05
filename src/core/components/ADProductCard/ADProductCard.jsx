@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import ADCard from "ADCard";
 import ADText from "ADText";
 import ADButton from "ADButton";
@@ -29,11 +29,11 @@ const Indicator = ({
   }, [selectedId, containerRef]);
 
   useIntersection({
+    itemsSelector: ".intersection-item",
     containerRef,
     isPaused,
     onIntersection: (isSliding, entry) => {
       if (isSliding && !isPaused) return;
-      console.log({ isSliding, isPaused });
       setSelectedId(entry.target.id);
     },
   });
@@ -51,7 +51,7 @@ const Indicator = ({
   );
 };
 
-const Content = ({ images = [] }) => {
+const Content = ({ images = [], expand }) => {
   const containerRef = useRef(null);
   const [isPaused, setPaused] = useState(true);
   const handleScroll = () => {
@@ -63,7 +63,13 @@ const Content = ({ images = [] }) => {
   const pause = () => setPaused(true);
 
   return (
-    <styles.Container onScroll={handleScroll} ref={containerRef}>
+    <styles.Container
+      onMouseLeave={pause}
+      onMouseEnter={() => !isPaused && play()}
+      expand={expand}
+      onScroll={handleScroll}
+      ref={containerRef}
+    >
       {images.map((image) => (
         <styles.Image
           className="intersection-item"
@@ -71,8 +77,6 @@ const Content = ({ images = [] }) => {
           key={image.src}
           src={image.src}
           alt={image.alt}
-          onMouseLeave={pause}
-          onMouseEnter={play}
         />
       ))}
       <Indicator
@@ -85,7 +89,14 @@ const Content = ({ images = [] }) => {
   );
 };
 
-export const ADProductCard = ({ id, name, discount, price, images = [] }) => {
+export const ADProductCard = memo(({
+  id,
+  name,
+  discount,
+  price,
+  images = [],
+  ...rest
+}) => {
   return (
     <ADCard
       id={id}
@@ -118,6 +129,7 @@ export const ADProductCard = ({ id, name, discount, price, images = [] }) => {
           </styles.Button>
         </styles.Footer>
       )}
+      {...rest}
     />
   );
-};
+});

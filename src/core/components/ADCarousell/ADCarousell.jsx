@@ -96,7 +96,8 @@ export const ADCarousell = ({
     const container = wrapperRef.current.querySelector(".ad-carousell");
     const items = container.querySelectorAll(".ad-media");
     let node = getPreviuosNodeToFocus(items, container.scrollLeft);
-    node?.scrollIntoView?.({ block: "center", behavior: "smooth" });
+    if (!node || !container) return;
+    container.scrollTo({ left: node.offsetLeft, behavior: "smooth" });
   };
 
   return (

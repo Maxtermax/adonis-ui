@@ -11,16 +11,18 @@ export const Container = withTheme(
     height: "fit-content",
     width: "calc(100vw - 80px)",
     ["&::-webkit-scrollbar"]: {
-      height: "2px"
+      height: "2px",
     },
     ["&::-webkit-scrollbar-track"]: {
-      backgroundColor: "transparent"  
+      backgroundColor: "transparent",
     },
-    ["&::-webkit-scrollbar-thumb "]: {
+    ["&::-webkit-scrollbar-thumb"]: {
       cursor: "pointer",
       backgroundColor: theme.colors.primary,
     },
     [`@media screen and (max-width: ${theme.breakpoints.sm})`]: {
+      paddingTop: theme.spacing.calc(8),
+      paddingBottom: theme.spacing.calc(8),
       width: "100vw",
     },
   })),

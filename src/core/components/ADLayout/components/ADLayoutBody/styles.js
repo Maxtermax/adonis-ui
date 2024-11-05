@@ -9,7 +9,7 @@ export const Container = withTheme(styled.div`
   display: grid;
   flex-direction: column;
   justify-content: space-between;
-  gap: ${({ theme }) => theme.spacing.calc(12)};
+  gap: ${({ theme }) => theme.spacing.calc(10)};
   transtion: ${({ theme }) => theme.transitions.smooth};
   width 100%;
   height: 100%;

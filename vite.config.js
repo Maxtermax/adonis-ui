@@ -134,6 +134,10 @@ export const alias = [
     replacement: path.resolve(__dirname, "src/core/components/ADCheckbox"),
   },
   {
+    find: "ADLoaderButton",
+    replacement: path.resolve(__dirname, "src/core/components/ADLoaderButton"),
+  },
+  {
     find: "ADTextField",
     replacement: path.resolve(__dirname, "src/core/components/ADTextField"),
   },
@@ -142,13 +146,19 @@ export const alias = [
     replacement: path.resolve(__dirname, "src/core/components/ADPanel"),
   },
   {
-    
+    find: "ADRangeSlider",
+    replacement: path.resolve(__dirname, "src/core/components/ADRangeSlider"),
+  },
+  {
     find: "ADSlides",
     replacement: path.resolve(__dirname, "src/core/components/ADSlides"),
   },
   {
     find: "ADSlideIndicator",
-    replacement: path.resolve(__dirname, "src/core/components/ADSlides/components/ADSlideIndicator"),
+    replacement: path.resolve(
+      __dirname,
+      "src/core/components/ADSlides/components/ADSlideIndicator",
+    ),
   },
   {
     find: "ADProductsGrid",

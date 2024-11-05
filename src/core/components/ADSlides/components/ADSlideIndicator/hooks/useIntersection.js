@@ -8,7 +8,7 @@ export const useIntersection = (props = {}) => {
     (theme) => `(max-width: ${theme.breakpoints.sm})`,
   );
 
-  const addIntersectionObserverToNode = (picture) => {
+  const addIntersectionObserverToNode = (node) => {
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -23,14 +23,14 @@ export const useIntersection = (props = {}) => {
       },
       { threshold: 0.5 },
     );
-    observer.observe(picture);
+    observer.observe(node);
     observersRef.current.push(observer);
   };
 
   const observeIntersection = () => {
     const container = containerRef.current;
     if (!container) return;
-    const pictures = container.querySelectorAll(".intersection-item");
+    const pictures = container.querySelectorAll(props.itemsSelector);
     for (const picture of pictures) {
       addIntersectionObserverToNode(picture);
     }

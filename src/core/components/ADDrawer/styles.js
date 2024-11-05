@@ -2,10 +2,7 @@ import styled from "@emotion/styled";
 
 export const Content = styled.div`
   display: flex;
-  padding-left: ${({ theme }) => theme.spacing.low};
-  padding-top: ${({ theme }) => theme.spacing.low};
-  padding-bottom: ${({ theme }) => theme.spacing.low};
-  padding-top: ${({ theme }) => theme.spacing.low};
+  padding: ${({ theme }) => theme.spacing.calc(4)};
   height: 100%;
 `;
 
@@ -58,6 +55,7 @@ export const Wrapper = styled.div`
   .ad-drawer__container--open {
     ${calcXOpenPosition};
     ${calcYOpenPosition};
+    z-index: 2;
   }
   .ad-drawer__container--close {
     ${calcXClosePosition};
@@ -88,4 +86,5 @@ export const Overlay = styled.div`
   position: fixed;
   top: 0px;
   left: 0px;
+  z-index: 2;
 `;

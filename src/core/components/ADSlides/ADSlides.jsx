@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ADButton from "ADButton";
 import ADText from "ADText";
+import ADFlex from "ADFlex";
 import ADSlideIndicator from "ADSlides/components/ADSlideIndicator";
 import { useIntersection } from "ADSlides/components/ADSlideIndicator/hooks/useIntersection";
 import * as styles from "./styles";
@@ -12,16 +13,19 @@ export const ADSlides = ({ data = [] }) => {
   useEffect(() => {
     const container = containerRef.current;
     const node = container.querySelector(`[id='${selectedId}']`);
-    const { offsetLeft } = node;
-    container.targetLeft = offsetLeft;
-    containerRef.current.scrollTo({
-      left: offsetLeft,
-      behavior: "smooth",
-    });
+    if (node) {
+      const { offsetLeft } = node;
+      container.targetLeft = offsetLeft;
+      containerRef.current.scrollTo({
+        left: offsetLeft,
+        behavior: "smooth",
+      });
+    }
   }, [selectedId]);
 
   useIntersection({
     containerRef,
+    itemsSelector: ".intersection-item",
     onIntersection: (isSliding, entry) => {
       if (isSliding) return;
       const imageId = entry.target.id;
@@ -52,16 +56,18 @@ export const ADSlides = ({ data = [] }) => {
           >
             <div className="slide-background" />
             <styles.Content>
-              <ADText
-                className="ad-slides__item__title"
-                variant="fancy"
-                value={title}
-              />
-              <ADText
-                className="ad-slides__item__subtitle"
-                variant="subtitle"
-                value={subtitle}
-              />
+              <ADFlex direction="column" gap={0.5}>
+                <ADText
+                  className="ad-slides__item__title"
+                  variant="fancy"
+                  value={title}
+                />
+                <ADText
+                  className="ad-slides__item__subtitle"
+                  variant="subtitle"
+                  value={subtitle}
+                />
+              </ADFlex>
               {link ? (
                 <styles.Link
                   className="ad-slides__item __link"
