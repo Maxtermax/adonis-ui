@@ -28,7 +28,7 @@
   "@styled-icons/remix-fill": "^10.46.0",
   "@styled-icons/remix-line": "^10.46.0",
   "emotion-normalize": "11.0.1",
-  "hermes-io": "2.11.92",
+  "hermes-io": "2.11.93",
   "lodash": "4.17.21",
   "styled-components": "6.1.13"
  },
@@ -114,6 +114,10 @@
    "import": "./lib/src/core/components/ADLoader/index.js",
    "require": "./lib/src/core/components/ADLoader/index.js"
   },
+  "./components/ADLoaderButton": {
+   "import": "./lib/src/core/components/ADLoaderButton/index.js",
+   "require": "./lib/src/core/components/ADLoaderButton/index.js"
+  },
   "./components/ADMedia": {
    "import": "./lib/src/core/components/ADMedia/index.js",
    "require": "./lib/src/core/components/ADMedia/index.js"
@@ -138,6 +142,10 @@
    "import": "./lib/src/core/components/ADProductCard/index.js",
    "require": "./lib/src/core/components/ADProductCard/index.js"
   },
+  "./components/ADProductGrid": {
+   "import": "./lib/src/core/components/ADProductGrid/index.js",
+   "require": "./lib/src/core/components/ADProductGrid/index.js"
+  },
   "./components/ADProductsGrid": {
    "import": "./lib/src/core/components/ADProductsGrid/index.js",
    "require": "./lib/src/core/components/ADProductsGrid/index.js"
@@ -149,6 +157,10 @@
   "./components/ADRadio": {
    "import": "./lib/src/core/components/ADRadio/index.js",
    "require": "./lib/src/core/components/ADRadio/index.js"
+  },
+  "./components/ADRangeSlider": {
+   "import": "./lib/src/core/components/ADRangeSlider/index.js",
+   "require": "./lib/src/core/components/ADRangeSlider/index.js"
   },
   "./components/ADSelect": {
    "import": "./lib/src/core/components/ADSelect/index.js",

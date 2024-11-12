@@ -1,9 +1,13 @@
 import React from "react";
 import { useTheme } from "@emotion/react";
 import { useObservableStore } from "hermes-io";
+import ADDrawer from "ADDrawer";
 import ADButton from "ADButton";
+import ADShoppingCart from "../ADShoppingCart";
 import ADGrid, { ADGridCol } from "ADGrid";
 import { Menu } from "@styled-icons/feather/Menu";
+import { drawerMicroStore } from "ADDrawer/store/drawer";
+import { setOpen } from "ADDrawer/mutations/drawer";
 import ADLayoutSubMenu from "ADLayout/components/ADLayoutSubMenu";
 import ADLayoutCart from "ADLayout/components/ADLayoutCart";
 import ADLayoutSearch from "ADLayout/components/ADLayoutSearch";
@@ -16,8 +20,11 @@ import * as mutations from "ADLayout/mutations/layout";
 import * as queries from "ADLayout/queries/layout";
 import * as styles from "./styles";
 
+const id = "shopping-cart-drawer";
+
 export const ADLayoutHeader = ({
   list = [],
+  products = [],
   sublist = null,
   recommendations = [],
 }) => {
@@ -37,8 +44,17 @@ export const ADLayoutHeader = ({
       LAYOUT_HEADER_STORE,
     ]);
   };
+  const handleOpenCart = () => {
+    const store = drawerMicroStore.get(id);
+    setOpen({ store, id, value: true });
+  };
 
-  const cart = <ADLayoutCart />;
+  const handleCloseCart = () => {
+    const store = drawerMicroStore.get(id);
+    setOpen({ store, id, value: false });
+  };
+
+  const cart = <ADLayoutCart onOpen={handleOpenCart} />;
   const search = <ADLayoutSearch recommendations={recommendations} />;
 
   return (
@@ -104,6 +120,19 @@ export const ADLayoutHeader = ({
         </ADGrid>
       </styles.Header>
       <ADLayoutSubMenu sublist={sublist} />
+      <ADDrawer
+        content={
+          <ADShoppingCart
+            data={products}
+            onClose={handleCloseCart}
+            id="shopping-cart-drawer"
+          />
+        }
+        height="100%"
+        id="shopping-cart-drawer"
+        variant="right"
+        width="380px"
+      />
     </styles.HeaderContainer>
   );
 };

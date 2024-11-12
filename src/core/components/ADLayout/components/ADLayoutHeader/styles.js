@@ -10,7 +10,7 @@ export const Header = withTheme(styled.header`
   margin: 0px auto;
   width: 100%;
   height: 80px;
-  position: absolute;
+  position: fixed;
   & > .ad-grid {
     width: ${({ theme }) => `calc(100% - ${theme.spacing.calc(14)})`};
     margin: 0px auto;

@@ -12,6 +12,7 @@ export const Flex = withTheme(
       fullHeight,
       height = "auto",
       width = "auto",
+      justifyContent = "normal",
       maxWidth = "none",
       gap = 1,
       direction,
@@ -19,6 +20,7 @@ export const Flex = withTheme(
     }) => ({
       display: "flex",
       justifyItems: "center",
+      justifyContent,
       alignItems,
       gap: theme.spacing.calc(gap),
       height: fullHeight ? "100%" : height,

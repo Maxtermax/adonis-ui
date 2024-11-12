@@ -212,6 +212,7 @@ const Template = () => {
     <ADLayout
       header={() => (
         <ADLayoutHeader
+          products={getProducts(15)}
           list={[
             {
               name: "Recientes",

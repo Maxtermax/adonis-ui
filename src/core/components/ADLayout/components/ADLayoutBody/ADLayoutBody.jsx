@@ -12,8 +12,7 @@ export const ADLayoutBody = ({ children = null }) => {
     id: LAYOUT_HEADER_STORE,
   });
   const blurBackground = () => {
-    containerRef.current.style.filter = "blur(20px)";
-    containerRef.current.style.pointerEvents = "none";
+    containerRef.current.classList.add("ad-layout-body__container--blur");
   };
 
   onEvent(actions.FOCUS_OPTION, blurBackground);
@@ -21,8 +20,7 @@ export const ADLayoutBody = ({ children = null }) => {
 
   onEvent(actions.BLUR_OPTION, () => {
     setTimeout(() => {
-      containerRef.current.style.filter = "blur(0px) grayscale(0)";
-      containerRef.current.style.pointerEvents = "auto";
+      containerRef.current.classList.remove("ad-layout-body__container--blur");
     }, 350);
   });
 

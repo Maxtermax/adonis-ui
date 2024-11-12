@@ -23,7 +23,7 @@ class Light extends Base {
   colors = {
     primary: "#0A100D",
     success: "#00aa00",
-    transparent: "#0000000",
+    transparent: "transparent",
     transparentBlack: "#0000007d",
     transparentWhite: "rgba(255, 255, 255, 0.5)",
     lightSilver: "#00000017",

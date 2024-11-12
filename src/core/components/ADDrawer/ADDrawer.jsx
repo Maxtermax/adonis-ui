@@ -52,7 +52,11 @@ export const ADDrawer = ({
     setOpen({ store: drawerMicroStore.get(id), value: false, id });
 
   return (
-    <styles.Wrapper variant={variant} className={`ad-drawer ${className}`}>
+    <styles.Wrapper
+      width={width}
+      variant={variant}
+      className={`ad-drawer ${className}`}
+    >
       <styles.Overlay
         className={`ad-drawer__overlay disappear`}
         onClick={handleClickOverlay}

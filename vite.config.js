@@ -46,6 +46,15 @@ export const alias = [
     replacement: path.resolve(__dirname, "src/core/components/ADProvider"),
   },
   {
+    find: "ADShoppingCart",
+    replacement: path.resolve(__dirname, "src/core/components/ADShoppingCart"),
+  },
+  {
+    find: "ADProductStrips",
+    replacement: path.resolve(__dirname, "src/core/components/ADProductStrips"),
+  },
+
+  {
     find: "ADGrid",
     replacement: path.resolve(__dirname, "src/core/components/ADGrid"),
   },

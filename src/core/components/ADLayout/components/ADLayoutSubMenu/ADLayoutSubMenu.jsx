@@ -23,7 +23,11 @@ const SubList = ({ data = {}, focus = "" }) => {
                     value={item.name}
                     variant="subtitle"
                   />
-                  <ArrowRight color="white" size={25} />
+                  <ArrowRight
+                    className="ad-layout-submenu__arrow"
+                    color="white"
+                    size={25}
+                  />
                 </ADFlex>
                 <styles.BottomLine className="ad-bottom-line" />
               </a>

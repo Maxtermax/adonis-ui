@@ -73,6 +73,10 @@ export const ADProvider = ({ children }) => {
           ::view-transition-new(submenu-transition-option) {
             animation-name: ${fadeIn};
           }
+          .ad-layout-body__container--blur {
+            filter: blur(20px);
+            pointer-events: none;
+          }
           .hide {
             display: none !important;
           }

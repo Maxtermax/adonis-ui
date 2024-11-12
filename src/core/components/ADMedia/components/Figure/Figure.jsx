@@ -27,14 +27,9 @@ function Picture({ id, src, description }) {
 export const Figure = ({ images, id }) => {
   const containerRef = useRef(null);
   useADMedia(images, id, containerRef);
-  const handleScroll = () => {
-    const { scrollLeft, targetLeft } = containerRef.current;
-    if (scrollLeft === targetLeft) delete containerRef.current.targetLeft;
-  };
 
   return (
     <styles.Figure
-      onScroll={handleScroll}
       className="ad-media__figure"
       ref={containerRef}
     >

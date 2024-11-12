@@ -9,6 +9,11 @@ export const Thumbnail = withTheme(styled.img`
   background: rgba(0, 0, 0, 0.02);
 `);
 
+export const Item = withTheme(styled.li`
+  list-style: none;
+  width: 100%;
+`);
+
 export const Link = withTheme(styled.a`
   animation-name: ${animations.fadeIn};
   animation-duration: ${({ theme }) => theme.timing.slow};

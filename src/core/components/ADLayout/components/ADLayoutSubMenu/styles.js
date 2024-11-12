@@ -81,7 +81,6 @@ export const SubMenu = withTheme(styled.div`
   animation-duration: ${({ theme }) => theme.timing.quick};
   animation-timing-function: ${({ theme }) => theme.animationFunctions.sweet};
   animation-fill-mode: forwards;
-  box-shadow: ${({ theme }) => theme.elevation.little};
   view-transition-class: submenu-transition-group;
   view-transition-name: submenu-transition;
   display: flex;

@@ -5,9 +5,9 @@ import { ShoppingCart } from "@styled-icons/feather/ShoppingCart";
 import { withTheme } from "@emotion/react";
 import { POSITIONS } from "constants";
 
-export const ADLayoutCart = withTheme(({ theme }) => (
+export const ADLayoutCart = withTheme(({ theme, onOpen }) => (
   <ADBadge value="1" variant="rounded" position={POSITIONS.topLeft} t>
-    <ADButton className="ad-cart" variant="text">
+    <ADButton onClick={onOpen} className="ad-cart" variant="text">
       <ShoppingCart
         color="inherit"
         size={theme.fonts.sizes.parse2Num(theme.fonts.sizes.extra)}
