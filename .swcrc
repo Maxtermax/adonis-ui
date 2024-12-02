@@ -21,6 +21,7 @@
       "ADMedia/queries/media": ["./src/core/components/ADMedia/queries/media"],
       "ADMedia/components/Header/Header": ["./src/core/components/ADMedia/Header/Header"],
       "ADButton/*": ["./src/core/components/ADButton/*"],
+      "ADProductCount/*": ["./src/core/components/ADProductCount/*"],
       "ADCard/*": ["./src/core/components/ADCard/*"],
       "ADPanel/*": ["./src/core/components/ADPanel/*"],
       "ADSlides/*": ["./src/core/components/ADSlides/*"],

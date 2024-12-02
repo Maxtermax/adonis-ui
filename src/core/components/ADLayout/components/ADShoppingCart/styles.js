@@ -35,7 +35,7 @@ export const Content = withTheme(styled.ol`
     width: 3px;
   }
   &::-webkit-scrollbar-track {
-    backgroundcolor: transparent;
+    background-color: transparent;
   }
   &::-webkit-scrollbar-thumb {
     cursor: pointer;

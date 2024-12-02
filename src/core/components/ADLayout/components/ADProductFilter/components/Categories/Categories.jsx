@@ -1,8 +1,31 @@
 import React, { useRef } from "react";
 import ADText from "ADText";
+import ADAccordion from "ADAccordion";
 import ADCheckbox from "ADCheckbox";
 import ADFlex from "ADFlex";
 import * as styles from "./styles";
+
+/*
+        <ADAccordion
+          data={[
+            {
+              content: [
+                {
+                  content: (
+                    <ADPanel
+                      style={{ height: "100%", margin: "8px", width: "100%" }}
+                    >
+                      <ADText value="test" variant="text" />
+                    </ADPanel>
+                  ),
+                  id: 2,
+                  type: "ACCORDION_CONTENT",
+                },
+              ],
+            },
+          ]}
+        />
+*/
 
 export const Categories = ({ onChange }) => {
   const categoriesRef = useRef([

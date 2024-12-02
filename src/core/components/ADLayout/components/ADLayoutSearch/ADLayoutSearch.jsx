@@ -14,6 +14,7 @@ import ADTextField from "ADTextField";
 import ADRecommendations from "ADLayout/components/ADRecommendations";
 import { overlayMicroStore } from "ADOverlay/store";
 import { disableInput } from "ADTextField/mutations";
+import * as overlayReducer from "ADOverlay/reducer";
 import * as popupMutations from "ADPopup/mutations";
 import * as layoutMutations from "ADLayout/mutations";
 import * as layoutQueries from "ADLayout/queries";
@@ -25,17 +26,26 @@ export const SEARCH_TEXT_FIELD = "SEARCH_TEXT_FIELD";
 const targets = [LAYOUT_HEADER_STORE];
 
 const Content = ({ recommendations = [] }) => {
+  const overlayMutations = useMutations({
+    initialState: { isOpen: true },
+    store: overlayMicroStore,
+    id: SEARCH_MODAL,
+  });
+
   const { state, onEvent } = useMutations({
     initialState: { isLoading: false, isInputEmpty: false, products: null },
     store: microTextFieldStore,
     id: SEARCH_TEXT_FIELD,
   });
 
+  overlayMutations.onEvent(overlayReducer.actions.SET_DISPLAY, (isOpen) => ({ isOpen }));
+
   onEvent(textFieldActions.CHANGE, (value) => {
     const isLoading = value !== "";
     disableInput(SEARCH_TEXT_FIELD, isLoading);
-    if (isLoading)
+    if (isLoading) {
       layoutMutations.fireSearch(microTextFieldStore, SEARCH_TEXT_FIELD);
+    }
     const isInputEmpty = value === "";
     return {
       isLoading,
@@ -103,7 +113,7 @@ export const ADLayoutSearch = withTheme(({ theme, recommendations = [] }) => {
           />
         }
       >
-        <Content recommendations={recommendations} />
+        <Content name="search" recommendations={recommendations} />
       </ADPopup>
     </>
   );

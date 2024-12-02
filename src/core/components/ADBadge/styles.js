@@ -30,12 +30,13 @@ export const Badge = withTheme(styled.div`
 export const Content = withTheme(styled.div`
   display: inline-block;
   position: relative;
+  width: 100%;
 `);
 
 export const Value = withTheme(styled.span`
   position: absolute;
-  bottom: ${({ position = "" }) => calcPosition(position).top};
-  left: ${({ position = "" }) => calcPosition(position).left};
+  bottom: ${({ position = "", bottom }) => bottom || calcPosition(position).top};
+  left: ${({ position = "", left }) => left || calcPosition(position).left};
   background: ${({ theme }) => theme.colors.red};
   width: 20px;
   height: 20px;

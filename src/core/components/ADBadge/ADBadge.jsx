@@ -11,6 +11,8 @@ export const ADBadge = forwardRef(function ADBadge(
     position = POSITIONS.topRight,
     size = DIMENSIONS.normal,
     variant = rounded,
+    bottom,
+    left,
     value = null,
     ...rest
   },
@@ -25,7 +27,7 @@ export const ADBadge = forwardRef(function ADBadge(
       {...rest}
     >
       <styles.Content className="ad-badge__content">{children}</styles.Content>
-      <styles.Value position={position} className="ad-badge__value">
+      <styles.Value bottom={bottom} left={left} position={position} className="ad-badge__value">
         {value}
       </styles.Value>
     </styles.Badge>

@@ -15,8 +15,9 @@ export const ADOverlay = ({
 }) => {
   const containerRef = useRef(null);
   const { animateVisibility } = useAnimationVisibility(containerRef);
-  useObservableStore(id, { isOpen }, reducer, overlayMicroStore);
+  useObservableStore(id, { isOpen }, reducer, overlayMicroStore, 'overlay');
   const { state, onEvent } = useMutations({
+    name: 'overlay',
     initialState: { isOpen },
     store: overlayMicroStore,
     id,
@@ -26,6 +27,7 @@ export const ADOverlay = ({
     animateVisibility(isOpen);
     return { isOpen };
   });
+
   const content = (
     <styles.Container
       defaultOpen={isOpen}

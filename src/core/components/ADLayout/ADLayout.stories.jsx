@@ -21,13 +21,9 @@ import ADCarousell from "ADCarousell";
 import { actions as carousellActions } from "ADCarousell/reducer";
 import { newPage } from "ADCarousell/mutations";
 import { microCarousellStore } from "ADCarousell/store";
-import _, { delay } from "lodash";
-import mock from "ADMedia/mock";
+import { delay, uniqueId } from "lodash";
+import { getProducts } from "./mocks";
 
-const { uniqueId } = _;
-
-const getProducts = (total) =>
-  new Array(total).fill(null).map(() => ({ ...mock, id: uniqueId() }));
 
 function loadProducts({ id = "", setProducts, products = [], max = 5 }) {
   const store = loaderMicroStore.get(id);
@@ -66,13 +62,14 @@ const CarousellManager = ({ id = "carousell" }) => {
   });
 
   onEvent(carousellActions.NEXT_PAGE, (_, resolver) => {
+    const [product] = getProducts(1);
     setTimeout(() => {
       resolver();
       newPage({
         value: new Array(5).fill(null).map(() => {
           const uniq = uniqueId();
           return {
-            ...mock,
+            ...product,
             id: uniq,
           };
         }),
@@ -212,7 +209,42 @@ const Template = () => {
     <ADLayout
       header={() => (
         <ADLayoutHeader
-          products={getProducts(15)}
+          onChange={console.log}
+          onDelete={console.log}
+          products={[
+            {
+              name: "Producto",
+              price: 10000,
+              discount: 0.5,
+              thubmnail:
+                "https://hmcolombia.vtexassets.com/arquivos/ids/3675203-483-725?v=638511011914100000&width=483&height=725&aspect=true",
+              id: 1,
+            },
+            {
+              name: "Producto 2",
+              price: 10000,
+              discount: 0.5,
+              thubmnail:
+                "https://hmcolombia.vtexassets.com/arquivos/ids/3675229-483-725?v=638511012045930000&width=483&height=725&aspect=true",
+              id: 2,
+            },
+            {
+              name: "Producto 3",
+              price: 10000,
+              discount: 0.5,
+              thubmnail:
+                "https://hmcolombia.vtexassets.com/arquivos/ids/3675229-483-725?v=638511012045930000&width=483&height=725&aspect=true",
+              id: 3,
+            },
+            {
+              name: "Producto 4",
+              price: 10000,
+              discount: 0.5,
+              thubmnail:
+                "https://hmcolombia.vtexassets.com/arquivos/ids/3675229-483-725?v=638511012045930000&width=483&height=725&aspect=true",
+              id: 4,
+            },
+          ]}
           list={[
             {
               name: "Recientes",

@@ -23,6 +23,8 @@ import * as styles from "./styles";
 const id = "shopping-cart-drawer";
 
 export const ADLayoutHeader = ({
+  onChange,
+  onDelete,
   list = [],
   products = [],
   sublist = null,
@@ -124,6 +126,8 @@ export const ADLayoutHeader = ({
         content={
           <ADShoppingCart
             data={products}
+            onChange={onChange}
+            onDelete={onDelete}
             onClose={handleCloseCart}
             id="shopping-cart-drawer"
           />

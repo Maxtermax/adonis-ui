@@ -103,6 +103,10 @@ export const alias = [
     replacement: path.resolve(__dirname, "src/core/components/ADButton"),
   },
   {
+    find: "ADProductCount",
+    replacement: path.resolve(__dirname, "src/core/components/ADProductCount"),
+  },
+  {
     find: "ADRadio",
     replacement: path.resolve(__dirname, "src/core/components/ADRadio"),
   },

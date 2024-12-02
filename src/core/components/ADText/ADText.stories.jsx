@@ -1,5 +1,6 @@
 import ADText from "ADText";
 import { TEXT_VARIANTS } from "constants";
+import React from "react";
 
 const { FANCY, HEADING, TITLE, SUBTITLE } = TEXT_VARIANTS;
 

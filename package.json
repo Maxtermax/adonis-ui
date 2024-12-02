@@ -28,7 +28,7 @@
   "@styled-icons/remix-fill": "^10.46.0",
   "@styled-icons/remix-line": "^10.46.0",
   "emotion-normalize": "11.0.1",
-  "hermes-io": "2.11.93",
+  "hermes-io": "^2.11.94",
   "lodash": "4.17.21",
   "styled-components": "6.1.13"
  },

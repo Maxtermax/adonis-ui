@@ -1,7 +1,7 @@
 import React from "react";
+import { useObservableStore, useMutations } from "hermes-io";
 import ADText from "ADText";
 import ADButton from "ADButton";
-import ADPanel from "ADPanel";
 import ADFlex from "ADFlex";
 import { ADProductStrips } from "../ADProductStrips/ADProductStrips";
 import ADLoaderButton from "ADLoaderButton";
@@ -11,13 +11,64 @@ import { CartCheck } from "@styled-icons/bootstrap/CartCheck";
 import { uniqueId } from "lodash";
 import * as styles from "./styles";
 import formatCurrency from "../../../../../utils/formatCurrency";
+import { productsMicroStore } from "./store";
+import { reducer, actions } from "./reducer";
+
+const Total = ({ id, defaultTotal = 0 }) => {
+  const { onEvent, state } = useMutations({
+    initialState: { total: defaultTotal },
+    store: productsMicroStore,
+    id,
+  });
+
+  const calculateTotal = () => {
+    const products = productsMicroStore.get(id).state.products;
+    return products.reduce(
+      (acc, { price, amount = 1 }) => acc + amount * price,
+      0,
+    );
+  };
+
+  onEvent(actions.SET_PRODUCT_AMOUNT, () => ({ total: calculateTotal() }));
+
+  return (
+    <ADText value={`TOTAL: ${formatCurrency(state.total)}`} variant="title" />
+  );
+};
 
 export const ADShoppingCart = ({
   id = uniqueId("ad-shopping-cart"),
   data = [],
   onClose,
 }) => {
-  const total = data.reduce((acc, { price }) => acc + +price, 0);
+  const { store } = useObservableStore(
+    id,
+    { products: data },
+    reducer,
+    productsMicroStore,
+  );
+
+  const handleDelete = ({ id: productId }) => {
+    store.mutate({
+      targets: [id],
+      type: actions.REMOVE_PRODUCT,
+      payload: { id: productId },
+    });
+  };
+
+  const handleChange = ({ id: productId, value }) => {
+    store.mutate({
+      targets: [id],
+      type: actions.SET_PRODUCT_AMOUNT,
+      payload: { id: productId, value },
+    });
+  };
+
+  const defaultTotal = data.reduce(
+    (acc, { price, amount = 1 }) => acc + amount * price,
+    0,
+  );
+
   return (
     <styles.Container className="ad-shopping-cart">
       <ADGrid
@@ -33,9 +84,7 @@ export const ADShoppingCart = ({
         <ADGridCol>
           <styles.Header>
             <ADFlex gap={2} alignItems="center">
-              <ADPanel>
-                <CartCheck size={35} />
-              </ADPanel>
+              <CartCheck size={35} />
               <ADText value="CARRITO" uppercase variant="title" />
             </ADFlex>
             <ADButton onClick={onClose} variant="text">
@@ -46,7 +95,12 @@ export const ADShoppingCart = ({
 
         <ADGridCol>
           <styles.Content className="ad-shopping-cart__content">
-            <ADProductStrips data={data} />
+            <ADProductStrips
+              showCounter
+              onChange={handleChange}
+              onDelete={handleDelete}
+              data={data}
+            />
           </styles.Content>
         </ADGridCol>
 
@@ -59,7 +113,7 @@ export const ADShoppingCart = ({
             gap={2}
           >
             <styles.Divider />
-            <ADText value={`TOTAL: ${formatCurrency(total)}`} variant="title" />
+            <Total id={id} defaultTotal={defaultTotal} />
           </ADFlex>
         </ADGridCol>
 
@@ -67,7 +121,7 @@ export const ADShoppingCart = ({
           <styles.Footer>
             <ADLoaderButton id={id}>
               <ADButton variant="sharp">
-                <ADText value="Comprar" variant="subtitle" />
+                <ADText value="Ir a pagar" variant="subtitle" />
               </ADButton>
             </ADLoaderButton>
           </styles.Footer>
