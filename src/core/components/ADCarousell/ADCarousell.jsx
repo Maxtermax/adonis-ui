@@ -7,7 +7,7 @@ import { ADCarousellContent } from "./components/ADCarousellContent";
 import { ADCarousellNext } from "./components/ADCarousellNext";
 import { reducer } from "./reducer";
 import { microCarousellStore } from "./store";
-import { useMediaQuery } from "./../../../utils/hooks/useMediaQuery";
+import useMediaQuery from "@/core/hooks/useMediaQuery";
 import {
   setHasReachedLastItem,
   updateUINextPage,

@@ -17,6 +17,7 @@ export const Flex = withTheme(
       gap = 1,
       direction,
       theme,
+      sx = {},
     }) => ({
       display: "flex",
       justifyItems: "center",
@@ -31,6 +32,7 @@ export const Flex = withTheme(
       [`@media screen and (max-width: ${theme.breakpoints.lg})`]: lg ? lg : {},
       [`@media screen and (max-width: ${theme.breakpoints.md})`]: md ? md : {},
       [`@media screen and (max-width: ${theme.breakpoints.sm})`]: sm ? sm : {},
+      ...sx,
     }),
   ),
 );

@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import * as styles from "./styles";
 import { TEXT_VARIANTS } from "constants";
 
-const { FANCY, HEADING, TITLE, TEXT, SUBTITLE, LABEL } = TEXT_VARIANTS;
+const { ANCHOR, FANCY, HEADING, TITLE, TEXT, SUBTITLE, LABEL } = TEXT_VARIANTS;
 
 export const ADText = forwardRef(function ADText(
   { className = "", variant = TEXT, value, ...rest },
@@ -29,6 +29,18 @@ export const ADText = forwardRef(function ADText(
       >
         {value}
       </styles.Text>
+    );
+
+  if (variant === ANCHOR)
+    return (
+      <styles.Anchor
+        ref={ref}
+        className={`ad-anchor ad-text-body ${className}`}
+        variant={variant}
+        {...rest}
+      >
+        {value}
+      </styles.Anchor>
     );
   if (variant === FANCY)
     return (

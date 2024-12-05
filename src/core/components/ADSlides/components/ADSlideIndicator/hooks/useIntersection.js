@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useMediaQuery } from "../../../../../../utils/hooks/useMediaQuery";
+import useMediaQuery from "@/core/hooks/useMediaQuery";
 
 export const useIntersection = (props = {}) => {
   const { containerRef, onIntersection } = props;

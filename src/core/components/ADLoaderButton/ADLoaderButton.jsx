@@ -29,9 +29,7 @@ export const ADLoaderButton = ({
   });
   const { isLoading } = state;
 
-  onEvent(actions.SET_LOADER, (value) => {
-    return { isLoading: value };
-  });
+  onEvent(actions.SET_LOADER, (value) => ({ isLoading: value }));
 
   return (
     <styles.Container className={`ad-loader-button ${className}`} {...rest}>

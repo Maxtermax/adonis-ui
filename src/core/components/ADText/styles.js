@@ -24,14 +24,32 @@ const fontFamily = ({ variant, theme }) =>
     [FANCY]: theme.fonts.primary.fancy,
   })[variant] ?? "";
 
+export const Anchor = withTheme(styled.a`
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: ${(props) => fontSize(props)};
+  font-family: ${(props) => fontFamily(props)};
+  padding: 0px;
+  margin: 0px;
+  line-height: 1.3;
+  text-decoration: ${({ lineThrough }) =>
+    lineThrough ? "line-through" : "none"};
+  text-transform: ${({ textTransform }) => textTransform ?? "none"};
+  ${({ sx = {} }) => ({ ...sx })};
+`);
+
 export const Text = withTheme(styled.p`
   color: ${({ theme }) => theme.colors.primary};
   font-size: ${(props) => fontSize(props)};
   font-family: ${(props) => fontFamily(props)};
   padding: 0px;
   margin: 0px;
+  line-height: 1.3;
   text-decoration: ${({ lineThrough }) =>
     lineThrough ? "line-through" : "none"};
+  text-transform: ${({ textTransform }) => textTransform ?? "none"};
+  text-overflow: ellipsis;
+  overflow: hidden;
+  ${({ sx = {} }) => ({ ...sx })};
 `);
 
 export const Fancy = withTheme(styled.span`
@@ -40,8 +58,11 @@ export const Fancy = withTheme(styled.span`
   font-family: ${(props) => fontFamily(props)};
   padding: 0px;
   margin: 0px;
+  line-height: 1.3;
+  text-transform: ${({ textTransform }) => textTransform ?? "none"};
   text-decoration: ${({ lineThrough }) =>
     lineThrough ? "line-through" : "none"};
+  ${({ sx = {} }) => ({ ...sx })};
 `);
 
 export const Label = withTheme(styled.label`
@@ -50,8 +71,11 @@ export const Label = withTheme(styled.label`
   font-family: ${(props) => fontFamily(props)};
   padding: 0px;
   margin: 0px;
+  line-height: 1.3;
+  text-transform: ${({ textTransform }) => textTransform ?? "none"};
   text-decoration: ${({ lineThrough }) =>
     lineThrough ? "line-through" : "none"};
+  ${({ sx = {} }) => ({ ...sx })};
 `);
 
 export const Heading = withTheme(styled.h1`
@@ -60,8 +84,11 @@ export const Heading = withTheme(styled.h1`
   font-family: ${(props) => fontFamily(props)};
   padding: 0px;
   margin: 0px;
+  line-height: 1.3;
+  text-transform: ${({ textTransform }) => textTransform ?? "none"};
   text-decoration: ${({ lineThrough }) =>
     lineThrough ? "line-through" : "none"};
+  ${({ sx = {} }) => ({ ...sx })};
 `);
 
 export const Title = withTheme(styled.span`
@@ -70,8 +97,11 @@ export const Title = withTheme(styled.span`
   font-family: ${(props) => fontFamily(props)};
   padding: 0px;
   margin: 0px;
+  line-height: 1.3;
+  text-transform: ${({ textTransform }) => textTransform ?? "none"};
   text-decoration: ${({ lineThrough }) =>
     lineThrough ? "line-through" : "none"};
+  ${({ sx = {} }) => ({ ...sx })};
 `);
 
 export const SubTitle = withTheme(styled.span`
@@ -80,6 +110,9 @@ export const SubTitle = withTheme(styled.span`
   font-family: ${(props) => fontFamily(props)};
   padding: 0px;
   margin: 0px;
+  line-height: 1.3;
+  text-transform: ${({ textTransform }) => textTransform ?? "none"};
   text-decoration: ${({ lineThrough }) =>
     lineThrough ? "line-through" : "none"};
+  ${({ sx = {} }) => ({ ...sx })};
 `);

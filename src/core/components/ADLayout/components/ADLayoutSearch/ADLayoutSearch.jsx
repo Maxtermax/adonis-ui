@@ -1,78 +1,33 @@
 import React from "react";
-import { useMutations } from "hermes-io";
 import { withTheme } from "@emotion/react";
 import { Search } from "@styled-icons/feather/Search";
-import { microTextFieldStore } from "ADTextField/store";
-import { actions } from "ADLayout/reducer";
-import { actions as textFieldActions } from "ADTextField/reducer";
 import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store";
 import ADPopup, { variants } from "ADPopup";
 import ADButton from "ADButton";
-import ADPanel from "ADPanel";
 import ADLoader from "ADLoader";
+import ADErrorMessage from "ADErrorMessage";
 import ADTextField from "ADTextField";
-import ADRecommendations from "ADLayout/components/ADRecommendations";
 import { overlayMicroStore } from "ADOverlay/store";
-import { disableInput } from "ADTextField/mutations";
-import * as overlayReducer from "ADOverlay/reducer";
 import * as popupMutations from "ADPopup/mutations";
 import * as layoutMutations from "ADLayout/mutations";
 import * as layoutQueries from "ADLayout/queries";
-import * as styles from "./styles";
-import { useMediaQuery } from "../../../../../utils/hooks/useMediaQuery";
+import useMediaQuery from "@/core/hooks/useMediaQuery";
+import useLoaderData from "@/core/hooks/useLoaderData";
+import Content from "./components/Content";
 
 export const SEARCH_MODAL = "SEARCH_MODAL";
 export const SEARCH_TEXT_FIELD = "SEARCH_TEXT_FIELD";
 const targets = [LAYOUT_HEADER_STORE];
 
-const Content = ({ recommendations = [] }) => {
-  const overlayMutations = useMutations({
-    initialState: { isOpen: true },
-    store: overlayMicroStore,
-    id: SEARCH_MODAL,
-  });
+export const ADLayoutSearch = withTheme(({ theme }) => {
+  const { actions, state, onEvent } = useLoaderData();
+  const { data = [], isLoading, error } = state;
+  onEvent(actions.SET_RECOMMENDATIONS, (value) => ({
+    isLoading: false,
+    error: null,
+    data: value,
+  }));
 
-  const { state, onEvent } = useMutations({
-    initialState: { isLoading: false, isInputEmpty: false, products: null },
-    store: microTextFieldStore,
-    id: SEARCH_TEXT_FIELD,
-  });
-
-  overlayMutations.onEvent(overlayReducer.actions.SET_DISPLAY, (isOpen) => ({ isOpen }));
-
-  onEvent(textFieldActions.CHANGE, (value) => {
-    const isLoading = value !== "";
-    disableInput(SEARCH_TEXT_FIELD, isLoading);
-    if (isLoading) {
-      layoutMutations.fireSearch(microTextFieldStore, SEARCH_TEXT_FIELD);
-    }
-    const isInputEmpty = value === "";
-    return {
-      isLoading,
-      isInputEmpty,
-      products: isInputEmpty ? null : state.products,
-    };
-  });
-
-  onEvent(actions.SEARCH_COMPLETED, (products) => {
-    disableInput(SEARCH_TEXT_FIELD, false);
-    return { isLoading: false, products };
-  });
-
-  return (
-    <styles.ContentWrapper>
-      <ADPanel className="ad-layout-search__panel" variant="flat">
-        {state.isLoading ? (
-          <ADLoader text="Buscando..." />
-        ) : (
-          <ADRecommendations data={state.products ?? recommendations} />
-        )}
-      </ADPanel>
-    </styles.ContentWrapper>
-  );
-};
-
-export const ADLayoutSearch = withTheme(({ theme, recommendations = [] }) => {
   const isMobile = useMediaQuery(
     (theme) => `(max-width: ${theme.breakpoints.sm})`,
   );
@@ -85,36 +40,56 @@ export const ADLayoutSearch = withTheme(({ theme, recommendations = [] }) => {
     popupMutations.setOpen({ store, id: SEARCH_MODAL, value: true });
   };
 
-  return (
-    <>
-      <ADButton
-        onClick={handleClick}
-        className="ad-layout__header-search"
-        variant="text"
-      >
-        <Search
-          color="inherit"
-          size={theme.fonts.sizes.parse2Num(theme.fonts.sizes.extra)}
-        />
-      </ADButton>
-
-      <ADPopup
-        id={SEARCH_MODAL}
-        variant={isMobile ? variants.fullscreen : "normal"}
-        width={"700px"}
-        height={"620px"}
-        title={
-          <ADTextField
-            debounce={300}
-            id={SEARCH_TEXT_FIELD}
-            icon={<Search size={20} />}
-            placeholder="Buscar vestidos en descuento..."
-            variant="flat"
+  if (isLoading) {
+    return (
+      <ADLoader
+        sx={{
+          "& .ad-loader__spinner": {
+            border: `3px solid ${theme.colors.white}`,
+            borderBottomColor: "transparent",
+          },
+        }}
+      />
+    );
+  }
+  if (error) {
+    return (
+      <ADErrorMessage message="Los sentimos ocurrio un error interno 😞" />
+    );
+  }
+  if (data) {
+    return (
+      <>
+        <ADButton
+          onClick={handleClick}
+          className="ad-layout__header-search"
+          variant="text"
+        >
+          <Search
+            color="inherit"
+            size={theme.fonts.sizes.parse2Num(theme.fonts.sizes.extra)}
           />
-        }
-      >
-        <Content name="search" recommendations={recommendations} />
-      </ADPopup>
-    </>
-  );
+        </ADButton>
+
+        <ADPopup
+          id={SEARCH_MODAL}
+          variant={isMobile ? variants.fullscreen : "normal"}
+          width={"700px"}
+          height={"750px"}
+          title={
+            <ADTextField
+              debounce={300}
+              id={SEARCH_TEXT_FIELD}
+              icon={<Search size={20} />}
+              placeholder="Buscar vestidos en descuento..."
+              variant="flat"
+            />
+          }
+        >
+          <Content recommendations={data} />
+        </ADPopup>
+      </>
+    );
+  }
+  return null;
 });

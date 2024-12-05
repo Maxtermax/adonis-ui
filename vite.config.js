@@ -53,7 +53,14 @@ export const alias = [
     find: "ADProductStrips",
     replacement: path.resolve(__dirname, "src/core/components/ADProductStrips"),
   },
-
+  {
+    find: "ADErrorMessage",
+    replacement: path.resolve(__dirname, "src/core/components/ADErrorMessage"),
+  },
+  {
+    find: "ADNotifyPopup",
+    replacement: path.resolve(__dirname, "src/core/components/ADNotifyPopup"),
+  },
   {
     find: "ADGrid",
     replacement: path.resolve(__dirname, "src/core/components/ADGrid"),
@@ -176,6 +183,14 @@ export const alias = [
   {
     find: "ADProductsGrid",
     replacement: path.resolve(__dirname, "src/core/components/ADProductsGrid"),
+  },
+  {
+    find: "ADMessage",
+    replacement: path.resolve(__dirname, "src/core/components/ADMessage"),
+  },
+  {
+    find: "ADAdvice",
+    replacement: path.resolve(__dirname, "src/core/components/ADAdvice"),
   },
   {
     find: "stores",

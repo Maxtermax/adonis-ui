@@ -20,15 +20,17 @@
   "@styled-icons/evil": "^10.46.0",
   "@styled-icons/fa-solid": "^10.47.0",
   "@styled-icons/feather": "^10.47.0",
+  "@styled-icons/fluentui-system-filled": "^10.47.0",
   "@styled-icons/fluentui-system-regular": "^10.47.0",
   "@styled-icons/heroicons-outline": "^10.47.0",
   "@styled-icons/ionicons-solid": "10.46.0",
   "@styled-icons/material": "^10.47.0",
   "@styled-icons/material-outlined": "^10.47.0",
+  "@styled-icons/material-sharp": "^10.47.0",
   "@styled-icons/remix-fill": "^10.46.0",
   "@styled-icons/remix-line": "^10.46.0",
   "emotion-normalize": "11.0.1",
-  "hermes-io": "^2.11.94",
+  "hermes-io": "^2.11.95",
   "lodash": "4.17.21",
   "styled-components": "6.1.13"
  },
@@ -74,6 +76,10 @@
    "import": "./lib/src/core/components/ADAccordion/index.js",
    "require": "./lib/src/core/components/ADAccordion/index.js"
   },
+  "./components/ADAdvice": {
+   "import": "./lib/src/core/components/ADAdvice/index.js",
+   "require": "./lib/src/core/components/ADAdvice/index.js"
+  },
   "./components/ADBadge": {
    "import": "./lib/src/core/components/ADBadge/index.js",
    "require": "./lib/src/core/components/ADBadge/index.js"
@@ -97,6 +103,10 @@
   "./components/ADDrawer": {
    "import": "./lib/src/core/components/ADDrawer/index.js",
    "require": "./lib/src/core/components/ADDrawer/index.js"
+  },
+  "./components/ADErrorMessage": {
+   "import": "./lib/src/core/components/ADErrorMessage/index.js",
+   "require": "./lib/src/core/components/ADErrorMessage/index.js"
   },
   "./components/ADFlex": {
    "import": "./lib/src/core/components/ADFlex/index.js",
@@ -122,9 +132,17 @@
    "import": "./lib/src/core/components/ADMedia/index.js",
    "require": "./lib/src/core/components/ADMedia/index.js"
   },
+  "./components/ADMessage": {
+   "import": "./lib/src/core/components/ADMessage/index.js",
+   "require": "./lib/src/core/components/ADMessage/index.js"
+  },
   "./components/ADNotification": {
    "import": "./lib/src/core/components/ADNotification/index.js",
    "require": "./lib/src/core/components/ADNotification/index.js"
+  },
+  "./components/ADNotifyPopup": {
+   "import": "./lib/src/core/components/ADNotifyPopup/index.js",
+   "require": "./lib/src/core/components/ADNotifyPopup/index.js"
   },
   "./components/ADOverlay": {
    "import": "./lib/src/core/components/ADOverlay/index.js",
@@ -141,6 +159,10 @@
   "./components/ADProductCard": {
    "import": "./lib/src/core/components/ADProductCard/index.js",
    "require": "./lib/src/core/components/ADProductCard/index.js"
+  },
+  "./components/ADProductCount": {
+   "import": "./lib/src/core/components/ADProductCount/index.js",
+   "require": "./lib/src/core/components/ADProductCount/index.js"
   },
   "./components/ADProductGrid": {
    "import": "./lib/src/core/components/ADProductGrid/index.js",

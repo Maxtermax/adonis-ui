@@ -14,13 +14,17 @@ export const Item = withTheme(styled.li`
   width: 100%;
 `);
 
-export const Link = withTheme(styled.a`
-  animation-name: ${animations.fadeIn};
-  animation-duration: ${({ theme }) => theme.timing.slow};
-  animation-timing-function: ${({ theme }) => theme.animationFunctions.easy};
-  animation-delay: ${({ delay }) => delay}s;
-  animation-fill-mode: forwards;
-  opacity: 0;
+export const SizesWrapper = withTheme(styled.div`
+  margin-top: ${({ theme }) => theme.spacing.calc(1)};
+  & .ad-button {
+    width: 100%;
+    min-width: 35px;
+    height: 30px;
+    padding: 0px;
+  }
+`);
+
+export const Wrapper = withTheme(styled.a`
   background-color: ${({ theme }) => theme.colors.smoke};
   border-radius: ${({ theme }) => theme.border.radius.rounded};
   border: 1px solid ${({ theme }) => theme.colors.smoke};
@@ -36,8 +40,5 @@ export const Link = withTheme(styled.a`
   align-items: center;
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.primary};
-  }
-  svg {
-    color: ${({ theme }) => theme.colors.primary};
   }
 `);

@@ -10,7 +10,8 @@ export const ContentWrapper = withTheme(styled.div`
     width: calc(100% - ${({ theme }) => theme.spacing.calc(7)});
     height: calc(100% - ${({ theme }) => theme.spacing.calc(7)});
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     overflow-y: auto;
     @media screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
       height: calc(100% - 150px);

@@ -19,6 +19,7 @@ export const ADNotification = forwardRef(function ADNotification(
     className = "",
     variant = "primary",
     text = "",
+    subtitle = "",
     id = uniqueId("ad-notification-"),
   },
   ref,
@@ -79,6 +80,7 @@ export const ADNotification = forwardRef(function ADNotification(
         <styles.Icon className="ad-notification__icon">{icon}</styles.Icon>
         <styles.Content className="ad-notification__content">
           <ADText value={text} variant="text" />
+          {subtitle ? <ADText value={subtitle} variant="subtitle" /> : null}
         </styles.Content>
       </styles.Container>
     </styles.Wrapper>

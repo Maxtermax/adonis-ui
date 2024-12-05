@@ -30,7 +30,6 @@ export const Content = withTheme(styled.ol`
   overflow-y: auto;
   padding: ${({ theme }) => theme.spacing.calc(2)};
   height: calc(100% - ${({ theme }) => theme.spacing.calc(8)});
-  justify-content: flex-start;
   &::-webkit-scrollbar {
     width: 3px;
   }
@@ -41,6 +40,7 @@ export const Content = withTheme(styled.ol`
     cursor: pointer;
     background-color: ${({ theme }) => theme.colors.primary};
   }
+  ${({ sx = {} }) => ({ ...sx })};
 `);
 
 export const Divider = withTheme(styled.hr`
@@ -63,7 +63,8 @@ export const Footer = withTheme(styled.div`
     text-transform: uppercase;
   }
   .ad-button {
-    height: calc(100% - ${({ theme }) => theme.spacing.calc(8)});
+    margin-top: ${({ theme }) => theme.spacing.calc(2)};
+    height: 40px;
     width: 100%;
   }
 `);

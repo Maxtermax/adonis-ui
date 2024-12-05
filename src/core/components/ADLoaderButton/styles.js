@@ -1,9 +1,11 @@
 import { withTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 
-export const Container = withTheme(styled.div({
-  alignItems: "center",
-  display: "inline-flex",
-  justifyContent: "center",
-  minHeight: "75px",
-}));
+export const Container = withTheme(styled.div`
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  min-height: 75px;
+  width: 100%;
+  ${({ sx = {} }) => ({ ...sx })};
+`);

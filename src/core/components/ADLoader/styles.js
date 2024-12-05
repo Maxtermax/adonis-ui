@@ -30,6 +30,7 @@ export const Container = withTheme(styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.medium};
+  ${({ sx = {} }) => ({ ...sx })};
 `);
 
 export const Spinner = withTheme(styled.div`

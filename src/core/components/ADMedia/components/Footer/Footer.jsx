@@ -8,7 +8,7 @@ import ADTooltip from "ADTooltip";
 import { mediaStore } from "ADMedia/store";
 import { selectSize } from "ADMedia/mutations";
 import { actions } from "ADMedia/reducer";
-import { useMediaQuery } from "../../../../../utils/hooks/useMediaQuery";
+import useMediaQuery from "@/core/hooks/useMediaQuery";
 import formatCurrency from "../../../../../utils/formatCurrency";
 import { TEXT_VARIANTS, DIRECTIONS, CARD_VARIANTS } from "constants";
 import * as styles from "./styles";

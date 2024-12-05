@@ -58,6 +58,7 @@ export const SHAPES = {
 };
 
 export const TEXT_VARIANTS = {
+  ANCHOR: "anchor",
   TEXT: "text",
   LABEL: "label",
   HEADING: "heading",

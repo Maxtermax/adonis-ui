@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { delay, uniqueId } from "lodash";
 import { useMutations } from "hermes-io";
 import ADLayout, {
   ADLayoutHeader,
@@ -21,9 +22,12 @@ import ADCarousell from "ADCarousell";
 import { actions as carousellActions } from "ADCarousell/reducer";
 import { newPage } from "ADCarousell/mutations";
 import { microCarousellStore } from "ADCarousell/store";
-import { delay, uniqueId } from "lodash";
 import { getProducts } from "./mocks";
+import makeDataSource from "@/core/datasource";
+import useDataSource from "@/core/hooks/useDataSource";
 
+
+const datasource = makeDataSource();
 
 function loadProducts({ id = "", setProducts, products = [], max = 5 }) {
   const store = loaderMicroStore.get(id);
@@ -153,6 +157,13 @@ const Template = () => {
     store: microTextFieldStore,
     id: SEARCH_TEXT_FIELD,
   });
+  
+  const { setRecommendations, setProducts } = useDataSource(datasource);
+
+  useEffect(() => {
+    setRecommendations();
+    setProducts();
+  }, []);
 
   onEvent(layoutActions.START_SEARCH, () => {
     setTimeout(() => {
@@ -160,46 +171,12 @@ const Template = () => {
         {
           id: "upper",
           name: "Prendas superiores",
-          products: [
-            {
-              name: "Producto",
-              price: 10000,
-              discount: 0.5,
-              thubmnail:
-                "https://hmcolombia.vtexassets.com/arquivos/ids/3675203-483-725?v=638511011914100000&width=483&height=725&aspect=true",
-              id: 1,
-            },
-            {
-              name: "Producto 2",
-              price: 10000,
-              discount: 0.5,
-              thubmnail:
-                "https://hmcolombia.vtexassets.com/arquivos/ids/3675229-483-725?v=638511012045930000&width=483&height=725&aspect=true",
-              id: 2,
-            },
-          ],
+          products: getProducts(25),
         },
         {
           id: "low",
           name: "Prendas inferiores",
-          products: [
-            {
-              name: "Producto",
-              price: 10000,
-              discount: 0.5,
-              thubmnail:
-                "https://hmcolombia.vtexassets.com/arquivos/ids/3675203-483-725?v=638511011914100000&width=483&height=725&aspect=true",
-              id: 4,
-            },
-            {
-              name: "Producto 2",
-              price: 10000,
-              discount: 0.5,
-              thubmnail:
-                "https://hmcolombia.vtexassets.com/arquivos/ids/3675229-483-725?v=638511012045930000&width=483&height=725&aspect=true",
-              id: 5,
-            },
-          ],
+          products: getProducts(25),
         },
       ]);
     }, 1000);
@@ -209,42 +186,6 @@ const Template = () => {
     <ADLayout
       header={() => (
         <ADLayoutHeader
-          onChange={console.log}
-          onDelete={console.log}
-          products={[
-            {
-              name: "Producto",
-              price: 10000,
-              discount: 0.5,
-              thubmnail:
-                "https://hmcolombia.vtexassets.com/arquivos/ids/3675203-483-725?v=638511011914100000&width=483&height=725&aspect=true",
-              id: 1,
-            },
-            {
-              name: "Producto 2",
-              price: 10000,
-              discount: 0.5,
-              thubmnail:
-                "https://hmcolombia.vtexassets.com/arquivos/ids/3675229-483-725?v=638511012045930000&width=483&height=725&aspect=true",
-              id: 2,
-            },
-            {
-              name: "Producto 3",
-              price: 10000,
-              discount: 0.5,
-              thubmnail:
-                "https://hmcolombia.vtexassets.com/arquivos/ids/3675229-483-725?v=638511012045930000&width=483&height=725&aspect=true",
-              id: 3,
-            },
-            {
-              name: "Producto 4",
-              price: 10000,
-              discount: 0.5,
-              thubmnail:
-                "https://hmcolombia.vtexassets.com/arquivos/ids/3675229-483-725?v=638511012045930000&width=483&height=725&aspect=true",
-              id: 4,
-            },
-          ]}
           list={[
             {
               name: "Recientes",
@@ -257,83 +198,6 @@ const Template = () => {
             {
               name: "Ofertas",
               id: "offers",
-            },
-          ]}
-          recommendations={[
-            {
-              id: "upper",
-              name: "Prendas superiores",
-              products: [
-                {
-                  name: "Producto",
-                  price: 10000,
-                  discount: 0.5,
-                  thubmnail:
-                    "https://hmcolombia.vtexassets.com/arquivos/ids/3675203-483-725?v=638511011914100000&width=483&height=725&aspect=true",
-                  id: 1,
-                },
-                {
-                  name: "Producto 2",
-                  price: 10000,
-                  discount: 0.5,
-                  thubmnail:
-                    "https://hmcolombia.vtexassets.com/arquivos/ids/3675229-483-725?v=638511012045930000&width=483&height=725&aspect=true",
-                  id: 2,
-                },
-                {
-                  name: "Producto 3",
-                  price: 10000,
-                  discount: 0.5,
-                  thubmnail:
-                    "https://hmcolombia.vtexassets.com/arquivos/ids/3675229-483-725?v=638511012045930000&width=483&height=725&aspect=true",
-                  id: 3,
-                },
-                {
-                  name: "Producto 4",
-                  price: 10000,
-                  discount: 0.5,
-                  thubmnail:
-                    "https://hmcolombia.vtexassets.com/arquivos/ids/3675229-483-725?v=638511012045930000&width=483&height=725&aspect=true",
-                  id: 4,
-                },
-              ],
-            },
-            {
-              id: "bottom",
-              name: "Prendas inferiores",
-              products: [
-                {
-                  name: "Producto 5",
-                  price: 10000,
-                  thubmnail:
-                    "https://hmcolombia.vtexassets.com/arquivos/ids/3675229-483-725?v=638511012045930000&width=483&height=725&aspect=true",
-                  id: 4,
-                },
-                {
-                  name: "Producto 6",
-                  price: 10000,
-                  discount: 0,
-                  thubmnail:
-                    "https://hmcolombia.vtexassets.com/arquivos/ids/3675229-483-725?v=638511012045930000&width=483&height=725&aspect=true",
-                  id: 5,
-                },
-                {
-                  name: "Producto 6",
-                  price: 10000,
-                  discount: 0,
-                  thubmnail:
-                    "https://hmcolombia.vtexassets.com/arquivos/ids/3675229-483-725?v=638511012045930000&width=483&height=725&aspect=true",
-                  id: 6,
-                },
-                {
-                  name: "Producto 7",
-                  price: 10000,
-                  discount: 0,
-                  thubmnail:
-                    "https://hmcolombia.vtexassets.com/arquivos/ids/3675229-483-725?v=638511012045930000&width=483&height=725&aspect=true",
-                  id: 7,
-                },
-              ],
             },
           ]}
           sublist={{

@@ -12,7 +12,7 @@ import productMicroStore from "./store";
 import { actions, productReducer } from "./reducer";
 import { setFocusImage } from "./mutations";
 import formatCurrency from "../../../utils/formatCurrency";
-import { useMediaQuery } from "../../../utils/hooks/useMediaQuery";
+import useMediaQuery from "@/core/hooks/useMediaQuery";
 import * as styles from "./styles";
 
 const DotsIndicator = ({

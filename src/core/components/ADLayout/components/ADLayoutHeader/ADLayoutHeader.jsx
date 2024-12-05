@@ -19,18 +19,16 @@ import { reducer } from "ADLayout/reducer";
 import * as mutations from "ADLayout/mutations/layout";
 import * as queries from "ADLayout/queries/layout";
 import * as styles from "./styles";
+import useMediaQuery from "@/core/hooks/useMediaQuery";
 
 const id = "shopping-cart-drawer";
 
-export const ADLayoutHeader = ({
-  onChange,
-  onDelete,
-  list = [],
-  products = [],
-  sublist = null,
-  recommendations = [],
-}) => {
+export const ADLayoutHeader = ({ list = [], sublist = null }) => {
   const theme = useTheme();
+  const isMobile = useMediaQuery(
+    (theme) => `(max-width: ${theme.breakpoints.sm})`,
+  );
+
   useObservableStore(
     LAYOUT_HEADER_STORE,
     { header: { focus: "" } },
@@ -46,6 +44,7 @@ export const ADLayoutHeader = ({
       LAYOUT_HEADER_STORE,
     ]);
   };
+
   const handleOpenCart = () => {
     const store = drawerMicroStore.get(id);
     setOpen({ store, id, value: true });
@@ -57,7 +56,7 @@ export const ADLayoutHeader = ({
   };
 
   const cart = <ADLayoutCart onOpen={handleOpenCart} />;
-  const search = <ADLayoutSearch recommendations={recommendations} />;
+  const search = <ADLayoutSearch />;
 
   return (
     <styles.HeaderContainer onMouseLeave={handleLeave}>
@@ -102,8 +101,8 @@ export const ADLayoutHeader = ({
             md={{ display: "none" }}
           >
             <ADLayoutOption data={list} />
-            <ADLayoutItem>{search}</ADLayoutItem>
-            <ADLayoutItem>{cart}</ADLayoutItem>
+            <ADLayoutItem>{!isMobile ? search : null}</ADLayoutItem>
+            <ADLayoutItem>{!isMobile ? cart : null}</ADLayoutItem>
           </ADGridCol>
 
           <ADGridCol
@@ -116,21 +115,15 @@ export const ADLayoutHeader = ({
             md={{ display: "flex" }}
             lg={{ display: "none" }}
           >
-            <ADLayoutItem>{search}</ADLayoutItem>
-            <ADLayoutItem>{cart}</ADLayoutItem>
+            <ADLayoutItem>{isMobile ? search : null}</ADLayoutItem>
+            <ADLayoutItem>{isMobile ? cart : null}</ADLayoutItem>
           </ADGridCol>
         </ADGrid>
       </styles.Header>
       <ADLayoutSubMenu sublist={sublist} />
       <ADDrawer
         content={
-          <ADShoppingCart
-            data={products}
-            onChange={onChange}
-            onDelete={onDelete}
-            onClose={handleCloseCart}
-            id="shopping-cart-drawer"
-          />
+          <ADShoppingCart onClose={handleCloseCart} id="shopping-cart-drawer" />
         }
         height="100%"
         id="shopping-cart-drawer"

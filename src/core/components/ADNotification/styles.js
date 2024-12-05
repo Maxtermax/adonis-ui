@@ -101,9 +101,16 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   width: 100%;
   height: 100%;
+  justify-content: center;
+  gap: ${({ theme }) => theme.spacing.calc(1)};
+  .ad-text {
+    width: 100%;
+  }
+}
 `;
 
 export const Icon = styled.div`
@@ -118,9 +125,11 @@ export const Icon = styled.div`
 export const Wrapper = styled.div`
   display: inline;
   & .ad-notification {
+    background: ${({ theme }) => theme.colors.white};
     height: 50px;
+    transition: ${({ theme }) => theme.transitions.smooth};
     &:hover {
-      background: ${({ theme, variant }) => bgVariantFactory(theme, variant)};
+      transform: ${({ theme }) => theme.transform.scale.small};
     }
   }
   & .ad-notification-visible {
@@ -138,8 +147,7 @@ export const Wrapper = styled.div`
     color: ${({ variant, theme }) => colorFactory(theme, variant)};
   }
   & .ad-notification {
-    border-color: ${({ variant, theme }) =>
-      colorFactory(theme, variant)};
+    border-color: ${({ variant, theme }) => colorFactory(theme, variant)};
   }
   & .ad-notification__content .ad-text {
     color: ${({ variant, theme }) => colorFactory(theme, variant)};

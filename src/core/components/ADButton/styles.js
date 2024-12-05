@@ -59,6 +59,7 @@ export const Button = withTheme(styled.button`
   display: flex;
   min-width: 50px;
   height: 40px;
+  width: ${({ fullWidth }) => (fullWidth ? "100%" : "auto")}; 
   margin: 0px;
   padding: ${(props) => props.theme.spacing[DIMENSIONS.regular]};
   transition: ${(props) => props.theme.transitions.smooth};
@@ -66,9 +67,12 @@ export const Button = withTheme(styled.button`
   font-family: ${(props) => props.theme.fonts.primary.regular};
   justify-content: center;
   &:disabled {
+    background-color: ${({ theme }) => theme.colors.lightSilver};
+    color: ${({ theme }) => theme.colors.primary};
     opacity: 0.5;
   }
   &:hover {
     box-shadow: ${(props) => boxShadow(props)};
   }
+  ${({ sx = {} }) => ({ ...sx })};
 `);
