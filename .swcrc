@@ -35,6 +35,7 @@
       "ADNotifyPopup/*": ["./src/core/components/ADNotifyPopup/*"],
       "ADMessage/*": ["./src/core/components/ADMessage/*"],
       "ADAdvice/*": ["./src/core/components/ADAdvice/*"],
+      "ADDivider/*": ["./src/core/components/ADDivider/*"],
       "ADLoaderButton/*": ["./src/core/components/ADLoaderButton/*"],
       "ADRangeSlider/*": ["./src/core/components/ADRangeSlider/*"],
       "ADTooltip/*": ["./src/core/components/ADTooltip/*"],

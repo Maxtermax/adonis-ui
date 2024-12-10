@@ -2,6 +2,7 @@ export const actions = {
   SET_PRODUCTS: "SET_PRODUCTS",
   SET_RECOMMENDATIONS: "SET_RECOMMENDATIONS",
   SET_PRODUCT_AMOUNT: "SET_PRODUCT_AMOUNT",
+  SEND_NOTIFY_PRODUCT: "SEND_NOTIFY_PRODUCT",
   REMOVE_PRODUCT: "REMOVE_PRODUCT", 
 };
 
@@ -21,6 +22,9 @@ export const reducer = (state, action) => {
     },
     [actions.REMOVE_PRODUCT]: () => {
       state.products.splice(state.products.findIndex(({ id }) => id === action.payload.id), 1);
+      return state;
+    },
+    [actions.SEND_NOTIFY_PRODUCT]: () => {
       return state;
     },
   };

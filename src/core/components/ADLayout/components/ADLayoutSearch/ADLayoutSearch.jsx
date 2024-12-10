@@ -20,7 +20,7 @@ export const SEARCH_TEXT_FIELD = "SEARCH_TEXT_FIELD";
 const targets = [LAYOUT_HEADER_STORE];
 
 export const ADLayoutSearch = withTheme(({ theme }) => {
-  const { actions, state, onEvent } = useLoaderData();
+  const { actions, state, onEvent } = useLoaderData('recommendations');
   const { data = [], isLoading, error } = state;
   onEvent(actions.SET_RECOMMENDATIONS, (value) => ({
     isLoading: false,

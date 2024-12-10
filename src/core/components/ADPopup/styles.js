@@ -47,6 +47,7 @@ export const Container = withTheme(styled.div`
     variant === variants.fullscreen ? "none" : theme.border.radius.rounded};
   position: ${({ variant = "" }) =>
     styleVariants(variant)?.position || "relative"};
+  ${({ sx = {} }) => ({...sx})}
 `);
 
 export const Header = withTheme(styled.header`

@@ -6,7 +6,7 @@ import { KeyboardArrowRight } from "@styled-icons/material-outlined/KeyboardArro
 import ADText from "ADText";
 import ADButton from "ADButton";
 import { actions, reducer } from "ADAccordion/reducer";
-import { accordionStore } from 'ADAccordion/store';
+import { accordionStore } from "ADAccordion/store";
 import usePanel from "ADAccordion/hooks/usePanel";
 import { ACCORDION_PANEL } from "constants";
 import * as styles from "./styles";
@@ -36,7 +36,7 @@ const Item = ({ children, isExpanded }) => {
   );
 };
 
-const Content = ({ inner, isExpanded, children }) => {
+const Content = ({ inner, isExpanded, maxHeight, children }) => {
   const contentRef = useRef(null);
   const maxRef = useRef("");
   useEffect(() => {
@@ -44,7 +44,10 @@ const Content = ({ inner, isExpanded, children }) => {
     if (!maxRef.current) {
       maxRef.current = `${contentRef.current.clientHeight}px`;
     }
-    contentRef.current.style.maxHeight = `${isExpanded ? `calc(${maxRef.current} + ${padding})` : "0px"}`;
+    const height = maxHeight
+      ? maxHeight
+      : `calc(${maxRef.current} + ${padding})`;
+    contentRef.current.style.maxHeight = `${isExpanded ? height : "0px"}`;
   }, [isExpanded]);
 
   return (
@@ -60,12 +63,16 @@ const Content = ({ inner, isExpanded, children }) => {
 };
 
 const Panels = forwardRef(function Panels(
-  { label, isExpanded, id, data, inner },
+  { label, isExpanded, maxHeight, id, data, inner, ...rest },
   ref,
 ) {
   const panels = mapDataToComponentsTree(data);
   const { store } = useObservableStore(id, data, reducer, accordionStore);
-  const state = usePanel({ store: accordionStore, initialState: { isExpanded }, id });
+  const state = usePanel({
+    store: accordionStore,
+    initialState: { isExpanded },
+    id,
+  });
 
   const handleToggle = async () => {
     const notify = !state.isExpanded;
@@ -83,13 +90,17 @@ const Panels = forwardRef(function Panels(
   };
 
   return (
-    <styles.Container ref={ref} className="ad-accordion">
+    <styles.Container ref={ref} className="ad-accordion" {...rest}>
       {label ? (
         <Label isExpanded={state.isExpanded} onToggle={handleToggle}>
           {label}
         </Label>
       ) : null}
-      <Content isExpanded={state.isExpanded} inner={inner}>
+      <Content
+        maxHeight={maxHeight}
+        isExpanded={state.isExpanded}
+        inner={inner}
+      >
         {panels}
       </Content>
     </styles.Container>
@@ -97,7 +108,7 @@ const Panels = forwardRef(function Panels(
 });
 
 const mapDataToComponentsTree = (data = [], isChildPanel = false) => {
-  return data.map(({ label, isExpanded, content, type, id }) => {
+  return data.map(({ label, isExpanded, maxHeight, content, type, id }) => {
     if (type === ACCORDION_PANEL) {
       isChildPanel = true;
       return (
@@ -105,6 +116,7 @@ const mapDataToComponentsTree = (data = [], isChildPanel = false) => {
           isExpanded={isExpanded}
           key={id}
           label={label}
+          maxHeight={maxHeight}
           inner={isChildPanel}
           id={id}
           data={content}
@@ -127,9 +139,9 @@ const mapDataToComponentsTree = (data = [], isChildPanel = false) => {
 };
 
 export const ADAccordion = forwardRef(function ADAccordion(
-  { data = [], id = uniqueId("ad-accordion") },
+  { data = [], id = uniqueId("ad-accordion"), ...rest },
   ref,
 ) {
   const [{ isExpanded }] = data;
-  return <Panels isExpanded={isExpanded} id={id} data={data} ref={ref} />;
+  return <Panels isExpanded={isExpanded} id={id} data={data} ref={ref} {...rest} />;
 });

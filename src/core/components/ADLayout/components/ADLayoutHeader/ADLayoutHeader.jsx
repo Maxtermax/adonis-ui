@@ -14,6 +14,7 @@ import ADLayoutSearch from "ADLayout/components/ADLayoutSearch";
 import ADLayoutOption, {
   ADLayoutItem,
 } from "ADLayout/components/ADLayoutOption";
+import MobileOptionsList from "./components/MobileOptionsList";
 import { layoutMicroStore, LAYOUT_HEADER_STORE } from "ADLayout/store";
 import { reducer } from "ADLayout/reducer";
 import * as mutations from "ADLayout/mutations/layout";
@@ -22,11 +23,12 @@ import * as styles from "./styles";
 import useMediaQuery from "@/core/hooks/useMediaQuery";
 
 const id = "shopping-cart-drawer";
+const optionsDrawerId = "options-drawer";
 
 export const ADLayoutHeader = ({ list = [], sublist = null }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(
-    (theme) => `(max-width: ${theme.breakpoints.sm})`,
+    (theme) => `(max-width: ${theme.breakpoints.md})`,
   );
 
   useObservableStore(
@@ -55,6 +57,16 @@ export const ADLayoutHeader = ({ list = [], sublist = null }) => {
     setOpen({ store, id, value: false });
   };
 
+  const closeMobileMenu = () => {
+    const store = drawerMicroStore.get(optionsDrawerId);
+    setOpen({ store, id: optionsDrawerId, value: false });
+  };
+
+  const openMobileMenu = () => {
+    const store = drawerMicroStore.get(optionsDrawerId);
+    setOpen({ store, id: optionsDrawerId, value: true });
+  };
+
   const cart = <ADLayoutCart onOpen={handleOpenCart} />;
   const search = <ADLayoutSearch />;
 
@@ -78,7 +90,11 @@ export const ADLayoutHeader = ({ list = [], sublist = null }) => {
             lg={{ display: "none" }}
           >
             <ADLayoutItem>
-              <ADButton className="ad-layout__header-menu" variant="text">
+              <ADButton
+                onClick={openMobileMenu}
+                className="ad-layout__header-menu"
+                variant="text"
+              >
                 <Menu color="inherit" size={28} />
               </ADButton>
             </ADLayoutItem>
@@ -120,7 +136,7 @@ export const ADLayoutHeader = ({ list = [], sublist = null }) => {
           </ADGridCol>
         </ADGrid>
       </styles.Header>
-      <ADLayoutSubMenu sublist={sublist} />
+      {!isMobile ? <ADLayoutSubMenu sublist={sublist} /> : null}
       <ADDrawer
         content={
           <ADShoppingCart onClose={handleCloseCart} id="shopping-cart-drawer" />
@@ -130,6 +146,19 @@ export const ADLayoutHeader = ({ list = [], sublist = null }) => {
         variant="right"
         width="380px"
       />
+      {isMobile ? (
+        <ADDrawer
+          content={
+            <MobileOptionsList data={sublist} onClose={closeMobileMenu} />
+          }
+          height="100%"
+          id={optionsDrawerId}
+          subtitle="subtitle"
+          title="Title"
+          variant="left"
+          width="358px"
+        />
+      ) : null}
     </styles.HeaderContainer>
   );
 };

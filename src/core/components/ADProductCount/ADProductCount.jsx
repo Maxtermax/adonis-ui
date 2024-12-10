@@ -8,7 +8,7 @@ import { Plus } from "@styled-icons/feather/Plus";
 import * as styles from "./styles";
 
 export const ADProductCount = forwardRef(function ADProductCount(
-  { onDelete, onChange, className = "", maxValue = 100, defaultValue = 0 },
+  { onDelete, onChange, className = "", minValue = 0, maxValue = 100, defaultValue = 0 },
   ref,
 ) {
   const [value, setValue] = useState(defaultValue);
@@ -19,6 +19,7 @@ export const ADProductCount = forwardRef(function ADProductCount(
   };
 
   const handleDecrease = () => {
+    if (minValue && value === minValue) return;
     const newValue = value - 1;
     if (newValue < 0) {
       onDelete?.(0);

@@ -65,6 +65,7 @@ export const Item = withTheme(styled.div`
     font-size: ${({ theme }) => theme.fonts.sizes.calc(7)};
     text-transform: uppercase;
     z-index: 1;
+    text-align: center;
     @media screen and ${({ theme }) => theme.devices.md} {
       font-size: ${({ theme }) => theme.fonts.sizes.calc(3)};
     }

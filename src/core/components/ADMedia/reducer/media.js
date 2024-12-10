@@ -17,7 +17,7 @@ export const reducer = (state, action) => {
       return state;
     },
     [actions.SELECT_SIZE]: () => {
-      state.size = action.payload.value;
+      state.size = action.payload.value.size;
       return state;
     },
     [actions.SET_PAUSED]: () => {

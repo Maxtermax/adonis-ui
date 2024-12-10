@@ -34,7 +34,7 @@ export const ADRecommendations = ({ data = [], isOpen }) => {
       direction="column"
       gap={2}
       sx={{
-        maxHeight: `calc(100% - ${isMobile ? "0px" : "200px"})`,
+        maxHeight: `calc(100% - ${isMobile ? "104px" : "200px"})`,
         width: "100%",
         height: "100%",
       }}
@@ -55,11 +55,11 @@ export const ADRecommendations = ({ data = [], isOpen }) => {
           gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
         }}
         sx={{
-          width: "100%",
+          width: "calc(100% - 5px)",
           height: "100%",
           overflowY: "auto",
           paddingLeft: "5px",
-          paddingRight: "5px",
+          paddingRight: "8px",
           "&::-webkit-scrollbar": {
             width: "3px",
           },

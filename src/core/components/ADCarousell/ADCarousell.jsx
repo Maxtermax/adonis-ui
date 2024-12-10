@@ -1,8 +1,12 @@
 import React, { useEffect, useRef } from "react";
+import { useObservableStore } from "hermes-io";
+import { useMutations } from "hermes-io";
 import _ from "lodash";
 import { ArrowRight } from "@styled-icons/feather/ArrowRight";
-import { useObservableStore } from "hermes-io";
+import ADNotifyPopup from "ADNotifyPopup";
 import ADButton from "ADButton";
+import { overlayMicroStore } from "ADOverlay/store/overlay";
+import * as popUpMutations from "ADPopup/mutations";
 import { ADCarousellContent } from "./components/ADCarousellContent";
 import { ADCarousellNext } from "./components/ADCarousellNext";
 import { reducer } from "./reducer";
@@ -14,6 +18,7 @@ import {
   setIsMobile,
 } from "./mutations";
 import { getHasReachedLastItem, getIsMobile, getIsLoading } from "./queries";
+import { actions } from "ADMedia/reducer";
 import * as styles from "./styles";
 
 const { uniqueId } = _;
@@ -37,6 +42,8 @@ export const ADCarousell = ({
   showArrows = true,
   id = uniqueId("ad-carousell"),
 }) => {
+  const notificationId = id + "-notify-popup";
+  const productRef = useRef(null);
   const wrapperRef = useRef(null);
   const prevButtonRef = useRef(null);
   const match = useMediaQuery(
@@ -48,12 +55,28 @@ export const ADCarousell = ({
       data,
       page: 0,
       isMobile: false,
+      productId: null,
       hasReachedLastItem: false,
       isLoading: false,
     },
     reducer,
     microCarousellStore,
   );
+
+  const { onEvent } = useMutations({
+    noUpdate: true,
+    store: microCarousellStore,
+    id,
+  });
+
+  onEvent(actions.SELECT_SIZE, (value) => {
+    const { isNotAvailable, productId } = value;
+    if (isNotAvailable) {
+      productRef.current = productId;
+      const store = overlayMicroStore.get(notificationId);
+      popUpMutations.setOpen({ store, id: notificationId, value: true });
+    }
+  });
 
   useEffect(() => {
     const container = wrapperRef.current.querySelector(".ad-carousell");
@@ -113,7 +136,6 @@ export const ADCarousell = ({
           <ArrowRight style={{ transform: "rotate(180deg)" }} />
         </ADButton>
       ) : null}
-
       <ADCarousellContent
         onScroll={handleScroll}
         onTouchEnd={handleTouchEnd}
@@ -122,6 +144,7 @@ export const ADCarousell = ({
         data={data}
       />
       {showArrows ? <ADCarousellNext store={store} id={id} /> : null}
+      <ADNotifyPopup product={productRef} id={notificationId} />
     </styles.Wrapper>
   );
 };

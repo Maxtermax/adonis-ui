@@ -31,6 +31,7 @@ class Light extends Base {
     warning: "#ffcc4e",
     white: "#ffffff",
     grey: "#f7f7f7",
+    darkGrey: "#e0e0e0",
     silver: "#efeeee",
     blue: "#3289e7",
     red: "red",

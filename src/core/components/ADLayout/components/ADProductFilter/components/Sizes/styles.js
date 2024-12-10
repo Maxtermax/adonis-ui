@@ -7,4 +7,5 @@ export const Container = withTheme(styled.div`
   width: 100%;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.calc(2)};
+  ${({ sx = {}}) => ({ ...sx })};
 `);

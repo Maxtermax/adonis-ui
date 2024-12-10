@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { useTheme } from "@emotion/react";
 import ADText from "ADText";
 import ADAccordion from "ADAccordion";
 import ADCheckbox from "ADCheckbox";
@@ -28,6 +29,7 @@ import * as styles from "./styles";
 */
 
 export const Categories = ({ onChange }) => {
+  const theme = useTheme();
   const categoriesRef = useRef([
     {
       id: "elegant",
@@ -95,8 +97,12 @@ export const Categories = ({ onChange }) => {
 
   return (
     <styles.Container>
-      <ADText value="Categorías" variant="title" />
-      <ADFlex direction="column" gap={4} alignItems="stretch">
+      <ADText value="Categorias" variant="title" />
+      <ADFlex
+        direction="column"
+        gap={4}
+        alignItems="stretch"
+      >
         {categoriesRef.current.map(({ id, label, checked }, index) => (
           <ADCheckbox
             key={id}

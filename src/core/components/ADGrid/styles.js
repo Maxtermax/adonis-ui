@@ -67,7 +67,7 @@ export const Grid = withTheme(
 );
 
 export const Col = withTheme(
-  styled.div(({ align, lg, sm, md, theme }) => ({
+  styled.div(({ align, lg, sm, md, sx= {}, theme }) => ({
     display: "flex",
     width: "100%",
     gap: theme.spacing.medium,
@@ -77,5 +77,6 @@ export const Col = withTheme(
     [`@media screen and (max-width: ${theme.breakpoints.lg})`]: lg ? lg : {},
     [`@media screen and (max-width: ${theme.breakpoints.md})`]: md ? md : {},
     [`@media screen and (max-width: ${theme.breakpoints.sm})`]: sm ? sm : {},
+    ...sx,
   })),
 );

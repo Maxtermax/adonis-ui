@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { ArrowRight } from "@styled-icons/bootstrap";
 import { uniqueId } from "lodash";
 import ADFlex from "ADFlex";
@@ -22,8 +22,10 @@ export const ADProductStrips = ({
   showCounter = false,
 }) => {
   const notifyPopupId = id + "-notify-popup";
-  const handleSizeChange = (sizes, productId, isNotAvailable) => {
+  const productRef = useRef(null);
+  const handleSizeChange = (_, productId, isNotAvailable) => {
     if (isNotAvailable) {
+      productRef.current = productId;
       const store = overlayMicroStore.get(notifyPopupId);
       mutations.setOpen({ store, id: notifyPopupId, value: true });
     }
@@ -64,7 +66,7 @@ export const ADProductStrips = ({
                       value={name}
                       sx={{
                         maxWidth: "80px",
-                        whiteSpace: "nowrap"
+                        whiteSpace: "nowrap",
                       }}
                     />
                     <ADText
@@ -144,7 +146,9 @@ export const ADProductStrips = ({
   return (
     <>
       {nodes}
-      {showNotifications ? <ADNotifyPopup id={notifyPopupId} /> : null}
+      {showNotifications ? (
+        <ADNotifyPopup product={productRef} id={notifyPopupId} />
+      ) : null}
     </>
   );
 };

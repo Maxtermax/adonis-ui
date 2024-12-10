@@ -76,6 +76,7 @@ export const Content = ({ data = [], error, onClose }) => {
               <ADErrorMessage message="Los sentimos ocurrio un error interno 😞" />
             ) : (
               <ADProductStrips
+                id="shopping-cart-products"
                 noLink
                 showCounter
                 onChange={handleChange}

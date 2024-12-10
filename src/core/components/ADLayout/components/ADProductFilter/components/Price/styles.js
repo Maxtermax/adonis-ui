@@ -5,6 +5,7 @@ export const Container = withTheme(styled.div`
   align-items: flex-start;
   display: flex;
   width: 100%;
+  height: 110px;
   margin: 0px auto;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.calc(2)};

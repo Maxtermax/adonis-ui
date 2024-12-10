@@ -23,3 +23,13 @@ export const setProductAmount = (store, targets = [], payload) => {
     payload,
   });
 };
+
+export const sendNotifyProduct = (store, targets = [], payload) => {
+  store.mutate({
+    targets,
+    type: actions.SEND_NOTIFY_PRODUCT,
+    payload,
+  });
+};
+
+

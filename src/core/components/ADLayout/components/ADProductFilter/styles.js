@@ -30,7 +30,7 @@ export const Footer = withTheme(styled.div`
   display: flex;
   flex-direction: column;
   width: calc(100% - ${({ theme }) => theme.spacing.calc(8)});
-  height: 80px;
+  height: 50px;
   .ad-text {
     color: ${({ theme }) => theme.colors.contrast.primary};
     text-transform: uppercase;

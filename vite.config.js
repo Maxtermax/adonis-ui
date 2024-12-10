@@ -193,6 +193,10 @@ export const alias = [
     replacement: path.resolve(__dirname, "src/core/components/ADAdvice"),
   },
   {
+    find: "ADDivider",
+    replacement: path.resolve(__dirname, "src/core/components/ADDivider"),
+  },
+  {
     find: "stores",
     replacement: path.resolve(__dirname, "src/core/stores"),
   },

@@ -25,6 +25,7 @@ const calcPosition = (position = "top-left") =>
 export const Badge = withTheme(styled.div`
   display: inline-block;
   position: relative;
+  ${({ sx = {} }) => ({ ...sx })};
 `);
 
 export const Content = withTheme(styled.div`

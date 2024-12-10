@@ -8,6 +8,7 @@ export const actions = {
   FOCUS_NEXT_ITEM: "FOCUS_NEXT_ITEM",
   FAIL: "FAIL",
   LOADING: "LOADING",
+  SELECT_SIZE: "SELECT_SIZE"
 };
 
 export const reducer = (state, action) => {

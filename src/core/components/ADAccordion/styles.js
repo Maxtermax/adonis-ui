@@ -16,6 +16,7 @@ export const Container = styled.div`
   min-width: 200px;
   width: 100%;
   flex-direction: column;
+  ${({ sx = {} }) => ({ ...sx })};
 `;
 
 export const Label = styled.span`

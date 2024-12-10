@@ -19,6 +19,11 @@ import { Whatsapp } from "@styled-icons/bootstrap/Whatsapp";
 import { EmailOutline } from "@styled-icons/evaicons-outline/EmailOutline";
 import { setLoader } from "ADLoaderButton/mutations/loader";
 import loaderMicroStore from "ADLoaderButton/store";
+import {
+  DATASOURCE,
+  datasourceMicroStore,
+} from "@/core/hooks/useDataSource/store";
+import { sendNotifyProduct } from "@/core/hooks/useDataSource/mutations";
 import * as notificationMutations from "ADNotification/mutations/notification";
 
 const Field = (props) => {
@@ -43,7 +48,10 @@ const Field = (props) => {
   );
 };
 
-export const ADNotifyPopup = ({ id = uniqueId("ad-notify-popup-") }) => {
+export const ADNotifyPopup = ({
+  product,
+  id = uniqueId("ad-notify-popup-"),
+}) => {
   const loaderButtonId = id + "-loader-button";
   const emailFieldId = id + "-field-email";
   const successNotificationId = id + "-success-notification";
@@ -89,13 +97,15 @@ export const ADNotifyPopup = ({ id = uniqueId("ad-notify-popup-") }) => {
   };
 
   const handleSend = () => {
-    // onSend?.({ startLoader, stopLoader, closePopup, openNotificationSuccess });
-    startLoader();
-    setTimeout(() => {
-      stopLoader();
-      closePopup();
-      openNotificationSuccess();
-    }, 1000);
+    sendNotifyProduct(datasourceMicroStore.get(DATASOURCE), [DATASOURCE], {
+      value: {
+        product: product.current,
+        startLoader,
+        stopLoader,
+        closePopup,
+        openNotificationSuccess,
+      },
+    });
   };
 
   return (

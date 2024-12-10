@@ -8,7 +8,7 @@ import { actions } from "ADLayout/reducer";
 import { ArrowRight } from "@styled-icons/bootstrap";
 import * as styles from "./styles";
 
-const SubList = ({ data = {}, focus = "" }) => {
+export const ADSubList = ({ data = {}, focus = "" }) => {
   return (
     <styles.Nav>
       {data[focus].map(({ name = "", items = [] }, index) => (
@@ -87,7 +87,7 @@ export const ADLayoutSubMenu = ({ sublist = [] }) => {
         variant="flat"
       >
         <styles.Content key={state.focus}>
-          {state.focus ? <SubList data={sublist} focus={state.focus} /> : null}
+          {state.focus ? <ADSubList data={sublist} focus={state.focus} /> : null}
         </styles.Content>
       </ADPanel>
     </styles.SubMenu>

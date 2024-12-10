@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import { uniqueId } from "lodash";
+import ADTooltip from "ADTooltip";
 import ADText from "ADText";
+import ADBadge from "ADBadge";
 import ADButton from "ADButton";
 import ADFlex from "ADFlex";
+import { BellOutline } from "@styled-icons/evaicons-outline/BellOutline";
+import { POSITIONS } from "constants";
 import * as styles from "./styles";
+import { useTheme } from "@emotion/react";
 
 /**
  * Sizes component allows users to select clothing sizes.
@@ -23,7 +27,9 @@ export const Sizes = ({
   defaultSize = "",
   notAvailables = [],
   onChange,
+  ...rest
 }) => {
+  const theme = useTheme();
   const [sizes, setSizes] = useState([
     { id: "XS", selected: defaultSize === "XS" },
     { id: "S", selected: defaultSize === "S" },
@@ -48,11 +54,14 @@ export const Sizes = ({
     sizes.forEach((item) => (item.selected = false));
     size.selected = !size.selected;
     setSizes([...sizes]);
+    onChange?.(sizes, false);
   };
 
   return (
-    <styles.Container>
-      {!hideTitle ? <ADText value="Talla" variant="title" /> : null}
+    <styles.Container {...rest}>
+      {!hideTitle ? (
+        <ADText value="Talla" textTransform="uppercase" variant="title" />
+      ) : null}
       <ADFlex
         direction="row"
         gap={2}
@@ -61,24 +70,57 @@ export const Sizes = ({
       >
         {sizes.map((size) => {
           const result = (
-            <ADButton
-              variant={size.selected ? "contained" : "outlined"}
-              key={size.id}
-              onClick={() => handleSelectSize(size)}
-            >
-              <ADFlex
-                direction="column"
-                gap={2}
-                alignItems="center"
-                justifyContent="center"
+            <ADTooltip text={`Talla: ${size.id}`} key={size.id}>
+              <ADButton
+                variant={size.selected ? "contained" : "outlined"}
+                onClick={() => handleSelectSize(size)}
+                className="ad-sizes-button"
               >
-                {size.id}
-              </ADFlex>
-            </ADButton>
+                <ADFlex
+                  direction="column"
+                  gap={2}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  {size.id}
+                </ADFlex>
+              </ADButton>
+            </ADTooltip>
           );
+          const isNotAvailable = notAvailables.includes(size.id);
+          if (isNotAvailable) {
+            return (
+              <ADBadge
+                key={size.id}
+                bottom="14px"
+                value={<BellOutline size={20} />}
+                position={POSITIONS.topLeft}
+                sx={{
+                  " & .ad-badge__value": {
+                    background: theme.colors.darkGrey,
+                    color: theme.colors.primary,
+                    width: "20px",
+                    height: "20px",
+                  },
+                }}
+              >
+                {result}
+              </ADBadge>
+            );
+          }
           return result;
         })}
       </ADFlex>
+      <ADText
+        value="Guia de talla"
+        href="#"
+        textTransform="uppercase"
+        variant="anchor"
+        sx={{
+          fontSize: theme.fonts.sizes.calc(0.7),
+          textDecoration: "underline"
+        }}
+      />
     </styles.Container>
   );
 };

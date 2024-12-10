@@ -20,7 +20,7 @@ const Static = ({
   thumbnails,
   discount,
   price,
-  sizes,
+  notAvailables,
   className = "",
   cardProps = {},
   ...rest
@@ -45,7 +45,7 @@ const Static = ({
             id={id}
             name={name}
             price={price}
-            sizes={sizes}
+            notAvailables={notAvailables}
             discount={discount}
           />
         )}
@@ -58,7 +58,7 @@ const Static = ({
 const Dinamic = ({
   upperRef,
   discount,
-  sizes = [],
+  notAvailables = [],
   name = "",
   images = [],
   thumbnails = [],
@@ -68,7 +68,7 @@ const Dinamic = ({
 }) => {
   const data = {
     thumbnails,
-    sizes,
+    notAvailables,
     size: null,
     isPaused: true,
     discount,
@@ -83,7 +83,7 @@ const Dinamic = ({
     <Static
       id={id}
       name={name}
-      sizes={sizes}
+      notAvailables={notAvailables}
       thumbnails={thumbnails}
       discount={discount}
       images={images}

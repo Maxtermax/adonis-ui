@@ -94,6 +94,7 @@ export const Container = styled.div`
   position: fixed;
   flex-direction: row;
   transition: ${({ theme }) => theme.transitions.smooth};
+  z-index: 1000;
   &:hover {
     transform: ${({ theme }) => theme.transform.scale.small};
   }

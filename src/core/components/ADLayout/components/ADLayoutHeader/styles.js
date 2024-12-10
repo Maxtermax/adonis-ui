@@ -11,11 +11,13 @@ export const Header = withTheme(styled.header`
   width: 100%;
   height: 80px;
   position: fixed;
+  top: 0px;
   & > .ad-grid {
     width: ${({ theme }) => `calc(100% - ${theme.spacing.calc(14)})`};
     margin: 0px auto;
   }
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    height: 100px;
     & > .ad-grid {
       width: ${({ theme }) => `calc(100% - ${theme.spacing.calc(0)})`};
     }

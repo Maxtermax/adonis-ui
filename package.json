@@ -100,6 +100,10 @@
    "import": "./lib/src/core/components/ADCheckbox/index.js",
    "require": "./lib/src/core/components/ADCheckbox/index.js"
   },
+  "./components/ADDivider": {
+   "import": "./lib/src/core/components/ADDivider/index.js",
+   "require": "./lib/src/core/components/ADDivider/index.js"
+  },
   "./components/ADDrawer": {
    "import": "./lib/src/core/components/ADDrawer/index.js",
    "require": "./lib/src/core/components/ADDrawer/index.js"

@@ -6,8 +6,12 @@ export default {
   },
   id: 1,
   name: "Vestido",
+  description: "Este elegante vestido de mujer combina sofisticación y frescura en un diseño único. Con una silueta que resalta la figura, presenta detalles delicados como un escote sutil y una falda fluida que aporta movimiento. Ideal para ocasiones especiales, su tejido suave y ligero asegura comodidad sin sacrificar estilo. Perfecto para brillar en cualquier evento.",
   price: "150000000",
+  amount: 1,
   sizes: ["M", "S", "XS", "L"],
+  notAvailables: ["XS", "S"],
+  hdImages: ["https://stradabrand.co/cdn/shop/files/Chaleco-Push-Pop-Marfil1.jpg?v=1733173698&width=1200", "https://stradabrand.co/cdn/shop/files/Chaleco-Push-Pop-Negro2.jpg?v=1733173699&width=1000", "https://stradabrand.co/cdn/shop/files/Chaleco-Push-Pop-Negro1.jpg?v=1733173698&width=1000"],
   images: [
     {
       id: 1,

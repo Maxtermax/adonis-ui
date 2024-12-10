@@ -1,44 +1,66 @@
-import React, { useState } from "react";
-import { useMutations } from "hermes-io";
+import React from "react";
+import { useTheme } from "@emotion/react";
 import { Eye } from "@styled-icons/fluentui-system-regular/Eye";
 import ADButton from "ADButton";
 import ADGrid from "ADGrid";
 import ADText from "ADText";
 import ADTooltip from "ADTooltip";
+import Sizes from "ADLayout/components/ADProductFilter/components/Sizes";
 import { mediaStore } from "ADMedia/store";
-import { selectSize } from "ADMedia/mutations";
-import { actions } from "ADMedia/reducer";
 import useMediaQuery from "@/core/hooks/useMediaQuery";
+import { microCarousellStore } from "ADCarousell/store";
+import * as mediaMutations from "ADMedia/mutations";
+import * as microCarousellMutations from "@/core/components/ADCarousell/mutations";
 import formatCurrency from "../../../../../utils/formatCurrency";
 import { TEXT_VARIANTS, DIRECTIONS, CARD_VARIANTS } from "constants";
 import * as styles from "./styles";
 
-const Sizes = ({ id, data = [] }) => {
-  const { state, onEvent } = useMutations({
-    initialState: { selected: null },
-    store: mediaStore,
-    id,
-  });
+const getTargetCarousell = (productId) => {
+  let target = null;
+  const keys = microCarousellStore.collection.keys();
+  for (const key of keys) {
+    const store = microCarousellStore.get(key);
+    if (store.state.data.some(({ id }) => id === productId)) {
+      target = key;
+      break;
+    }
+  }
+  return target;
+};
 
-  onEvent(actions.SELECT_SIZE, (selected) => ({ selected }));
-
-  const handleSelectSize = (size) =>
-    selectSize({ store: mediaStore.get(id), targets: [id], value: size });
+const SizesWrapper = ({ id, notAvailables = [] }) => {
+  const theme = useTheme();
+  const handleSelectSize = (sizes, isNotAvailable) => {
+    const size = sizes.find(({ selected }) => !!selected)?.id;
+    const carrousellId = getTargetCarousell(id);
+    if (carrousellId && isNotAvailable) {
+      microCarousellMutations.selectSize({
+        store: microCarousellStore.get(carrousellId),
+        id: carrousellId,
+        value: { isNotAvailable, productId: id },
+      });
+    }
+    mediaMutations.selectSize({
+      store: mediaStore.get(id),
+      targets: [id],
+      value: { size },
+    });
+  };
 
   return (
-    <styles.Sizes className="sizes">
-      {data.map((size, index) => (
-        <ADTooltip text={`Talla: ${size}`} key={index}>
-          <ADButton
-            onClick={() => handleSelectSize(size)}
-            className={`${state.selected === size ? "size-selected" : ""}`}
-            variant="text"
-          >
-            <ADText variant={TEXT_VARIANTS.SUBTITLE} value={size} />
-          </ADButton>
-        </ADTooltip>
-      ))}
-    </styles.Sizes>
+    <Sizes
+      hideTitle
+      onChange={handleSelectSize}
+      notAvailables={notAvailables}
+      sx={{
+        gap: "0px",
+        columGap: theme.spacing.calc(1),
+        "& .ad-sizes-button": {
+          minWidth: "38px",
+          height: "34px",
+        },
+      }}
+    />
   );
 };
 
@@ -56,7 +78,7 @@ const ActionButton = () => {
   );
 };
 
-export const Footer = ({ id, name, price, sizes, discount }) => {
+export const Footer = ({ id, name, price, notAvailables, discount }) => {
   return (
     <styles.Footer>
       <ADGrid md={{ cols: 1, rows: 1 }} cols={"1fr 70px"} rows={1}>
@@ -90,7 +112,7 @@ export const Footer = ({ id, name, price, sizes, discount }) => {
               value={formatCurrency(price)}
             />
           )}
-          <Sizes id={id} data={sizes} />
+          <SizesWrapper id={id} notAvailables={notAvailables} />
         </styles.LeftCol>
         <styles.RightCol className="right-col">
           <ActionButton />
